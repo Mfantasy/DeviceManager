@@ -16,7 +16,17 @@ namespace DeviceManager
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            if (Config.IsShowLogon)
+            {
+                Logon logon = new Logon();
+                DialogResult dialogResult = logon.ShowDialog();
+                if (dialogResult != DialogResult.OK)
+                {
+                    return;
+                }
+            }            
+           Application.Run(new MainForm());
+            
         }
     }
 }

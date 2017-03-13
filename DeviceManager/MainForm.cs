@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace DeviceManager
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
+
+            //manager dataControl there is a question . 
+            //Format . table格式.Now I should test data . 模仿设备进行数据上行.
+            //today I should have a smeshserver . then 查询数据格式,配置数据库
+
         }
     }
 }
