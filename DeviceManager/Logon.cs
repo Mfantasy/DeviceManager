@@ -22,12 +22,16 @@ namespace DeviceManager
 
         private void button1_Click(object sender, EventArgs e)
         {
-            bool IsOK = DataAccess.Logon(textBox1.Text, textBox2.Text);
-            if (IsOK)
+            int logonResult = DataAccess.Logon(textBox1.Text, textBox2.Text);
+            if (logonResult == 1)
             {
-                RecordUser();                                                   
+                RecordUser();
                 this.DialogResult = DialogResult.OK;
-                this.Close();                
+                this.Close();
+            }
+            else if (logonResult == 2)
+            {
+
             }
             else
             {
