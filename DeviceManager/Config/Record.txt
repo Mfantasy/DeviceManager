@@ -1,0 +1,4 @@
+﻿MySQL下载方式:
+	地址:https://dev.mysql.com/get/Downloads/MySQLInstaller/mysql-installer-community-5.7.17.0.msi
+	只安装server
+然后附件 - 系统工具 - 任务计划程序 - 删除掉mysql的ManifestUpdate

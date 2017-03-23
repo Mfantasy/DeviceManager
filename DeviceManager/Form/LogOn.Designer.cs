@@ -110,6 +110,7 @@
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(569, 254);
             this.Name = "Logon";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "LogOn";
             this.ResumeLayout(false);
             this.PerformLayout();

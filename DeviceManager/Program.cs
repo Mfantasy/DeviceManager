@@ -14,6 +14,8 @@ namespace DeviceManager
         [STAThread]
         static void Main()
         {
+            string x = Utils.GetUserPath();
+            Console.WriteLine(x);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             if (Config.IsShowLogon)

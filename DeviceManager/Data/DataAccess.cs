@@ -17,13 +17,16 @@ namespace DeviceManager
         public static int Logon(string acc, string pwd)
         {
             //首先查询数据库中账户acc的用户权限,如果存在查询密码对不对,如果不存在返回错
-            return 0;
+            if (acc == "admin" && pwd == "admin")
+                return 1;
+            else
+                return 0;                        
         }
     }
 
     public static class SqlHelper
     {
-        static string conStr = ConfigurationManager.AppSettings["conStr"];
+        static string conStr = ConfigurationManager.AppSettings["conStrMySql"];
         static MySqlConnection con = new MySqlConnection(conStr);
         //增删改
         public static void ExecNonQuery(string cmdText)
@@ -41,15 +44,16 @@ namespace DeviceManager
             }
             finally
             {
-                con.Clone();
+                con.Close();
             }
         }
         //用来查用户名权限
-        public static object ExecuteScalar(string cmdText)
+        public static object ExecuteScalar(string cmdText, bool close)
         {
             MySqlCommand cmd = con.CreateCommand();
             cmd.CommandText = cmdText;
-            con.Open();
+            if(con.State != ConnectionState.Open)
+               con.Open();
             object obj = new object();
             try
             {
@@ -62,8 +66,14 @@ namespace DeviceManager
             }
             finally
             {
-                con.Clone();
+                if(close)
+                   con.Close();
             }
+        }
+
+        public static void CloseCon()
+        {
+            con.Close();
         }
         //查询数据表
         public static DataTable ExecuteReader(string cmdText)
@@ -74,6 +84,39 @@ namespace DeviceManager
             DataTable result = new DataTable();
             mAdapter.Fill(result);
             return result;
+        }
+
+        public static List<string[]> ExecuteReader(string cmdText,string[] colnames,bool close)
+        {
+            MySqlCommand cmd = con.CreateCommand();
+            cmd.CommandText = cmdText;
+            if (con.State != ConnectionState.Open)
+                con.Open();
+            List<string[]> list = new List<string[]>();
+            MySqlDataReader reader = cmd.ExecuteReader();
+            try
+            {
+                while (reader.Read())
+                {
+                    string[] row = new string[colnames.Length];
+                    for (int i = 0; i < colnames.Length; i++)
+                    {
+                        row[i] = reader[colnames[i]].ToString();
+                    }
+                    list.Add(row);
+                }
+                reader.Close();
+                return list;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (close)
+                    con.Close();
+            }
         }
 
 

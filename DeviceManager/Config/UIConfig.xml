@@ -1,0 +1,22 @@
+﻿<UI>
+  <element name="panelTop" >    
+    <property name="BackColor" value="transparent" />      
+    <child name="labelTitle">
+      <property name="Text" value="测试" />
+    </child>
+    <element name="panelTopBtn">
+      <child name="glassButton1">
+        <property name="ButtonText" value="实时数据" />
+        <property name="BaseColor" value="black" />
+        <property name="ButtonColor" value="black" />
+        <property name="ForeColor" value="white" />
+      </child>
+      <child name="glassButton2">
+        <property name="ButtonText" value="历史数据" />
+      </child>
+      <child name="glassButton3">
+        <property name="ButtonText" value="设置" />
+      </child>
+    </element>
+  </element>
+</UI>

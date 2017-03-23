@@ -28,11 +28,7 @@ namespace DeviceManager
                 RecordUser();
                 this.DialogResult = DialogResult.OK;
                 this.Close();
-            }
-            else if (logonResult == 2)
-            {
-
-            }
+            }        
             else
             {
                 MessageBox.Show("用户名或密码有误!");

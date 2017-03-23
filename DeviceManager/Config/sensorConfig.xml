@@ -1,0 +1,53 @@
+﻿<Sensors>
+  <sensor name="MXS1201" title="空气温湿度">
+    <field name="nodeid" alias="节点编号" realtime="false" history="false" />
+    <field name="uid" alias="网关唯一号" realtime="false" history="false" />   
+    <field name="humid" alias="湿度(%)" realtime="false" history="false" />
+    <field name="humtemp" alias="温度(℃)" realtime="false" history="false" />
+  </sensor>
+  <sensor name="MXS1301" title="二氧化碳">
+    <field name="nodeid" alias="节点编号" realtime="false" history="false" />
+    <field name="uid" alias="网关唯一号" realtime="false" history="false" />
+    <field name="co2" alias="co2浓度(ppm)" realtime="false" history="false" />    
+  </sensor>
+  <!--测试用例-->
+  <sensor name="MXS5000" title="Davis气象站">
+    <field name="nodeid" alias="节点编号" realtime="false" history="false" />
+    <field name="uid" alias="网关唯一号" realtime="false" history="false" />
+    <field name="port" alias="采集通道" realtime="false" history="false" />
+    <field name="rain" alias="雨量(0.2mm)" realtime="false" history="false" />
+    <field name="windspeed" alias="风速(m/s)" realtime="false" history="false" />
+    <field name="winddirection" alias="风向(度)" realtime="false" history="false" />
+    <field name="airtemp" alias="空气温度" realtime="false" history="false" />
+    <field name="airhumid" alias="空气湿度" realtime="false" history="false" />
+  </sensor>
+  <sensor name="MX7200" title="单体设施液位">
+    <field name="nodeid" alias="节点编号" realtime="false" history="false" />
+    <field name="uid" alias="网关唯一号" realtime="false" history="false" />    
+    <field name="waterLevel" alias="液位(mm)" realtime="false" history="false" />    
+  </sensor>
+  <sensor name="MX8000" title="内涝井下液位">
+    <field name="nodeid" alias="节点编号" realtime="false" history="false" />
+    <field name="uid" alias="网关唯一号" realtime="false" history="false" />
+    <field name="parent" alias="父级节点" realtime="false" history="false" />
+    <field name="port" alias="采集通道" realtime="false" history="false" />
+    <field name="waterLevel" alias="液位(mm)" realtime="false" history="false" />
+    <field name="alarmLevel" alias="告警液位(mm)" realtime="false" history="false" />
+  </sensor>
+  <sensor name="MX8100" title="地下水液位">
+    <field name="nodeid" alias="节点编号" realtime="false" history="false" />
+    <field name="uid" alias="网关唯一号" realtime="false" history="false" />
+    <field name="parent" alias="父级节点" realtime="false" history="false" />
+    <field name="port" alias="采集通道" realtime="false" history="false" />
+    <field name="waterLevel" alias="液位(mm)" realtime="false" history="false" />    
+  </sensor>
+  <sensor name="MX9000" title="井下雨水流量">
+    <field name="nodeid" alias="节点编号" realtime="false" history="false" />
+    <field name="uid" alias="网关唯一号" realtime="false" history="false" />
+    <field name="parent" alias="父级节点" realtime="false" history="false" />
+    <field name="port" alias="采集通道" realtime="false" history="false" />
+    <field name="waterLevel" alias="液位(mm)" realtime="false" history="false" />
+    <field name="flow" alias="流量(m/s)" realtime="false" history="false" />
+    <field name="temp" alias="温度(℃)" realtime="false" history="false" />
+  </sensor>
+</Sensors>

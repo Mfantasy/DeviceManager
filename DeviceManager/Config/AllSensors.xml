@@ -1,0 +1,4 @@
+﻿<Sensors>
+  <sensor model="MX5000" uid ="" nodeid ="" comment="" level0="" level1="" level2="" alarmConfig=""/>
+  <alarmConfig name="" top="" low="" />
+</Sensors>
