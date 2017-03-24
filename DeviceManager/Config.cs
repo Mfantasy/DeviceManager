@@ -3,24 +3,137 @@ using FOF.UserControlModel;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace DeviceManager
 {
+    public static class ConfigData
+    {
+        public static SensorModelRoot SensorModelCfg = null;
+        public static SensorRoot AllSensors = null;
+        public static GroupConfigRoot GroupCfg = null;
+        public static AlarmConfigRoot AlarmCfg = null;
+    }
+
     public static class Config
     {
         public static bool IsShowLogon = false;
         //public static bool IsMySql = true;
     }
 
+    public class ConfigSaver
+    {        
+        void Test()
+        {
+            XmlDocument xdoc = new XmlDocument();
+            xdoc.Load("");
+            xdoc.ChildNodes[1].Attributes[0].Value = "";
+            xdoc.Save("");
+        }
+    }
+
     public static class ConfigParser
     {
+        #region 分组配置
+        public static void ParseGroups(Panel panelAll)
+        {        
+            string fileName = ConfigurationManager.AppSettings["分组配置文件"];
+            GroupConfigRoot gcfg = Utils.FromXMLFile<GroupConfigRoot>(fileName);
+            ConfigData.GroupCfg = gcfg;
+            //载入功能
+            TreeView tv = new TreeView();
+            tv.NodeMouseClick += Tv_NodeMouseClick;
+            Button btnAll = new Button();
+            btnAll.Dock = DockStyle.Top;
+            btnAll.Text = "全部";
+            btnAll.Click += BtnAll_Click;
+            btnAll.Tag = tv;
+            foreach (GroupConfig cfg in gcfg.GroupConfigs)
+            {
+                TreeNode n1 = tv.Nodes.Add(cfg.Name);
+                if (cfg.GroupConfigs != null)
+                {
+                    foreach (GroupConfig cfgp in cfg.GroupConfigs)
+                    {
+                        TreeNode n2 = n1.Nodes.Add(cfgp.Name);
+                        if (cfgp.GroupConfigs != null)
+                        {
+                            foreach (GroupConfig cfgc in cfgp.GroupConfigs)
+                            {
+                                TreeNode n3 = n2.Nodes.Add(cfgc.Name);
+                                n3.Tag = cfgc;                                
+                            }
+                        }
+                    }
+                }
+                //Button btn = new Button();
+                //btn.Dock = DockStyle.Top;
+                //btn.Text = cfg.Name;
+                //btn.Tag = cfg;
+                //btn.Click += Btn_Click;
+                //panelAll.Controls.Add(btn);
+            }
+        }
+
+        private static void Tv_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            TreeNode n3 = sender as TreeNode;
+            if(n3.Tag is GroupConfig)
+            {
+                GroupConfig gcfg = n3.Tag as GroupConfig;
+            }
+        }
+
+        private static void BtnAll_Click(object sender, System.EventArgs e)
+        {
+            TreeView tv = (sender as Button).Tag as TreeView;
+            if (tv.Visible)
+            {
+                tv.Visible = false;
+            }
+            else
+            {
+                tv.Visible = true;
+            }
+        }
+
+        private static void Btn_Click(object sender, System.EventArgs e)
+        {
+            Button btn = (Button)sender;
+            GroupConfig cfg = btn.Tag as GroupConfig;
+            MessageBox.Show("子节点:"+ cfg.GroupConfigs[0].Name + "此处准备做成列表");
+        }
+
+        static void SetGroupConfig()
+        { }
+        #endregion
+
+        #region 报警配置
+        public static void ParseAlarms()
+        {
+            string fileName = ConfigurationManager.AppSettings["报警配置文件"];
+            AlarmConfigRoot acfg = Utils.FromXMLFile<AlarmConfigRoot>(fileName);
+            ConfigData.AlarmCfg = acfg;
+        }
+        #endregion
+
+        #region 传感器列表
+        public static void ParseSensors()
+        {
+            string fileName = ConfigurationManager.AppSettings["传感器列表配置文件"];
+            SensorRoot sensors = Utils.FromXMLFile<SensorRoot>(fileName);
+            ConfigData.AllSensors = sensors;
+        }
+        #endregion
+
+        #region 界面配置
         public static void ParseUI(MainForm form)
         {
             string fileName = ConfigurationManager.AppSettings["界面配置文件"];
             UIModel ui = Utils.FromXMLFile<UIModel>(fileName);
-            SetElement(form, ui.Elements);            
+            SetElement(form, ui.Elements);
         }
-        
+
         static void SetElement(Control parent, List<Element> elements)
         {
             foreach (Element element in elements)
@@ -48,18 +161,21 @@ namespace DeviceManager
             }
         }
 
-        static void SetProperty(Control ctrl,List<Property> properties)
+        static void SetProperty(Control ctrl, List<Property> properties)
         {
             foreach (Property property in properties)
             {
                 ctrl.GetType().GetProperty(property.Name).SetValue(ctrl, property.Value);
             }
         }
+        #endregion
 
-        public static void ParseSensor(Panel panelLeft)
+        #region 传感器模型配置
+        public static void ParseSensorModel(Panel panelLeft)
         {
-            string fileName = ConfigurationManager.AppSettings["传感器配置文件"];
-            SensorRoot sroot = Utils.FromXMLFile<SensorRoot>(fileName);
+            string fileName = ConfigurationManager.AppSettings["传感器模型配置文件"];
+            SensorModelRoot sroot = Utils.FromXMLFile<SensorModelRoot>(fileName);
+            ConfigData.SensorModelCfg = sroot;
             foreach (SensorModel smodel in sroot.Sensors)
             {
                 GlassButton gbtn = new GlassButton();
@@ -79,5 +195,7 @@ namespace DeviceManager
             //读XML配置文件,并将XML备份到User目录下
 #warning 左侧按钮点击事件,秀出设备
         }
+        #endregion
+
     }
 }

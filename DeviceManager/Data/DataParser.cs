@@ -11,6 +11,7 @@ namespace DeviceManager
     {      
         public static void ParseJObj(JObject jobj)
         {
+#warning 处理Json数据
             IEnumerable<JToken> jdata = jobj["data"].Children();
             Sensor sensor = new Sensor();
             string sensorModel = jobj["parser"].ToString();            

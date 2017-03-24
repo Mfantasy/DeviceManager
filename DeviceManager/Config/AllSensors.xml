@@ -1,4 +1,3 @@
 ﻿<Sensors>
-  <sensor model="MX5000" uid ="" nodeid ="" comment="" level0="" level1="" level2="" alarmConfig=""/>
-  <alarmConfig name="" top="" low="" />
+  <sensor model="MX5000" uid ="818C5501E5242262" nodeid ="0" comment="中央绿廊微气象监测" interval="10" groupConfig="g1p1c1" alarmConfig="冬天策略"/>
 </Sensors>

@@ -11,27 +11,36 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
+using System.Runtime.InteropServices;
 
 namespace DeviceManager
 {
     public partial class MainForm : Form
     {
+        //拖动
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HT_CAPTION = 0x2;
+        [DllImportAttribute("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd,
+                         int Msg, int wParam, int lParam);
+        [DllImportAttribute("user32.dll")]
+        public static extern bool ReleaseCapture();
+             
         public MainForm()
         {
             InitializeComponent();
-            ConfigParser.ParseSensor(panelLeft);
-            ConfigParser.ParseUI(this);            
+            ConfigParser.ParseSensorModel(panelLeft);
+            ConfigParser.ParseUI(this);
+            ConfigParser.ParseGroups(panelAll);
+            UITEST();
         }
 
-        private void LoadUI()
+        void UITEST()
         {
-            Panel pt = (Panel)this.Controls.Find("panelTop",false)[0];
-            pt.BackgroundImage = Image.FromFile("a.jpg");
-            pt.GetType().GetProperty("BackColor").SetValue(pt, Color.FromName("red"));
-            Label lb = (Label)pt.Controls.Find("labelTitle", false)[0];
-            lb.GetType().GetProperty("Text").SetValue(lb, "测试成功了呀");
+            panelAll.Dock = DockStyle.Fill;
+            panelAll.AutoScroll = true;
+            panelRight.Controls.Add(panelAll);
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
 
@@ -43,12 +52,37 @@ namespace DeviceManager
 
         private void glassButton1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(glassButton1.ButtonText);
+            
         }
 
         private void glassButtonAll_Click(object sender, EventArgs e)
         {
 
+        }
+
+        Panel panelAll = new Panel();
+        private void glassButton4_Click(object sender, EventArgs e)
+        {
+            //ConfigData.GroupCfg.GroupConfigs[0].
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+             
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+            }
         }
     }
 
