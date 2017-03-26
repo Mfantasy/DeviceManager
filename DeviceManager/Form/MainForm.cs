@@ -29,30 +29,33 @@ namespace DeviceManager
         public MainForm()
         {
             InitializeComponent();
-            ConfigParser.ParseSensorModel(panelLeft);
-            ConfigParser.ParseUI(this);
-            ConfigParser.ParseGroups(panelAll);
             UITEST();
+            ConfigParser.ParseSensorModel(panelLeft);            
+            ConfigParser.ParseSensors();
+            ConfigParser.ParseAlarms();
+            ConfigParser.ParseGroups(panelAll);          
+            ConfigParser.ParseUI(this);
+            this.Text = labelTitle.Text;
         }
 
         void UITEST()
         {
+            panelAll.Name = "panelAll";
             panelAll.Dock = DockStyle.Fill;
-            panelAll.AutoScroll = true;
-            panelRight.Controls.Add(panelAll);
+            panelAll.AutoScroll = true;                     
+            panelRight.Controls.Add(panelAll);            
+            panelAll.BringToFront();
         }
         private void button1_Click(object sender, EventArgs e)
         {
-
-            DataSubscribe.StartSubscribe();
-
-
-
+            Thread th = new Thread(DataSubscribe.StartSubscribe);
+            th.IsBackground = true;
+            th.Start();            
         }
-
+        
         private void glassButton1_Click(object sender, EventArgs e)
         {
-            
+           
         }
 
         private void glassButtonAll_Click(object sender, EventArgs e)
@@ -63,7 +66,8 @@ namespace DeviceManager
         Panel panelAll = new Panel();
         private void glassButton4_Click(object sender, EventArgs e)
         {
-            //ConfigData.GroupCfg.GroupConfigs[0].
+            panelAll.Visible = true;
+            panelAll.BringToFront();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -84,6 +88,7 @@ namespace DeviceManager
                 SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
             }
         }
+               
     }
 
 }

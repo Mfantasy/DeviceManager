@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using System.Xml.Serialization;
+using static DeviceManager.Model.GroupConfig;
 
 namespace DeviceManager
 {
@@ -32,7 +34,7 @@ namespace DeviceManager
         public string AlarmConfigKey { get; set; }
         [XmlAttribute("groupConfig")]
         public string GroupConfigKey { get; set; }
-
+         
         [XmlIgnore]
         public DateTime Time { get; set; }
         //0正常 1接近告警 2报警
@@ -41,9 +43,18 @@ namespace DeviceManager
         { get {
 #warning 根据模型中的所有字段进行匹配做报警处理          
                 return 0;
-            } }       
+            } }
+
+        SensorModel model = null;      
         [XmlIgnore]
-        public SensorModel Model { get; set; }
+        public SensorModel Model { get
+            {
+                if (model == null)
+                {
+                    model = ConfigData.SensorModelCfg.Sensors.Find(md => md.Name == ModelKey);
+                }
+                return model;
+            } }
         [XmlIgnore]
         public AlarmConfig AlarmConfig
         {
@@ -83,5 +94,17 @@ namespace DeviceManager
         public bool Realtime { get; set; }
         [XmlAttribute("history")]
         public bool History { get; set; }
+        [XmlIgnore]
+        public string Value { get; set; }
+        [XmlIgnore]
+        public Label Label { get; set; }
+        [XmlIgnore]
+        public string LabelText
+        {
+            get
+            {
+                return Alias + " : " + Value;
+            }
+        }
     }
 }

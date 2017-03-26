@@ -17,12 +17,17 @@ namespace DeviceManager
         static void ProcessBytes(object o)
         {
             byte[] bts = (byte[])o;
-            int length = bts.Length;            
+            int length = bts.Length;      
+                  
             if (bts.Length > 4 && bts[0] == 0 && bts[1] == 0)
             {
                 int jbtlength = bts[2] * 256 + bts[3];
+                if (jbtlength != bts.Length-4)
+                {
+                    return;
+                }
                 string jstr = Encoding.UTF8.GetString(bts, 4, jbtlength);
-                //Console.WriteLine(jstr);
+                Console.WriteLine(jstr);
                 JObject jobj = JObject.Parse(jstr);
                 DataParser.ParseJObj(jobj);
                 {

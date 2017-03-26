@@ -24,6 +24,21 @@ namespace DeviceManager.Model
         public string Key { get; set; }
         [XmlAttribute("name")]
         public string Name { get; set; }
+
+        List<Sensor> sensors = null;
+        [XmlIgnore]
+        public List<Sensor> Sensors
+        {
+            get
+            {
+                if (sensors == null)
+                {
+                    sensors = ConfigData.AllSensors.Sensors.FindAll(sensor => sensor.GroupConfigKey == Key);
+                }
+                return sensors;
+            }
+        }
+
     }
 
     [XmlRoot("AlarmConfigs")]

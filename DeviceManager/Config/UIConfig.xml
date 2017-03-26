@@ -2,7 +2,7 @@
   <element name="panelTop" >    
     <property name="BackColor" value="transparent" />      
     <child name="labelTitle">
-      <property name="Text" value="测试" />
+      <property name="Text" value="山西省榆社县博物馆环境监测系统" />
     </child>
     <element name="panelTopBtn">
       <child name="glassButton1">
@@ -16,6 +16,13 @@
       </child>
       <child name="glassButton3">
         <property name="ButtonText" value="设置" />
+      </child>
+    </element>
+  </element>
+  <element name="panelRight">
+    <element name="panelAll">
+      <child name="g1p1c1">
+        <property name="BackColor" value="AliceBlue" />
       </child>
     </element>
   </element>

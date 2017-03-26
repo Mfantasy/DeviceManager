@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Windows.Forms;
 using System.Xml;
+using static DeviceManager.Model.GroupConfig;
 
 namespace DeviceManager
 {
@@ -35,6 +36,7 @@ namespace DeviceManager
     public static class ConfigParser
     {
         #region 分组配置
+        static Button btnAll = new Button();
         public static void ParseGroups(Panel panelAll)
         {        
             string fileName = ConfigurationManager.AppSettings["分组配置文件"];
@@ -42,12 +44,16 @@ namespace DeviceManager
             ConfigData.GroupCfg = gcfg;
             //载入功能
             TreeView tv = new TreeView();
-            tv.NodeMouseClick += Tv_NodeMouseClick;
-            Button btnAll = new Button();
+            tv.Visible = false;
+            tv.Dock = DockStyle.Fill;
+            tv.NodeMouseDoubleClick += Tv_NodeMouseClick;                    
             btnAll.Dock = DockStyle.Top;
             btnAll.Text = "全部";
             btnAll.Click += BtnAll_Click;
             btnAll.Tag = tv;
+            panelAll.Parent.Controls.Add(tv);
+            panelAll.Parent.Controls.Add(btnAll);
+                                 
             foreach (GroupConfig cfg in gcfg.GroupConfigs)
             {
                 TreeNode n1 = tv.Nodes.Add(cfg.Name);
@@ -60,8 +66,40 @@ namespace DeviceManager
                         {
                             foreach (GroupConfig cfgc in cfgp.GroupConfigs)
                             {
-                                TreeNode n3 = n2.Nodes.Add(cfgc.Name);
-                                n3.Tag = cfgc;                                
+                                TreeNode n3 = n2.Nodes.Add(cfgc.Name);                                
+                                TableLayoutPanel tlp = new TableLayoutPanel();
+                                //tlp.BackColor = System.Drawing.Color.AliceBlue;
+                                tlp.ColumnCount = 2;
+                                tlp.Name = cfgc.Key;
+                                //tlp.set                                
+                                tlp.Dock = DockStyle.Top;
+                                tlp.AutoSize = true;
+                                tlp.Margin = new Padding(3);
+                                n3.Tag = tlp;
+                                tlp.ColumnStyles.Add(new ColumnStyle(SizeType.Percent,50));
+                                tlp.ColumnStyles.Add(new ColumnStyle(SizeType.Percent,50));
+                                panelAll.Controls.Add(tlp);
+                                tlp.BringToFront();
+                                //tlp.ColumnStyles[1].SizeType = SizeType.AutoSize;
+                                Label lbtitle = new Label();
+                                lbtitle.Text = cfg.Name+" "+ cfgp.Name+" "+cfgc.Name;
+                                lbtitle.AutoSize = true;
+                                lbtitle.Parent = tlp;
+                                tlp.SetColumnSpan(lbtitle, 2);
+                                foreach (Sensor sensor in cfgc.Sensors)
+                                {
+                                    foreach (Field field in sensor.Model.Fields)
+                                    {
+                                        if (!field.Realtime)
+                                            continue;
+                                        Label lb = new Label();
+                                        lb.Margin = new Padding(3);
+                                        field.Label = lb;
+                                        lb.AutoSize = true;
+                                        lb.Parent = tlp;
+                                        field.Label.Text = field.LabelText;                                        
+                                    }                                                                        
+                                }
                             }
                         }
                     }
@@ -77,23 +115,28 @@ namespace DeviceManager
 
         private static void Tv_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            TreeNode n3 = sender as TreeNode;
-            if(n3.Tag is GroupConfig)
+            TreeNode n3 = e.Node;
+            if(n3.Tag is TableLayoutPanel)
             {
-                GroupConfig gcfg = n3.Tag as GroupConfig;
+                TableLayoutPanel tlp = n3.Tag as TableLayoutPanel;
+                tlp.SendToBack();
+                BtnAll_Click(null, null);
             }
         }
 
         private static void BtnAll_Click(object sender, System.EventArgs e)
-        {
-            TreeView tv = (sender as Button).Tag as TreeView;
+        {            
+            TreeView tv = btnAll.Tag as TreeView;
             if (tv.Visible)
             {
                 tv.Visible = false;
+                btnAll.Text = "全部";
             }
             else
             {
                 tv.Visible = true;
+                tv.BringToFront();
+                btnAll.Text = "收起";
             }
         }
 
@@ -146,7 +189,7 @@ namespace DeviceManager
                 if (element.Children != null)
                 {
                     foreach (Child child in element.Children)
-                    {
+                    {                
                         Control ctrlC = ctrlP.Controls.Find(child.Name, false)[0];
                         if (child.Properties != null)
                         {
