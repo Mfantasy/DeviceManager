@@ -34,13 +34,13 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panelTopBtn = new System.Windows.Forms.Panel();
-            this.labelTitle = new System.Windows.Forms.Label();
-            this.panelLeft = new System.Windows.Forms.FlowLayoutPanel();
-            this.panelRight = new System.Windows.Forms.Panel();
-            this.glassButtonAll = new FOF.UserControlModel.GlassButton();
             this.glassButton3 = new FOF.UserControlModel.GlassButton();
             this.glassButton1 = new FOF.UserControlModel.GlassButton();
             this.glassButton2 = new FOF.UserControlModel.GlassButton();
+            this.labelTitle = new System.Windows.Forms.Label();
+            this.panelLeft = new System.Windows.Forms.FlowLayoutPanel();
+            this.glassButtonAll = new FOF.UserControlModel.GlassButton();
+            this.panelRight = new System.Windows.Forms.Panel();
             this.panelTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -112,52 +112,6 @@
             this.panelTopBtn.Size = new System.Drawing.Size(1022, 44);
             this.panelTopBtn.TabIndex = 4;
             // 
-            // labelTitle
-            // 
-            this.labelTitle.AutoSize = true;
-            this.labelTitle.BackColor = System.Drawing.Color.Transparent;
-            this.labelTitle.Dock = System.Windows.Forms.DockStyle.Top;
-            this.labelTitle.Font = new System.Drawing.Font("宋体", 42F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labelTitle.Location = new System.Drawing.Point(0, 0);
-            this.labelTitle.Name = "labelTitle";
-            this.labelTitle.Size = new System.Drawing.Size(248, 56);
-            this.labelTitle.TabIndex = 0;
-            this.labelTitle.Text = "测试文字";
-            // 
-            // panelLeft
-            // 
-            this.panelLeft.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelLeft.Controls.Add(this.glassButtonAll);
-            this.panelLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelLeft.Location = new System.Drawing.Point(0, 100);
-            this.panelLeft.Name = "panelLeft";
-            this.panelLeft.Padding = new System.Windows.Forms.Padding(3);
-            this.panelLeft.Size = new System.Drawing.Size(175, 668);
-            this.panelLeft.TabIndex = 4;
-            // 
-            // panelRight
-            // 
-            this.panelRight.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelRight.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelRight.Location = new System.Drawing.Point(177, 100);
-            this.panelRight.Name = "panelRight";
-            this.panelRight.Size = new System.Drawing.Size(847, 668);
-            this.panelRight.TabIndex = 5;
-            // 
-            // glassButtonAll
-            // 
-            this.glassButtonAll.BackColor = System.Drawing.Color.Transparent;
-            this.glassButtonAll.ButtonText = "全部";
-            this.glassButtonAll.Font = new System.Drawing.Font("宋体", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.glassButtonAll.Location = new System.Drawing.Point(8, 8);
-            this.glassButtonAll.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
-            this.glassButtonAll.Name = "glassButtonAll";
-            this.glassButtonAll.Size = new System.Drawing.Size(160, 47);
-            this.glassButtonAll.TabIndex = 3;
-            this.glassButtonAll.Click += new System.EventHandler(this.glassButton4_Click);
-            // 
             // glassButton3
             // 
             this.glassButton3.BackColor = System.Drawing.Color.Transparent;
@@ -190,6 +144,52 @@
             this.glassButton2.Padding = new System.Windows.Forms.Padding(5);
             this.glassButton2.Size = new System.Drawing.Size(112, 36);
             this.glassButton2.TabIndex = 2;
+            // 
+            // labelTitle
+            // 
+            this.labelTitle.AutoSize = true;
+            this.labelTitle.BackColor = System.Drawing.Color.Transparent;
+            this.labelTitle.Dock = System.Windows.Forms.DockStyle.Top;
+            this.labelTitle.Font = new System.Drawing.Font("宋体", 42F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labelTitle.Location = new System.Drawing.Point(0, 0);
+            this.labelTitle.Name = "labelTitle";
+            this.labelTitle.Size = new System.Drawing.Size(248, 56);
+            this.labelTitle.TabIndex = 0;
+            this.labelTitle.Text = "测试文字";
+            // 
+            // panelLeft
+            // 
+            this.panelLeft.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelLeft.Controls.Add(this.glassButtonAll);
+            this.panelLeft.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panelLeft.Location = new System.Drawing.Point(0, 100);
+            this.panelLeft.Name = "panelLeft";
+            this.panelLeft.Padding = new System.Windows.Forms.Padding(3);
+            this.panelLeft.Size = new System.Drawing.Size(175, 668);
+            this.panelLeft.TabIndex = 4;
+            // 
+            // glassButtonAll
+            // 
+            this.glassButtonAll.BackColor = System.Drawing.Color.Transparent;
+            this.glassButtonAll.ButtonText = "全部";
+            this.glassButtonAll.Font = new System.Drawing.Font("宋体", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.glassButtonAll.Location = new System.Drawing.Point(8, 8);
+            this.glassButtonAll.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.glassButtonAll.Name = "glassButtonAll";
+            this.glassButtonAll.Size = new System.Drawing.Size(160, 47);
+            this.glassButtonAll.TabIndex = 3;
+            this.glassButtonAll.Click += new System.EventHandler(this.glassButton4_Click);
+            // 
+            // panelRight
+            // 
+            this.panelRight.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelRight.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelRight.Location = new System.Drawing.Point(177, 100);
+            this.panelRight.Name = "panelRight";
+            this.panelRight.Size = new System.Drawing.Size(847, 668);
+            this.panelRight.TabIndex = 5;
             // 
             // MainForm
             // 

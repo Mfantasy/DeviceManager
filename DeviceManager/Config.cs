@@ -68,20 +68,22 @@ namespace DeviceManager
                             {
                                 TreeNode n3 = n2.Nodes.Add(cfgc.Name);                                
                                 TableLayoutPanel tlp = new TableLayoutPanel();
-                                //tlp.BackColor = System.Drawing.Color.AliceBlue;
+                                tlp.DoubleClick += Tlp_DoubleClick;
+                                tlp.CellBorderStyle = TableLayoutPanelCellBorderStyle.InsetDouble;
+                                tlp.MinimumSize = new System.Drawing.Size(415, 0);
                                 tlp.ColumnCount = 2;
-                                tlp.Name = cfgc.Key;
-                                //tlp.set                                
+                                tlp.Name = cfgc.Key;                                              
                                 tlp.Dock = DockStyle.Top;
                                 tlp.AutoSize = true;
                                 tlp.Margin = new Padding(3);
                                 n3.Tag = tlp;
+                                tlp.Tag = cfgc.Sensors;
                                 tlp.ColumnStyles.Add(new ColumnStyle(SizeType.Percent,50));
                                 tlp.ColumnStyles.Add(new ColumnStyle(SizeType.Percent,50));
-                                panelAll.Controls.Add(tlp);
-                                tlp.BringToFront();
-                                //tlp.ColumnStyles[1].SizeType = SizeType.AutoSize;
+                                panelAll.Controls.Add(tlp);                             
+                                //tlp.BringToFront();                                
                                 Label lbtitle = new Label();
+                                lbtitle.Margin = new Padding(3);
                                 lbtitle.Text = cfg.Name+" "+ cfgp.Name+" "+cfgc.Name;
                                 lbtitle.AutoSize = true;
                                 lbtitle.Parent = tlp;
@@ -97,20 +99,27 @@ namespace DeviceManager
                                         field.Label = lb;
                                         lb.AutoSize = true;
                                         lb.Parent = tlp;
-                                        field.Label.Text = field.LabelText;                                        
+                                        lb.Font = new System.Drawing.Font("宋体", 11);
+                                        field.Label.Text = field.LabelText;
+                                        lb.TextChanged += Lb_TextChanged;                                     
                                     }                                                                        
                                 }
                             }
                         }
                     }
-                }
-                //Button btn = new Button();
-                //btn.Dock = DockStyle.Top;
-                //btn.Text = cfg.Name;
-                //btn.Tag = cfg;
-                //btn.Click += Btn_Click;
-                //panelAll.Controls.Add(btn);
+                } 
             }
+        }
+
+        private static void Lb_TextChanged(object sender, System.EventArgs e)
+        {
+            //此处执行一个Action.这个act传感Tlp点击事件.
+        }
+
+        private static void Tlp_DoubleClick(object sender, System.EventArgs e)
+        {
+            MessageBox.Show((sender as Control).Name);
+
         }
 
         private static void Tv_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
@@ -119,7 +128,7 @@ namespace DeviceManager
             if(n3.Tag is TableLayoutPanel)
             {
                 TableLayoutPanel tlp = n3.Tag as TableLayoutPanel;
-                tlp.SendToBack();
+                tlp.BringToFront();
                 BtnAll_Click(null, null);
             }
         }

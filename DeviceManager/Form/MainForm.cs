@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 using System.Runtime.InteropServices;
+using Newtonsoft.Json.Linq;
 
 namespace DeviceManager
 {
@@ -29,7 +30,7 @@ namespace DeviceManager
         public MainForm()
         {
             InitializeComponent();
-            UITEST();
+            InitializeUI();
             ConfigParser.ParseSensorModel(panelLeft);            
             ConfigParser.ParseSensors();
             ConfigParser.ParseAlarms();
@@ -38,36 +39,56 @@ namespace DeviceManager
             this.Text = labelTitle.Text;
         }
 
-        void UITEST()
+        void InitializeUI()
         {
+            UIController.panelRight = panelRight;
+            panelAllP.Name = "panelAllP";
+            panelAllP.Dock = DockStyle.Fill;
+            panelAllP.AutoScroll = true;
             panelAll.Name = "panelAll";
             panelAll.Dock = DockStyle.Fill;
-            panelAll.AutoScroll = true;                     
-            panelRight.Controls.Add(panelAll);            
-            panelAll.BringToFront();
+            panelAll.AutoScroll = true;              
+            panelRight.Controls.Add(panelAllP);
+            panelAllP.Controls.Add(panelAll);
+            panelAllP.BringToFront();
         }
         private void button1_Click(object sender, EventArgs e)
         {
             Thread th = new Thread(DataSubscribe.StartSubscribe);
             th.IsBackground = true;
-            th.Start();            
+            th.Start();
         }
-        
+
+        bool b = false;
         private void glassButton1_Click(object sender, EventArgs e)
         {
-           
+            //测试
+            string jstr;
+            if (b)
+            {
+                jstr = "{\"state\":\"Stream\",\"parser\":\"MXS1501\",\"raw\":\"7E000B7D1A000001000000330A4081817F01E524226D050100000100B01C00\",\"data\":[{\"name\":\"nodeid\",\"alias\":\"节点编号\",\"type\":\"uint16\",\"raw\":\"0x0100\",\"converted\":\"1\"},{\"name\":\"uid\",\"alias\":\"网关唯一号\",\"type\":\"raw\",\"raw\":\"0x81817F01E524226D\"},{\"name\":\"parent\",\"alias\":\"父级节点\",\"type\":\"uint16\",\"raw\":\"0x0000\",\"converted\":\"0\"},{\"name\":\"port\",\"alias\":\"采集通道\",\"type\":\"uint8\",\"raw\":\"0x01\",\"converted\":\"1\"},{\"name\":\"light\",\"alias\":\"太阳光照(lux)\",\"type\":\"uint32\",\"raw\":\"0x00B01C00\",\"converted\":\"188006.4\"}]}";
+                b = false;
+            }
+            else
+            {
+                jstr = "{\"state\":\"Stream\",\"parser\":\"MXN820\",\"raw\":\"7E000B7D1A000001000000330A5E81817F01E524226DFC000000000000E70D\",\"data\":[{\"name\":\"nodeid\",\"alias\":\"节点编号\",\"type\":\"uint16\",\"raw\":\"0x0100\",\"converted\":\"1\"},{\"name\":\"uid\",\"alias\":\"网关唯一号\",\"type\":\"hex\",\"raw\":\"0x81817F01E524226D\",\"converted\":\"81817F01E524226D\"},{\"name\":\"parent\",\"alias\":\"父级节点\",\"type\":\"uint16\",\"raw\":\"0x0000\",\"converted\":\"0\"},{\"name\":\"port\",\"alias\":\"采集通道\",\"type\":\"uint8\",\"raw\":\"0x00\",\"converted\":\"0\"},{\"name\":\"chargeVol\",\"alias\":\"充电电压(mv)\",\"type\":\"uint16\",\"raw\":\"0x0000\",\"converted\":\"0\"},{\"name\":\"battVol\",\"alias\":\"电池电压(mv)\",\"type\":\"uint16\",\"raw\":\"0xE70D\",\"converted\":\"3559\"}]}";
+                b = true;
+            }
+            JObject jobj = JObject.Parse(jstr);
+            DataParser.ParseJObj(jobj);
         }
 
         private void glassButtonAll_Click(object sender, EventArgs e)
         {
 
         }
-
-        Panel panelAll = new Panel();
+        //全部
+        FlowLayoutPanel panelAll = new FlowLayoutPanel();
+        Panel panelAllP = new Panel();
         private void glassButton4_Click(object sender, EventArgs e)
         {
-            panelAll.Visible = true;
-            panelAll.BringToFront();
+            panelAllP.Visible = true;
+            panelAllP.BringToFront();
         }
 
         private void button2_Click(object sender, EventArgs e)

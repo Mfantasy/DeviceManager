@@ -93,6 +93,7 @@
     </Compile>
     <Compile Include="Model\ConfigModels.cs" />
     <Compile Include="Model\UIModel.cs" />
+    <Compile Include="UIController.cs" />
     <Compile Include="UserControl\GlassButton.cs">
       <SubType>UserControl</SubType>
     </Compile>

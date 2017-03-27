@@ -14,32 +14,40 @@ namespace DeviceManager
             JEnumerable<JToken> jdata = jobj["data"].Children();
             string nodeid = "";
             string uid = "";
-            //string sensorModel = jobj["parser"].ToString();
-            //SensorModel smodel = ConfigData.SensorModelCfg.Sensors.Find(model => model.Name == sensorModel);
-            //if (smodel == null)
-            //{ return; }
-            //smodel.Fields
+            string portid = ""; 
             string key = "converted";
             foreach (JToken jt in jdata)
             {
                 string name = jt["name"].ToString();
                 switch (name)
                 {
-                    //我在这个位置取到传感器的UID+NODEID。然后从·ALLSensors中找到这个玩意~然后把ALLsensor的内个的label的文字改成这个玩意~
                     case "nodeid":
                         nodeid = jt[key].ToString();
                         break;
                     case "uid":
                         uid = jt["raw"].ToString().Remove(0,2);
                         break;
+                    case "port":
+                        portid = jt[key].ToString();
+                        break;
                 }             
             }
-            Sensor sensor = ConfigData.AllSensors.Sensors.Find(ss => ss.Uid == uid && ss.NodeId == nodeid);
-            if (sensor == null)
+            List<Sensor> sensors = ConfigData.AllSensors.Sensors.FindAll(ss => ss.Uid == uid && ss.NodeId == nodeid);
+            if (sensors == null || sensors.Count==0)
             {
                 return;
             }
-            Console.WriteLine("find!");
+            Sensor sensor;
+            if (sensors.Count == 1)
+            {
+                sensor = sensors[0];
+            }
+            else
+            {
+                sensor = sensors.Find(ss => ss.PortId == portid);
+                if (sensor == null)
+                    return;
+            } 
             foreach (JToken jt in jdata)
             {
                 string name = jt["name"].ToString();
@@ -54,9 +62,9 @@ namespace DeviceManager
                         if(name=="uid")
                             field.Value = jt["raw"].ToString().Remove(0, 2);
                         else
-                            field.Value = jt[key].ToString();                       
-                    }
-                    field.Label.Invoke(new Action(()=>field.Label.Text = field.LabelText));
+                            field.Value = jt[key].ToString();
+                        field.Label.Invoke(new Action(() => field.Label.Text = field.LabelText));
+                    }                   
                 }
             }
         }

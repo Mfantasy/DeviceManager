@@ -24,10 +24,9 @@ namespace DeviceManager
         [XmlAttribute("nodeid")]
         public string NodeId { get; set; }
         [XmlAttribute("comment")]
-        public string Comment { get; set; }                            
-        //频率(分钟)
-        [XmlAttribute("interval")]
-        public int Interval { get; set; }                
+        public string Comment { get; set; }
+        [XmlAttribute("portid")]
+        public string PortId { get; set; }
         [XmlAttribute("model")]
         public string ModelKey { get; set; }
         [XmlAttribute("alarmConfig")]
