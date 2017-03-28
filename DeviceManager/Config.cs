@@ -5,6 +5,9 @@ using System.Configuration;
 using System.Windows.Forms;
 using System.Xml;
 using static DeviceManager.Model.GroupConfig;
+using System;
+using DeviceManager.UserControl;
+using System.Data;
 
 namespace DeviceManager
 {
@@ -36,7 +39,7 @@ namespace DeviceManager
     public static class ConfigParser
     {
         #region 分组配置
-        static Button btnAll = new Button();
+        public static Button btnAll = new Button();
         public static void ParseGroups(Panel panelAll)
         {        
             string fileName = ConfigurationManager.AppSettings["分组配置文件"];
@@ -76,11 +79,12 @@ namespace DeviceManager
                                 tlp.Dock = DockStyle.Top;
                                 tlp.AutoSize = true;
                                 tlp.Margin = new Padding(3);
-                                n3.Tag = tlp;
-                                tlp.Tag = cfgc.Sensors;
+                                n3.Tag = tlp;                           
                                 tlp.ColumnStyles.Add(new ColumnStyle(SizeType.Percent,50));
                                 tlp.ColumnStyles.Add(new ColumnStyle(SizeType.Percent,50));
-                                panelAll.Controls.Add(tlp);                             
+                                panelAll.Controls.Add(tlp);
+                                Control tlpCD = GetCD(tlp.Parent.Parent, cfgc.Sensors, cfg.Name + " " + cfgp.Name + " " + cfgc.Name);
+                                tlp.Tag = tlpCD;
                                 //tlp.BringToFront();                                
                                 Label lbtitle = new Label();
                                 lbtitle.Margin = new Padding(3);
@@ -100,8 +104,7 @@ namespace DeviceManager
                                         lb.AutoSize = true;
                                         lb.Parent = tlp;
                                         lb.Font = new System.Drawing.Font("宋体", 11);
-                                        field.Label.Text = field.LabelText;
-                                        lb.TextChanged += Lb_TextChanged;                                     
+                                        field.Label.Text = field.LabelText;                                                                         
                                     }                                                                        
                                 }
                             }
@@ -111,15 +114,44 @@ namespace DeviceManager
             }
         }
 
-        private static void Lb_TextChanged(object sender, System.EventArgs e)
+        private static DataGridView GetCD(Control parent, List<Sensor> sensors,string name)
         {
-            //此处执行一个Action.这个act传感Tlp点击事件.
+            CustomDataView cdv = new CustomDataView();            
+            cdv.Parent = parent;
+            cdv.Dock = DockStyle.Fill;
+            cdv.Name = name;
+            DataTable table = new DataTable();            
+            table.Columns.Add("监测项");
+            table.Columns.Add("数值");
+            table.Columns.Add("数据时间");
+            table.Columns.Add("备注");                        
+            foreach (Sensor ss in sensors)
+            {
+                foreach (Field item in ss.Model.Fields)
+                {
+                    if (item.Realtime)
+                    {
+                        DataRow row = table.NewRow();
+                        row.ItemArray =new object[] { item.Alias, item.Value, ss.Time, ss.Comment };
+                        item.Row = row;
+                        table.Rows.Add(row);
+                        //table.Rows.Add(item.Alias, item.Value, ss.Time, ss.Comment);
+                    }
+                }
+            }
+            cdv.DataSource = table;
+            cdv.Font = new System.Drawing.Font("宋体", 12);
+            //cdv.Columns["备注"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            return cdv;
         }
 
         private static void Tlp_DoubleClick(object sender, System.EventArgs e)
         {
-            MessageBox.Show((sender as Control).Name);
-
+            Control ctrl = sender as Control;
+            Control tlpCP = (sender as Control).Tag as Control;
+            tlpCP.BringToFront();
+            btnAll.Text = (ctrl.Tag as Control).Name;
+            btnTxt = btnAll.Text;
         }
 
         private static void Tv_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
@@ -128,18 +160,22 @@ namespace DeviceManager
             if(n3.Tag is TableLayoutPanel)
             {
                 TableLayoutPanel tlp = n3.Tag as TableLayoutPanel;
-                tlp.BringToFront();
-                BtnAll_Click(null, null);
+                Control dgvCD = tlp.Tag as Control;
+                dgvCD.BringToFront();
+                BtnAll_Click(null, null);                
+                btnAll.Text = n3.Parent.Parent.Text+" "+n3.Parent.Text+" "+ n3.Text;
+                btnTxt = btnAll.Text;
             }
         }
 
+        public static string btnTxt = "";
         private static void BtnAll_Click(object sender, System.EventArgs e)
         {            
             TreeView tv = btnAll.Tag as TreeView;
             if (tv.Visible)
             {
                 tv.Visible = false;
-                btnAll.Text = "全部";
+                btnAll.Text = btnTxt;          
             }
             else
             {
@@ -148,16 +184,7 @@ namespace DeviceManager
                 btnAll.Text = "收起";
             }
         }
-
-        private static void Btn_Click(object sender, System.EventArgs e)
-        {
-            Button btn = (Button)sender;
-            GroupConfig cfg = btn.Tag as GroupConfig;
-            MessageBox.Show("子节点:"+ cfg.GroupConfigs[0].Name + "此处准备做成列表");
-        }
-
-        static void SetGroupConfig()
-        { }
+     
         #endregion
 
         #region 报警配置
@@ -223,27 +250,32 @@ namespace DeviceManager
         #endregion
 
         #region 传感器模型配置
-        public static void ParseSensorModel(Panel panelLeft)
+        public static void ParseSensorModel(Panel panelLeft,Panel panelItem)
         {
             string fileName = ConfigurationManager.AppSettings["传感器模型配置文件"];
             SensorModelRoot sroot = Utils.FromXMLFile<SensorModelRoot>(fileName);
             ConfigData.SensorModelCfg = sroot;
             foreach (SensorModel smodel in sroot.Sensors)
             {
+                FlowLayoutPanel flp = new FlowLayoutPanel();
+                flp.Dock = DockStyle.Fill;
+                flp.Parent = panelItem;
+                flp.Tag = smodel;
                 GlassButton gbtn = new GlassButton();
                 gbtn.Name = smodel.Name;
                 gbtn.ButtonText = smodel.Title;
                 gbtn.Font = new System.Drawing.Font("宋体", 11, System.Drawing.FontStyle.Regular);
                 gbtn.Size = new System.Drawing.Size(160, 36);
-                gbtn.Tag = smodel.Fields;
+                gbtn.Tag = flp;
                 gbtn.Click += Gbtn_Click;
                 panelLeft.Controls.Add(gbtn);
             }
         }
-
+        
         private static void Gbtn_Click(object sender, System.EventArgs e)
         {
             GlassButton gbtn = sender as GlassButton;
+
             //读XML配置文件,并将XML备份到User目录下
 #warning 左侧按钮点击事件,秀出设备
         }

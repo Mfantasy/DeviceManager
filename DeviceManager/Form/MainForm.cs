@@ -31,7 +31,7 @@ namespace DeviceManager
         {
             InitializeComponent();
             InitializeUI();
-            ConfigParser.ParseSensorModel(panelLeft);            
+            ConfigParser.ParseSensorModel(panelLeft,panelItem);            
             ConfigParser.ParseSensors();
             ConfigParser.ParseAlarms();
             ConfigParser.ParseGroups(panelAll);          
@@ -40,15 +40,18 @@ namespace DeviceManager
         }
 
         void InitializeUI()
-        {
-            UIController.panelRight = panelRight;
+        {            
             panelAllP.Name = "panelAllP";
             panelAllP.Dock = DockStyle.Fill;
             panelAllP.AutoScroll = true;
             panelAll.Name = "panelAll";
             panelAll.Dock = DockStyle.Fill;
-            panelAll.AutoScroll = true;              
+            panelAll.AutoScroll = true;
+            panelItem.AutoScroll = true;
+            panelItem.Dock = DockStyle.Fill;
+            panelItem.Name = "panelItem";             
             panelRight.Controls.Add(panelAllP);
+            panelRight.Controls.Add(panelItem);
             panelAllP.Controls.Add(panelAll);
             panelAllP.BringToFront();
         }
@@ -78,17 +81,17 @@ namespace DeviceManager
             DataParser.ParseJObj(jobj);
         }
 
-        private void glassButtonAll_Click(object sender, EventArgs e)
-        {
-
-        }
+        //模型对应Panel
+        Panel panelItem = new Panel();
         //全部
         FlowLayoutPanel panelAll = new FlowLayoutPanel();
         Panel panelAllP = new Panel();
         private void glassButton4_Click(object sender, EventArgs e)
-        {
-            panelAllP.Visible = true;
+        {                        
             panelAllP.BringToFront();
+            panelAll.BringToFront();
+            ConfigParser.btnAll.Text = "全部";
+            ConfigParser.btnTxt = "全部";
         }
 
         private void button2_Click(object sender, EventArgs e)

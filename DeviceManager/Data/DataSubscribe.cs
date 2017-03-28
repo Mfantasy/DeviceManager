@@ -21,7 +21,10 @@ namespace DeviceManager
             byte[] bts = (byte[])o;
             int length = bts.Length;
             string jstr0 = Encoding.UTF8.GetString(bts, 0, length);
-            File.AppendAllText("收到的Json原始数据.txt", jstr0);
+            lock (Utils.lockObj)
+            {                                                                  
+               File.AppendAllText("收到的Json原始数据.txt", jstr0);
+            }                       
             if (bts.Length > 4 && bts[0] == 0 && bts[1] == 0)
             {
                 int jbtlength = bts[2] * 256 + bts[3];
@@ -50,26 +53,25 @@ namespace DeviceManager
             int byteLength = 8 * 1024;
             string ip = ConfigurationManager.AppSettings["ip"];
             int port = int.Parse(ConfigurationManager.AppSettings["port"]);
-            //try
-            //{
-            tcp.Connect(ip, port);
-            streamToServer = tcp.GetStream();
-            tcp.ReceiveTimeout = 60 * 60 * 1000;
+            try
+            {
+                tcp.Connect(ip, port);
+                streamToServer = tcp.GetStream();
+                tcp.ReceiveTimeout = 60 * 60 * 1000;
 #warning 测试用待删
-            MessageBox.Show("连接成功");
-            while (tcp.Connected)
-            {                
-                byte[] bufferR = new byte[byteLength];
-                int bfLength = streamToServer.Read(bufferR, 0, bufferR.Length);
-                byte[] bts = bufferR.Take(bfLength).ToArray();
-                ThreadPool.QueueUserWorkItem(ProcessBytes, bts);
+                MessageBox.Show("连接成功");
+                while (tcp.Connected)
+                {
+                    byte[] bufferR = new byte[byteLength];
+                    int bfLength = streamToServer.Read(bufferR, 0, bufferR.Length);
+                    byte[] bts = bufferR.Take(bfLength).ToArray();
+                    ThreadPool.QueueUserWorkItem(ProcessBytes, bts);
+                }
             }
-            //}
-            //catch (Exception ex)
-            //{
-
-            //    throw;
-            //}
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

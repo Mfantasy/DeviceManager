@@ -47,7 +47,8 @@ namespace DeviceManager
                 sensor = sensors.Find(ss => ss.PortId == portid);
                 if (sensor == null)
                     return;
-            } 
+            }
+            sensor.Time = DateTime.Now;
             foreach (JToken jt in jdata)
             {
                 string name = jt["name"].ToString();

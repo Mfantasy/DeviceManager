@@ -19,6 +19,7 @@ namespace DeviceManager
 {
     public static class Utils
     {
+        public static object lockObj = new object();
         /// <summary>
         /// 发送邮件(此方法占用网络时间,需用开线程调用)
         /// </summary>                
@@ -42,7 +43,10 @@ namespace DeviceManager
             }
             catch (System.Net.Mail.SmtpException ex)
             {
-                File.AppendAllText("error.txt", ex.Message + "\r\n发送邮件失败\r\n" + title + "\r\n" + body + "\r\n" + DateTime.Now.ToString());
+                lock (lockObj)
+                {
+                    File.AppendAllText("error.txt", ex.Message + "\r\n发送邮件失败\r\n" + title + "\r\n" + body + "\r\n" + DateTime.Now.ToString());
+                }
             }
         }
 

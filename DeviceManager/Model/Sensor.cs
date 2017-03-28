@@ -1,6 +1,7 @@
 ﻿using DeviceManager.Model;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -96,12 +97,19 @@ namespace DeviceManager
         [XmlIgnore]
         public string Value { get; set; }
         [XmlIgnore]
+        public DataRow Row { get; set; }
+        [XmlIgnore]
         public Label Label { get; set; }
         [XmlIgnore]
         public string LabelText
         {
             get
             {
+                if (Row != null)
+                {
+                    Row[1] = Value;
+                    Row[2] = DateTime.Now;                    
+                }
                 return Alias + " : " + Value;
             }
         }
