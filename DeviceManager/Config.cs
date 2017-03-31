@@ -255,12 +255,13 @@ namespace DeviceManager
             string fileName = ConfigurationManager.AppSettings["传感器模型配置文件"];
             SensorModelRoot sroot = Utils.FromXMLFile<SensorModelRoot>(fileName);
             ConfigData.SensorModelCfg = sroot;
-            foreach (SensorModel smodel in sroot.Sensors)
+            foreach (SensorModel smodel in sroot.SensorModels)
             {
                 FlowLayoutPanel flp = new FlowLayoutPanel();
                 flp.Dock = DockStyle.Fill;
                 flp.Parent = panelItem;
-                flp.Tag = smodel;
+                flp.Padding = new Padding(3);
+                flp.Tag = panelItem;
                 GlassButton gbtn = new GlassButton();
                 gbtn.Name = smodel.Name;
                 gbtn.ButtonText = smodel.Title;
@@ -275,9 +276,10 @@ namespace DeviceManager
         private static void Gbtn_Click(object sender, System.EventArgs e)
         {
             GlassButton gbtn = sender as GlassButton;
-
-            //读XML配置文件,并将XML备份到User目录下
-#warning 左侧按钮点击事件,秀出设备
+            FlowLayoutPanel flp = gbtn.Tag as FlowLayoutPanel;
+            Panel panel = flp.Tag as Panel;
+            panel.BringToFront();
+            flp.BringToFront();            
         }
         #endregion
 

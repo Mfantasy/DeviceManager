@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using System.Xml;
 using System.Runtime.InteropServices;
 using Newtonsoft.Json.Linq;
+using FOF.UserControlModel;
 
 namespace DeviceManager
 {
@@ -37,6 +38,37 @@ namespace DeviceManager
             ConfigParser.ParseGroups(panelAll);          
             ConfigParser.ParseUI(this);
             this.Text = labelTitle.Text;
+            InitialModelClickSensors();
+        }
+
+        void InitialModelClickSensors()
+        {
+            for (int i = 1; i < panelLeft.Controls.Count; i++)
+            {
+                if (panelLeft.Controls[i] is GlassButton)
+                {
+                    GlassButton gb = panelLeft.Controls[i] as GlassButton;
+                    FlowLayoutPanel flp = gb.Tag as FlowLayoutPanel;
+                    List<Sensor> sensors = ConfigData.AllSensors.Sensors.FindAll(ss => ss.ModelKey == gb.Name);
+                    foreach (Sensor ss in sensors)
+                    {
+                        FlowLayoutPanel spanel = new FlowLayoutPanel();                        
+                        spanel.Parent = flp;
+                        spanel.BackColor = Color.Green;
+                        foreach (Field field in ss.Model.Fields)
+                        {
+                            if (!field.Realtime)
+                                continue;
+                            Label lb = new Label();
+                            lb.Margin = new Padding(2);
+                            lb.AutoSize = true;
+                            lb.Parent = spanel;
+                            spanel.SetFlowBreak(lb,true);
+                            lb.Text = field.LabelText;
+                        }                      
+                    }
+                }
+            }
         }
 
         void InitializeUI()

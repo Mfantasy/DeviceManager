@@ -22,16 +22,22 @@ namespace DeviceManager
         public static object lockObj = new object();
         /// <summary>
         /// 发送邮件(此方法占用网络时间,需用开线程调用)
+        ///<add key = "邮件接收人" value="mengft@txsec.com,527049200@qq.com" />
+        ///<add key = "发件人地址" value="mfantasy@mfant.com" />
+        ///<add key = "发件人昵称" value="设备提醒" />
+        ///<add key = "发件服务器" value="smtp.qq.com" />
+        ///<add key = "发件用户名" value="mfantasy@mfant.com" />
+        ///<add key = "发件密码" value="ryqmwpnrmoygcbdd" />
         /// </summary>                
         public static void SendMail(string title, string body)
         {
-            MailAddress EmailFrom = new MailAddress(ConfigurationManager.AppSettings["发件人地址"], ConfigurationManager.AppSettings["发件人昵称"]);        
+            MailAddress EmailFrom = new MailAddress(ConfigurationManager.AppSettings["发件人地址"], ConfigurationManager.AppSettings["发件人昵称"]);
             MailMessage mailMsg = new MailMessage();
             mailMsg.From = EmailFrom;
             string receivers = ConfigurationManager.AppSettings["邮件接收人"];
             mailMsg.To.Add(receivers);
             mailMsg.Subject = title;
-            mailMsg.Body = body;           
+            mailMsg.Body = body;
             SmtpClient spClient = new SmtpClient(ConfigurationManager.AppSettings["发件服务器"]);
             spClient.Timeout = 600 * 1000;
             spClient.EnableSsl = true;
@@ -63,14 +69,14 @@ namespace DeviceManager
                 {
                     workbook = new XSSFWorkbook(fs);
                 }
-                else if(fileName.Contains(".xls"))
+                else if (fileName.Contains(".xls"))
                 {
                     workbook = new HSSFWorkbook(fs);
                 }
                 else
                 {
                     throw new Exception("不是有效的Excel类型");
-                }              
+                }
             }
             sheet = workbook.GetSheetAt(0);
             IRow firstRow = sheet.GetRow(0);
@@ -108,7 +114,7 @@ namespace DeviceManager
         public static void ExportToXls(string fileName, DataTable dataTable)
         {
             HSSFWorkbook workBook = new HSSFWorkbook();
-            ISheet sheet = workBook.CreateSheet();            
+            ISheet sheet = workBook.CreateSheet();
             int i = 1;
             int jL = dataTable.Columns.Count;
 
@@ -140,10 +146,10 @@ namespace DeviceManager
         }
 
 
-        
+
         //序列化
         public static void ToFile<T>(string path, T obj)
-        {        
+        {
             if (!File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, path)))
             {
                 File.Create(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, path)).Close();

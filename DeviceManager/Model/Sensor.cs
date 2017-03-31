@@ -51,7 +51,7 @@ namespace DeviceManager
             {
                 if (model == null)
                 {
-                    model = ConfigData.SensorModelCfg.Sensors.Find(md => md.Name == ModelKey);
+                    model = ConfigData.SensorModelCfg.SensorModels.Find(md => md.Name == ModelKey);
                 }
                 return model;
             } }
@@ -72,7 +72,7 @@ namespace DeviceManager
     public class SensorModelRoot
     {
         [XmlElement("sensor")]
-        public List<SensorModel> Sensors { get; set; }
+        public List<SensorModel> SensorModels { get; set; }
     }
 
     public class SensorModel
@@ -94,8 +94,18 @@ namespace DeviceManager
         public bool Realtime { get; set; }
         [XmlAttribute("history")]
         public bool History { get; set; }
+
+        public event EventHandler ValueUpdated;
+
         [XmlIgnore]
-        public string Value { get; set; }
+        public string Value {
+            get { return _value; }
+            set {
+                _value = value;
+                ValueUpdated?.Invoke(this, EventArgs.Empty);
+            }
+        }
+        string _value = "";
         [XmlIgnore]
         public DataRow Row { get; set; }
         [XmlIgnore]
