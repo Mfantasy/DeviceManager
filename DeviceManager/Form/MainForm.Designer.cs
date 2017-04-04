@@ -41,16 +41,20 @@
             this.panelLeft = new System.Windows.Forms.FlowLayoutPanel();
             this.glassButtonAll = new FOF.UserControlModel.GlassButton();
             this.panelRight = new System.Windows.Forms.Panel();
+            this.panelRuntime = new System.Windows.Forms.Panel();
+            this.panelBotttom = new System.Windows.Forms.Panel();
             this.panelTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panelTopBtn.SuspendLayout();
             this.panelLeft.SuspendLayout();
+            this.panelRuntime.SuspendLayout();
+            this.panelBotttom.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(383, 6);
+            this.button1.Location = new System.Drawing.Point(369, 6);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 0;
@@ -83,6 +87,7 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 7;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Visible = false;
             this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
             // 
             // pictureBox2
@@ -95,6 +100,7 @@
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 6;
             this.pictureBox2.TabStop = false;
+            this.pictureBox2.Visible = false;
             this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
             // panelTopBtn
@@ -144,6 +150,7 @@
             this.glassButton2.Padding = new System.Windows.Forms.Padding(5);
             this.glassButton2.Size = new System.Drawing.Size(112, 36);
             this.glassButton2.TabIndex = 2;
+            this.glassButton2.Click += new System.EventHandler(this.glassButton2_Click);
             // 
             // labelTitle
             // 
@@ -162,10 +169,10 @@
             this.panelLeft.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelLeft.Controls.Add(this.glassButtonAll);
             this.panelLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelLeft.Location = new System.Drawing.Point(0, 100);
+            this.panelLeft.Location = new System.Drawing.Point(0, 0);
             this.panelLeft.Name = "panelLeft";
             this.panelLeft.Padding = new System.Windows.Forms.Padding(3);
-            this.panelLeft.Size = new System.Drawing.Size(175, 668);
+            this.panelLeft.Size = new System.Drawing.Size(179, 668);
             this.panelLeft.TabIndex = 4;
             // 
             // glassButtonAll
@@ -186,10 +193,31 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelRight.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelRight.Location = new System.Drawing.Point(177, 100);
+            this.panelRight.Location = new System.Drawing.Point(185, 0);
             this.panelRight.Name = "panelRight";
-            this.panelRight.Size = new System.Drawing.Size(847, 668);
+            this.panelRight.Size = new System.Drawing.Size(839, 668);
             this.panelRight.TabIndex = 5;
+            // 
+            // panelRuntime
+            // 
+            this.panelRuntime.Controls.Add(this.panelLeft);
+            this.panelRuntime.Controls.Add(this.panelRight);
+            this.panelRuntime.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelRuntime.Location = new System.Drawing.Point(0, 0);
+            this.panelRuntime.Name = "panelRuntime";
+            this.panelRuntime.Size = new System.Drawing.Size(1024, 668);
+            this.panelRuntime.TabIndex = 6;
+            // 
+            // panelBotttom
+            // 
+            this.panelBotttom.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelBotttom.Controls.Add(this.panelRuntime);
+            this.panelBotttom.Location = new System.Drawing.Point(0, 101);
+            this.panelBotttom.Name = "panelBotttom";
+            this.panelBotttom.Size = new System.Drawing.Size(1024, 668);
+            this.panelBotttom.TabIndex = 7;
             // 
             // MainForm
             // 
@@ -198,12 +226,10 @@
             this.BackColor = System.Drawing.SystemColors.Window;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1024, 768);
-            this.ControlBox = false;
-            this.Controls.Add(this.panelRight);
-            this.Controls.Add(this.panelLeft);
+            this.Controls.Add(this.panelBotttom);
             this.Controls.Add(this.panelTop);
+            this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MinimumSize = new System.Drawing.Size(1024, 768);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -214,6 +240,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panelTopBtn.ResumeLayout(false);
             this.panelLeft.ResumeLayout(false);
+            this.panelRuntime.ResumeLayout(false);
+            this.panelBotttom.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -232,6 +260,8 @@
         private System.Windows.Forms.Panel panelRight;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Panel panelRuntime;
+        private System.Windows.Forms.Panel panelBotttom;
     }
 }
 

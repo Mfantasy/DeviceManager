@@ -56,8 +56,6 @@ namespace DeviceManager
             }
         }
 
-
-
         public static DataTable ExcelToTable(string fileName)
         {
             ISheet sheet = null;

@@ -1,5 +1,5 @@
 ﻿<AlarmConfigs>
   <config name="冬天策略" >
-    <field model="MX5000" name="airtemp" up="10" low="5" />
+    <field model="MXS1501" name="light" up="10" low="5" />
   </config>
 </AlarmConfigs>

@@ -30,20 +30,54 @@ namespace DeviceManager
         public string PortId { get; set; }
         [XmlAttribute("model")]
         public string ModelKey { get; set; }
-        [XmlAttribute("alarmConfig")]
-        public string AlarmConfigKey { get; set; }
         [XmlAttribute("groupConfig")]
         public string GroupConfigKey { get; set; }
-         
+        
+        [XmlIgnore]
+        public string GroupName { get; set; }
+
+        string hisColStr = null;
+        [XmlIgnore]
+        public string HisColumnStr
+        {
+            get
+            {
+                if (hisColStr == null)
+                {
+                    for (int i = 0; i < Model.Fields.Count; i++)
+                    {
+                        if (Model.Fields[i].History)
+                        {
+                            if (hisColStr == null)
+                            {
+                                hisColStr = Model.Fields[i].Name + " as " +Model.Fields[i].Alias;
+                            }
+                            else if(i==Model.Fields.Count)
+                            {
+                                hisColStr += Model.Fields[i].Name + " as " + Model.Fields[i].Alias;
+                            }
+                            else
+                            {
+                                hisColStr+=","+ Model.Fields[i].Name + " as " + Model.Fields[i].Alias;
+                            }
+                        }
+                    }
+                    if (string.IsNullOrWhiteSpace(hisColStr))
+                    {
+                        hisColStr = "*";
+                    }
+                    if (hisColStr != "*")
+                    {
+                        hisColStr += ",time as 时间";
+                    }
+                }
+                return hisColStr;
+            }           
+        }
+
         [XmlIgnore]
         public DateTime Time { get; set; }
-        //0正常 1接近告警 2报警
-        [XmlIgnore]
-        public int State
-        { get {
-#warning 根据模型中的所有字段进行匹配做报警处理          
-                return 0;
-            } }
+     
 
         SensorModel model = null;      
         [XmlIgnore]
@@ -55,15 +89,7 @@ namespace DeviceManager
                 }
                 return model;
             } }
-        [XmlIgnore]
-        public AlarmConfig AlarmConfig
-        {
-            get
-            {
-                AlarmConfig cfg = ConfigData.AlarmCfg.AlarmConfigs.Find(acfg => acfg.Name == AlarmConfigKey);
-                return cfg;
-            }
-        }
+            
         [XmlIgnore]
         public GroupConfig GroupConfig { get { GroupConfig cfg = ConfigData.GroupCfg.GroupConfigs.Find(gcfg => gcfg.Key == GroupConfigKey);return cfg; } }
     }
@@ -81,11 +107,16 @@ namespace DeviceManager
         public string Name { get; set; }
         [XmlAttribute("title")]
         public string Title { get; set; }
+        [XmlAttribute("sname")]
+        public string Sname { get; set; }
+
         [XmlElement("field")]
         public List<Field> Fields { get; set; }
     }
     public class Field
     {
+        [XmlIgnore]
+        public string ModelName { get; set; }
         [XmlAttribute("name")]
         public string Name { get; set; }
         [XmlAttribute("alias")]
@@ -96,13 +127,34 @@ namespace DeviceManager
         public bool History { get; set; }
 
         public event EventHandler ValueUpdated;
-
+        public event EventHandler StateChanged;
+        int state = 0;
+        //0正常 1接近告警 2报警
+        [XmlIgnore]
+        public int State
+        {
+            get
+            {
+                return state;
+            }
+            set
+            {
+                state = value;
+                StateChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+        
         [XmlIgnore]
         public string Value {
             get { return _value; }
             set {
                 _value = value;
                 ValueUpdated?.Invoke(this, EventArgs.Empty);
+                if (Row != null)
+                {
+                    Row[1] = Value;
+                    Row[2] = DateTime.Now;
+                }
             }
         }
         string _value = "";
@@ -111,15 +163,12 @@ namespace DeviceManager
         [XmlIgnore]
         public Label Label { get; set; }
         [XmlIgnore]
+        public Label ClickLabel { get; set; }
+        [XmlIgnore]
         public string LabelText
         {
             get
-            {
-                if (Row != null)
-                {
-                    Row[1] = Value;
-                    Row[2] = DateTime.Now;                    
-                }
+            {               
                 return Alias + " : " + Value;
             }
         }

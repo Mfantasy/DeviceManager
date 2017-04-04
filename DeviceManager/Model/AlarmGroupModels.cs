@@ -57,7 +57,7 @@ namespace DeviceManager.Model
     }
 
     public class AlarmField
-    {      
+    {     
         [XmlAttribute("model")]
         public string Model { get; set; }
         [XmlAttribute("name")]

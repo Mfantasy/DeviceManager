@@ -1,7 +1,8 @@
 ﻿<Sensors>
-  <sensor model="MXS5000" uid ="81C12401E52422FD" nodeid ="0" comment="茶园微气象观测器" groupConfig="g2p2c2" alarmConfig="冬天策略"/>
-  <sensor model="MXS5000" uid ="81C12401E52422FD" nodeid ="0" comment="中央绿廊微气象监测" groupConfig="g1p1c2" alarmConfig="冬天策略"/>
-  <sensor model="MX9000" uid ="0100000000000400" nodeid ="20" comment="同德佳苑单体液位" groupConfig="g1p1c1" alarmConfig="冬天策略"/>
-  <sensor model="MXS1501" uid="81817F01E524226D" nodeid="1" comment="光照传感器" portid="1" groupConfig="g1p1c1" alarmConfig="冬天策略"/>
-  <sensor model="MXN820" uid="81817F01E524226D" nodeid="1" comment="状态包" portid="0" groupConfig="g1p1c1" alarmConfig="冬天策略"/>
+  <sensor model="MXS1501" uid="81817F01E524226D" nodeid="1" comment="光照传感器" portid="1" groupConfig="g1p1c1" />
+  <sensor model="MXN820" uid="81817F01E524226D" nodeid="1" comment="状态包" portid="0" groupConfig="g1p1c1" />
+  <sensor model="MXS5000" uid ="81C12401E52422FD" nodeid ="0" comment="茶园微气象观测器" groupConfig="g2p2c2" />
+  <sensor model="MXS5000" uid ="81C12401E52422FD" nodeid ="0" comment="中央绿廊微气象监测" groupConfig="g1p1c2" />
+  <sensor model="MX8100" uid="0100000000000210" nodeid="2000" comment="苗圃地下水监测" portid="1" groupConfig="g1p1c1" />
+  <sensor model="MX8100" uid="0100000000000210" nodeid="3000" comment="西张村大田地下水监测" portid="1" groupConfig="g1p1c1" />
 </Sensors>

@@ -6,7 +6,7 @@ using System.Windows.Forms;
 using System.Xml;
 using static DeviceManager.Model.GroupConfig;
 using System;
-using DeviceManager.UserControl;
+using DeviceManager.CustomControl;
 using System.Data;
 
 namespace DeviceManager
@@ -22,6 +22,7 @@ namespace DeviceManager
     public static class Config
     {
         public static bool IsShowLogon = false;
+
         //public static bool IsMySql = true;
     }
 
@@ -47,6 +48,7 @@ namespace DeviceManager
             ConfigData.GroupCfg = gcfg;
             //载入功能
             TreeView tv = new TreeView();
+            tv.Font = new System.Drawing.Font("宋体", 11);
             tv.Visible = false;
             tv.Dock = DockStyle.Fill;
             tv.NodeMouseDoubleClick += Tv_NodeMouseClick;                    
@@ -71,6 +73,7 @@ namespace DeviceManager
                             {
                                 TreeNode n3 = n2.Nodes.Add(cfgc.Name);                                
                                 TableLayoutPanel tlp = new TableLayoutPanel();
+                                tlp.BackColor = System.Drawing.Color.AliceBlue;
                                 tlp.DoubleClick += Tlp_DoubleClick;
                                 tlp.CellBorderStyle = TableLayoutPanelCellBorderStyle.InsetDouble;
                                 tlp.MinimumSize = new System.Drawing.Size(415, 0);
@@ -94,6 +97,7 @@ namespace DeviceManager
                                 tlp.SetColumnSpan(lbtitle, 2);
                                 foreach (Sensor sensor in cfgc.Sensors)
                                 {
+                                    sensor.GroupName = cfg.Name + " " + cfgp.Name + " " + cfgc.Name;                                  
                                     foreach (Field field in sensor.Model.Fields)
                                     {
                                         if (!field.Realtime)
@@ -116,6 +120,7 @@ namespace DeviceManager
 
         private static DataGridView GetCD(Control parent, List<Sensor> sensors,string name)
         {
+            //点击GroupPanel发生
             CustomDataView cdv = new CustomDataView();            
             cdv.Parent = parent;
             cdv.Dock = DockStyle.Fill;
@@ -132,7 +137,7 @@ namespace DeviceManager
                     if (item.Realtime)
                     {
                         DataRow row = table.NewRow();
-                        row.ItemArray =new object[] { item.Alias, item.Value, ss.Time, ss.Comment };
+                        row.ItemArray =new object[] { item.Alias, item.Value, null, ss.Comment };
                         item.Row = row;
                         table.Rows.Add(row);
                         //table.Rows.Add(item.Alias, item.Value, ss.Time, ss.Comment);
@@ -140,7 +145,7 @@ namespace DeviceManager
                 }
             }
             cdv.DataSource = table;
-            cdv.Font = new System.Drawing.Font("宋体", 12);
+            cdv.Font = new System.Drawing.Font("宋体", 11);
             //cdv.Columns["备注"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             return cdv;
         }

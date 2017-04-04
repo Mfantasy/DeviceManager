@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
+using System.Data.SQLite;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,11 +22,54 @@ namespace DeviceManager
             if (acc == "admin" && pwd == "admin")
                 return 1;
             else
-                return 0;                        
+                return 0;
         }
     }
 
-    public static class SqlHelper
+    public static class SqlLiteHelper
+    {
+        //public static string conStr = "Data Source=" + Environment.CurrentDirectory + "\\test.db;Initial Catalog=sqlite;";
+        public static string conStr = "Data Source=" + ConfigurationManager.AppSettings["dbPath"] + ";Initial Catalog=sqlite;";
+        static SQLiteConnection con = new SQLiteConnection(conStr);
+        public static DataTable ExecuteReader(string cmdText)
+        {
+            try
+            {
+                SQLiteCommand cmd = con.CreateCommand();
+                cmd.CommandText = cmdText;
+                SQLiteDataAdapter mAdapter = new SQLiteDataAdapter(cmd);
+                DataTable result = new DataTable();
+                mAdapter.Fill(result);
+                return result;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                con.Close();
+            }
+   
+        }
+
+        public static void ExecuteReader0(string cmdText)
+        {          
+            SQLiteCommand cmd = con.CreateCommand();            
+            cmd.CommandText = cmdText;
+            con.Open();
+            SQLiteDataReader reader = cmd.ExecuteReader();
+            
+            while (reader.Read())
+            {
+                Console.WriteLine(reader[0]);
+            }
+
+        }
+    }
+
+    public static class MySqlHelper
     {
         static string conStr = ConfigurationManager.AppSettings["conStrMySql"];
         static MySqlConnection con = new MySqlConnection(conStr);
@@ -52,8 +97,8 @@ namespace DeviceManager
         {
             MySqlCommand cmd = con.CreateCommand();
             cmd.CommandText = cmdText;
-            if(con.State != ConnectionState.Open)
-               con.Open();
+            if (con.State != ConnectionState.Open)
+                con.Open();
             object obj = new object();
             try
             {
@@ -66,8 +111,8 @@ namespace DeviceManager
             }
             finally
             {
-                if(close)
-                   con.Close();
+                if (close)
+                    con.Close();
             }
         }
 
@@ -86,7 +131,7 @@ namespace DeviceManager
             return result;
         }
 
-        public static List<string[]> ExecuteReader(string cmdText,string[] colnames,bool close)
+        public static List<string[]> ExecuteReader(string cmdText, string[] colnames, bool close)
         {
             MySqlCommand cmd = con.CreateCommand();
             cmd.CommandText = cmdText;

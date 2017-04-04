@@ -14,6 +14,7 @@ using System.Xml;
 using System.Runtime.InteropServices;
 using Newtonsoft.Json.Linq;
 using FOF.UserControlModel;
+using DeviceManager.CustomControl;
 
 namespace DeviceManager
 {
@@ -27,7 +28,9 @@ namespace DeviceManager
                          int Msg, int wParam, int lParam);
         [DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
-             
+
+
+        PanelHistory ph = new PanelHistory();
         public MainForm()
         {
             InitializeComponent();
@@ -37,7 +40,7 @@ namespace DeviceManager
             ConfigParser.ParseAlarms();
             ConfigParser.ParseGroups(panelAll);          
             ConfigParser.ParseUI(this);
-            this.Text = labelTitle.Text;
+            InitializeUIEnd();            
             InitialModelClickSensors();
         }
 
@@ -52,14 +55,26 @@ namespace DeviceManager
                     List<Sensor> sensors = ConfigData.AllSensors.Sensors.FindAll(ss => ss.ModelKey == gb.Name);
                     foreach (Sensor ss in sensors)
                     {
-                        FlowLayoutPanel spanel = new FlowLayoutPanel();                        
+                        FlowLayoutPanel spanel = new FlowLayoutPanel();
+                        spanel.MinimumSize = new Size(200, 128);
                         spanel.Parent = flp;
-                        spanel.BackColor = Color.Green;
+                        spanel.BackColor = Color.LightGreen;
+                        Label lbGroup = UIUtils.NewLabel(9);
+                        lbGroup.Parent = spanel;
+                        spanel.SetFlowBreak(lbGroup,true);
+                        lbGroup.Text = ss.GroupName;
+                        Label lbComment = UIUtils.NewLabel(9);
+                        lbComment.Parent = spanel;
+                        spanel.SetFlowBreak(lbComment, true);
+                        lbComment.Text = ss.Comment;
                         foreach (Field field in ss.Model.Fields)
                         {
                             if (!field.Realtime)
                                 continue;
+                            field.ValueUpdated += Field_ValueUpdated;
                             Label lb = new Label();
+                            field.ClickLabel = lb;
+                            lb.Font = new Font("宋体", 11);
                             lb.Margin = new Padding(2);
                             lb.AutoSize = true;
                             lb.Parent = spanel;
@@ -71,8 +86,22 @@ namespace DeviceManager
             }
         }
 
-        void InitializeUI()
+        private void Field_ValueUpdated(object sender, EventArgs e)
+        {
+            Field field = sender as Field;
+            field.ClickLabel.Text = field.LabelText;
+        }
+
+        void InitializeUIEnd()
         {            
+            ph.Init();
+            ph.Parent = panelBotttom;
+            ph.Dock = DockStyle.Fill;
+            this.Text = labelTitle.Text;            
+        }
+
+        void InitializeUI()
+        {           
             panelAllP.Name = "panelAllP";
             panelAllP.Dock = DockStyle.Fill;
             panelAllP.AutoScroll = true;
@@ -94,9 +123,11 @@ namespace DeviceManager
             th.Start();
         }
 
+        //测试
         bool b = false;
         private void glassButton1_Click(object sender, EventArgs e)
         {
+            panelRuntime.BringToFront();
             //测试
             string jstr;
             if (b)
@@ -144,7 +175,12 @@ namespace DeviceManager
                 SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
             }
         }
-               
+        
+        private void glassButton2_Click(object sender, EventArgs e)
+        {
+            ph.BringToFront();
+                   
+        }
     }
 
 }
