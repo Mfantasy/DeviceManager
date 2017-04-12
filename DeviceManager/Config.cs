@@ -42,7 +42,7 @@ namespace DeviceManager
         #region 分组配置
         public static Button btnAll = new Button();
         public static void ParseGroups(Panel panelAll)
-        {        
+        {                    
             string fileName = ConfigurationManager.AppSettings["分组配置文件"];
             GroupConfigRoot gcfg = Utils.FromXMLFile<GroupConfigRoot>(fileName);
             ConfigData.GroupCfg = gcfg;
@@ -76,7 +76,7 @@ namespace DeviceManager
                                 tlp.BackColor = System.Drawing.Color.AliceBlue;
                                 tlp.DoubleClick += Tlp_DoubleClick;
                                 tlp.CellBorderStyle = TableLayoutPanelCellBorderStyle.InsetDouble;
-                                tlp.MinimumSize = new System.Drawing.Size(415, 0);
+                                tlp.MinimumSize = new System.Drawing.Size(400, 0);
                                 tlp.ColumnCount = 2;
                                 tlp.Name = cfgc.Key;                                              
                                 tlp.Dock = DockStyle.Top;
@@ -197,7 +197,7 @@ namespace DeviceManager
         {
             string fileName = ConfigurationManager.AppSettings["报警配置文件"];
             AlarmConfigRoot acfg = Utils.FromXMLFile<AlarmConfigRoot>(fileName);
-            ConfigData.AlarmCfg = acfg;
+            ConfigData.AlarmCfg = acfg;           
         }
         #endregion
 

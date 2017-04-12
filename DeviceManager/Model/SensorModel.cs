@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -85,7 +86,8 @@ namespace DeviceManager
             {
                 if (model == null)
                 {
-                    model = ConfigData.SensorModelCfg.SensorModels.Find(md => md.Name == ModelKey);
+                    SensorModel orign = ConfigData.SensorModelCfg.SensorModels.Find(md => md.Name == ModelKey);
+                    model = orign.Copy();
                 }
                 return model;
             } }
@@ -109,14 +111,42 @@ namespace DeviceManager
         public string Title { get; set; }
         [XmlAttribute("sname")]
         public string Sname { get; set; }
-
+        [XmlAttribute("alarm")]
+        public string AlarmName { get; set; }
         [XmlElement("field")]
         public List<Field> Fields { get; set; }
+
+        public SensorModel Copy()
+        {
+            MemoryStream ms = new MemoryStream();
+            SensorModel sm = null;            
+            XmlSerializer xsl = new XmlSerializer(typeof(SensorModel));
+            xsl.Serialize(ms, this);
+            ms.Seek(0, SeekOrigin.Begin);
+            sm = (SensorModel)xsl.Deserialize(ms);
+            ms.Close();
+
+            for (int i = 0; i < Fields.Count; i++)
+            {
+                sm.Fields[i].Alarm = Fields[i].Alarm;
+            }
+                        
+            return sm;
+            //SensorModel smodel = new SensorModel();
+            //smodel.Name = Name;
+            //smodel.Title = Title;
+            //smodel.Sname = Sname;
+            //smodel.AlarmName = AlarmName;
+            //smodel.Fields = Fields.            
+        }
+
+
     }
     public class Field
     {
         [XmlIgnore]
-        public string ModelName { get; set; }
+        public AlarmField Alarm { get; set; }
+     
         [XmlAttribute("name")]
         public string Name { get; set; }
         [XmlAttribute("alias")]
@@ -129,7 +159,7 @@ namespace DeviceManager
         public event EventHandler ValueUpdated;
         public event EventHandler StateChanged;
         int state = 0;
-        //0正常 1接近告警 2报警
+        //0正常 1接近警戒 2报警
         [XmlIgnore]
         public int State
         {
@@ -140,7 +170,23 @@ namespace DeviceManager
             set
             {
                 state = value;
-                StateChanged?.Invoke(this, EventArgs.Empty);
+                StateChanged?.Invoke(state, EventArgs.Empty);
+                if (state == 0)
+                {
+                    Label.ForeColor = System.Drawing.Color.Green;
+                    ClickLabel.ForeColor = System.Drawing.Color.Green;
+                }
+                else if (state == 1)
+                {
+                    Label.ForeColor = System.Drawing.Color.Yellow;
+                    ClickLabel.ForeColor = System.Drawing.Color.Yellow;
+                }
+                else if (state == 2)
+                {
+
+                    Label.ForeColor = System.Drawing.Color.Red;
+                    ClickLabel.ForeColor = System.Drawing.Color.Red;
+                }
             }
         }
         
@@ -154,6 +200,28 @@ namespace DeviceManager
                 {
                     Row[1] = Value;
                     Row[2] = DateTime.Now;
+                }
+                if (Alarm != null)
+                {
+                    double db = double.Parse(_value);
+                    //报警
+                    bool mtUp = db > Alarm.Up + Alarm.Around;
+                    bool ltLow = db < Alarm.Low - Alarm.Around;
+                    //警戒
+                    bool aroundUp = db >= Alarm.Up - Alarm.Around && db <= Alarm.Up + Alarm.Around;
+                    bool aroundLow = db <= Alarm.Low + Alarm.Around && db >= Alarm.Low - Alarm.Around;                    
+                    if (mtUp || ltLow)
+                    {
+                        State = 2;
+                    }                    
+                    else if (aroundUp || aroundLow)
+                    {
+                        State = 1;
+                    }
+                    else
+                    {
+                        State = 0;
+                    }
                 }
             }
         }

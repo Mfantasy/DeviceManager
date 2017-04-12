@@ -306,6 +306,14 @@ inner join (
  from txnfdb.T_FUND group by F_Fund_Code
 ) as t4 on t4.F_Fund_Code = t3.F_Fund_Code and ((t4.F_Code_Count = 1) or (t4.F_Code_Count > 1 and t3.F_CLASS_ID not in (20,30)))
 where t1.F1 = {0} and LEAST(t1.f_end_date,t3.f56)>20170410 "; //FID29991231
+
+        int i = 0;
+        private void button2_Click(object sender, EventArgs e)
+        {
+            //添加一个节点
+            treeView1.Nodes.Add(i.ToString());
+            i ++;
+        }
     }
 
     }

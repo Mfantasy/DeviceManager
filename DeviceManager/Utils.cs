@@ -205,13 +205,7 @@ namespace DeviceManager
                 }
                 catch (Exception e)
                 {
-                    StringBuilder error = new StringBuilder();
-                    error.AppendLine(e.Message);
-                    error.AppendLine();
-                    error.AppendFormat("{0}", path);
-                    error.AppendLine();
-                    error.AppendFormat("{0}", AppDomain.CurrentDomain.BaseDirectory);
-                    //MessageBox.Show(error.ToString());
+                    MessageBox.Show(e.Message);
                 }
                 return default(T);
             }

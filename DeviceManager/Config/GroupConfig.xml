@@ -1,13 +1,8 @@
 ﻿<GroupConfig>
-  <config name="西安" order="1">
-    <config name="西咸新区" order="1">
-      <config name="沣东新城" order="2" key="g1p1c2" />
-      <config name="沣西新城" order="1" key="g1p1c1" />    
+  <config name="博物馆" order="1">
+    <config name="一楼" order="1">
+      <config name="101室" order="2" key="g1p1c2" />
+      <config name="102室" order="1" key="g1p1c1" />    
     </config>
-  </config>
-  <config name="福建安溪" order="2">
-    <config name="五阆山" order="2">
-      <config name="孩儿湖观景台" order="2" key="g2p2c2" />
-    </config>
-  </config>
+  </config>  
 </GroupConfig>

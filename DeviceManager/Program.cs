@@ -1,11 +1,34 @@
-﻿using System;
+﻿using DeviceManagerO;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Serialization;
 
 namespace DeviceManager
-{
+{   
+    public class MyClass
+    {
+        [XmlAttribute("name")]
+        public string Name { get; set; }
+        [XmlIgnore]
+        public int Age { get; set; }
+        public MyClass Clone()
+        {
+            MemoryStream ms = new MemoryStream();
+            MyClass mc = null;
+            XmlSerializer xSl = new XmlSerializer(typeof(MyClass));
+            xSl.Serialize(ms, this);
+            ms.Seek(0, SeekOrigin.Begin);                        
+            mc = (MyClass)xSl.Deserialize(ms);
+            ms.Close();
+            return mc;
+        }
+    }
+
     static class Program
     {
         /// <summary>
@@ -14,9 +37,12 @@ namespace DeviceManager
         [STAThread]
         static void Main()
         {
-            string x = Utils.GetUserPath();
-            Console.WriteLine(x);
+            string userPath = Utils.GetUserPath();
+            
             Application.EnableVisualStyles();
+           
+            Application.Run(new TestForm());
+            return;
             Application.SetCompatibleTextRenderingDefault(false);
             if (Config.IsShowLogon)
             {

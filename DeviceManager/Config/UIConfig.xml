@@ -2,7 +2,8 @@
   <element name="panelTop" >    
     <property name="BackColor" value="transparent" />      
     <child name="labelTitle">
-      <property name="Text" value="山西省榆社县博物馆环境监测系统" />
+      <!--property name="Text" value="山西省榆社县博物馆环境监测系统" /-->
+      <property name="Text" value="测试一下" />
     </child>
     <element name="panelTopBtn">
       <child name="glassButton1">
@@ -15,7 +16,13 @@
         <property name="ButtonText" value="历史数据" />
       </child>
       <child name="glassButton3">
-        <property name="ButtonText" value="设置" />
+        <property name="ButtonText" value="预警记录" />
+      </child>
+      <child name="glassButton4">
+        <property name="ButtonText" value="预警设置" />
+      </child>
+      <child name="glassButton5">
+        <property name="ButtonText" value="设备管理" />
       </child>
     </element>
   </element>

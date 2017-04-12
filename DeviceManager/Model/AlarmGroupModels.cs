@@ -52,7 +52,7 @@ namespace DeviceManager.Model
     {
         [XmlAttribute("name")]
         public string Name { get; set; }
-        [XmlAttribute("field")]
+        [XmlElement("field")]
         public List<AlarmField> AlarmField { get; set; }
     }
 
@@ -66,5 +66,9 @@ namespace DeviceManager.Model
         public double Up { get; set; }
         [XmlAttribute("low")]
         public double Low { get; set; }
+        [XmlAttribute("around")]
+        public double Around { get; set; }
+
+
     }
 }

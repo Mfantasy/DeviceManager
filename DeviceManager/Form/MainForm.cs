@@ -15,6 +15,7 @@ using System.Runtime.InteropServices;
 using Newtonsoft.Json.Linq;
 using FOF.UserControlModel;
 using DeviceManager.CustomControl;
+using DeviceManager.Model;
 
 namespace DeviceManager
 {
@@ -38,10 +39,36 @@ namespace DeviceManager
             ConfigParser.ParseSensorModel(panelLeft,panelItem);            
             ConfigParser.ParseSensors();
             ConfigParser.ParseAlarms();
+            InitialAlarms();
             ConfigParser.ParseGroups(panelAll);          
             ConfigParser.ParseUI(this);
             InitializeUIEnd();            
             InitialModelClickSensors();
+            
+        }
+
+        void InitialAlarms()
+        {
+            //为每个传感器类型匹配正确的报警设置1.首先获取传感器模型列表 2.然后循环alm列表 3.然后匹配模型,匹配字段
+            foreach (SensorModel smodel in ConfigData.SensorModelCfg.SensorModels)
+            {
+                if (string.IsNullOrWhiteSpace(smodel.AlarmName))
+                {
+                    continue;
+                }
+                else
+                {
+                    AlarmConfig acfg = ConfigData.AlarmCfg.AlarmConfigs.Find(cfg => cfg.Name == smodel.AlarmName);
+                    if (acfg == null)
+                    {
+                        continue;
+                    }
+                    foreach (Field field in smodel.Fields)
+                    {
+                        field.Alarm = acfg.AlarmField.Find(af => af.Name == field.Name);
+                    }
+                }                                
+            }             
         }
 
         void InitialModelClickSensors()
@@ -125,20 +152,24 @@ namespace DeviceManager
 
         //测试
         bool b = false;
+        int value1 = 11098;
+        int value2 = 6640;
         private void glassButton1_Click(object sender, EventArgs e)
         {
             panelRuntime.BringToFront();
             //测试
             string jstr;
             if (b)
-            {
-                jstr = "{\"state\":\"Stream\",\"parser\":\"MXS1501\",\"raw\":\"7E000B7D1A000001000000330A4081817F01E524226D050100000100B01C00\",\"data\":[{\"name\":\"nodeid\",\"alias\":\"节点编号\",\"type\":\"uint16\",\"raw\":\"0x0100\",\"converted\":\"1\"},{\"name\":\"uid\",\"alias\":\"网关唯一号\",\"type\":\"raw\",\"raw\":\"0x81817F01E524226D\"},{\"name\":\"parent\",\"alias\":\"父级节点\",\"type\":\"uint16\",\"raw\":\"0x0000\",\"converted\":\"0\"},{\"name\":\"port\",\"alias\":\"采集通道\",\"type\":\"uint8\",\"raw\":\"0x01\",\"converted\":\"1\"},{\"name\":\"light\",\"alias\":\"太阳光照(lux)\",\"type\":\"uint32\",\"raw\":\"0x00B01C00\",\"converted\":\"188006.4\"}]}";
+            {                                
+                jstr = "{\"state\":\"Stream\",\"parser\":\"MXS1501\",\"raw\":\"7E000B7D1A000001000000330A4081817F01E524226D050100000100B01C00\",\"data\":[{\"name\":\"nodeid\",\"alias\":\"节点编号\",\"type\":\"uint16\",\"raw\":\"0x0100\",\"converted\":\"1\"},{\"name\":\"uid\",\"alias\":\"网关唯一号\",\"type\":\"raw\",\"raw\":\"0x81817F01E524226D\"},{\"name\":\"parent\",\"alias\":\"父级节点\",\"type\":\"uint16\",\"raw\":\"0x0000\",\"converted\":\"0\"},{\"name\":\"port\",\"alias\":\"采集通道\",\"type\":\"uint8\",\"raw\":\"0x01\",\"converted\":\"1\"},{\"name\":\"light\",\"alias\":\"太阳光照(lux)\",\"type\":\"uint32\",\"raw\":\"0x00B01C00\",\"converted\":\"" + value1 + "\"}]}";
                 b = false;
+                value1 ++;
             }
             else
             {
-                jstr = "{\"state\":\"Stream\",\"parser\":\"MXN820\",\"raw\":\"7E000B7D1A000001000000330A5E81817F01E524226DFC000000000000E70D\",\"data\":[{\"name\":\"nodeid\",\"alias\":\"节点编号\",\"type\":\"uint16\",\"raw\":\"0x0100\",\"converted\":\"1\"},{\"name\":\"uid\",\"alias\":\"网关唯一号\",\"type\":\"hex\",\"raw\":\"0x81817F01E524226D\",\"converted\":\"81817F01E524226D\"},{\"name\":\"parent\",\"alias\":\"父级节点\",\"type\":\"uint16\",\"raw\":\"0x0000\",\"converted\":\"0\"},{\"name\":\"port\",\"alias\":\"采集通道\",\"type\":\"uint8\",\"raw\":\"0x00\",\"converted\":\"0\"},{\"name\":\"chargeVol\",\"alias\":\"充电电压(mv)\",\"type\":\"uint16\",\"raw\":\"0x0000\",\"converted\":\"0\"},{\"name\":\"battVol\",\"alias\":\"电池电压(mv)\",\"type\":\"uint16\",\"raw\":\"0xE70D\",\"converted\":\"3559\"}]}";
+                jstr = "{\"state\":\"Stream\",\"parser\":\"MXN820\",\"raw\":\"7E000B7D1A000001000000330A5E81817F01E524226DFC000000000000E70D\",\"data\":[{\"name\":\"nodeid\",\"alias\":\"节点编号\",\"type\":\"uint16\",\"raw\":\"0x0100\",\"converted\":\"1\"},{\"name\":\"uid\",\"alias\":\"网关唯一号\",\"type\":\"hex\",\"raw\":\"0x81817F01E524226D\",\"converted\":\"81817F01E524226D\"},{\"name\":\"parent\",\"alias\":\"父级节点\",\"type\":\"uint16\",\"raw\":\"0x0000\",\"converted\":\"0\"},{\"name\":\"port\",\"alias\":\"采集通道\",\"type\":\"uint8\",\"raw\":\"0x00\",\"converted\":\"0\"},{\"name\":\"chargeVol\",\"alias\":\"充电电压(mv)\",\"type\":\"uint16\",\"raw\":\"0x0000\",\"converted\":\"0\"},{\"name\":\"battVol\",\"alias\":\"电池电压(mv)\",\"type\":\"uint16\",\"raw\":\"0xE70D\",\"converted\":\""+value2+"\"}]}";
                 b = true;
+                value2 ++;
             }
             JObject jobj = JObject.Parse(jstr);
             DataParser.ParseJObj(jobj);
@@ -173,13 +204,23 @@ namespace DeviceManager
             {
                 ReleaseCapture();
                 SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
-            }
+            } 
         }
         
         private void glassButton2_Click(object sender, EventArgs e)
         {
             ph.BringToFront();
                    
+        }
+
+        private void glassButton3_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void glassButton5_Click(object sender, EventArgs e)
+        {
+
         }
     }
 

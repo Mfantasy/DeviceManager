@@ -34,15 +34,17 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panelTopBtn = new System.Windows.Forms.Panel();
-            this.glassButton3 = new FOF.UserControlModel.GlassButton();
-            this.glassButton1 = new FOF.UserControlModel.GlassButton();
-            this.glassButton2 = new FOF.UserControlModel.GlassButton();
             this.labelTitle = new System.Windows.Forms.Label();
             this.panelLeft = new System.Windows.Forms.FlowLayoutPanel();
-            this.glassButtonAll = new FOF.UserControlModel.GlassButton();
             this.panelRight = new System.Windows.Forms.Panel();
             this.panelRuntime = new System.Windows.Forms.Panel();
             this.panelBotttom = new System.Windows.Forms.Panel();
+            this.glassButtonAll = new FOF.UserControlModel.GlassButton();
+            this.glassButton5 = new FOF.UserControlModel.GlassButton();
+            this.glassButton4 = new FOF.UserControlModel.GlassButton();
+            this.glassButton3 = new FOF.UserControlModel.GlassButton();
+            this.glassButton1 = new FOF.UserControlModel.GlassButton();
+            this.glassButton2 = new FOF.UserControlModel.GlassButton();
             this.panelTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -54,7 +56,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(369, 6);
+            this.button1.Location = new System.Drawing.Point(730, 3);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 0;
@@ -67,6 +69,7 @@
             this.panelTop.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panelTop.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelTop.Controls.Add(this.pictureBox1);
+            this.panelTop.Controls.Add(this.button1);
             this.panelTop.Controls.Add(this.pictureBox2);
             this.panelTop.Controls.Add(this.panelTopBtn);
             this.panelTop.Controls.Add(this.labelTitle);
@@ -74,14 +77,14 @@
             this.panelTop.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.panelTop.Location = new System.Drawing.Point(0, 0);
             this.panelTop.Name = "panelTop";
-            this.panelTop.Size = new System.Drawing.Size(1024, 100);
+            this.panelTop.Size = new System.Drawing.Size(1008, 102);
             this.panelTop.TabIndex = 1;
             // 
             // pictureBox1
             // 
             this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(932, 0);
+            this.pictureBox1.Location = new System.Drawing.Point(916, 0);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(42, 42);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -94,7 +97,7 @@
             // 
             this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(980, 0);
+            this.pictureBox2.Location = new System.Drawing.Point(964, 0);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(42, 42);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -107,16 +110,107 @@
             // 
             this.panelTopBtn.BackColor = System.Drawing.Color.Transparent;
             this.panelTopBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panelTopBtn.Controls.Add(this.glassButton5);
+            this.panelTopBtn.Controls.Add(this.glassButton4);
             this.panelTopBtn.Controls.Add(this.glassButton3);
-            this.panelTopBtn.Controls.Add(this.button1);
             this.panelTopBtn.Controls.Add(this.glassButton1);
             this.panelTopBtn.Controls.Add(this.glassButton2);
             this.panelTopBtn.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelTopBtn.Location = new System.Drawing.Point(0, 54);
+            this.panelTopBtn.Location = new System.Drawing.Point(0, 59);
             this.panelTopBtn.Name = "panelTopBtn";
             this.panelTopBtn.Padding = new System.Windows.Forms.Padding(3);
-            this.panelTopBtn.Size = new System.Drawing.Size(1022, 44);
+            this.panelTopBtn.Size = new System.Drawing.Size(1006, 41);
             this.panelTopBtn.TabIndex = 4;
+            // 
+            // labelTitle
+            // 
+            this.labelTitle.AutoSize = true;
+            this.labelTitle.BackColor = System.Drawing.Color.Transparent;
+            this.labelTitle.Dock = System.Windows.Forms.DockStyle.Top;
+            this.labelTitle.Font = new System.Drawing.Font("宋体", 42F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labelTitle.Location = new System.Drawing.Point(0, 0);
+            this.labelTitle.Name = "labelTitle";
+            this.labelTitle.Size = new System.Drawing.Size(248, 56);
+            this.labelTitle.TabIndex = 0;
+            this.labelTitle.Text = "测试文字";
+            // 
+            // panelLeft
+            // 
+            this.panelLeft.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelLeft.Controls.Add(this.glassButtonAll);
+            this.panelLeft.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panelLeft.Location = new System.Drawing.Point(0, 0);
+            this.panelLeft.Name = "panelLeft";
+            this.panelLeft.Padding = new System.Windows.Forms.Padding(3);
+            this.panelLeft.Size = new System.Drawing.Size(179, 630);
+            this.panelLeft.TabIndex = 4;
+            // 
+            // panelRight
+            // 
+            this.panelRight.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelRight.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelRight.Location = new System.Drawing.Point(185, 0);
+            this.panelRight.Name = "panelRight";
+            this.panelRight.Size = new System.Drawing.Size(823, 630);
+            this.panelRight.TabIndex = 5;
+            // 
+            // panelRuntime
+            // 
+            this.panelRuntime.Controls.Add(this.panelLeft);
+            this.panelRuntime.Controls.Add(this.panelRight);
+            this.panelRuntime.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelRuntime.Location = new System.Drawing.Point(0, 0);
+            this.panelRuntime.Name = "panelRuntime";
+            this.panelRuntime.Size = new System.Drawing.Size(1008, 630);
+            this.panelRuntime.TabIndex = 6;
+            // 
+            // panelBotttom
+            // 
+            this.panelBotttom.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelBotttom.Controls.Add(this.panelRuntime);
+            this.panelBotttom.Location = new System.Drawing.Point(0, 101);
+            this.panelBotttom.Name = "panelBotttom";
+            this.panelBotttom.Size = new System.Drawing.Size(1008, 630);
+            this.panelBotttom.TabIndex = 7;
+            // 
+            // glassButtonAll
+            // 
+            this.glassButtonAll.BackColor = System.Drawing.Color.Transparent;
+            this.glassButtonAll.ButtonText = "全部";
+            this.glassButtonAll.Font = new System.Drawing.Font("宋体", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.glassButtonAll.Location = new System.Drawing.Point(8, 8);
+            this.glassButtonAll.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.glassButtonAll.Name = "glassButtonAll";
+            this.glassButtonAll.Size = new System.Drawing.Size(160, 47);
+            this.glassButtonAll.TabIndex = 3;
+            this.glassButtonAll.Click += new System.EventHandler(this.glassButton4_Click);
+            // 
+            // glassButton5
+            // 
+            this.glassButton5.BackColor = System.Drawing.Color.Transparent;
+            this.glassButton5.ButtonText = null;
+            this.glassButton5.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.glassButton5.Location = new System.Drawing.Point(477, 4);
+            this.glassButton5.Name = "glassButton5";
+            this.glassButton5.Padding = new System.Windows.Forms.Padding(5);
+            this.glassButton5.Size = new System.Drawing.Size(112, 36);
+            this.glassButton5.TabIndex = 5;
+            this.glassButton5.Click += new System.EventHandler(this.glassButton5_Click);
+            // 
+            // glassButton4
+            // 
+            this.glassButton4.BackColor = System.Drawing.Color.Transparent;
+            this.glassButton4.ButtonText = null;
+            this.glassButton4.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.glassButton4.Location = new System.Drawing.Point(359, 4);
+            this.glassButton4.Name = "glassButton4";
+            this.glassButton4.Padding = new System.Windows.Forms.Padding(5);
+            this.glassButton4.Size = new System.Drawing.Size(112, 36);
+            this.glassButton4.TabIndex = 4;
             // 
             // glassButton3
             // 
@@ -128,6 +222,7 @@
             this.glassButton3.Padding = new System.Windows.Forms.Padding(5);
             this.glassButton3.Size = new System.Drawing.Size(112, 36);
             this.glassButton3.TabIndex = 3;
+            this.glassButton3.Click += new System.EventHandler(this.glassButton3_Click);
             // 
             // glassButton1
             // 
@@ -152,85 +247,18 @@
             this.glassButton2.TabIndex = 2;
             this.glassButton2.Click += new System.EventHandler(this.glassButton2_Click);
             // 
-            // labelTitle
-            // 
-            this.labelTitle.AutoSize = true;
-            this.labelTitle.BackColor = System.Drawing.Color.Transparent;
-            this.labelTitle.Dock = System.Windows.Forms.DockStyle.Top;
-            this.labelTitle.Font = new System.Drawing.Font("宋体", 42F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labelTitle.Location = new System.Drawing.Point(0, 0);
-            this.labelTitle.Name = "labelTitle";
-            this.labelTitle.Size = new System.Drawing.Size(248, 56);
-            this.labelTitle.TabIndex = 0;
-            this.labelTitle.Text = "测试文字";
-            // 
-            // panelLeft
-            // 
-            this.panelLeft.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelLeft.Controls.Add(this.glassButtonAll);
-            this.panelLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelLeft.Location = new System.Drawing.Point(0, 0);
-            this.panelLeft.Name = "panelLeft";
-            this.panelLeft.Padding = new System.Windows.Forms.Padding(3);
-            this.panelLeft.Size = new System.Drawing.Size(179, 668);
-            this.panelLeft.TabIndex = 4;
-            // 
-            // glassButtonAll
-            // 
-            this.glassButtonAll.BackColor = System.Drawing.Color.Transparent;
-            this.glassButtonAll.ButtonText = "全部";
-            this.glassButtonAll.Font = new System.Drawing.Font("宋体", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.glassButtonAll.Location = new System.Drawing.Point(8, 8);
-            this.glassButtonAll.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
-            this.glassButtonAll.Name = "glassButtonAll";
-            this.glassButtonAll.Size = new System.Drawing.Size(160, 47);
-            this.glassButtonAll.TabIndex = 3;
-            this.glassButtonAll.Click += new System.EventHandler(this.glassButton4_Click);
-            // 
-            // panelRight
-            // 
-            this.panelRight.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelRight.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelRight.Location = new System.Drawing.Point(185, 0);
-            this.panelRight.Name = "panelRight";
-            this.panelRight.Size = new System.Drawing.Size(839, 668);
-            this.panelRight.TabIndex = 5;
-            // 
-            // panelRuntime
-            // 
-            this.panelRuntime.Controls.Add(this.panelLeft);
-            this.panelRuntime.Controls.Add(this.panelRight);
-            this.panelRuntime.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelRuntime.Location = new System.Drawing.Point(0, 0);
-            this.panelRuntime.Name = "panelRuntime";
-            this.panelRuntime.Size = new System.Drawing.Size(1024, 668);
-            this.panelRuntime.TabIndex = 6;
-            // 
-            // panelBotttom
-            // 
-            this.panelBotttom.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelBotttom.Controls.Add(this.panelRuntime);
-            this.panelBotttom.Location = new System.Drawing.Point(0, 101);
-            this.panelBotttom.Name = "panelBotttom";
-            this.panelBotttom.Size = new System.Drawing.Size(1024, 668);
-            this.panelBotttom.TabIndex = 7;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1024, 768);
+            this.ClientSize = new System.Drawing.Size(1008, 730);
             this.Controls.Add(this.panelBotttom);
             this.Controls.Add(this.panelTop);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.MinimumSize = new System.Drawing.Size(1024, 768);
+            this.MinimumSize = new System.Drawing.Size(800, 600);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "环境监测系统";
@@ -262,6 +290,8 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Panel panelRuntime;
         private System.Windows.Forms.Panel panelBotttom;
+        private FOF.UserControlModel.GlassButton glassButton5;
+        private FOF.UserControlModel.GlassButton glassButton4;
     }
 }
 
