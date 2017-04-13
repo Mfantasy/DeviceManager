@@ -78,24 +78,48 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config.cs" />
+    <Compile Include="CustomControl\PanelAllSensors.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomControl\PanelAllSensors.Designer.cs">
+      <DependentUpon>PanelAllSensors.cs</DependentUpon>
+    </Compile>
     <Compile Include="CustomControl\PanelSet.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="CustomControl\PanelSet.Designer.cs">
       <DependentUpon>PanelSet.cs</DependentUpon>
     </Compile>
+    <Compile Include="CustomControl\PASListView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CustomControl\PASListView.Designer.cs">
+      <DependentUpon>PASListView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomForm\DeviceEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomForm\DeviceEditForm.Designer.cs">
+      <DependentUpon>DeviceEditForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Data\DataAccess.cs" />
     <Compile Include="Data\DataSubscribe.cs" />
-    <Compile Include="Form\MainForm.cs">
+    <Compile Include="CustomForm\InputForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\MainForm.Designer.cs">
+    <Compile Include="CustomForm\InputForm.Designer.cs">
+      <DependentUpon>InputForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomForm\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomForm\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\Logon.cs">
+    <Compile Include="CustomForm\Logon.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Logon.Designer.cs">
+    <Compile Include="CustomForm\Logon.Designer.cs">
       <DependentUpon>Logon.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\AlarmGroupModels.cs" />
@@ -127,13 +151,25 @@
     </Compile>
     <Compile Include="Utils.cs" />
     <Compile Include="Data\DataParser.cs" />
+    <EmbeddedResource Include="CustomControl\PanelAllSensors.resx">
+      <DependentUpon>PanelAllSensors.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CustomControl\PanelSet.resx">
       <DependentUpon>PanelSet.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\LogOn.resx">
+    <EmbeddedResource Include="CustomControl\PASListView.resx">
+      <DependentUpon>PASListView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomForm\DeviceEditForm.resx">
+      <DependentUpon>DeviceEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomForm\InputForm.resx">
+      <DependentUpon>InputForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomForm\LogOn.resx">
       <DependentUpon>Logon.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\MainForm.resx">
+    <EmbeddedResource Include="CustomForm\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

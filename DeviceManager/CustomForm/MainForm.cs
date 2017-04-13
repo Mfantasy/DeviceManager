@@ -30,8 +30,9 @@ namespace DeviceManager
         [DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
 
-
+        PanelAllSensors pas = new PanelAllSensors();
         PanelHistory ph = new PanelHistory();
+
         public MainForm()
         {
             InitializeComponent();
@@ -46,7 +47,16 @@ namespace DeviceManager
             InitialModelClickSensors();
             
         }
-
+        void InitializeUIEnd()
+        {
+            ph.Init();
+            pas.Init();
+            pas.Parent = panelBotttom;
+            pas.Dock = DockStyle.Fill;
+            ph.Parent = panelBotttom;
+            ph.Dock = DockStyle.Fill;
+            this.Text = labelTitle.Text;
+        }
         void InitialAlarms()
         {
             //为每个传感器类型匹配正确的报警设置1.首先获取传感器模型列表 2.然后循环alm列表 3.然后匹配模型,匹配字段
@@ -119,13 +129,7 @@ namespace DeviceManager
             field.ClickLabel.Text = field.LabelText;
         }
 
-        void InitializeUIEnd()
-        {            
-            ph.Init();
-            ph.Parent = panelBotttom;
-            ph.Dock = DockStyle.Fill;
-            this.Text = labelTitle.Text;            
-        }
+     
 
         void InitializeUI()
         {           
@@ -180,7 +184,7 @@ namespace DeviceManager
         //全部
         FlowLayoutPanel panelAll = new FlowLayoutPanel();
         Panel panelAllP = new Panel();
-        private void glassButton4_Click(object sender, EventArgs e)
+        private void glassButtonAll_Click(object sender, EventArgs e)
         {                        
             panelAllP.BringToFront();
             panelAll.BringToFront();
@@ -218,10 +222,16 @@ namespace DeviceManager
            
         }
 
+        private void glassButton4_Click(object sender, EventArgs e)
+        {
+          
+        }
+
         private void glassButton5_Click(object sender, EventArgs e)
         {
-
+            pas.BringToFront();
         }
+     
     }
 
 }

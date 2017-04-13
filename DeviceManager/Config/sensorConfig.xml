@@ -1,11 +1,11 @@
 ﻿<Sensors>
-  <sensor name="MXS1201" title="空气温湿度" sname="SeaBo_MXS1201">
+  <sensor name="MXS1201" title="空气温湿度" sname="SeaBo_MXS1201" alarm="无">
     <field name="nodeid" alias="节点编号" realtime="false" history="false" />
     <field name="uid" alias="网关唯一号" realtime="false" history="false" />   
     <field name="humid" alias="湿度(%)" realtime="true" history="false" />
     <field name="humtemp" alias="温度(℃)" realtime="true" history="false" />
   </sensor>
-  <sensor name="MXS1301" title="二氧化碳" sname="SeaBo_MXS1301">
+  <sensor name="MXS1301" title="二氧化碳" sname="SeaBo_MXS1301" alarm="无">
     <field name="nodeid" alias="节点编号" realtime="false" history="false" />
     <field name="uid" alias="网关唯一号" realtime="false" history="false" />
     <field name="co2" alias="co2浓度(ppm)" realtime="true" history="false" />    

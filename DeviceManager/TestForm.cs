@@ -1,4 +1,5 @@
 ﻿using DeviceManager;
+using DeviceManager.CustomForm;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,6 +18,8 @@ namespace DeviceManagerO
         public TestForm()
         {
             InitializeComponent();
+            //ContextMenu = new ContextMenu();
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -310,9 +313,18 @@ where t1.F1 = {0} and LEAST(t1.f_end_date,t3.f56)>20170410 "; //FID29991231
         int i = 0;
         private void button2_Click(object sender, EventArgs e)
         {
+           
+            //string x = new tex
             //添加一个节点
-            treeView1.Nodes.Add(i.ToString());
-            i ++;
+            //treeView1.Nodes.Add(i.ToString());
+            //i ++;
+        }
+
+        private void 测试1ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            string x = listView1.SelectedItems[0].Text;
+            MessageBox.Show(x);
         }
     }
 
