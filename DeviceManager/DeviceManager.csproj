@@ -78,6 +78,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config.cs" />
+    <Compile Include="CustomControl\MenuButtonPanel.cs" />
     <Compile Include="CustomControl\PanelAllSensors.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -250,6 +251,16 @@
     <Content Include="Lib\System.Data.SQLite.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\历史数据 副本.png" />
+    <None Include="Resources\历史数据.png" />
+    <None Include="Resources\设备管理 副本.png" />
+    <None Include="Resources\设备管理.png" />
+    <None Include="Resources\实时数据.png" />
+    <None Include="Resources\实时数据1.png" />
+    <None Include="Resources\预警记录 副本.png" />
+    <None Include="Resources\预警记录.png" />
+    <None Include="Resources\预警设置 副本.png" />
+    <None Include="Resources\预警设置.png" />
     <Content Include="x64\SQLite.Interop.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

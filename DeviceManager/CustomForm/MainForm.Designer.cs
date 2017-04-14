@@ -31,32 +31,25 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.button1 = new System.Windows.Forms.Button();
             this.panelTop = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.panelTopBtn = new System.Windows.Forms.Panel();
-            this.glassButton5 = new FOF.UserControlModel.GlassButton();
-            this.glassButton4 = new FOF.UserControlModel.GlassButton();
-            this.glassButton3 = new FOF.UserControlModel.GlassButton();
-            this.glassButton1 = new FOF.UserControlModel.GlassButton();
-            this.glassButton2 = new FOF.UserControlModel.GlassButton();
-            this.labelTitle = new System.Windows.Forms.Label();
+            this.menuButtonPanel5 = new DeviceManager.CustomControl.MenuButtonPanel();
+            this.menuButtonPanel4 = new DeviceManager.CustomControl.MenuButtonPanel();
+            this.menuButtonPanel3 = new DeviceManager.CustomControl.MenuButtonPanel();
+            this.menuButtonPanel2 = new DeviceManager.CustomControl.MenuButtonPanel();
+            this.menuButtonPanel1 = new DeviceManager.CustomControl.MenuButtonPanel();
+            this.panelRuntime = new System.Windows.Forms.Panel();
             this.panelLeft = new System.Windows.Forms.FlowLayoutPanel();
             this.glassButtonAll = new FOF.UserControlModel.GlassButton();
             this.panelRight = new System.Windows.Forms.Panel();
-            this.panelRuntime = new System.Windows.Forms.Panel();
             this.panelBotttom = new System.Windows.Forms.Panel();
             this.panelTop.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            this.panelTopBtn.SuspendLayout();
-            this.panelLeft.SuspendLayout();
             this.panelRuntime.SuspendLayout();
+            this.panelLeft.SuspendLayout();
             this.panelBotttom.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(730, 3);
+            this.button1.Location = new System.Drawing.Point(928, 48);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 0;
@@ -66,142 +59,115 @@
             // 
             // panelTop
             // 
+            this.panelTop.BackColor = System.Drawing.Color.Transparent;
             this.panelTop.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panelTop.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelTop.Controls.Add(this.pictureBox1);
+            this.panelTop.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panelTop.Controls.Add(this.menuButtonPanel5);
+            this.panelTop.Controls.Add(this.menuButtonPanel4);
+            this.panelTop.Controls.Add(this.menuButtonPanel3);
+            this.panelTop.Controls.Add(this.menuButtonPanel2);
+            this.panelTop.Controls.Add(this.menuButtonPanel1);
             this.panelTop.Controls.Add(this.button1);
-            this.panelTop.Controls.Add(this.pictureBox2);
-            this.panelTop.Controls.Add(this.panelTopBtn);
-            this.panelTop.Controls.Add(this.labelTitle);
             this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTop.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.panelTop.Location = new System.Drawing.Point(0, 0);
+            this.panelTop.Margin = new System.Windows.Forms.Padding(0);
             this.panelTop.Name = "panelTop";
-            this.panelTop.Size = new System.Drawing.Size(1008, 102);
+            this.panelTop.Size = new System.Drawing.Size(1264, 125);
             this.panelTop.TabIndex = 1;
             // 
-            // pictureBox1
+            // menuButtonPanel5
             // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(916, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(42, 42);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 7;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Visible = false;
-            this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
+            this.menuButtonPanel5.BackColor = System.Drawing.Color.Transparent;
+            this.menuButtonPanel5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.menuButtonPanel5.CaptionText = "设备管理";
+            this.menuButtonPanel5.CheckedImage = global::DeviceManager.Properties.Resources.设备管理_副本;
+            this.menuButtonPanel5.DefaultImage = global::DeviceManager.Properties.Resources.设备管理;
+            this.menuButtonPanel5.Location = new System.Drawing.Point(534, 11);
+            this.menuButtonPanel5.Margin = new System.Windows.Forms.Padding(10);
+            this.menuButtonPanel5.Name = "menuButtonPanel5";
+            this.menuButtonPanel5.Panel = null;
+            this.menuButtonPanel5.Size = new System.Drawing.Size(101, 101);
+            this.menuButtonPanel5.TabIndex = 12;
             // 
-            // pictureBox2
+            // menuButtonPanel4
             // 
-            this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(964, 0);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(42, 42);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 6;
-            this.pictureBox2.TabStop = false;
-            this.pictureBox2.Visible = false;
-            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
+            this.menuButtonPanel4.BackColor = System.Drawing.Color.Transparent;
+            this.menuButtonPanel4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.menuButtonPanel4.CaptionText = "预警配置";
+            this.menuButtonPanel4.CheckedImage = global::DeviceManager.Properties.Resources.预警设置_副本;
+            this.menuButtonPanel4.DefaultImage = global::DeviceManager.Properties.Resources.预警设置;
+            this.menuButtonPanel4.Location = new System.Drawing.Point(405, 11);
+            this.menuButtonPanel4.Margin = new System.Windows.Forms.Padding(10);
+            this.menuButtonPanel4.Name = "menuButtonPanel4";
+            this.menuButtonPanel4.Panel = null;
+            this.menuButtonPanel4.Size = new System.Drawing.Size(101, 101);
+            this.menuButtonPanel4.TabIndex = 11;
             // 
-            // panelTopBtn
+            // menuButtonPanel3
             // 
-            this.panelTopBtn.BackColor = System.Drawing.Color.Transparent;
-            this.panelTopBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panelTopBtn.Controls.Add(this.glassButton5);
-            this.panelTopBtn.Controls.Add(this.glassButton4);
-            this.panelTopBtn.Controls.Add(this.glassButton3);
-            this.panelTopBtn.Controls.Add(this.glassButton1);
-            this.panelTopBtn.Controls.Add(this.glassButton2);
-            this.panelTopBtn.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelTopBtn.Location = new System.Drawing.Point(0, 59);
-            this.panelTopBtn.Name = "panelTopBtn";
-            this.panelTopBtn.Padding = new System.Windows.Forms.Padding(3);
-            this.panelTopBtn.Size = new System.Drawing.Size(1006, 41);
-            this.panelTopBtn.TabIndex = 4;
+            this.menuButtonPanel3.BackColor = System.Drawing.Color.Transparent;
+            this.menuButtonPanel3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.menuButtonPanel3.CaptionText = "预警记录";
+            this.menuButtonPanel3.CheckedImage = global::DeviceManager.Properties.Resources.预警记录_副本;
+            this.menuButtonPanel3.DefaultImage = global::DeviceManager.Properties.Resources.预警记录;
+            this.menuButtonPanel3.Location = new System.Drawing.Point(276, 11);
+            this.menuButtonPanel3.Margin = new System.Windows.Forms.Padding(10);
+            this.menuButtonPanel3.Name = "menuButtonPanel3";
+            this.menuButtonPanel3.Panel = null;
+            this.menuButtonPanel3.Size = new System.Drawing.Size(101, 101);
+            this.menuButtonPanel3.TabIndex = 10;
             // 
-            // glassButton5
+            // menuButtonPanel2
             // 
-            this.glassButton5.BackColor = System.Drawing.Color.Transparent;
-            this.glassButton5.ButtonText = null;
-            this.glassButton5.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.glassButton5.Location = new System.Drawing.Point(477, 4);
-            this.glassButton5.Name = "glassButton5";
-            this.glassButton5.Padding = new System.Windows.Forms.Padding(5);
-            this.glassButton5.Size = new System.Drawing.Size(112, 36);
-            this.glassButton5.TabIndex = 5;
-            this.glassButton5.Click += new System.EventHandler(this.glassButton5_Click);
+            this.menuButtonPanel2.BackColor = System.Drawing.Color.Transparent;
+            this.menuButtonPanel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.menuButtonPanel2.CaptionText = "数据查询";
+            this.menuButtonPanel2.CheckedImage = global::DeviceManager.Properties.Resources.历史数据_副本;
+            this.menuButtonPanel2.DefaultImage = global::DeviceManager.Properties.Resources.历史数据;
+            this.menuButtonPanel2.Location = new System.Drawing.Point(147, 11);
+            this.menuButtonPanel2.Margin = new System.Windows.Forms.Padding(10);
+            this.menuButtonPanel2.Name = "menuButtonPanel2";
+            this.menuButtonPanel2.Panel = null;
+            this.menuButtonPanel2.Size = new System.Drawing.Size(101, 101);
+            this.menuButtonPanel2.TabIndex = 9;
             // 
-            // glassButton4
+            // menuButtonPanel1
             // 
-            this.glassButton4.BackColor = System.Drawing.Color.Transparent;
-            this.glassButton4.ButtonText = null;
-            this.glassButton4.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.glassButton4.Location = new System.Drawing.Point(359, 4);
-            this.glassButton4.Name = "glassButton4";
-            this.glassButton4.Padding = new System.Windows.Forms.Padding(5);
-            this.glassButton4.Size = new System.Drawing.Size(112, 36);
-            this.glassButton4.TabIndex = 4;
-            this.glassButton4.Click += new System.EventHandler(this.glassButton4_Click);
+            this.menuButtonPanel1.BackColor = System.Drawing.Color.Transparent;
+            this.menuButtonPanel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.menuButtonPanel1.CaptionText = "实时数据";
+            this.menuButtonPanel1.CheckedImage = global::DeviceManager.Properties.Resources.实时数据1;
+            this.menuButtonPanel1.DefaultImage = global::DeviceManager.Properties.Resources.实时数据;
+            this.menuButtonPanel1.Location = new System.Drawing.Point(18, 11);
+            this.menuButtonPanel1.Margin = new System.Windows.Forms.Padding(10);
+            this.menuButtonPanel1.Name = "menuButtonPanel1";
+            this.menuButtonPanel1.Panel = this.panelRuntime;
+            this.menuButtonPanel1.Size = new System.Drawing.Size(101, 101);
+            this.menuButtonPanel1.TabIndex = 8;
             // 
-            // glassButton3
+            // panelRuntime
             // 
-            this.glassButton3.BackColor = System.Drawing.Color.Transparent;
-            this.glassButton3.ButtonText = null;
-            this.glassButton3.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.glassButton3.Location = new System.Drawing.Point(241, 4);
-            this.glassButton3.Name = "glassButton3";
-            this.glassButton3.Padding = new System.Windows.Forms.Padding(5);
-            this.glassButton3.Size = new System.Drawing.Size(112, 36);
-            this.glassButton3.TabIndex = 3;
-            this.glassButton3.Click += new System.EventHandler(this.glassButton3_Click);
-            // 
-            // glassButton1
-            // 
-            this.glassButton1.BackColor = System.Drawing.Color.Transparent;
-            this.glassButton1.ButtonText = "测试文字";
-            this.glassButton1.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.glassButton1.Location = new System.Drawing.Point(5, 4);
-            this.glassButton1.Name = "glassButton1";
-            this.glassButton1.Size = new System.Drawing.Size(112, 36);
-            this.glassButton1.TabIndex = 1;
-            this.glassButton1.Click += new System.EventHandler(this.glassButton1_Click);
-            // 
-            // glassButton2
-            // 
-            this.glassButton2.BackColor = System.Drawing.Color.Transparent;
-            this.glassButton2.ButtonText = null;
-            this.glassButton2.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.glassButton2.Location = new System.Drawing.Point(123, 4);
-            this.glassButton2.Name = "glassButton2";
-            this.glassButton2.Padding = new System.Windows.Forms.Padding(5);
-            this.glassButton2.Size = new System.Drawing.Size(112, 36);
-            this.glassButton2.TabIndex = 2;
-            this.glassButton2.Click += new System.EventHandler(this.glassButton2_Click);
-            // 
-            // labelTitle
-            // 
-            this.labelTitle.AutoSize = true;
-            this.labelTitle.BackColor = System.Drawing.Color.Transparent;
-            this.labelTitle.Dock = System.Windows.Forms.DockStyle.Top;
-            this.labelTitle.Font = new System.Drawing.Font("宋体", 42F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labelTitle.Location = new System.Drawing.Point(0, 0);
-            this.labelTitle.Name = "labelTitle";
-            this.labelTitle.Size = new System.Drawing.Size(248, 56);
-            this.labelTitle.TabIndex = 0;
-            this.labelTitle.Text = "测试文字";
+            this.panelRuntime.BackColor = System.Drawing.Color.Transparent;
+            this.panelRuntime.Controls.Add(this.panelLeft);
+            this.panelRuntime.Controls.Add(this.panelRight);
+            this.panelRuntime.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelRuntime.Location = new System.Drawing.Point(0, 0);
+            this.panelRuntime.Name = "panelRuntime";
+            this.panelRuntime.Size = new System.Drawing.Size(1260, 603);
+            this.panelRuntime.TabIndex = 6;
             // 
             // panelLeft
             // 
-            this.panelLeft.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelLeft.BackColor = System.Drawing.Color.Transparent;
+            this.panelLeft.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panelLeft.Controls.Add(this.glassButtonAll);
             this.panelLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelLeft.Location = new System.Drawing.Point(0, 0);
+            this.panelLeft.Margin = new System.Windows.Forms.Padding(0);
             this.panelLeft.Name = "panelLeft";
             this.panelLeft.Padding = new System.Windows.Forms.Padding(3);
-            this.panelLeft.Size = new System.Drawing.Size(179, 630);
+            this.panelLeft.Size = new System.Drawing.Size(181, 603);
             this.panelLeft.TabIndex = 4;
             // 
             // glassButtonAll
@@ -221,55 +187,48 @@
             this.panelRight.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelRight.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelRight.Location = new System.Drawing.Point(185, 0);
+            this.panelRight.BackColor = System.Drawing.Color.Transparent;
+            this.panelRight.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panelRight.Location = new System.Drawing.Point(181, 0);
+            this.panelRight.Margin = new System.Windows.Forms.Padding(0);
             this.panelRight.Name = "panelRight";
-            this.panelRight.Size = new System.Drawing.Size(823, 630);
+            this.panelRight.Size = new System.Drawing.Size(1079, 603);
             this.panelRight.TabIndex = 5;
-            // 
-            // panelRuntime
-            // 
-            this.panelRuntime.Controls.Add(this.panelLeft);
-            this.panelRuntime.Controls.Add(this.panelRight);
-            this.panelRuntime.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelRuntime.Location = new System.Drawing.Point(0, 0);
-            this.panelRuntime.Name = "panelRuntime";
-            this.panelRuntime.Size = new System.Drawing.Size(1008, 630);
-            this.panelRuntime.TabIndex = 6;
             // 
             // panelBotttom
             // 
             this.panelBotttom.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelBotttom.BackColor = System.Drawing.Color.Transparent;
+            this.panelBotttom.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panelBotttom.Controls.Add(this.panelRuntime);
-            this.panelBotttom.Location = new System.Drawing.Point(0, 101);
+            this.panelBotttom.Location = new System.Drawing.Point(0, 124);
+            this.panelBotttom.Margin = new System.Windows.Forms.Padding(0);
             this.panelBotttom.Name = "panelBotttom";
-            this.panelBotttom.Size = new System.Drawing.Size(1008, 630);
+            this.panelBotttom.Size = new System.Drawing.Size(1264, 607);
             this.panelBotttom.TabIndex = 7;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.Window;
+            this.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1008, 730);
+            this.ClientSize = new System.Drawing.Size(1264, 730);
             this.Controls.Add(this.panelBotttom);
             this.Controls.Add(this.panelTop);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.MinimumSize = new System.Drawing.Size(800, 600);
+            this.MinimumSize = new System.Drawing.Size(1024, 768);
             this.Name = "MainForm";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "环境监测系统";
+            this.Text = "山西省榆社县博物馆环境监测系统";
             this.panelTop.ResumeLayout(false);
-            this.panelTop.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            this.panelTopBtn.ResumeLayout(false);
-            this.panelLeft.ResumeLayout(false);
             this.panelRuntime.ResumeLayout(false);
+            this.panelLeft.ResumeLayout(false);
             this.panelBotttom.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -279,20 +238,16 @@
 
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Panel panelTop;
-        private System.Windows.Forms.Label labelTitle;
-        private FOF.UserControlModel.GlassButton glassButton1;
-        private FOF.UserControlModel.GlassButton glassButton2;
-        private FOF.UserControlModel.GlassButton glassButton3;
-        private System.Windows.Forms.Panel panelTopBtn;
         private FOF.UserControlModel.GlassButton glassButtonAll;
         private System.Windows.Forms.FlowLayoutPanel panelLeft;
         private System.Windows.Forms.Panel panelRight;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Panel panelRuntime;
         private System.Windows.Forms.Panel panelBotttom;
-        private FOF.UserControlModel.GlassButton glassButton5;
-        private FOF.UserControlModel.GlassButton glassButton4;
+        private CustomControl.MenuButtonPanel menuButtonPanel1;
+        private CustomControl.MenuButtonPanel menuButtonPanel5;
+        private CustomControl.MenuButtonPanel menuButtonPanel4;
+        private CustomControl.MenuButtonPanel menuButtonPanel3;
+        private CustomControl.MenuButtonPanel menuButtonPanel2;
     }
 }
 

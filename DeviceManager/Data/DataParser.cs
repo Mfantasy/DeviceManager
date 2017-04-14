@@ -64,7 +64,7 @@ namespace DeviceManager
                             field.Value = jt["raw"].ToString().Remove(0, 2);
                         else
                             field.Value = jt[key].ToString();
-                        field.Label.Invoke(new Action(() => field.Label.Text = field.LabelText));
+                        field.Label.Invoke(new Action(() => { field.Label.Text = field.LabelText;field.ClickLabel.Text = field.LabelText; }));
                     }                   
                 }
             }

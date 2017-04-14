@@ -16,37 +16,38 @@ using Newtonsoft.Json.Linq;
 using FOF.UserControlModel;
 using DeviceManager.CustomControl;
 using DeviceManager.Model;
+using System.Configuration;
 
 namespace DeviceManager
 {
     public partial class MainForm : Form
     {
-        //拖动
-        public const int WM_NCLBUTTONDOWN = 0xA1;
-        public const int HT_CAPTION = 0x2;
-        [DllImportAttribute("user32.dll")]
-        public static extern int SendMessage(IntPtr hWnd,
-                         int Msg, int wParam, int lParam);
-        [DllImportAttribute("user32.dll")]
-        public static extern bool ReleaseCapture();
+        //测试
+        private void button1_Click(object sender, EventArgs e)
+        {
+            glassButton1_Click(null, null);
+            //Thread th = new Thread(DataSubscribe.StartSubscribe);
+            //th.IsBackground = true;
+            //th.Start();
+        }
 
         PanelAllSensors pas = new PanelAllSensors();
         PanelHistory ph = new PanelHistory();
-
         public MainForm()
         {
             InitializeComponent();
+          
             InitializeUI();
             ConfigParser.ParseSensorModel(panelLeft,panelItem);            
             ConfigParser.ParseSensors();
             ConfigParser.ParseAlarms();
             InitialAlarms();
             ConfigParser.ParseGroups(panelAll);          
-            ConfigParser.ParseUI(this);
+            //ConfigParser.ParseUI(this);
             InitializeUIEnd();            
-            InitialModelClickSensors();
-            
+            InitialModelClickSensors();            
         }
+
         void InitializeUIEnd()
         {
             ph.Init();
@@ -55,7 +56,32 @@ namespace DeviceManager
             pas.Dock = DockStyle.Fill;
             ph.Parent = panelBotttom;
             ph.Dock = DockStyle.Fill;
-            this.Text = labelTitle.Text;
+            this.Text = ConfigurationManager.AppSettings["软件名称"];
+            if (menuButtonPanel1.DefaultImage != null)
+            {
+                menuButtonPanel1.ShowDefaultImage(null, null);
+            }
+            if (menuButtonPanel2.DefaultImage != null)
+            {
+                menuButtonPanel2.ShowDefaultImage(null, null);
+            }
+            if (menuButtonPanel3.DefaultImage != null)
+            {
+                menuButtonPanel3.ShowDefaultImage(null, null);
+            }
+            if (menuButtonPanel4.DefaultImage != null)
+            {
+                menuButtonPanel4.ShowDefaultImage(null, null);
+            }
+            if (menuButtonPanel5.DefaultImage != null)
+            {
+                menuButtonPanel5.ShowDefaultImage(null, null);
+            }
+            menuButtonPanel1.Panel = panelRuntime;
+            menuButtonPanel2.Panel = ph;
+            //menuButtonPanel3.Panel = 
+            //menuButtonPanel4.Panel
+            menuButtonPanel5.Panel = pas;
         }
         void InitialAlarms()
         {
@@ -107,8 +133,7 @@ namespace DeviceManager
                         foreach (Field field in ss.Model.Fields)
                         {
                             if (!field.Realtime)
-                                continue;
-                            field.ValueUpdated += Field_ValueUpdated;
+                                continue;                            
                             Label lb = new Label();
                             field.ClickLabel = lb;
                             lb.Font = new Font("宋体", 11);
@@ -122,15 +147,7 @@ namespace DeviceManager
                 }
             }
         }
-
-        private void Field_ValueUpdated(object sender, EventArgs e)
-        {
-            Field field = sender as Field;
-            field.ClickLabel.Text = field.LabelText;
-        }
-
-     
-
+         
         void InitializeUI()
         {           
             panelAllP.Name = "panelAllP";
@@ -147,37 +164,8 @@ namespace DeviceManager
             panelAllP.Controls.Add(panelAll);
             panelAllP.BringToFront();
         }
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Thread th = new Thread(DataSubscribe.StartSubscribe);
-            th.IsBackground = true;
-            th.Start();
-        }
+      
 
-        //测试
-        bool b = false;
-        int value1 = 11098;
-        int value2 = 6640;
-        private void glassButton1_Click(object sender, EventArgs e)
-        {
-            panelRuntime.BringToFront();
-            //测试
-            string jstr;
-            if (b)
-            {                                
-                jstr = "{\"state\":\"Stream\",\"parser\":\"MXS1501\",\"raw\":\"7E000B7D1A000001000000330A4081817F01E524226D050100000100B01C00\",\"data\":[{\"name\":\"nodeid\",\"alias\":\"节点编号\",\"type\":\"uint16\",\"raw\":\"0x0100\",\"converted\":\"1\"},{\"name\":\"uid\",\"alias\":\"网关唯一号\",\"type\":\"raw\",\"raw\":\"0x81817F01E524226D\"},{\"name\":\"parent\",\"alias\":\"父级节点\",\"type\":\"uint16\",\"raw\":\"0x0000\",\"converted\":\"0\"},{\"name\":\"port\",\"alias\":\"采集通道\",\"type\":\"uint8\",\"raw\":\"0x01\",\"converted\":\"1\"},{\"name\":\"light\",\"alias\":\"太阳光照(lux)\",\"type\":\"uint32\",\"raw\":\"0x00B01C00\",\"converted\":\"" + value1 + "\"}]}";
-                b = false;
-                value1 ++;
-            }
-            else
-            {
-                jstr = "{\"state\":\"Stream\",\"parser\":\"MXN820\",\"raw\":\"7E000B7D1A000001000000330A5E81817F01E524226DFC000000000000E70D\",\"data\":[{\"name\":\"nodeid\",\"alias\":\"节点编号\",\"type\":\"uint16\",\"raw\":\"0x0100\",\"converted\":\"1\"},{\"name\":\"uid\",\"alias\":\"网关唯一号\",\"type\":\"hex\",\"raw\":\"0x81817F01E524226D\",\"converted\":\"81817F01E524226D\"},{\"name\":\"parent\",\"alias\":\"父级节点\",\"type\":\"uint16\",\"raw\":\"0x0000\",\"converted\":\"0\"},{\"name\":\"port\",\"alias\":\"采集通道\",\"type\":\"uint8\",\"raw\":\"0x00\",\"converted\":\"0\"},{\"name\":\"chargeVol\",\"alias\":\"充电电压(mv)\",\"type\":\"uint16\",\"raw\":\"0x0000\",\"converted\":\"0\"},{\"name\":\"battVol\",\"alias\":\"电池电压(mv)\",\"type\":\"uint16\",\"raw\":\"0xE70D\",\"converted\":\""+value2+"\"}]}";
-                b = true;
-                value2 ++;
-            }
-            JObject jobj = JObject.Parse(jstr);
-            DataParser.ParseJObj(jobj);
-        }
 
         //模型对应Panel
         Panel panelItem = new Panel();
@@ -191,47 +179,32 @@ namespace DeviceManager
             ConfigParser.btnAll.Text = "全部";
             ConfigParser.btnTxt = "全部";
         }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-             
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left)
-            {
-                ReleaseCapture();
-                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
-            } 
-        }
-        
-        private void glassButton2_Click(object sender, EventArgs e)
-        {
-            ph.BringToFront();
-                   
-        }
-
-        private void glassButton3_Click(object sender, EventArgs e)
-        {
-           
-        }
-
-        private void glassButton4_Click(object sender, EventArgs e)
-        {
-          
-        }
-
-        private void glassButton5_Click(object sender, EventArgs e)
-        {
-            pas.BringToFront();
-        }
      
+
+        //测试
+        bool b = false;
+        int value1 = 11098;
+        int value2 = 6640;
+        private void glassButton1_Click(object sender, EventArgs e)
+        {
+            panelRuntime.BringToFront();
+            //测试
+            string jstr;
+            if (b)
+            {
+                jstr = "{\"state\":\"Stream\",\"parser\":\"MXS1501\",\"raw\":\"7E000B7D1A000001000000330A4081817F01E524226D050100000100B01C00\",\"data\":[{\"name\":\"nodeid\",\"alias\":\"节点编号\",\"type\":\"uint16\",\"raw\":\"0x0100\",\"converted\":\"1\"},{\"name\":\"uid\",\"alias\":\"网关唯一号\",\"type\":\"raw\",\"raw\":\"0x81817F01E524226D\"},{\"name\":\"parent\",\"alias\":\"父级节点\",\"type\":\"uint16\",\"raw\":\"0x0000\",\"converted\":\"0\"},{\"name\":\"port\",\"alias\":\"采集通道\",\"type\":\"uint8\",\"raw\":\"0x01\",\"converted\":\"1\"},{\"name\":\"light\",\"alias\":\"太阳光照(lux)\",\"type\":\"uint32\",\"raw\":\"0x00B01C00\",\"converted\":\"" + value1 + "\"}]}";
+                b = false;
+                value1++;
+            }
+            else
+            {
+                jstr = "{\"state\":\"Stream\",\"parser\":\"MXN820\",\"raw\":\"7E000B7D1A000001000000330A5E81817F01E524226DFC000000000000E70D\",\"data\":[{\"name\":\"nodeid\",\"alias\":\"节点编号\",\"type\":\"uint16\",\"raw\":\"0x0100\",\"converted\":\"1\"},{\"name\":\"uid\",\"alias\":\"网关唯一号\",\"type\":\"hex\",\"raw\":\"0x81817F01E524226D\",\"converted\":\"81817F01E524226D\"},{\"name\":\"parent\",\"alias\":\"父级节点\",\"type\":\"uint16\",\"raw\":\"0x0000\",\"converted\":\"0\"},{\"name\":\"port\",\"alias\":\"采集通道\",\"type\":\"uint8\",\"raw\":\"0x00\",\"converted\":\"0\"},{\"name\":\"chargeVol\",\"alias\":\"充电电压(mv)\",\"type\":\"uint16\",\"raw\":\"0x0000\",\"converted\":\"0\"},{\"name\":\"battVol\",\"alias\":\"电池电压(mv)\",\"type\":\"uint16\",\"raw\":\"0xE70D\",\"converted\":\"" + value2 + "\"}]}";
+                b = true;
+                value2++;
+            }
+            JObject jobj = JObject.Parse(jstr);
+            DataParser.ParseJObj(jobj);
+        }
     }
 
 }

@@ -73,28 +73,33 @@ namespace DeviceManager
                             {
                                 TreeNode n3 = n2.Nodes.Add(cfgc.Name);                                
                                 TableLayoutPanel tlp = new TableLayoutPanel();
+                                //颜色
                                 tlp.BackColor = System.Drawing.Color.AliceBlue;
                                 tlp.DoubleClick += Tlp_DoubleClick;
-                                tlp.CellBorderStyle = TableLayoutPanelCellBorderStyle.InsetDouble;
-                                tlp.MinimumSize = new System.Drawing.Size(400, 0);
-                                tlp.ColumnCount = 2;
+                                tlp.CellBorderStyle = TableLayoutPanelCellBorderStyle.OutsetDouble;
+                                tlp.MinimumSize = new System.Drawing.Size(830, 0);
+                                tlp.ColumnCount = 1;
                                 tlp.Name = cfgc.Key;                                              
                                 tlp.Dock = DockStyle.Top;
                                 tlp.AutoSize = true;
-                                tlp.Margin = new Padding(3);
+                                tlp.Margin = new Padding(6);
                                 n3.Tag = tlp;                           
-                                tlp.ColumnStyles.Add(new ColumnStyle(SizeType.Percent,50));
-                                tlp.ColumnStyles.Add(new ColumnStyle(SizeType.Percent,50));
+                                tlp.ColumnStyles.Add(new ColumnStyle(SizeType.Percent,100));
+                                //tlp.ColumnStyles.Add(new ColumnStyle(SizeType.Percent,50));
                                 panelAll.Controls.Add(tlp);
                                 Control tlpCD = GetCD(tlp.Parent.Parent, cfgc.Sensors, cfg.Name + " " + cfgp.Name + " " + cfgc.Name);
                                 tlp.Tag = tlpCD;
                                 //tlp.BringToFront();                                
                                 Label lbtitle = new Label();
-                                lbtitle.Margin = new Padding(3);
+                                lbtitle.Font = new System.Drawing.Font("微软雅黑", 32, System.Drawing.FontStyle.Bold);
+                                lbtitle.BackColor = System.Drawing.Color.Blue;
+                                lbtitle.ForeColor = System.Drawing.Color.White;
+                                lbtitle.Margin = new Padding(5);
+                                lbtitle.Dock = DockStyle.Fill;
                                 lbtitle.Text = cfg.Name+" "+ cfgp.Name+" "+cfgc.Name;
                                 lbtitle.AutoSize = true;
                                 lbtitle.Parent = tlp;
-                                tlp.SetColumnSpan(lbtitle, 2);
+                                //tlp.SetColumnSpan(lbtitle, 2);
                                 foreach (Sensor sensor in cfgc.Sensors)
                                 {
                                     sensor.GroupName = cfg.Name + " " + cfgp.Name + " " + cfgc.Name;                                  
@@ -103,11 +108,13 @@ namespace DeviceManager
                                         if (!field.Realtime)
                                             continue;
                                         Label lb = new Label();
-                                        lb.Margin = new Padding(3);
+                                        lb.BackColor = System.Drawing.Color.LightGreen;
+                                        lb.Dock = DockStyle.Fill;
+                                        lb.Margin = new Padding(5);
                                         field.Label = lb;
                                         lb.AutoSize = true;
                                         lb.Parent = tlp;
-                                        lb.Font = new System.Drawing.Font("宋体", 11);
+                                        lb.Font = new System.Drawing.Font("宋体", 40,System.Drawing.FontStyle.Bold);
                                         field.Label.Text = field.LabelText;                                                                         
                                     }                                                                        
                                 }
@@ -173,7 +180,7 @@ namespace DeviceManager
             }
         }
 
-        public static string btnTxt = "";
+        public static string btnTxt = "全部";
         private static void BtnAll_Click(object sender, System.EventArgs e)
         {            
             TreeView tv = btnAll.Tag as TreeView;

@@ -1,10 +1,10 @@
 ﻿<AlarmConfigs>
   <config name="冬天策略" >
-    <field model="MXS1501" name="light" up="11211" low="11100" around="2" />
+    <field model="MXS1501" name="light" up="11111" low="11103" around="2" />
     <field model="MXN820" name="battVol" up="9999" low="9988" around="10" />
   </config>
   <config name="夏天策略" >
     <field model="MXS1501" name="light" up="1234" low="1222" around="2" />
-    <field model="MXN820" name="battVol" up="6689" low="6657" around="15" />
+    <field model="MXN820" name="battVol" up="6689" low="6650" around="5" />
    </config>
 </AlarmConfigs>

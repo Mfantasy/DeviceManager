@@ -1,8 +1,8 @@
 ﻿<UI>
-  <element name="panelTop" >    
+  <!--element name="panelTop" >    
     <property name="BackColor" value="transparent" />      
     <child name="labelTitle">
-      <!--property name="Text" value="山西省榆社县博物馆环境监测系统" /-->
+      <property name="Text" value="山西省榆社县博物馆环境监测系统" />
       <property name="Text" value="测试一下" />
     </child>
     <element name="panelTopBtn">
@@ -26,7 +26,7 @@
       </child>
     </element>
   </element>
-  <!--element name="panelRight">
+  <element name="panelRight">
     <element name="panelAll">
       <child name="g1p1c1">
         <property name="BackColor" value="AliceBlue" />

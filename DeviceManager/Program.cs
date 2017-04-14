@@ -41,8 +41,8 @@ namespace DeviceManager
             
             Application.EnableVisualStyles();
            
-            Application.Run(new TestForm());
-            return;
+            //Application.Run(new TestForm());
+            //return;
             Application.SetCompatibleTextRenderingDefault(false);
             if (Config.IsShowLogon)
             {

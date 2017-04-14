@@ -146,7 +146,8 @@ namespace DeviceManager
     {
         [XmlIgnore]
         public AlarmField Alarm { get; set; }
-     
+        [XmlAttribute("unit")]
+        public string Unit { get; set; }
         [XmlAttribute("name")]
         public string Name { get; set; }
         [XmlAttribute("alias")]
@@ -173,19 +174,19 @@ namespace DeviceManager
                 StateChanged?.Invoke(state, EventArgs.Empty);
                 if (state == 0)
                 {
-                    Label.ForeColor = System.Drawing.Color.Green;
-                    ClickLabel.ForeColor = System.Drawing.Color.Green;
+                    Label.BackColor = System.Drawing.Color.LightGreen;
+                    ClickLabel.BackColor = System.Drawing.Color.LightGreen;
                 }
                 else if (state == 1)
                 {
-                    Label.ForeColor = System.Drawing.Color.Yellow;
-                    ClickLabel.ForeColor = System.Drawing.Color.Yellow;
+                    Label.BackColor = System.Drawing.Color.Yellow;
+                    ClickLabel.BackColor = System.Drawing.Color.Yellow;
                 }
                 else if (state == 2)
                 {
 
-                    Label.ForeColor = System.Drawing.Color.Red;
-                    ClickLabel.ForeColor = System.Drawing.Color.Red;
+                    Label.BackColor = System.Drawing.Color.Red;
+                    ClickLabel.BackColor = System.Drawing.Color.Red;
                 }
             }
         }
@@ -237,7 +238,7 @@ namespace DeviceManager
         {
             get
             {               
-                return Alias + " : " + Value;
+                return Alias + " : " + Value+" "+Unit;
             }
         }
     }
