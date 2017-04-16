@@ -58,7 +58,7 @@ namespace DeviceManager
             btnAll.Tag = tv;
             panelAll.Parent.Controls.Add(tv);
             panelAll.Parent.Controls.Add(btnAll);
-                                 
+            panelAll.Padding = new Padding(5);            
             foreach (GroupConfig cfg in gcfg.GroupConfigs)
             {
                 TreeNode n1 = tv.Nodes.Add(cfg.Name);
@@ -74,24 +74,24 @@ namespace DeviceManager
                                 TreeNode n3 = n2.Nodes.Add(cfgc.Name);                                
                                 TableLayoutPanel tlp = new TableLayoutPanel();
                                 //颜色
-                                tlp.BackColor = System.Drawing.Color.AliceBlue;
-                                tlp.DoubleClick += Tlp_DoubleClick;
+                                tlp.BackColor = System.Drawing.Color.AliceBlue;                                
                                 tlp.CellBorderStyle = TableLayoutPanelCellBorderStyle.OutsetDouble;
-                                tlp.MinimumSize = new System.Drawing.Size(830, 0);
+                                tlp.MinimumSize = new System.Drawing.Size(840, 0);
                                 tlp.ColumnCount = 1;
                                 tlp.Name = cfgc.Key;                                              
                                 tlp.Dock = DockStyle.Top;
                                 tlp.AutoSize = true;
-                                tlp.Margin = new Padding(6);
+                                tlp.Margin = new Padding(4);
                                 n3.Tag = tlp;                           
                                 tlp.ColumnStyles.Add(new ColumnStyle(SizeType.Percent,100));
                                 //tlp.ColumnStyles.Add(new ColumnStyle(SizeType.Percent,50));
                                 panelAll.Controls.Add(tlp);
-                                Control tlpCD = GetCD(tlp.Parent.Parent, cfgc.Sensors, cfg.Name + " " + cfgp.Name + " " + cfgc.Name);
-                                tlp.Tag = tlpCD;
+                                Control tlpCD = GetCD(tlp.Parent.Parent, cfgc.Sensors, cfg.Name + " " + cfgp.Name + " " + cfgc.Name);                                
                                 //tlp.BringToFront();                                
                                 Label lbtitle = new Label();
-                                lbtitle.Font = new System.Drawing.Font("微软雅黑", 32, System.Drawing.FontStyle.Bold);
+                                lbtitle.Tag = tlpCD;
+                                lbtitle.DoubleClick += Tlp_DoubleClick;
+                                lbtitle.Font = new System.Drawing.Font("微软雅黑", 24, System.Drawing.FontStyle.Bold);
                                 lbtitle.BackColor = System.Drawing.Color.Blue;
                                 lbtitle.ForeColor = System.Drawing.Color.White;
                                 lbtitle.Margin = new Padding(5);
@@ -114,7 +114,7 @@ namespace DeviceManager
                                         field.Label = lb;
                                         lb.AutoSize = true;
                                         lb.Parent = tlp;
-                                        lb.Font = new System.Drawing.Font("宋体", 40,System.Drawing.FontStyle.Bold);
+                                        lb.Font = new System.Drawing.Font("宋体", 32,System.Drawing.FontStyle.Bold);
                                         field.Label.Text = field.LabelText;                                                                         
                                     }                                                                        
                                 }

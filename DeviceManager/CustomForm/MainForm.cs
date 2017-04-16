@@ -24,19 +24,19 @@ namespace DeviceManager
     {
         //测试
         private void button1_Click(object sender, EventArgs e)
-        {
+        {           
             glassButton1_Click(null, null);
             //Thread th = new Thread(DataSubscribe.StartSubscribe);
             //th.IsBackground = true;
             //th.Start();
         }
+      
 
         PanelAllSensors pas = new PanelAllSensors();
         PanelHistory ph = new PanelHistory();
         public MainForm()
         {
-            InitializeComponent();
-          
+            InitializeComponent();          
             InitializeUI();
             ConfigParser.ParseSensorModel(panelLeft,panelItem);            
             ConfigParser.ParseSensors();
@@ -45,7 +45,8 @@ namespace DeviceManager
             ConfigParser.ParseGroups(panelAll);          
             //ConfigParser.ParseUI(this);
             InitializeUIEnd();            
-            InitialModelClickSensors();            
+            InitialModelClickSensors();
+            
         }
 
         void InitializeUIEnd()
@@ -122,21 +123,20 @@ namespace DeviceManager
                         spanel.MinimumSize = new Size(200, 128);
                         spanel.Parent = flp;
                         spanel.BackColor = Color.LightGreen;
-                        Label lbGroup = UIUtils.NewLabel(9);
+                        Label lbGroup = UIUtils.NewLabel(19);
+                        lbGroup.BackColor = Color.Blue;
+                        lbGroup.Dock = DockStyle.Top;
+                        lbGroup.ForeColor = Color.White;
                         lbGroup.Parent = spanel;
                         spanel.SetFlowBreak(lbGroup,true);
-                        lbGroup.Text = ss.GroupName;
-                        Label lbComment = UIUtils.NewLabel(9);
-                        lbComment.Parent = spanel;
-                        spanel.SetFlowBreak(lbComment, true);
-                        lbComment.Text = ss.Comment;
+                        lbGroup.Text = ss.GroupName;                                                                                                
                         foreach (Field field in ss.Model.Fields)
                         {
                             if (!field.Realtime)
                                 continue;                            
                             Label lb = new Label();
                             field.ClickLabel = lb;
-                            lb.Font = new Font("宋体", 11);
+                            lb.Font = new Font("宋体", 20);
                             lb.Margin = new Padding(2);
                             lb.AutoSize = true;
                             lb.Parent = spanel;
@@ -204,6 +204,21 @@ namespace DeviceManager
             }
             JObject jobj = JObject.Parse(jstr);
             DataParser.ParseJObj(jobj);
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
         }
     }
 

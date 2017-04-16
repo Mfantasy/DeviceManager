@@ -14,7 +14,7 @@ namespace DeviceManager
             Label lb = new Label();
             lb.Margin = new Padding(3);
             lb.AutoSize = true;            
-            lb.Font = new System.Drawing.Font("宋体", size);
+            lb.Font = new System.Drawing.Font("微软雅黑", size, System.Drawing.FontStyle.Bold);           
             return lb;
         }
     }

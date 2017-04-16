@@ -1,11 +1,7 @@
 ﻿<Sensors>
   <sensor model="MXS1501" uid="81817F01E524226D" nodeid="1" portid="1" comment="光照传感器" groupConfig="c1c1c1" />
-  <sensor model="MX8100" uid="0100000000000210" nodeid="2000" portid="1" comment="苗圃地下水监测" groupConfig="c1c1c1" />
-  <sensor model="MX8100" uid="0100000000000210" nodeid="2000" portid="1" comment="苗圃地下水监测" groupConfig="c1c1c1" />
-  <sensor model="MXS1501" uid="81817F01E524226D" nodeid="2" portid="" comment="光照传感器" groupConfig="c1c1c2" />
+  <sensor model="MX8100" uid="0100000000000210" nodeid="2000" portid="1" comment="苗圃地下水监测" groupConfig="c1c1c1" />  
   <sensor model="MXN820" uid="81817F01E524226D" nodeid="1"  portid="0" comment="状态包" groupConfig="c1c1c1" />
   <sensor model="MX8100" uid="0100000000000210" nodeid="2000" portid="1" comment="苗圃地下水监测" groupConfig="c1c1c1" />
-  <sensor model="MX8100" uid="0100000000000210" nodeid="2000" portid="1" comment="苗圃地下水监测" groupConfig="c1c1c1" />
-  <sensor model="MX8100" uid="0100000000000210" nodeid="2000" portid="1" comment="苗圃地下水监测" groupConfig="c1c2c1" />
   <sensor model="MX8100" uid="0100000000000210" nodeid="3000" portid="1" comment="西张村大田地下水监测" groupConfig="c1c1c2" />
 </Sensors>
