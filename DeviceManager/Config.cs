@@ -53,7 +53,14 @@ namespace DeviceManager
             tv.Dock = DockStyle.Fill;
             tv.NodeMouseDoubleClick += Tv_NodeMouseClick;                    
             btnAll.Dock = DockStyle.Top;
+            btnAll.FlatAppearance.BorderSize = 0;
+            btnAll.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            btnAll.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;            
+            btnAll.FlatStyle = FlatStyle.Flat;
+            btnAll.ForeColor = System.Drawing.Color.White;
+            btnAll.Font = new System.Drawing.Font("宋体", 11);
             btnAll.Text = "全部";
+            btnAll.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             btnAll.Click += BtnAll_Click;
             btnAll.Tag = tv;
             panelAll.Parent.Controls.Add(tv);
@@ -86,10 +93,10 @@ namespace DeviceManager
                                 tlp.ColumnStyles.Add(new ColumnStyle(SizeType.Percent,100));
                                 //tlp.ColumnStyles.Add(new ColumnStyle(SizeType.Percent,50));
                                 panelAll.Controls.Add(tlp);
-                                Control tlpCD = GetCD(tlp.Parent.Parent, cfgc.Sensors, cfg.Name + " " + cfgp.Name + " " + cfgc.Name);                                
+                                //Control tlpCD = GetCD(tlp.Parent.Parent, cfgc.Sensors, cfg.Name + " " + cfgp.Name + " " + cfgc.Name);                                
                                 //tlp.BringToFront();                                
                                 Label lbtitle = new Label();
-                                lbtitle.Tag = tlpCD;
+                                lbtitle.Tag = cfgc.Sensors;
                                 lbtitle.DoubleClick += Tlp_DoubleClick;
                                 lbtitle.Font = new System.Drawing.Font("微软雅黑", 24, System.Drawing.FontStyle.Bold);
                                 lbtitle.BackColor = System.Drawing.Color.Blue;
@@ -99,7 +106,6 @@ namespace DeviceManager
                                 lbtitle.Text = cfg.Name+" "+ cfgp.Name+" "+cfgc.Name;
                                 lbtitle.AutoSize = true;
                                 lbtitle.Parent = tlp;
-                                //tlp.SetColumnSpan(lbtitle, 2);
                                 foreach (Sensor sensor in cfgc.Sensors)
                                 {
                                     sensor.GroupName = cfg.Name + " " + cfgp.Name + " " + cfgc.Name;                                  
@@ -125,18 +131,18 @@ namespace DeviceManager
             }
         }
 
-        private static DataGridView GetCD(Control parent, List<Sensor> sensors,string name)
+        private static Control GetCD(Control parent, List<Sensor> sensors,string name)
         {
             //点击GroupPanel发生
-            CustomDataView cdv = new CustomDataView();            
+            CustomDataView cdv = new CustomDataView();
             cdv.Parent = parent;
             cdv.Dock = DockStyle.Fill;
             cdv.Name = name;
-            DataTable table = new DataTable();            
+            DataTable table = new DataTable();
             table.Columns.Add("监测项");
             table.Columns.Add("数值");
             table.Columns.Add("数据时间");
-            table.Columns.Add("备注");                        
+            table.Columns.Add("备注");
             foreach (Sensor ss in sensors)
             {
                 foreach (Field item in ss.Model.Fields)
@@ -144,7 +150,7 @@ namespace DeviceManager
                     if (item.Realtime)
                     {
                         DataRow row = table.NewRow();
-                        row.ItemArray =new object[] { item.Alias, item.Value, null, ss.Comment };
+                        row.ItemArray = new object[] { item.Alias, item.Value, null, ss.Comment };
                         item.Row = row;
                         table.Rows.Add(row);
                         //table.Rows.Add(item.Alias, item.Value, ss.Time, ss.Comment);
@@ -157,13 +163,35 @@ namespace DeviceManager
             return cdv;
         }
 
+        //显示图表
         private static void Tlp_DoubleClick(object sender, System.EventArgs e)
         {
-            Control ctrl = sender as Control;
-            Control tlpCP = (sender as Control).Tag as Control;
-            tlpCP.BringToFront();
-            btnAll.Text = (ctrl.Tag as Control).Name;
+            Control lbt = sender as Control;
             btnTxt = btnAll.Text;
+            btnAll.Text = lbt.Text;
+            List<Sensor> sensors = (List<Sensor>)lbt.Tag;
+            Control parent = lbt.Parent.Parent.Parent;
+            TableLayoutPanel flp = new TableLayoutPanel();
+            flp.ColumnCount = 1;
+            flp.BackColor = System.Drawing.Color.Transparent;
+            flp.AutoScroll = true;
+            flp.Parent = parent;
+            flp.Dock = DockStyle.Fill;
+            foreach (Sensor ss in sensors)
+            {
+                foreach (Field item in ss.Model.Fields)
+                {
+                    if (item.Realtime)
+                    {
+                        flp.Controls.Add(item.Chart);
+                        item.Chart.Titles[0].Text = ss.Comment;
+                        item.Chart.Dock = DockStyle.Fill;
+                        item.Chart.Margin = new Padding(3);
+                    }
+                }
+            }
+            flp.BringToFront();
+            
         }
 
         private static void Tv_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
@@ -182,19 +210,20 @@ namespace DeviceManager
 
         public static string btnTxt = "全部";
         private static void BtnAll_Click(object sender, System.EventArgs e)
-        {            
-            TreeView tv = btnAll.Tag as TreeView;
-            if (tv.Visible)
-            {
-                tv.Visible = false;
-                btnAll.Text = btnTxt;          
-            }
-            else
-            {
-                tv.Visible = true;
-                tv.BringToFront();
-                btnAll.Text = "收起";
-            }
+        {
+            Program.mainForm.glassButtonAll_Click(null, null);
+            //TreeView tv = btnAll.Tag as TreeView;
+            //if (tv.Visible)
+            //{
+            //    tv.Visible = false;
+            //    btnAll.Text = btnTxt;          
+            //}
+            //else
+            //{
+            //    tv.Visible = true;
+            //    tv.BringToFront();
+            //    btnAll.Text = "收起";
+            //}
         }
      
         #endregion

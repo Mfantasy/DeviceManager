@@ -1,4 +1,5 @@
-﻿using DeviceManager.Model;
+﻿using DeviceManager.CustomControl;
+using DeviceManager.Model;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -196,12 +197,36 @@ namespace DeviceManager
             get { return _value; }
             set {
                 _value = value;
+                try
+                {
+                    double.Parse(_value);
+                }
+                catch
+                { return; }
+                latestTen.Add(DateTime.Now, double.Parse(_value));
+                if (latestTen.Count > 10)
+                {
+                    latestTen.Remove(latestTen.ElementAt(0).Key);
+                }
+                if (chart != null)
+                {
+                    chart.Series[0].Points.AddXY(DateTime.Now, double.Parse(_value));
+                    if (chart.Series[0].Points.Count > 10)
+                    {
+                        chart.Series[0].Points.RemoveAt(0);
+                    }
+                    if (chart.ChartAreas[0].AxisY.Maximum < double.Parse(_value))
+                    {
+                        chart.ChartAreas[0].AxisY.Maximum = double.Parse(_value);
+                    }
+                }
                 ValueUpdated?.Invoke(this, EventArgs.Empty);
                 if (Row != null)
                 {
                     Row[1] = Value;
                     Row[2] = DateTime.Now;
                 }
+             
                 if (Alarm != null)
                 {
                     double db = double.Parse(_value);
@@ -226,6 +251,32 @@ namespace DeviceManager
                 }
             }
         }
+
+        private CustomChart chart;
+
+        public CustomChart  Chart
+        {
+            get
+            {
+                if (chart == null)
+                {
+                    chart = new CustomChart();
+                    chart.Legends[0].Title = this.Alias;
+                    chart.Series[0].Name = this.Unit;
+                    foreach (var item in LatestTen)
+                    {
+                        chart.Series[0].Points.AddXY(item.Key, item.Value);
+                    }                    
+                }
+                return chart;
+            }
+            
+        }
+
+
+        Dictionary<DateTime, double> latestTen = new Dictionary<DateTime, double>();
+        [XmlIgnore]
+        public Dictionary<DateTime,double> LatestTen { get { return latestTen; } }
         string _value = "";
         [XmlIgnore]
         public DataRow Row { get; set; }

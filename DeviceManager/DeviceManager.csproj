@@ -83,6 +83,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config.cs" />
+    <Compile Include="CustomControl\CustomChart.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="CustomControl\MenuButtonPanel.cs" />
     <Compile Include="CustomControl\PanelAllSensors.cs">
       <SubType>UserControl</SubType>
@@ -210,7 +213,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="20170416011401263_easyicon_net_256.ico" />
+    <Content Include="20170416011401263_easyicon_net_256.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Config\AlarmConfig.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>

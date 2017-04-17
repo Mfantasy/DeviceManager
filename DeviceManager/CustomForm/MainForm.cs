@@ -172,7 +172,7 @@ namespace DeviceManager
         //全部
         FlowLayoutPanel panelAll = new FlowLayoutPanel();
         Panel panelAllP = new Panel();
-        private void glassButtonAll_Click(object sender, EventArgs e)
+        public void glassButtonAll_Click(object sender, EventArgs e)
         {                        
             panelAllP.BringToFront();
             panelAll.BringToFront();
@@ -180,7 +180,6 @@ namespace DeviceManager
             ConfigParser.btnTxt = "全部";
         }
      
-
         //测试
         bool b = false;
         int value1 = 11098;
@@ -194,13 +193,13 @@ namespace DeviceManager
             {
                 jstr = "{\"state\":\"Stream\",\"parser\":\"MXS1501\",\"raw\":\"7E000B7D1A000001000000330A4081817F01E524226D050100000100B01C00\",\"data\":[{\"name\":\"nodeid\",\"alias\":\"节点编号\",\"type\":\"uint16\",\"raw\":\"0x0100\",\"converted\":\"1\"},{\"name\":\"uid\",\"alias\":\"网关唯一号\",\"type\":\"raw\",\"raw\":\"0x81817F01E524226D\"},{\"name\":\"parent\",\"alias\":\"父级节点\",\"type\":\"uint16\",\"raw\":\"0x0000\",\"converted\":\"0\"},{\"name\":\"port\",\"alias\":\"采集通道\",\"type\":\"uint8\",\"raw\":\"0x01\",\"converted\":\"1\"},{\"name\":\"light\",\"alias\":\"太阳光照(lux)\",\"type\":\"uint32\",\"raw\":\"0x00B01C00\",\"converted\":\"" + value1 + "\"}]}";
                 b = false;
-                value1++;
+                value1+=10;
             }
             else
             {
                 jstr = "{\"state\":\"Stream\",\"parser\":\"MXN820\",\"raw\":\"7E000B7D1A000001000000330A5E81817F01E524226DFC000000000000E70D\",\"data\":[{\"name\":\"nodeid\",\"alias\":\"节点编号\",\"type\":\"uint16\",\"raw\":\"0x0100\",\"converted\":\"1\"},{\"name\":\"uid\",\"alias\":\"网关唯一号\",\"type\":\"hex\",\"raw\":\"0x81817F01E524226D\",\"converted\":\"81817F01E524226D\"},{\"name\":\"parent\",\"alias\":\"父级节点\",\"type\":\"uint16\",\"raw\":\"0x0000\",\"converted\":\"0\"},{\"name\":\"port\",\"alias\":\"采集通道\",\"type\":\"uint8\",\"raw\":\"0x00\",\"converted\":\"0\"},{\"name\":\"chargeVol\",\"alias\":\"充电电压(mv)\",\"type\":\"uint16\",\"raw\":\"0x0000\",\"converted\":\"0\"},{\"name\":\"battVol\",\"alias\":\"电池电压(mv)\",\"type\":\"uint16\",\"raw\":\"0xE70D\",\"converted\":\"" + value2 + "\"}]}";
                 b = true;
-                value2++;
+                value2+=10;
             }
             JObject jobj = JObject.Parse(jstr);
             DataParser.ParseJObj(jobj);

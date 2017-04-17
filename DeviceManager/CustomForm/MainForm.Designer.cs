@@ -31,12 +31,12 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.button1 = new System.Windows.Forms.Button();
             this.panelTop = new System.Windows.Forms.Panel();
+            this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.panelRuntime = new System.Windows.Forms.Panel();
             this.panelLeft = new System.Windows.Forms.FlowLayoutPanel();
             this.panelRight = new System.Windows.Forms.Panel();
             this.panelBotttom = new System.Windows.Forms.Panel();
-            this.button3 = new System.Windows.Forms.Button();
             this.glassButtonAll = new FOF.UserControlModel.GlassButton();
             this.menuButtonPanel5 = new DeviceManager.CustomControl.MenuButtonPanel();
             this.menuButtonPanel4 = new DeviceManager.CustomControl.MenuButtonPanel();
@@ -55,7 +55,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 0;
-            this.button1.Text = "开始";
+            this.button1.Text = "测试";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -77,20 +77,37 @@
             this.panelTop.Location = new System.Drawing.Point(0, 0);
             this.panelTop.Margin = new System.Windows.Forms.Padding(0);
             this.panelTop.Name = "panelTop";
-            this.panelTop.Size = new System.Drawing.Size(1904, 125);
+            this.panelTop.Size = new System.Drawing.Size(1024, 125);
             this.panelTop.TabIndex = 1;
+            // 
+            // button3
+            // 
+            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button3.BackgroundImage")));
+            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button3.FlatAppearance.BorderSize = 0;
+            this.button3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Location = new System.Drawing.Point(888, 11);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(60, 60);
+            this.button3.TabIndex = 14;
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button2
             // 
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button2.BackgroundImage")));
             this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button2.FlatAppearance.BorderSize = 0;
             this.button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Location = new System.Drawing.Point(1826, 10);
+            this.button2.Location = new System.Drawing.Point(954, 10);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(64, 64);
+            this.button2.Size = new System.Drawing.Size(56, 56);
             this.button2.TabIndex = 13;
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
@@ -103,7 +120,7 @@
             this.panelRuntime.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelRuntime.Location = new System.Drawing.Point(0, 0);
             this.panelRuntime.Name = "panelRuntime";
-            this.panelRuntime.Size = new System.Drawing.Size(1900, 914);
+            this.panelRuntime.Size = new System.Drawing.Size(1020, 641);
             this.panelRuntime.TabIndex = 6;
             // 
             // panelLeft
@@ -116,7 +133,7 @@
             this.panelLeft.Margin = new System.Windows.Forms.Padding(0);
             this.panelLeft.Name = "panelLeft";
             this.panelLeft.Padding = new System.Windows.Forms.Padding(3);
-            this.panelLeft.Size = new System.Drawing.Size(181, 914);
+            this.panelLeft.Size = new System.Drawing.Size(181, 641);
             this.panelLeft.TabIndex = 4;
             // 
             // panelRight
@@ -130,7 +147,7 @@
             this.panelRight.Margin = new System.Windows.Forms.Padding(0);
             this.panelRight.Name = "panelRight";
             this.panelRight.Padding = new System.Windows.Forms.Padding(1);
-            this.panelRight.Size = new System.Drawing.Size(1719, 914);
+            this.panelRight.Size = new System.Drawing.Size(839, 641);
             this.panelRight.TabIndex = 5;
             // 
             // panelBotttom
@@ -144,23 +161,8 @@
             this.panelBotttom.Location = new System.Drawing.Point(0, 124);
             this.panelBotttom.Margin = new System.Windows.Forms.Padding(0);
             this.panelBotttom.Name = "panelBotttom";
-            this.panelBotttom.Size = new System.Drawing.Size(1904, 918);
+            this.panelBotttom.Size = new System.Drawing.Size(1024, 645);
             this.panelBotttom.TabIndex = 7;
-            // 
-            // button3
-            // 
-            this.button3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button3.BackgroundImage")));
-            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Location = new System.Drawing.Point(1752, 10);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(68, 68);
-            this.button3.TabIndex = 14;
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // glassButtonAll
             // 
@@ -251,7 +253,7 @@
             this.BackColor = System.Drawing.SystemColors.HotTrack;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1904, 1041);
+            this.ClientSize = new System.Drawing.Size(1024, 768);
             this.Controls.Add(this.panelBotttom);
             this.Controls.Add(this.panelTop);
             this.DoubleBuffered = true;
@@ -263,7 +265,6 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "山西省榆社县博物馆环境监测系统";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.panelTop.ResumeLayout(false);
             this.panelRuntime.ResumeLayout(false);

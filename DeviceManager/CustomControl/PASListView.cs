@@ -14,14 +14,14 @@ namespace DeviceManager.CustomControl
         public PASListView()
         {
             InitializeComponent();
-            
+            this.ContextMenuStrip = contextMenuStrip1;
         }
 
         public PASListView(IContainer container)
         {
             container.Add(this);
-
             InitializeComponent();
+            this.ContextMenuStrip = contextMenuStrip1;
         }
 
 

@@ -42,7 +42,7 @@ namespace DeviceManager
             Application.EnableVisualStyles();
            
             //Application.Run(new TestForm());
-            //return;
+           // return;
             Application.SetCompatibleTextRenderingDefault(false);
             if (Config.IsShowLogon)
             {
@@ -52,9 +52,10 @@ namespace DeviceManager
                 {
                     return;
                 }
-            }            
-           Application.Run(new MainForm());
-            
+            }
+           mainForm = new MainForm();
+           Application.Run(mainForm);            
         }
+        public static MainForm mainForm;
     }
 }

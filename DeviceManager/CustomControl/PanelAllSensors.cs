@@ -72,15 +72,14 @@ namespace DeviceManager.CustomControl
                 InputForm inf = new InputForm();
                 if (inf.ShowDialog() == DialogResult.OK)
                 {
-                    string x = inf.StrValue;
-                    MessageBox.Show(x);
+                    string name = inf.StrValue;
+                    tabControl1.TabPages.Insert(tabControl1.TabPages.Count - 1, name, name);
                 }
                 else
                 {
-                    MessageBox.Show("GD");
-                }
-                tabControl1.TabPages.Insert(tabControl1.TabPages.Count - 1,"tbtest", "测试");
-                
+                    tabControl1.SelectedTab = tabControl1.TabPages[0];
+                    return;
+                }                                
             }                
         }       
     }
