@@ -15,15 +15,15 @@ namespace DeviceManager
 {
     class DataSubscribe
     {
-
         static void ProcessBytes(object o)
         {
             byte[] bts = (byte[])o;
             int length = bts.Length;
             string jstr0 = Encoding.UTF8.GetString(bts, 0, length);
+            //测试
             lock (Utils.lockObj)
             {                                                                  
-               File.AppendAllText("收到的Json原始数据.txt", jstr0);
+               //File.AppendAllText("收到的Json原始数据.txt", jstr0);
             }                       
             if (bts.Length > 4 && bts[0] == 0 && bts[1] == 0)
             {
@@ -34,6 +34,18 @@ namespace DeviceManager
                 }
                 string jstr = Encoding.UTF8.GetString(bts, 4, jbtlength);             
                 Console.WriteLine(jstr);
+                try
+                {
+                    JObject.Parse(jstr);
+                }
+                catch (Exception ex)
+                {
+                    lock (Utils.lockObj)
+                    {
+                        File.AppendAllText("error.txt", ex.Message);
+                    }
+                    return;               
+                }
                 JObject jobj = JObject.Parse(jstr);
                 DataParser.ParseJObj(jobj);
                 {
@@ -57,7 +69,7 @@ namespace DeviceManager
             {
                 tcp.Connect(ip, port);
                 streamToServer = tcp.GetStream();
-                tcp.ReceiveTimeout = 60 * 60 * 1000;
+                //tcp.ReceiveTimeout = 60 * 60 * 1000;
 #warning 测试用待删
                 MessageBox.Show("连接成功");
                 while (tcp.Connected)
@@ -70,7 +82,10 @@ namespace DeviceManager
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                lock (Utils.lockObj)
+                {
+                    File.AppendAllText("error.txt", ex.Message);
+                }                              
             }
         }
     }

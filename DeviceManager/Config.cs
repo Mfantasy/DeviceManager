@@ -184,14 +184,14 @@ namespace DeviceManager
                     if (item.Realtime)
                     {
                         flp.Controls.Add(item.Chart);
-                        item.Chart.Titles[0].Text = ss.Comment;
-                        item.Chart.Dock = DockStyle.Fill;
-                        item.Chart.Margin = new Padding(3);
+                        //item.Chart.Titles[0].Text = ss.GroupName;
+                        //item.Chart.Titles[1].Text = ss.Comment;
+                        //item.Chart.Dock = DockStyle.Fill;
+                        //item.Chart.Margin = new Padding(3);
                     }
                 }
             }
-            flp.BringToFront();
-            
+            flp.BringToFront();            
         }
 
         private static void Tv_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)

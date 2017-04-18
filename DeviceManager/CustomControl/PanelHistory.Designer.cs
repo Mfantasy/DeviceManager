@@ -127,12 +127,11 @@
             // 
             this.glassButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.glassButton1.BackColor = System.Drawing.Color.Transparent;
-            this.glassButton1.BaseColor = System.Drawing.Color.LightSalmon;
-            this.glassButton1.ButtonColor = System.Drawing.Color.DimGray;
+            this.glassButton1.BaseColor = System.Drawing.Color.Navy;
+            this.glassButton1.ButtonColor = System.Drawing.Color.MidnightBlue;
             this.glassButton1.ButtonText = "导出数据";
             this.glassButton1.CornerRadius = 0;
-            this.glassButton1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.glassButton1.ForeColor = System.Drawing.Color.Black;
+            this.glassButton1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.glassButton1.HighlightColor = System.Drawing.Color.SeaShell;
             this.glassButton1.Location = new System.Drawing.Point(663, 5);
             this.glassButton1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
@@ -176,12 +175,11 @@
             // 
             this.glassButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.glassButton2.BackColor = System.Drawing.Color.Transparent;
-            this.glassButton2.BaseColor = System.Drawing.Color.LightSalmon;
-            this.glassButton2.ButtonColor = System.Drawing.Color.DimGray;
+            this.glassButton2.BaseColor = System.Drawing.Color.Navy;
+            this.glassButton2.ButtonColor = System.Drawing.Color.MidnightBlue;
             this.glassButton2.ButtonText = "开始查询";
             this.glassButton2.CornerRadius = 0;
-            this.glassButton2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.glassButton2.ForeColor = System.Drawing.Color.Black;
+            this.glassButton2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.glassButton2.HighlightColor = System.Drawing.Color.SeaShell;
             this.glassButton2.Location = new System.Drawing.Point(531, 4);
             this.glassButton2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);

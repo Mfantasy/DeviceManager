@@ -12,13 +12,16 @@ namespace DeviceManager.CustomControl
         public CustomChart()
         {
             System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            legend1.Font = new System.Drawing.Font("宋体", 12, System.Drawing.FontStyle.Bold);
-            title1.Font = new System.Drawing.Font("宋体", 13,System.Drawing.FontStyle.Bold);
+            legend1.Font = new System.Drawing.Font("宋体", 16, System.Drawing.FontStyle.Bold);
+            title1.Font = new System.Drawing.Font("宋体", 18,System.Drawing.FontStyle.Bold);
+            title2.Font = new System.Drawing.Font("宋体", 16);
             this.Legends.Add(legend1);
             this.Titles.Add(title1);
+            this.Titles.Add(title2);
             chartArea1.AxisX.MajorTickMark.Enabled = false;
             chartArea1.AxisY.MajorTickMark.Enabled = false;                        
             chartArea1.AxisX.MajorGrid.Enabled = false;

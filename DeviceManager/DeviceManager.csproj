@@ -105,6 +105,12 @@
     <Compile Include="CustomControl\PASListView.Designer.cs">
       <DependentUpon>PASListView.cs</DependentUpon>
     </Compile>
+    <Compile Include="CustomForm\ChartForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomForm\ChartForm.Designer.cs">
+      <DependentUpon>ChartForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="CustomForm\DeviceEditForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -168,6 +174,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CustomControl\PASListView.resx">
       <DependentUpon>PASListView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomForm\ChartForm.resx">
+      <DependentUpon>ChartForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CustomForm\DeviceEditForm.resx">
       <DependentUpon>DeviceEditForm.cs</DependentUpon>

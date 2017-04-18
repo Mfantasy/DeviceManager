@@ -129,7 +129,10 @@ namespace DeviceManager
 
             for (int i = 0; i < Fields.Count; i++)
             {
-                sm.Fields[i].Alarm = Fields[i].Alarm;
+                if (Fields[i].Alarm != null)
+                {
+                    sm.Fields[i].Alarm = Fields[i].Alarm;
+                }
             }
                         
             return sm;
@@ -203,15 +206,18 @@ namespace DeviceManager
                 }
                 catch
                 { return; }
-                latestTen.Add(DateTime.Now, double.Parse(_value));
-                if (latestTen.Count > 10)
+                Label.Text = LabelText;
+                ClickLabel.Text = CLabelText;
+                latest20.Add(DateTime.Now, double.Parse(_value));
+                if (latest20.Count > 20)
                 {
-                    latestTen.Remove(latestTen.ElementAt(0).Key);
+                    latest20.Remove(latest20.ElementAt(0).Key);
                 }
                 if (chart != null)
                 {
-                    chart.Series[0].Points.AddXY(DateTime.Now, double.Parse(_value));
-                    if (chart.Series[0].Points.Count > 10)
+                    int index = chart.Series[0].Points.AddXY(DateTime.Now, double.Parse(_value));
+                    chart.Series[0].Points[index].ToolTip = DateTime.Now.ToString("HH:mm:ss");
+                    if (chart.Series[0].Points.Count > 20)
                     {
                         chart.Series[0].Points.RemoveAt(0);
                     }
@@ -263,7 +269,7 @@ namespace DeviceManager
                     chart = new CustomChart();
                     chart.Legends[0].Title = this.Alias;
                     chart.Series[0].Name = this.Unit;
-                    foreach (var item in LatestTen)
+                    foreach (var item in Latest20)
                     {
                         chart.Series[0].Points.AddXY(item.Key, item.Value);
                     }                    
@@ -274,9 +280,9 @@ namespace DeviceManager
         }
 
 
-        Dictionary<DateTime, double> latestTen = new Dictionary<DateTime, double>();
+        Dictionary<DateTime, double> latest20 = new Dictionary<DateTime, double>();
         [XmlIgnore]
-        public Dictionary<DateTime,double> LatestTen { get { return latestTen; } }
+        public Dictionary<DateTime,double> Latest20 { get { return latest20; } }
         string _value = "";
         [XmlIgnore]
         public DataRow Row { get; set; }
@@ -292,5 +298,8 @@ namespace DeviceManager
                 return Alias + " : " + Value+" "+Unit;
             }
         }
+        [XmlIgnore]
+        public string CLabelText { get { return Value + "\r\n" + Unit; } }
+
     }
 }

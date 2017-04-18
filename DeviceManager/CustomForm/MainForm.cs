@@ -17,6 +17,7 @@ using FOF.UserControlModel;
 using DeviceManager.CustomControl;
 using DeviceManager.Model;
 using System.Configuration;
+using DeviceManager.CustomForm;
 
 namespace DeviceManager
 {
@@ -108,6 +109,7 @@ namespace DeviceManager
             }             
         }
 
+        ToolTip toolTip1 = new ToolTip();
         void InitialModelClickSensors()
         {
             for (int i = 1; i < panelLeft.Controls.Count; i++)
@@ -119,35 +121,59 @@ namespace DeviceManager
                     List<Sensor> sensors = ConfigData.AllSensors.Sensors.FindAll(ss => ss.ModelKey == gb.Name);
                     foreach (Sensor ss in sensors)
                     {
-                        FlowLayoutPanel spanel = new FlowLayoutPanel();
-                        spanel.MinimumSize = new Size(200, 128);
+                        TableLayoutPanel spanel = new TableLayoutPanel();                        
+                        spanel.MinimumSize = new Size(160,160);
+                        spanel.MaximumSize = new Size(160, 160);
+                        spanel.ColumnCount = 1;
+                        spanel.Margin = new Padding(2);
+                        spanel.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;                        
                         spanel.Parent = flp;
-                        spanel.BackColor = Color.LightGreen;
-                        Label lbGroup = UIUtils.NewLabel(19);
-                        lbGroup.BackColor = Color.Blue;
-                        lbGroup.Dock = DockStyle.Top;
-                        lbGroup.ForeColor = Color.White;
-                        lbGroup.Parent = spanel;
-                        spanel.SetFlowBreak(lbGroup,true);
-                        lbGroup.Text = ss.GroupName;                                                                                                
+                        spanel.ForeColor = Color.Black;
+                        spanel.BackColor = Color.White;
+                        spanel.AutoScroll = true;                                                
                         foreach (Field field in ss.Model.Fields)
                         {
                             if (!field.Realtime)
                                 continue;                            
                             Label lb = new Label();
+                            toolTip1.SetToolTip(lb, ss.GroupName);
+                            field.Chart.Titles[0].Text = ss.GroupName;
+                            field.Chart.Titles[1].Text = ss.Comment;
+                            field.Chart.Dock = DockStyle.Fill;
                             field.ClickLabel = lb;
-                            lb.Font = new Font("宋体", 20);
-                            lb.Margin = new Padding(2);
-                            lb.AutoSize = true;
-                            lb.Parent = spanel;
-                            spanel.SetFlowBreak(lb,true);
-                            lb.Text = field.LabelText;
+                            if (ss.Model.Fields.FindAll(f => f.Realtime).Count == 1)
+                            {
+                                lb.Font = new Font("宋体", 32, FontStyle.Bold);
+                            }
+                            else if (ss.Model.Fields.FindAll(f => f.Realtime).Count == 2)
+                            {
+                                lb.Font = new Font("宋体", 24, FontStyle.Bold);
+                            }
+                            else
+                            {
+                                lb.Font = new Font("宋体", 16, FontStyle.Bold);
+                            }
+                            lb.Margin = new Padding(2);                                                        
+                            spanel.RowStyles.Add(new RowStyle(SizeType.Percent,50));                                                        
+                            lb.Parent = spanel;                            
+                            lb.Dock = DockStyle.Fill;
+                            lb.Text = field.CLabelText;
+                            lb.Tag = field;
+                            lb.DoubleClick += Lb_DoubleClick;                            
                         }                      
                     }
                 }
             }
         }
-         
+
+        private void Lb_DoubleClick(object sender, EventArgs e)
+        {
+            Field field = (Field)((sender as Label).Tag);
+            ChartForm cf = new ChartForm();
+            field.Chart.Parent = cf;       
+            cf.ShowDialog();
+        }
+
         void InitializeUI()
         {           
             panelAllP.Name = "panelAllP";
