@@ -19,6 +19,14 @@ namespace DeviceManager
 {
     public static class Utils
     {
+        public static void WriteEX(Exception ex)
+        {
+            lock (lockObj)
+            {
+                File.AppendAllText("error.txt",ex.Message);
+            }
+        }
+
         public static object lockObj = new object();
         /// <summary>
         /// 发送邮件(此方法占用网络时间,需用开线程调用)
@@ -142,8 +150,6 @@ namespace DeviceManager
                 workBook.Write(fs);
             }
         }
-
-
 
         //序列化
         public static void ToFile<T>(string path, T obj)

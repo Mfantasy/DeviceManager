@@ -87,6 +87,18 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="CustomControl\MenuButtonPanel.cs" />
+    <Compile Include="CustomControl\PanelAlarmRecord.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomControl\PanelAlarmRecord.Designer.cs">
+      <DependentUpon>PanelAlarmRecord.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\PanelAlarmSet.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomControl\PanelAlarmSet.Designer.cs">
+      <DependentUpon>PanelAlarmSet.cs</DependentUpon>
+    </Compile>
     <Compile Include="CustomControl\PanelAllSensors.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -138,14 +150,12 @@
       <DependentUpon>Logon.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\AlarmGroupModels.cs" />
-    <Compile Include="Model\UIModel.cs" />
     <Compile Include="TestForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="TestForm.Designer.cs">
       <DependentUpon>TestForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="UIUtils.cs" />
     <Compile Include="CustomControl\CustomDataView.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -166,6 +176,9 @@
     </Compile>
     <Compile Include="Utils.cs" />
     <Compile Include="Data\DataParser.cs" />
+    <EmbeddedResource Include="CustomControl\PanelAlarmRecord.resx">
+      <DependentUpon>PanelAlarmRecord.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CustomControl\PanelAllSensors.resx">
       <DependentUpon>PanelAllSensors.cs</DependentUpon>
     </EmbeddedResource>
@@ -206,6 +219,9 @@
     <EmbeddedResource Include="CustomControl\PanelHistory.resx">
       <DependentUpon>PanelHistory.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="alarm.db">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -233,18 +249,11 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Config\GroupConfig.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="File\close20.png" />
     <Content Include="File\f047.png" />
     <Content Include="File\Record.txt" />
-    <Content Include="Config\SensorConfig.xml">
+    <Content Include="Config\SensorModel.xml">
       <SubType>Designer</SubType>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Config\UIConfig.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Lib\ICSharpCode.SharpZipLib.dll">

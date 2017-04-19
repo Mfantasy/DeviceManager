@@ -11,20 +11,23 @@ namespace DeviceManager.CustomControl
     public class CustomDataView : DataGridView
     {
         public CustomDataView()
-        {
-            //this.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+        {          
+            BackgroundColor = Color.White;
+            GridColor = Color.Black;
             this.BorderStyle = BorderStyle.Fixed3D;
-            this.CellBorderStyle = DataGridViewCellBorderStyle.Sunken;
-            this.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Sunken;
+            this.CellBorderStyle = DataGridViewCellBorderStyle.SingleVertical;
+            this.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
             this.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             this.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            this.GridColor = Color.SkyBlue;
+            this.GridColor = Color.CadetBlue;
             this.BackgroundColor = Color.White;
             this.RowHeadersVisible = false;
             this.ReadOnly = true;
             this.Dock = DockStyle.Fill;
             this.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             this.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.AllowUserToResizeColumns = false;
         }
     }
 }

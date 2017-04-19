@@ -5,21 +5,11 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Serialization;
-using static DeviceManager.Model.GroupConfig;
 
 namespace DeviceManager
 {
-    [XmlRoot("Sensors")]
-    public class SensorRoot
-    {
-        [XmlElement("sensor")]
-        public List<Sensor> Sensors { get; set; }
-    }
-
     public class Sensor
     {    
         [XmlAttribute("uid")]
@@ -32,9 +22,7 @@ namespace DeviceManager
         public string PortId { get; set; }
         [XmlAttribute("model")]
         public string ModelKey { get; set; }
-        [XmlAttribute("groupConfig")]
-        public string GroupConfigKey { get; set; }
-        
+               
         [XmlIgnore]
         public string GroupName { get; set; }
 
@@ -76,25 +64,21 @@ namespace DeviceManager
                 return hisColStr;
             }           
         }
-
-        [XmlIgnore]
-        public DateTime Time { get; set; }
-     
-
+           
         SensorModel model = null;      
         [XmlIgnore]
         public SensorModel Model { get
             {
                 if (model == null)
                 {
-                    SensorModel orign = ConfigData.SensorModelCfg.SensorModels.Find(md => md.Name == ModelKey);
+                    SensorModel orign = ConfigData.SensorModelRoot.SensorModels.Find(md => md.Name == ModelKey);
                     model = orign.Copy();
                 }
                 return model;
             } }
             
         [XmlIgnore]
-        public GroupConfig GroupConfig { get { GroupConfig cfg = ConfigData.GroupCfg.GroupConfigs.Find(gcfg => gcfg.Key == GroupConfigKey);return cfg; } }
+        public GroupConfig3 CurrentGroup3 { get; set; }
     }
 
     [XmlRoot("Sensors")]
@@ -115,7 +99,7 @@ namespace DeviceManager
         [XmlAttribute("alarm")]
         public string AlarmName { get; set; }
         [XmlElement("field")]
-        public List<Field> Fields { get; set; }
+        public List<Field> Fields { get; set; }       
 
         public SensorModel Copy()
         {
@@ -135,21 +119,17 @@ namespace DeviceManager
                 }
             }
                         
-            return sm;
-            //SensorModel smodel = new SensorModel();
-            //smodel.Name = Name;
-            //smodel.Title = Title;
-            //smodel.Sname = Sname;
-            //smodel.AlarmName = AlarmName;
-            //smodel.Fields = Fields.            
+            return sm;          
         }
-
-
     }
+
     public class Field
     {
         [XmlIgnore]
         public AlarmField Alarm { get; set; }
+        [XmlIgnore]
+        public Sensor CurrentSensor { get; set; }
+    
         [XmlAttribute("unit")]
         public string Unit { get; set; }
         [XmlAttribute("name")]
@@ -160,6 +140,8 @@ namespace DeviceManager
         public bool Realtime { get; set; }
         [XmlAttribute("history")]
         public bool History { get; set; }
+
+       
 
         public event EventHandler ValueUpdated;
         public event EventHandler StateChanged;
@@ -174,27 +156,31 @@ namespace DeviceManager
             }
             set
             {
-                state = value;
-                StateChanged?.Invoke(state, EventArgs.Empty);
-                if (state == 0)
+                if (state != value)
                 {
-                    Label.BackColor = System.Drawing.Color.LightGreen;
-                    ClickLabel.BackColor = System.Drawing.Color.LightGreen;
-                }
-                else if (state == 1)
-                {
-                    Label.BackColor = System.Drawing.Color.Yellow;
-                    ClickLabel.BackColor = System.Drawing.Color.Yellow;
-                }
-                else if (state == 2)
-                {
+                    state = value;
+                    StateChanged?.Invoke(this, EventArgs.Empty);
+                    if (state == 0)
+                    {
+                        Label.BackColor = System.Drawing.Color.LightGreen;
+                        ClickLabel.BackColor = System.Drawing.Color.LightGreen;
+                    }
+                    else if (state == 1)
+                    {
+                        Label.BackColor = System.Drawing.Color.Yellow;
+                        ClickLabel.BackColor = System.Drawing.Color.Yellow;
+                    }
+                    else if (state == 2)
+                    {
 
-                    Label.BackColor = System.Drawing.Color.Red;
-                    ClickLabel.BackColor = System.Drawing.Color.Red;
+                        Label.BackColor = System.Drawing.Color.Red;
+                        ClickLabel.BackColor = System.Drawing.Color.Red;
+                    }
                 }
             }
         }
-        
+
+        string _value = "";
         [XmlIgnore]
         public string Value {
             get { return _value; }
@@ -227,12 +213,7 @@ namespace DeviceManager
                     }
                 }
                 ValueUpdated?.Invoke(this, EventArgs.Empty);
-                if (Row != null)
-                {
-                    Row[1] = Value;
-                    Row[2] = DateTime.Now;
-                }
-             
+           
                 if (Alarm != null)
                 {
                     double db = double.Parse(_value);
@@ -267,25 +248,24 @@ namespace DeviceManager
                 if (chart == null)
                 {
                     chart = new CustomChart();
+                    chart.Titles[0].Text = CurrentSensor.GroupName;
+                    chart.Titles[1].Text = CurrentSensor.Comment;
                     chart.Legends[0].Title = this.Alias;
-                    chart.Series[0].Name = this.Unit;
+                    chart.Series[0].Name = this.Unit;                    
                     foreach (var item in Latest20)
                     {
                         chart.Series[0].Points.AddXY(item.Key, item.Value);
                     }                    
                 }
                 return chart;
-            }
-            
+            }            
         }
 
 
         Dictionary<DateTime, double> latest20 = new Dictionary<DateTime, double>();
         [XmlIgnore]
         public Dictionary<DateTime,double> Latest20 { get { return latest20; } }
-        string _value = "";
-        [XmlIgnore]
-        public DataRow Row { get; set; }
+         
         [XmlIgnore]
         public Label Label { get; set; }
         [XmlIgnore]

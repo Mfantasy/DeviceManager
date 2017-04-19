@@ -26,8 +26,7 @@ namespace DeviceManager.CustomControl
             chartArea1.AxisY.MajorTickMark.Enabled = false;                        
             chartArea1.AxisX.MajorGrid.Enabled = false;
             chartArea1.AxisY.MajorGrid.Enabled = false;
-            chartArea1.AxisY.IsStartedFromZero = false;
-          
+            chartArea1.AxisY.IsStartedFromZero = false;            
             chartArea1.Name = "ChartArea1";
             ChartAreas.Add(chartArea1);
             series1.ChartArea = "ChartArea1";
@@ -41,6 +40,7 @@ namespace DeviceManager.CustomControl
             series1.XValueType = ChartValueType.Time;
             series1.IsXValueIndexed = true;           
             Series.Add(series1);
+            this.Dock = System.Windows.Forms.DockStyle.Fill;
         }
     }
 }

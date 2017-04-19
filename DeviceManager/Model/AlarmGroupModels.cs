@@ -10,36 +10,37 @@ namespace DeviceManager.Model
     [XmlRoot("GroupConfig")]
     public class GroupConfigRoot
     {
-        [XmlElement("config")]
-        public List<GroupConfig> GroupConfigs { get; set; }
+        [XmlElement("config1")]
+        public List<GroupConfig1> GroupConfig1s { get; set; }
     }
 
-    public class GroupConfig
+    public class GroupConfig1
     {
-        [XmlElement("config")]
-        public List<GroupConfig> GroupConfigs { get; set; }
-        [XmlAttribute("order")]
-        public int Order { get; set; }
-        [XmlAttribute("key")]
-        public string Key { get; set; }
+        [XmlElement("config2")]
+        public List<GroupConfig2> GroupConfigs { get; set; }
+      
         [XmlAttribute("name")]
         public string Name { get; set; }
 
-        List<Sensor> sensors = null;
-        [XmlIgnore]
-        public List<Sensor> Sensors
-        {
-            get
-            {
-                if (sensors == null)
-                {
-                    sensors = ConfigData.AllSensors.Sensors.FindAll(sensor => sensor.GroupConfigKey == Key);
-                }
-                return sensors;
-            }
-        }
-
     }
+
+    public class GroupConfig2
+    {
+        [XmlElement("config3")]
+        public List<GroupConfig3> GroupConfigs { get; set; }
+
+        [XmlAttribute("name")]
+        public string Name { get; set; }
+    }
+
+    public class GroupConfig3
+    {
+        [XmlElement("sensor")]
+        public List<Sensor> Sensors { get; set; }
+        [XmlAttribute("name")]
+        public string Name { get; set; }
+    }
+
 
     [XmlRoot("AlarmConfigs")]
     public class AlarmConfigRoot

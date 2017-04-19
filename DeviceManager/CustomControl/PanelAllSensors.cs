@@ -17,52 +17,76 @@ namespace DeviceManager.CustomControl
         public PanelAllSensors()
         {
             InitializeComponent();
-          
+            ToolStripItem tsc = new ToolStripButton("重命名");
+            tsc.Click += Tsc_Click;
+            ToolStripItem tsd = new ToolStripButton("删除");
+            tsd.Click += Tsi_Click;
+            cs.Items.Add(tsc);
+            cs.Items.Add(tsd);                        
+            tabControl1.ContextMenuStrip = cs;
         }
 
+        private void Tsc_Click(object sender, EventArgs e)
+        {            
+            InputForm inf = new InputForm();
+            if (inf.ShowDialog() == DialogResult.OK)
+            {
+                string name = inf.StrValue;
+                if (!string.IsNullOrWhiteSpace(name))
+                {
+                    MessageBox.Show(string.Format("确定将[{0}]重命名为[{1}]?",tabControl1.SelectedTab.Text,name), "提醒", MessageBoxButtons.YesNo);
+                    tabControl1.SelectedTab.Text = name;
+                    return;                    
+                }
+            }
+        }
+
+        private void Tsi_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("确定删除?", "提醒", MessageBoxButtons.YesNo);
+        }
+
+        ContextMenuStrip cs = new ContextMenuStrip();
         public void Init()
         {            
-            List<GroupConfig> groups = ConfigData.GroupCfg.GroupConfigs;
-            for (int i = 0; i < groups.Count; i++)
+            List<GroupConfig1> groups = ConfigData.GroupConfigRoot.GroupConfig1s;
+            foreach (GroupConfig1 g1 in groups)
             {
-                TabPage tp = new TabPage(groups[i].Name);              
-                tabControl1.TabPages.Add(tp);
+                TabPage tabpage = new TabPage(g1.Name);
+                tabControl1.TabPages.Add(tabpage);
                 PASListView paslv = new PASListView();
-                paslv.Dock = DockStyle.Fill;             
-                paslv.Parent = tp;                
-                for (int j = 0; j < groups[i].GroupConfigs.Count; j++)
+                paslv.Dock = DockStyle.Fill;
+                paslv.Parent = tabpage;
+                foreach (GroupConfig2 g2 in g1.GroupConfigs)
                 {
-                    ListViewGroup lvg = new ListViewGroup(groups[i].GroupConfigs[j].Name);
-               
+                    ListViewGroup lvg = new ListViewGroup(g2.Name);
                     paslv.Groups.Add(lvg);
-                    List<GroupConfig> items = groups[i].GroupConfigs[j].GroupConfigs;
-                    for (int k = 0; k < items.Count; k++)
+                    foreach (GroupConfig3 g3 in g2.GroupConfigs)
                     {
-                        for (int l = 0; l < items[k].Sensors.Count; l++)
-                        {                                                       
+                        foreach (Sensor ss in g3.Sensors)
+                        {
                             ListViewItem lvi = new ListViewItem(lvg);
                             paslv.Items.Add(lvi);
-                            lvi.Group = lvg;                            
-                            lvi.Text = items[k].Name;
+                            lvi.Group = lvg;
+                            lvi.Text = ss.GroupName;
                             lvi.SubItems.AddRange(new ListViewItem.ListViewSubItem[] {
-                                new ListViewItem.ListViewSubItem(lvi,items[k].Sensors[l].Model.Title),
-                                new ListViewItem.ListViewSubItem(lvi,items[k].Sensors[l].Comment),
-                                new ListViewItem.ListViewSubItem(lvi,items[k].Sensors[l].Model.AlarmName),
-                                new ListViewItem.ListViewSubItem(lvi,items[k].Sensors[l].Uid),
-                                new ListViewItem.ListViewSubItem(lvi,items[k].Sensors[l].NodeId),
-                                new ListViewItem.ListViewSubItem(lvi,items[k].Sensors[l].PortId)
-                                });                  
+                                new ListViewItem.ListViewSubItem(lvi,ss.Model.Title),
+                                new ListViewItem.ListViewSubItem(lvi,ss.Comment),
+                                new ListViewItem.ListViewSubItem(lvi,ss.Model.AlarmName),
+                                new ListViewItem.ListViewSubItem(lvi,ss.Uid),
+                                new ListViewItem.ListViewSubItem(lvi,ss.NodeId),
+                                new ListViewItem.ListViewSubItem(lvi,ss.PortId)
+                                });
                         }
-                    }                  
+                    }
                 }
                 paslv.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
                 paslv.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
             }
-            TabPage tbAdd = new TabPage(" 十");                        
+            TabPage tbAdd = new TabPage(" 十");
             tabControl1.TabPages.Add(tbAdd);
             tbAdd.Name = "tbAdd";
-            tabControl1.Selected += TabControl1_Selected;
-            
+            tabControl1.Selected += TabControl1_Selected;                      
         }
 
         private void TabControl1_Selected(object sender, TabControlEventArgs e)
@@ -73,13 +97,13 @@ namespace DeviceManager.CustomControl
                 if (inf.ShowDialog() == DialogResult.OK)
                 {
                     string name = inf.StrValue;
-                    tabControl1.TabPages.Insert(tabControl1.TabPages.Count - 1, name, name);
-                }
-                else
-                {
-                    tabControl1.SelectedTab = tabControl1.TabPages[0];
-                    return;
+                    if (!string.IsNullOrWhiteSpace(name))
+                    {
+                        tabControl1.TabPages.Insert(tabControl1.TabPages.Count - 1, name, name);
+                        return;
+                    }
                 }                                
+                    tabControl1.SelectedTab = tabControl1.TabPages[0];                                    
             }                
         }       
     }

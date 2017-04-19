@@ -32,7 +32,7 @@ namespace DeviceManager
                         break;
                 }             
             }
-            List<Sensor> sensors = ConfigData.AllSensors.Sensors.FindAll(ss => ss.Uid == uid && ss.NodeId == nodeid);
+            List<Sensor> sensors = ConfigData.allSensors.FindAll(ss => ss.Uid == uid && ss.NodeId == nodeid);
             if (sensors == null || sensors.Count==0)
             {
                 return;
@@ -48,7 +48,7 @@ namespace DeviceManager
                 if (sensor == null)
                     return;
             }
-            sensor.Time = DateTime.Now;
+            
             foreach (JToken jt in jdata)
             {
                 string name = jt["name"].ToString();
@@ -64,7 +64,6 @@ namespace DeviceManager
                             field.Value = jt["raw"].ToString().Remove(0, 2);
                         else
                             field.Value = jt[key].ToString();
-//                        field.Label.Invoke(new Action(() => { field.Label.Text = field.LabelText;field.ClickLabel.Text = field.LabelText; }));
                     }                   
                 }
             }

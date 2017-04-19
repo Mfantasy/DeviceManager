@@ -264,8 +264,7 @@
             this.Name = "MainForm";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "山西省榆社县博物馆环境监测系统";
-            this.Load += new System.EventHandler(this.MainForm_Load);
+            this.Text = "山西省榆社县博物馆环境监测系统";            
             this.panelTop.ResumeLayout(false);
             this.panelRuntime.ResumeLayout(false);
             this.panelLeft.ResumeLayout(false);

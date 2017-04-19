@@ -1,6 +1,7 @@
 ﻿using DeviceManagerO;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -37,8 +38,9 @@ namespace DeviceManager
         [STAThread]
         static void Main()
         {
+            var x1 = SqlLiteHelper.ExecuteReader(ConfigurationManager.AppSettings["alarmdb"], "SELECT * FROM record");
             string userPath = Utils.GetUserPath();
-            
+            bool x = File.Exists("../../alarm.db");
             Application.EnableVisualStyles();
            
             //Application.Run(new TestForm());

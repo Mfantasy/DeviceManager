@@ -28,13 +28,14 @@ namespace DeviceManager
 
     public static class SqlLiteHelper
     {
-        //public static string conStr = "Data Source=" + Environment.CurrentDirectory + "\\test.db;Initial Catalog=sqlite;";
-        public static string conStr = "Data Source=" + ConfigurationManager.AppSettings["dbPath"] + ";Initial Catalog=sqlite;";
-        static SQLiteConnection con = new SQLiteConnection(conStr);
-        public static DataTable ExecuteReader(string cmdText)
+        //public static string conStr = "Data Source=" + Environment.CurrentDirectory + "\\test.db;Initial Catalog=sqlite;";       
+        public static DataTable ExecuteReader(string dataSource,string cmdText)
         {
+            SQLiteConnection con=null;
             try
             {
+                string conStr = "Data Source=" + dataSource + ";Initial Catalog=sqlite;";
+                con = new SQLiteConnection(conStr);
                 SQLiteCommand cmd = con.CreateCommand();
                 cmd.CommandText = cmdText;
                 SQLiteDataAdapter mAdapter = new SQLiteDataAdapter(cmd);
@@ -44,29 +45,56 @@ namespace DeviceManager
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
             finally
             {
                 con.Close();
-            }
-   
+            }   
         }
 
-        public static void ExecuteReader0(string cmdText)
-        {          
-            SQLiteCommand cmd = con.CreateCommand();            
-            cmd.CommandText = cmdText;
-            con.Open();
-            SQLiteDataReader reader = cmd.ExecuteReader();
-            
-            while (reader.Read())
+        public static object ExecuteScalar(string dataSource,string cmdText)
+        {
+            SQLiteConnection con=null;
+            try
             {
-                Console.WriteLine(reader[0]);
+                string conStr = "Data Source=" + dataSource + ";Initial Catalog=sqlite;";
+                con = new SQLiteConnection(conStr);
+                SQLiteCommand cmd = con.CreateCommand();
+                cmd.CommandText = cmdText;
+                con.Open();
+                object res = cmd.ExecuteScalar();
+                return res;
             }
-
+            catch (Exception ex)
+            {
+#warning 异常要处理掉
+                throw ex;
+            }
+            finally { con.Close(); }
         }
+    
+        public static int ExecuteNonQuery(string dataSource,string cmdText)
+        {
+            SQLiteConnection con=null;
+            try
+            {
+                string conStr = "Data Source=" + dataSource + ";Initial Catalog=sqlite;";
+                con = new SQLiteConnection(conStr);
+                SQLiteCommand cmd = con.CreateCommand();
+                cmd.CommandText = cmdText;
+                con.Open();
+                int res = cmd.ExecuteNonQuery();
+                return res;
+            }
+            catch (Exception ex)
+            {
+#warning 异常要处理掉
+                throw ex;
+            }
+            finally { con.Close(); }
+        }
+              
     }
 
     public static class MySqlHelper

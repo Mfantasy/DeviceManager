@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DeviceManager.Model;
+using System.Configuration;
 
 namespace DeviceManager.CustomControl
 {
@@ -15,17 +16,29 @@ namespace DeviceManager.CustomControl
     {
         public PanelHistory()
         {
-            InitializeComponent();
-       
-            
+            InitializeComponent();                   
         }
 
         public void Init()
         {
-            List<GroupConfig> groups = ConfigData.GroupCfg.GroupConfigs;
-            foreach (GroupConfig gcfg in groups)
-            {                
-                BuildTree(gcfg, treeView1.Nodes);
+            List<GroupConfig1> groups = ConfigData.GroupConfigRoot.GroupConfig1s;
+            foreach (GroupConfig1 g1 in groups)
+            {
+                TreeNode tn2 = treeView1.Nodes.Add(g1.Name);
+                foreach (GroupConfig2 g2 in g1.GroupConfigs)
+                {
+                    TreeNode tn3 = tn2.Nodes.Add(g2.Name);
+                    foreach (GroupConfig3 g3 in g2.GroupConfigs)
+                    {
+                        tn3.Nodes.Add(g3.Name);
+                        foreach (Sensor ss in g3.Sensors)
+                        {
+                            TreeNode tn = tn3.Nodes.Add(ss.Comment);
+                            tn.ToolTipText = ss.Model.Title;
+                            tn.Tag = ss;
+                        }
+                    }
+                }                
             }
             treeView1.ExpandAll();
             treeView1.NodeMouseClick += TreeView1_NodeMouseClick;
@@ -43,29 +56,7 @@ namespace DeviceManager.CustomControl
                 return;                                                                    
             }
         }
-
-        void BuildTree(GroupConfig cfg,TreeNodeCollection nodes)
-        {
-            TreeNode tnode = nodes.Add(cfg.Name);
-            if (cfg.GroupConfigs != null && cfg.GroupConfigs.Count !=0)
-            {
-                foreach (GroupConfig item in cfg.GroupConfigs)
-                {
-                    BuildTree(item, tnode.Nodes);
-                }
-            }
-            else
-            {
-                foreach (Sensor ss in cfg.Sensors)
-                {
-                    TreeNode tn = tnode.Nodes.Add(ss.Comment);
-                    tn.ToolTipText = ss.Model.Title;
-                    tn.Tag = ss;
-                }
-            }
-        }
-
-
+  
         private void glassButton2_Click(object sender, EventArgs e)
         {
             if(treeView1.SelectedNode.Tag is Sensor)
@@ -80,7 +71,7 @@ namespace DeviceManager.CustomControl
             string sql = string.Format("SELECT {0} FROM {1}_result WHERE time < '{2}' and time >'{3}' and nodeid = {4} ", sensor.HisColumnStr, sensor.Model.Sname, dateTimePickerRetrieveEnd.Value.ToString("yyyy-MM-dd HH-mm"), dateTimePickerRetrieveBegin.Value.ToString("yyyy-MM-dd HH-mm"), sensor.NodeId);
             try
             {
-                DataTable dt = SqlLiteHelper.ExecuteReader(sql);
+                DataTable dt = SqlLiteHelper.ExecuteReader(ConfigurationManager.AppSettings["dbPath"], sql);
                 var c1 = dt.Columns.Add("传感器类型");
                 var c2 = dt.Columns.Add("传感器位置");
                 var c3 = dt.Columns.Add("备注");
