@@ -156,7 +156,7 @@ namespace DeviceManager
             }
             set
             {
-                if (state != value)
+                if (state != value || (state==1||state==2))
                 {
                     state = value;
                     StateChanged?.Invoke(this, EventArgs.Empty);
@@ -248,6 +248,7 @@ namespace DeviceManager
                 if (chart == null)
                 {
                     chart = new CustomChart();
+                    chart.MinimumSize = new System.Drawing.Size(0, 400);
                     chart.Titles[0].Text = CurrentSensor.GroupName;
                     chart.Titles[1].Text = CurrentSensor.Comment;
                     chart.Legends[0].Title = this.Alias;

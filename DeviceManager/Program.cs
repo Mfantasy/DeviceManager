@@ -11,25 +11,7 @@ using System.Xml.Serialization;
 
 namespace DeviceManager
 {   
-    public class MyClass
-    {
-        [XmlAttribute("name")]
-        public string Name { get; set; }
-        [XmlIgnore]
-        public int Age { get; set; }
-        public MyClass Clone()
-        {
-            MemoryStream ms = new MemoryStream();
-            MyClass mc = null;
-            XmlSerializer xSl = new XmlSerializer(typeof(MyClass));
-            xSl.Serialize(ms, this);
-            ms.Seek(0, SeekOrigin.Begin);                        
-            mc = (MyClass)xSl.Deserialize(ms);
-            ms.Close();
-            return mc;
-        }
-    }
-
+  
     static class Program
     {
         /// <summary>
@@ -37,10 +19,10 @@ namespace DeviceManager
         /// </summary>
         [STAThread]
         static void Main()
-        {                              
-            Application.EnableVisualStyles();           
+        {
             //Application.Run(new TestForm());
-           // return;
+            //return;
+            Application.EnableVisualStyles();                    
             Application.SetCompatibleTextRenderingDefault(false);
             if (Config.IsShowLogon)
             {

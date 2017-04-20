@@ -27,9 +27,7 @@ namespace DeviceManager
         private void button1_Click(object sender, EventArgs e)
         {           
             glassButton1_Click(null, null);
-            //Thread th = new Thread(DataSubscribe.StartSubscribe);
-            //th.IsBackground = true;
-            //th.Start();
+        
         }
       
 
@@ -96,11 +94,12 @@ namespace DeviceManager
             lbAll.Text = "全部";
         }    
         private void InitRealtime()
-        {   
-            //指示说明label                     
+        {
+            //指示说明label              
+            
             lbAll.Dock = DockStyle.Top;
             lbAll.ForeColor = Color.White;
-            lbAll.Font = new System.Drawing.Font("微软雅黑", 12);
+            lbAll.Font = new System.Drawing.Font("微软雅黑", 14);
             lbAll.Text = "全部";
             lbAll.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             lbAll.Click += BtnAll_Click;
@@ -168,15 +167,15 @@ namespace DeviceManager
         private void Lbtitle_DoubleClick(object sender, EventArgs e)
         {
             Label lbtitle = sender as Label;
-            lbAll.Text = lbtitle.Text;            
-            Control flp = lbtitle.Tag as Control;
+            lbAll.Text = lbtitle.Text;
+            TableLayoutPanel flp = lbtitle.Tag as TableLayoutPanel;
             List<Sensor> sensors = (List<Sensor>)flp.Tag;
             foreach (Sensor ss in sensors)
             {
                 foreach (Field item in ss.Model.Fields)
                 {
                     if (item.Realtime)
-                    {
+                    {                        
                         flp.Controls.Add(item.Chart);
                     }
                 }
@@ -312,6 +311,7 @@ namespace DeviceManager
         bool b = false;
         int value1 = 11098;
         int value2 = 6640;
+        Random r = new Random();
         private void glassButton1_Click(object sender, EventArgs e)
         {
             //panelRuntime.BringToFront();
@@ -321,13 +321,13 @@ namespace DeviceManager
             {
                 jstr = "{\"state\":\"Stream\",\"parser\":\"MXS1501\",\"raw\":\"7E000B7D1A000001000000330A4081817F01E524226D050100000100B01C00\",\"data\":[{\"name\":\"nodeid\",\"alias\":\"节点编号\",\"type\":\"uint16\",\"raw\":\"0x0100\",\"converted\":\"1\"},{\"name\":\"uid\",\"alias\":\"网关唯一号\",\"type\":\"raw\",\"raw\":\"0x81817F01E524226D\"},{\"name\":\"parent\",\"alias\":\"父级节点\",\"type\":\"uint16\",\"raw\":\"0x0000\",\"converted\":\"0\"},{\"name\":\"port\",\"alias\":\"采集通道\",\"type\":\"uint8\",\"raw\":\"0x01\",\"converted\":\"1\"},{\"name\":\"light\",\"alias\":\"太阳光照(lux)\",\"type\":\"uint32\",\"raw\":\"0x00B01C00\",\"converted\":\"" + value1 + "\"}]}";
                 b = false;
-                value1+=10;
+                value1+=r.Next(-50,50);
             }
             else
             {
                 jstr = "{\"state\":\"Stream\",\"parser\":\"MXN820\",\"raw\":\"7E000B7D1A000001000000330A5E81817F01E524226DFC000000000000E70D\",\"data\":[{\"name\":\"nodeid\",\"alias\":\"节点编号\",\"type\":\"uint16\",\"raw\":\"0x0100\",\"converted\":\"1\"},{\"name\":\"uid\",\"alias\":\"网关唯一号\",\"type\":\"hex\",\"raw\":\"0x81817F01E524226D\",\"converted\":\"81817F01E524226D\"},{\"name\":\"parent\",\"alias\":\"父级节点\",\"type\":\"uint16\",\"raw\":\"0x0000\",\"converted\":\"0\"},{\"name\":\"port\",\"alias\":\"采集通道\",\"type\":\"uint8\",\"raw\":\"0x00\",\"converted\":\"0\"},{\"name\":\"chargeVol\",\"alias\":\"充电电压(mv)\",\"type\":\"uint16\",\"raw\":\"0x0000\",\"converted\":\"0\"},{\"name\":\"battVol\",\"alias\":\"电池电压(mv)\",\"type\":\"uint16\",\"raw\":\"0xE70D\",\"converted\":\"" + value2 + "\"}]}";
                 b = true;
-                value2+=10;
+                value2+= r.Next(-50, 50);
             }
             JObject jobj = JObject.Parse(jstr);
             DataParser.ParseJObj(jobj);
@@ -341,6 +341,13 @@ namespace DeviceManager
         private void button3_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Thread th = new Thread(DataSubscribe.StartSubscribe);
+            th.IsBackground = true;
+            th.Start();
         }
     }
 

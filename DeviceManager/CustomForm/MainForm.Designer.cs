@@ -43,6 +43,7 @@
             this.menuButtonPanel3 = new DeviceManager.CustomControl.MenuButtonPanel();
             this.menuButtonPanel2 = new DeviceManager.CustomControl.MenuButtonPanel();
             this.menuButtonPanel1 = new DeviceManager.CustomControl.MenuButtonPanel();
+            this.button4 = new System.Windows.Forms.Button();
             this.panelTop.SuspendLayout();
             this.panelRuntime.SuspendLayout();
             this.panelLeft.SuspendLayout();
@@ -64,6 +65,7 @@
             this.panelTop.BackColor = System.Drawing.Color.Transparent;
             this.panelTop.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panelTop.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panelTop.Controls.Add(this.button4);
             this.panelTop.Controls.Add(this.button3);
             this.panelTop.Controls.Add(this.button2);
             this.panelTop.Controls.Add(this.menuButtonPanel5);
@@ -246,6 +248,16 @@
             this.menuButtonPanel1.Size = new System.Drawing.Size(101, 101);
             this.menuButtonPanel1.TabIndex = 8;
             // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(707, 30);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 15;
+            this.button4.Text = "连接";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -262,9 +274,9 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(1024, 768);
             this.Name = "MainForm";
-            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "山西省榆社县博物馆环境监测系统";            
+            this.Text = "山西省榆社县博物馆环境监测系统";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.panelTop.ResumeLayout(false);
             this.panelRuntime.ResumeLayout(false);
             this.panelLeft.ResumeLayout(false);
@@ -289,6 +301,7 @@
         private CustomControl.MenuButtonPanel menuButtonPanel2;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
     }
 }
 

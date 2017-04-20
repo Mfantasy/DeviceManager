@@ -18,7 +18,7 @@ namespace DeviceManager.CustomControl
             this.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             this.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             this.GridColor = Color.CadetBlue;
-            this.BackgroundColor = Color.White;
+            this.BackgroundColor = Color.LightSteelBlue;
             this.RowHeadersVisible = false;
             this.ReadOnly = true;
             this.Dock = DockStyle.Fill;

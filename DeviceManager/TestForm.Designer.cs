@@ -108,19 +108,19 @@
             this.toolStripSeparator2,
             this.添加设备ToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 132);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(137, 110);
             this.contextMenuStrip1.Text = "A";
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(136, 22);
             this.toolStripMenuItem1.Text = "编辑此设备";
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(133, 6);
             // 
             // 添加组ToolStripMenuItem
             // 
@@ -128,7 +128,7 @@
             this.toolStripTextBox1,
             this.确定ToolStripMenuItem});
             this.添加组ToolStripMenuItem.Name = "添加组ToolStripMenuItem";
-            this.添加组ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.添加组ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.添加组ToolStripMenuItem.Text = "添加组";
             // 
             // toolStripTextBox1
@@ -146,7 +146,7 @@
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(133, 6);
             // 
             // 添加地点ToolStripMenuItem
             // 
@@ -154,7 +154,7 @@
             this.toolStripTextBox2,
             this.确定ToolStripMenuItem1});
             this.添加地点ToolStripMenuItem.Name = "添加地点ToolStripMenuItem";
-            this.添加地点ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.添加地点ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.添加地点ToolStripMenuItem.Text = "添加地点";
             // 
             // toolStripTextBox2
@@ -172,7 +172,7 @@
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(133, 6);
             // 
             // 添加设备ToolStripMenuItem
             // 
@@ -181,7 +181,7 @@
             this.toolStripComboBox2,
             this.确定ToolStripMenuItem2});
             this.添加设备ToolStripMenuItem.Name = "添加设备ToolStripMenuItem";
-            this.添加设备ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.添加设备ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.添加设备ToolStripMenuItem.Text = "添加设备";
             // 
             // toolStripComboBox1
