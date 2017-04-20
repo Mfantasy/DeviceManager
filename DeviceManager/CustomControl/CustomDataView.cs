@@ -11,9 +11,7 @@ namespace DeviceManager.CustomControl
     public class CustomDataView : DataGridView
     {
         public CustomDataView()
-        {          
-            BackgroundColor = Color.White;
-            GridColor = Color.Black;
+        {                                  
             this.BorderStyle = BorderStyle.Fixed3D;
             this.CellBorderStyle = DataGridViewCellBorderStyle.SingleVertical;
             this.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;

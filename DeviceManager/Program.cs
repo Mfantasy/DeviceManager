@@ -37,12 +37,8 @@ namespace DeviceManager
         /// </summary>
         [STAThread]
         static void Main()
-        {
-            var x1 = SqlLiteHelper.ExecuteReader(ConfigurationManager.AppSettings["alarmdb"], "SELECT * FROM record");
-            string userPath = Utils.GetUserPath();
-            bool x = File.Exists("../../alarm.db");
-            Application.EnableVisualStyles();
-           
+        {                              
+            Application.EnableVisualStyles();           
             //Application.Run(new TestForm());
            // return;
             Application.SetCompatibleTextRenderingDefault(false);

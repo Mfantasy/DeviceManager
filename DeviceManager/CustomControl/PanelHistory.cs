@@ -30,10 +30,10 @@ namespace DeviceManager.CustomControl
                     TreeNode tn3 = tn2.Nodes.Add(g2.Name);
                     foreach (GroupConfig3 g3 in g2.GroupConfigs)
                     {
-                        tn3.Nodes.Add(g3.Name);
+                        TreeNode tns = tn3.Nodes.Add(g3.Name);
                         foreach (Sensor ss in g3.Sensors)
                         {
-                            TreeNode tn = tn3.Nodes.Add(ss.Comment);
+                            TreeNode tn = tns.Nodes.Add(ss.Comment);
                             tn.ToolTipText = ss.Model.Title;
                             tn.Tag = ss;
                         }
@@ -112,8 +112,7 @@ namespace DeviceManager.CustomControl
             else
             {
                 MessageBox.Show("没有数据");
-            }
-            
+            }            
         }
     }
 }

@@ -179,6 +179,9 @@
     <EmbeddedResource Include="CustomControl\PanelAlarmRecord.resx">
       <DependentUpon>PanelAlarmRecord.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CustomControl\PanelAlarmSet.resx">
+      <DependentUpon>PanelAlarmSet.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CustomControl\PanelAllSensors.resx">
       <DependentUpon>PanelAllSensors.cs</DependentUpon>
     </EmbeddedResource>
@@ -219,9 +222,6 @@
     <EmbeddedResource Include="CustomControl\PanelHistory.resx">
       <DependentUpon>PanelHistory.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="alarm.db">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

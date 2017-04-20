@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Configuration;
+using System.IO;
 
 namespace DeviceManager.CustomControl
 {
@@ -18,15 +19,17 @@ namespace DeviceManager.CustomControl
             InitializeComponent();
         }
         DataTable dt;
+        CustomDataView cdv;
+        string db = "null";
         public void Init()
         {
-            
+            db = Path.Combine(Utils.GetUserPath(),"alarm.db");          
             string sql = "SELECT COUNT(*) FROM sqlite_master where type = 'table' and name = 'record'";
-            object obj = SqlLiteHelper.ExecuteScalar(ConfigurationManager.AppSettings["alarmdb"], sql);
+            object obj = SqlLiteHelper.ExecuteScalar(db, sql);
             if (Convert.ToInt32(obj) == 0)
             {
                 string createSql = "CREATE TABLE record(time varchar(50),field varchar(50),groupname varchar(50),comment varchar(50),state varchar(50))";
-                int res = SqlLiteHelper.ExecuteNonQuery(ConfigurationManager.AppSettings["alarmdb"], createSql);
+                int res = SqlLiteHelper.ExecuteNonQuery(db, createSql);
             }
 
             foreach (Field field in ConfigData.allFields)
@@ -34,55 +37,43 @@ namespace DeviceManager.CustomControl
                 field.StateChanged += Field_StateChanged;
             }
 
-            CustomDataView cdv = new CustomDataView();
-          
+            cdv = new CustomDataView();          
             cdv.Font = new Font("宋体", 15);
             cdv.Parent = this;
             cdv.Dock = DockStyle.Fill;
-            dt = SqlLiteHelper.ExecuteReader(ConfigurationManager.AppSettings["alarmdb"], "SELECT * FROM record");                    
+            dt = SqlLiteHelper.ExecuteReader(db, "SELECT * FROM record");                    
             cdv.DataSource = dt;            
             cdv.Columns["time"].HeaderText = "时间";
             cdv.Columns["field"].HeaderText = "监测项";
             cdv.Columns["groupname"].HeaderText = "位置";
             cdv.Columns["comment"].HeaderText = "备注";
             cdv.Columns["state"].HeaderText = "状态";
-            cdv.DataBindingComplete += Cdv_DataBindingComplete;
+            cdv.CellFormatting += Cdv_CellFormatting;
      
         }
 
-        int i = 0;
-        private void Cdv_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
-        {            
-            CustomDataView cdv = sender as CustomDataView;
-            cdv.Rows[i].Cells[i].Style.BackColor = Color.Red;
-            i++;            
-        }
-
-        private void Cdv_DoubleClick(object sender, EventArgs e)
+        private void Cdv_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
+            if (e.Value != null)
+            {
+                switch (e.Value.ToString())
+                {
+                    case state0:
+                        cdv.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightGreen;
+                        break;
+                    case state1:
+                        cdv.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Yellow;
+                        break;
+                    case state2:
+                        cdv.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Red;
+                        break;
+                }
+            }
+        }
         
-        }
-
-        private void Cdv_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
-        {
-            CustomDataView cdv = sender as CustomDataView;
-            if (cdv.Rows[e.RowIndex].Cells["state"].Value.ToString() == state0)
-            {
-                cdv.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightGreen;
-            }
-            else if (cdv.Rows[e.RowIndex].Cells["state"].Value.ToString() == state1)
-            {
-                cdv.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Yellow;
-            }
-            else if (cdv.Rows[e.RowIndex].Cells["state"].Value.ToString() == state2)
-            {
-                cdv.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Red;
-            }
-            
-        }
-        string state0 = "恢复正常数值";
-        string state1 = "接近预警临界值";
-        string state2 = "超过预警值";
+       const string state0 = "恢复正常数值";
+       const string state1 = "接近预警临界值";
+       const string state2 = "超过预警值";
         private void Field_StateChanged(object sender, EventArgs e)
         {
             Field field = sender as Field;
@@ -107,7 +98,7 @@ namespace DeviceManager.CustomControl
             string insertSql = string.Format("INSERT INTO record(time,field,groupname,comment,state) VALUES('{0}','{1}','{2}','{3}','{4}')",ai.Time,ai.Field,ai.GroupName,ai.Comment,ai.State);
             try
             {
-                SqlLiteHelper.ExecuteNonQuery(ConfigurationManager.AppSettings["alarmdb"], insertSql);
+                SqlLiteHelper.ExecuteNonQuery(db, insertSql);
             }
             catch (Exception ex)
             {
