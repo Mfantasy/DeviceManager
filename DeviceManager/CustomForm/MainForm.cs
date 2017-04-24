@@ -140,7 +140,7 @@ namespace DeviceManager
             //指示说明label                     
             lbAll.Dock = DockStyle.Top;
             lbAll.ForeColor = Color.White;
-            lbAll.Font = new System.Drawing.Font("微软雅黑", 12);
+            lbAll.Font = new System.Drawing.Font("微软雅黑", 14);
             lbAll.Text = "全部";
             lbAll.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             lbAll.Click += BtnAll_Click;
