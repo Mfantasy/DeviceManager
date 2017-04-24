@@ -49,25 +49,25 @@ namespace DeviceManager
         public static void InitConfig()
         {
             //首先为模型匹配预警
-            foreach (SensorModel smodel in SensorModelRoot.SensorModels)
-            {
-                if (string.IsNullOrWhiteSpace(smodel.AlarmName))
-                {
-                    continue;
-                }
-                else
-                {
-                    AlarmConfig acfg = AlarmConfigRoot.AlarmConfigs.Find(cfg => cfg.Name == smodel.AlarmName);
-                    if (acfg == null)
-                    {
-                        continue;
-                    }
-                    foreach (Field field in smodel.Fields)
-                    {
-                        field.Alarm = acfg.AlarmField.Find(af => af.Name == field.Name);
-                    }
-                }
-            }
+            //foreach (SensorModel smodel in SensorModelRoot.SensorModels)
+            //{
+            //    if (string.IsNullOrWhiteSpace(smodel.AlarmName))
+            //    {
+            //        continue;
+            //    }
+            //    else
+            //    {
+            //        AlarmConfig acfg = AlarmConfigRoot.AlarmConfigs.Find(cfg => cfg.Name == smodel.AlarmName);
+            //        if (acfg == null)
+            //        {
+            //            continue;
+            //        }
+            //        foreach (Field field in smodel.Fields)
+            //        {
+            //            field.Alarm = acfg.AlarmField.Find(af => af.Name == field.Name);
+            //        }
+            //    }
+            //}
             //为各个传感器相应字段附加其所需值
             foreach (var itemgc1 in GroupConfigRoot.GroupConfig1s)
             {
@@ -82,7 +82,7 @@ namespace DeviceManager
                             ss.GroupName = itemgc1.Name + " " + itemgc2.Name + " " + itemgc3.Name;
                             foreach (var field in ss.Model.Fields)
                             {
-                                allFields.Add(field);
+                               allFields.Add(field);
                                field.CurrentSensor = ss;                               
                             }
                         }

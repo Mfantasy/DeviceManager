@@ -1,27 +1,27 @@
 ﻿<Sensors>
-  <sensor name="MXS1201" title="空气温湿度" sname="SeaBo_MXS1201" alarm="无">
+  <sensor name="MXS1201" title="空气温湿度" sname="SeaBo_MXS1201" >
     <field name="nodeid" alias="节点编号" unit="" realtime="false" history="false" />
     <field name="uid" alias="网关唯一号" unit="" realtime="false" history="false" />   
     <field name="humid" alias="湿度(%)" unit="%" realtime="true" history="true" />
     <field name="humtemp" alias="温度(℃)" unit="℃" realtime="true" history="true" />
   </sensor>
-  <sensor name="MXS1301" title="二氧化碳" sname="SeaBo_MXS1301" alarm="无">
+  <sensor name="MXS1301" title="二氧化碳" sname="SeaBo_MXS1301" >
     <field name="nodeid" alias="节点编号" unit="" realtime="false" history="false" />
     <field name="uid" alias="网关唯一号" unit="" realtime="false" history="false" />
     <field name="co2" alias="co2浓度(ppm)" unit="ppm" realtime="true" history="true" />    
   </sensor>
-  <sensor name="MXS1501" title="光照强度" sname="SeaBo_MXS1501" alarm="冬天策略">
+  <sensor name="MXS1501" title="光照强度" sname="SeaBo_MXS1501" >
     <field name="nodeid" alias="节点编号" unit="" realtime="false" history="false"/>
     <field name="uid" alias="网关唯一号" unit="" realtime="false" history="false"/>
     <field name="light" alias="太阳光照" unit="lux" realtime="true" history="false"/>
   </sensor>
-  <sensor name="MXN820" title="节点状态" sname="SeaBo_MXN820_STATUS" alarm="夏天策略">
+  <sensor name="MXN820" title="节点状态" sname="SeaBo_MXN820_STATUS" >
     <field name="nodeid" alias="节点编号" unit="" realtime="false" history="false"/>
     <field name="uid" alias="网关唯一号" unit="" realtime="false" history="false"/>
     <field name="battVol" alias="电池电压" unit="mv" realtime="true" history="false"/>
   </sensor>
   <!--测试用例--> 
-  <sensor name="MX8100" title="井下液位" sname="SCity_MX8100" alarm="冬天策略">
+  <sensor name="MX8100" title="井下液位" sname="SCity_MX8100" >
     <field name="waterLevel" alias="液位" unit="mm" realtime="true" history="true" />
   </sensor>
 </Sensors>

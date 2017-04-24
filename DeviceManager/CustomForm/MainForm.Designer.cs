@@ -37,6 +37,7 @@
             this.panelLeft = new System.Windows.Forms.FlowLayoutPanel();
             this.panelRight = new System.Windows.Forms.Panel();
             this.panelBotttom = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.glassButtonAll = new FOF.UserControlModel.GlassButton();
             this.menuButtonPanel5 = new DeviceManager.CustomControl.MenuButtonPanel();
             this.menuButtonPanel4 = new DeviceManager.CustomControl.MenuButtonPanel();
@@ -164,6 +165,18 @@
             this.panelBotttom.Size = new System.Drawing.Size(1024, 645);
             this.panelBotttom.TabIndex = 7;
             // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(707, 93);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(41, 12);
+            this.label1.TabIndex = 15;
+            this.label1.Text = "status";
+            // 
             // glassButtonAll
             // 
             this.glassButtonAll.BackColor = System.Drawing.Color.Transparent;
@@ -254,6 +267,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1024, 768);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.panelBotttom);
             this.Controls.Add(this.panelTop);
             this.DoubleBuffered = true;
@@ -262,14 +276,15 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(1024, 768);
             this.Name = "MainForm";
-            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "山西省榆社县博物馆环境监测系统";            
+            this.Text = "山西省榆社县博物馆环境监测系统";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.panelTop.ResumeLayout(false);
             this.panelRuntime.ResumeLayout(false);
             this.panelLeft.ResumeLayout(false);
             this.panelBotttom.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -289,6 +304,7 @@
         private CustomControl.MenuButtonPanel menuButtonPanel2;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Label label1;
     }
 }
 

@@ -26,12 +26,52 @@ namespace DeviceManager
         //测试
         private void button1_Click(object sender, EventArgs e)
         {           
-            glassButton1_Click(null, null);
-            //Thread th = new Thread(DataSubscribe.StartSubscribe);
-            //th.IsBackground = true;
-            //th.Start();
+            glassButton1_Click(null, null);           
         }
-      
+
+        const int reConnectInterval = 10 * 1000;//10s
+        bool success = false;
+        void MonitorStatus()
+        {
+            if (success)
+            {
+                label1.Invoke(new Action(() => { label1.Text = "连接成功"; }));
+            }
+            Thread.Sleep(1000);
+            label1.Invoke(new Action(() => { label1.Text = "连接成功(3)"; }));
+            Thread.Sleep(1000);
+            label1.Invoke(new Action(() => { label1.Text = "连接成功(2)"; }));
+            Thread.Sleep(1000);
+            label1.Invoke(new Action(() => { label1.Text = "连接成功(1)"; }));
+            Thread.Sleep(1000);
+            label1.Invoke(new Action(() => { label1.Visible = false; }));
+            Thread.Sleep(reConnectInterval);
+        }
+        void ConnectMethod()
+        {
+            success = false;
+            try
+            {
+                DataSubscribe.StartSubscribe(out success);
+            }
+            catch (Exception ex)
+            {                
+                label1.Invoke(new Action(() => { label1.Text = string.Format("连接至smeshserver失败:{0}\r\n正在重连", ex.HResult== -2147467259?"连接至smeshserver端口"+ConfigurationManager.AppSettings["port"]+"失败":ex.Message); label1.Visible = true; }));
+                Thread.Sleep(reConnectInterval);
+                Thread thCon = new Thread(ConnectMethod);
+                thCon.IsBackground = true;
+                thCon.Start();                
+            }
+        }
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            Thread thStatus = new Thread(MonitorStatus);
+            thStatus.IsBackground = true;
+            thStatus.Start();
+            Thread thMonitor = new Thread(ConnectMethod);
+            thMonitor.IsBackground = true;
+            thMonitor.Start();
+        }
 
         PanelAllSensors pas = new PanelAllSensors();
         PanelHistory ph = new PanelHistory();
@@ -342,6 +382,8 @@ namespace DeviceManager
         {
             this.WindowState = FormWindowState.Minimized;
         }
+
+        
     }
 
 }

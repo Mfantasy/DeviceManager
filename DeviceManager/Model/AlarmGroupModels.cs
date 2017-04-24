@@ -55,6 +55,16 @@ namespace DeviceManager.Model
         public string Name { get; set; }
         [XmlElement("field")]
         public List<AlarmField> AlarmField { get; set; }
+        [XmlAttribute("enable")]
+        public bool Enable { get; set; }
+        [XmlAttribute("startdate")]
+        public int Startdate { get; set; }
+        [XmlAttribute("enddate")]
+        public int Enddate { get; set; }
+        [XmlAttribute("starttime")]
+        public int Starttime { get; set; }
+        [XmlAttribute("endtime")]
+        public int Endtime { get; set; }
     }
 
     public class AlarmField

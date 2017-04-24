@@ -58,35 +58,23 @@ namespace DeviceManager
             }
         }
 
-        public static void StartSubscribe()
+        public static void StartSubscribe(out bool success)
         {
             TcpClient tcp = new TcpClient();
             NetworkStream streamToServer = null;
             int byteLength = 8 * 1024;
             string ip = ConfigurationManager.AppSettings["ip"];
-            int port = int.Parse(ConfigurationManager.AppSettings["port"]);
-            try
+            int port = int.Parse(ConfigurationManager.AppSettings["port"]);                        
+            tcp.Connect(ip, port);
+            success = true;
+            streamToServer = tcp.GetStream();                                
+            while (tcp.Connected)
             {
-                tcp.Connect(ip, port);
-                streamToServer = tcp.GetStream();
-                //tcp.ReceiveTimeout = 60 * 60 * 1000;
-#warning 测试用待删
-                MessageBox.Show("连接成功");
-                while (tcp.Connected)
-                {
-                    byte[] bufferR = new byte[byteLength];
-                    int bfLength = streamToServer.Read(bufferR, 0, bufferR.Length);
-                    byte[] bts = bufferR.Take(bfLength).ToArray();
-                    ThreadPool.QueueUserWorkItem(ProcessBytes, bts);
-                }
-            }
-            catch (Exception ex)
-            {
-                lock (Utils.lockObj)
-                {
-                    File.AppendAllText("error.txt", ex.Message);
-                }                              
-            }
+                byte[] bufferR = new byte[byteLength];
+                int bfLength = streamToServer.Read(bufferR, 0, bufferR.Length);
+                byte[] bts = bufferR.Take(bfLength).ToArray();
+                ThreadPool.QueueUserWorkItem(ProcessBytes, bts);
+            }                     
         }
     }
 }

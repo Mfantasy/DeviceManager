@@ -95,9 +95,7 @@ namespace DeviceManager
         [XmlAttribute("title")]
         public string Title { get; set; }
         [XmlAttribute("sname")]
-        public string Sname { get; set; }
-        [XmlAttribute("alarm")]
-        public string AlarmName { get; set; }
+        public string Sname { get; set; }     
         [XmlElement("field")]
         public List<Field> Fields { get; set; }       
 
@@ -111,13 +109,13 @@ namespace DeviceManager
             sm = (SensorModel)xsl.Deserialize(ms);
             ms.Close();
 
-            for (int i = 0; i < Fields.Count; i++)
-            {
-                if (Fields[i].Alarm != null)
-                {
-                    sm.Fields[i].Alarm = Fields[i].Alarm;
-                }
-            }
+            //for (int i = 0; i < Fields.Count; i++)
+            //{
+            //    if (Fields[i].Alarm != null)
+            //    {
+            //        sm.Fields[i].Alarm = Fields[i].Alarm;
+            //    }
+            //}
                         
             return sm;          
         }
