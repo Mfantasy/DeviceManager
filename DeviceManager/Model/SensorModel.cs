@@ -119,12 +119,26 @@ namespace DeviceManager
                         
             return sm;          
         }
+
+        public override string ToString()
+        {
+            return Title;
+        }
     }
 
     public class Field
     {
+        private AlarmField alarm;       
         [XmlIgnore]
-        public AlarmField Alarm { get; set; }
+        public AlarmField Alarm
+        {
+            get { return alarm; }
+            set
+            {
+                if(alarm != value)
+                   alarm = value;
+            }
+        }
         [XmlIgnore]
         public Sensor CurrentSensor { get; set; }
     
@@ -233,6 +247,10 @@ namespace DeviceManager
                     {
                         State = 0;
                     }
+                }
+                else
+                {
+                    State = 0;
                 }
             }
         }

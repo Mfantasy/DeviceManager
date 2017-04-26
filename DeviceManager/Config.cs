@@ -1,6 +1,7 @@
 ﻿using DeviceManager.Model;
 using System.Collections.Generic;
 using System.Configuration;
+using System.IO;
 using System.Xml;
 
 namespace DeviceManager
@@ -17,7 +18,13 @@ namespace DeviceManager
         { get { if (sensorModelCfg == null)
                 {
                     string fileName = ConfigurationManager.AppSettings["传感器模型配置文件"];
-                    sensorModelCfg = Utils.FromXMLFile<SensorModelRoot>(fileName);
+                    string path = Path.Combine(Utils.GetUserPath(), fileName);
+                    if (!File.Exists(path))
+                    {
+                        sensorModelCfg = new SensorModelRoot();                        
+                    }
+                    else
+                        sensorModelCfg = Utils.FromXMLFile<SensorModelRoot>(path);
                 }
                 return sensorModelCfg;
                         } }
@@ -28,7 +35,13 @@ namespace DeviceManager
                 if (groupCfg == null)
                 {
                     string fileName = ConfigurationManager.AppSettings["传感器列表"];
-                    groupCfg = Utils.FromXMLFile<GroupConfigRoot>(fileName);
+                    string path = Path.Combine(Utils.GetUserPath(), fileName);
+                    if (!File.Exists(path))
+                    {
+                        groupCfg = new GroupConfigRoot();                        
+                    }
+                    else
+                        groupCfg = Utils.FromXMLFile<GroupConfigRoot>(path);
                 }
                 return groupCfg;
             }
@@ -40,7 +53,13 @@ namespace DeviceManager
                 if (alarmCfg == null)
                 {
                     string fileName = ConfigurationManager.AppSettings["预警配置文件"];
-                    alarmCfg = Utils.FromXMLFile<AlarmConfigRoot>(fileName);
+                    string path = Path.Combine(Utils.GetUserPath(), fileName);
+                    if (!File.Exists(path))
+                    {
+                        alarmCfg = new AlarmConfigRoot();
+                    }
+                    else
+                        alarmCfg = Utils.FromXMLFile<AlarmConfigRoot>(path);
                 }
                 return alarmCfg;
             }

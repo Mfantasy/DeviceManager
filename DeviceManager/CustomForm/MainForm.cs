@@ -209,14 +209,14 @@ namespace DeviceManager
         {
             Label lbtitle = sender as Label;
             lbAll.Text = lbtitle.Text;            
-            Control flp = lbtitle.Tag as Control;
+            TableLayoutPanel flp = lbtitle.Tag as TableLayoutPanel;
             List<Sensor> sensors = (List<Sensor>)flp.Tag;
             foreach (Sensor ss in sensors)
             {
                 foreach (Field item in ss.Model.Fields)
                 {
                     if (item.Realtime)
-                    {
+                    {                        
                         flp.Controls.Add(item.Chart);
                     }
                 }

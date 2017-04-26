@@ -65,6 +65,57 @@ namespace DeviceManager.Model
         public int Starttime { get; set; }
         [XmlAttribute("endtime")]
         public int Endtime { get; set; }
+
+        [XmlIgnore]
+        public bool IsAllDate { get { return Startdate == 0; } }
+        [XmlIgnore]
+        public bool IsAllTime { get { return Starttime == 0; } }
+
+        [XmlIgnore]
+        public bool Using { get; set; }
+
+        private bool inDate;
+        [XmlIgnore]
+        public bool InDate
+        {
+            get
+            {
+                if (IsAllDate)
+                {
+                    inDate = true;
+                }
+                return inDate;
+            }
+            set
+            {
+                if(inDate != value)
+                {                    
+                    inDate = value;
+                }
+            }
+        }
+
+        private bool inTime;
+        [XmlIgnore]
+        public bool InTime
+        {
+            get
+            {
+                if (IsAllTime)
+                {
+                    inTime = true;
+                }
+                   return inTime;
+            }
+            set
+            {
+                if (inTime != value)
+                {
+                    inTime = value;             
+                }
+            }
+        }
+
     }
 
     public class AlarmField
@@ -79,7 +130,5 @@ namespace DeviceManager.Model
         public double Low { get; set; }
         [XmlAttribute("around")]
         public double Around { get; set; }
-
-
     }
 }

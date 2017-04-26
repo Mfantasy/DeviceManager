@@ -28,82 +28,120 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.夏季策略ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.启用ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.停用ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.冬季策略ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.启用ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.停用ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.添加一个配置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.删除一个配置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.保存配置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // groupBox1
+            // menuStrip1
             // 
-            this.groupBox1.Controls.Add(this.groupBox2);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox1.Location = new System.Drawing.Point(5, 5);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(5);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(5);
-            this.groupBox1.Size = new System.Drawing.Size(680, 345);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "夏季策略";
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.夏季策略ToolStripMenuItem,
+            this.冬季策略ToolStripMenuItem,
+            this.添加一个配置ToolStripMenuItem,
+            this.删除一个配置ToolStripMenuItem,
+            this.保存配置ToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(690, 25);
+            this.menuStrip1.TabIndex = 1;
+            this.menuStrip1.Text = "menuStrip1";
             // 
-            // groupBox2
+            // 夏季策略ToolStripMenuItem
             // 
-            this.groupBox2.Controls.Add(this.radioButton2);
-            this.groupBox2.Controls.Add(this.radioButton1);
-            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox2.Location = new System.Drawing.Point(5, 19);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(670, 111);
-            this.groupBox2.TabIndex = 0;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "生效时间";
+            this.夏季策略ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.启用ToolStripMenuItem,
+            this.停用ToolStripMenuItem});
+            this.夏季策略ToolStripMenuItem.Name = "夏季策略ToolStripMenuItem";
+            this.夏季策略ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
+            this.夏季策略ToolStripMenuItem.Text = "夏季策略";
             // 
-            // radioButton1
+            // 启用ToolStripMenuItem
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(6, 23);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(47, 16);
-            this.radioButton1.TabIndex = 0;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "全天";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.启用ToolStripMenuItem.Name = "启用ToolStripMenuItem";
+            this.启用ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.启用ToolStripMenuItem.Text = "启用";
             // 
-            // radioButton2
+            // 停用ToolStripMenuItem
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(6, 59);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(71, 16);
-            this.radioButton2.TabIndex = 1;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "选定时间";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.停用ToolStripMenuItem.Name = "停用ToolStripMenuItem";
+            this.停用ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.停用ToolStripMenuItem.Text = "停用";
+            // 
+            // 冬季策略ToolStripMenuItem
+            // 
+            this.冬季策略ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.启用ToolStripMenuItem1,
+            this.停用ToolStripMenuItem1});
+            this.冬季策略ToolStripMenuItem.Name = "冬季策略ToolStripMenuItem";
+            this.冬季策略ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
+            this.冬季策略ToolStripMenuItem.Text = "冬季策略";
+            // 
+            // 启用ToolStripMenuItem1
+            // 
+            this.启用ToolStripMenuItem1.Name = "启用ToolStripMenuItem1";
+            this.启用ToolStripMenuItem1.Size = new System.Drawing.Size(100, 22);
+            this.启用ToolStripMenuItem1.Text = "启用";
+            // 
+            // 停用ToolStripMenuItem1
+            // 
+            this.停用ToolStripMenuItem1.Name = "停用ToolStripMenuItem1";
+            this.停用ToolStripMenuItem1.Size = new System.Drawing.Size(100, 22);
+            this.停用ToolStripMenuItem1.Text = "停用";
+            // 
+            // 添加一个配置ToolStripMenuItem
+            // 
+            this.添加一个配置ToolStripMenuItem.Name = "添加一个配置ToolStripMenuItem";
+            this.添加一个配置ToolStripMenuItem.Size = new System.Drawing.Size(92, 21);
+            this.添加一个配置ToolStripMenuItem.Text = "添加一个配置";
+            this.添加一个配置ToolStripMenuItem.Click += new System.EventHandler(this.添加一个配置ToolStripMenuItem_Click);
+            // 
+            // 删除一个配置ToolStripMenuItem
+            // 
+            this.删除一个配置ToolStripMenuItem.Name = "删除一个配置ToolStripMenuItem";
+            this.删除一个配置ToolStripMenuItem.Size = new System.Drawing.Size(92, 21);
+            this.删除一个配置ToolStripMenuItem.Text = "删除一个配置";
+            // 
+            // 保存配置ToolStripMenuItem
+            // 
+            this.保存配置ToolStripMenuItem.Name = "保存配置ToolStripMenuItem";
+            this.保存配置ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
+            this.保存配置ToolStripMenuItem.Text = "保存配置";
+            this.保存配置ToolStripMenuItem.Click += new System.EventHandler(this.保存配置ToolStripMenuItem_Click);
             // 
             // PanelAlarmSet
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.menuStrip1);
             this.Name = "PanelAlarmSet";
-            this.Padding = new System.Windows.Forms.Padding(5);
             this.Size = new System.Drawing.Size(690, 612);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem 夏季策略ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 冬季策略ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 添加一个配置ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 启用ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 停用ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 启用ToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem 停用ToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem 删除一个配置ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 保存配置ToolStripMenuItem;
     }
 }

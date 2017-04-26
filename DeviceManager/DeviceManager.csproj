@@ -83,6 +83,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config.cs" />
+    <Compile Include="CustomControl\CustomAlarmSetControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomControl\CustomAlarmSetControl.Designer.cs">
+      <DependentUpon>CustomAlarmSetControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="CustomControl\CustomChart.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -176,6 +182,9 @@
     </Compile>
     <Compile Include="Utils.cs" />
     <Compile Include="Data\DataParser.cs" />
+    <EmbeddedResource Include="CustomControl\CustomAlarmSetControl.resx">
+      <DependentUpon>CustomAlarmSetControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CustomControl\PanelAlarmRecord.resx">
       <DependentUpon>PanelAlarmRecord.cs</DependentUpon>
     </EmbeddedResource>
