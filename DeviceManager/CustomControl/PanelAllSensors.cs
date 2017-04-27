@@ -25,6 +25,7 @@ namespace DeviceManager.CustomControl
             cs.Items.Add(tsd);                        
             tabControl1.ContextMenuStrip = cs;
         }
+        ContextMenuStrip cs = new ContextMenuStrip();
 
         private void Tsc_Click(object sender, EventArgs e)
         {            
@@ -43,18 +44,22 @@ namespace DeviceManager.CustomControl
 
         private void Tsi_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("确定删除?", "提醒", MessageBoxButtons.YesNo);
-        }
+            if(MessageBox.Show("确定删除?", "提醒", MessageBoxButtons.OKCancel)== DialogResult.OK)
+            {
 
-        ContextMenuStrip cs = new ContextMenuStrip();
+            }
+
+        }
+     
         public void Init()
         {            
             List<GroupConfig1> groups = ConfigData.GroupConfigRoot.GroupConfig1s;
             foreach (GroupConfig1 g1 in groups)
             {
                 TabPage tabpage = new TabPage(g1.Name);
+                tabpage.Tag = g1;         
                 tabControl1.TabPages.Add(tabpage);
-                PASListView paslv = new PASListView();
+                PASListView paslv = new PASListView(g1);
                 paslv.Dock = DockStyle.Fill;
                 paslv.Parent = tabpage;
                 foreach (GroupConfig2 g2 in g1.GroupConfigs)
@@ -70,9 +75,9 @@ namespace DeviceManager.CustomControl
                             lvi.Group = lvg;
                             lvi.Text = ss.GroupName;
                             lvi.SubItems.AddRange(new ListViewItem.ListViewSubItem[] {
+                                new ListViewItem.ListViewSubItem(lvi,g3.Name),
                                 new ListViewItem.ListViewSubItem(lvi,ss.Model.Title),
-                                new ListViewItem.ListViewSubItem(lvi,ss.Comment),
-                                new ListViewItem.ListViewSubItem(lvi,ss.Model.AlarmName),
+                                new ListViewItem.ListViewSubItem(lvi,ss.Comment),                                
                                 new ListViewItem.ListViewSubItem(lvi,ss.Uid),
                                 new ListViewItem.ListViewSubItem(lvi,ss.NodeId),
                                 new ListViewItem.ListViewSubItem(lvi,ss.PortId)
@@ -100,6 +105,9 @@ namespace DeviceManager.CustomControl
                     if (!string.IsNullOrWhiteSpace(name))
                     {
                         tabControl1.TabPages.Insert(tabControl1.TabPages.Count - 1, name, name);
+                        GroupConfig1 gc1 = new GroupConfig1();
+                        gc1.Name = name;
+                        tabControl1.TabPages[name].Tag = gc1;
                         return;
                     }
                 }                                

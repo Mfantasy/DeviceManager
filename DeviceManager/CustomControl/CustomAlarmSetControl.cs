@@ -75,8 +75,13 @@ namespace DeviceManager.CustomControl
         {
             foreach (Field fd in sm.Fields)
             {
-                SetControlGroup scg = new SetControlGroup(fd);
-                AddControls(scg);
+                if (fd.Realtime)
+                {
+                    AlarmField af = new AlarmField();
+                    AlarmConfig.AlarmField.Add(af);
+                    SetControlGroup scg = new SetControlGroup(fd, af);
+                    AddControls(scg);
+                }
             }
         }
 
@@ -98,9 +103,8 @@ namespace DeviceManager.CustomControl
         string uptext = "上限值";
         string lowtext = "下限值";
         string aroundtext = "允许误差(+-)";
-        public SetControlGroup(Field fd)
-        {
-            Field = fd;
+        public SetControlGroup(Field fd, AlarmField af)
+        {            
             Model = new Label();
             Name = new Label();
             UpLb = new Label();
@@ -113,7 +117,10 @@ namespace DeviceManager.CustomControl
             Name.Text = fd.Alias;
             UpLb.Text = uptext;
             LowLb.Text = lowtext;
-            AroundLb.Text = aroundtext;
+            AroundLb.Text = aroundtext;            
+            af.Model = fd.CurrentSensor.Model.Title;
+            af.Name = fd.Alias;
+            AField = af;            
         }
         public SetControlGroup(AlarmField fd)
         {
@@ -134,6 +141,52 @@ namespace DeviceManager.CustomControl
             UpLb.Text = uptext;
             LowLb.Text = lowtext;
             AroundLb.Text = aroundtext;
+        }
+        void Init()
+        {
+            Up.LostFocus += Up_LostFocus;
+            Low.LostFocus += Low_LostFocus;
+            Around.LostFocus += Around_LostFocus;
+        }
+
+        private void Around_LostFocus(object sender, EventArgs e)
+        {
+            //AField.Around
+            try
+            {
+                double ar = Double.Parse(Around.Text);
+                AField.Around = ar;
+            }
+            catch (Exception ex)
+            {
+                
+            }
+        }
+
+        private void Low_LostFocus(object sender, EventArgs e)
+        {
+            try
+            {
+                double low = Double.Parse(Low.Text);
+                AField.Around = low;
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        private void Up_LostFocus(object sender, EventArgs e)
+        {
+            try
+            {
+                double up = Double.Parse(Up.Text);
+                AField.Around = up;
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
 
         public AlarmField AField { get; set; }

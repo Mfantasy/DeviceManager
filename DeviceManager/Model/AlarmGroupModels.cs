@@ -21,6 +21,10 @@ namespace DeviceManager.Model
       
         [XmlAttribute("name")]
         public string Name { get; set; }
+        public override string ToString()
+        {
+            return Name;
+        }
 
     }
 
@@ -31,6 +35,11 @@ namespace DeviceManager.Model
 
         [XmlAttribute("name")]
         public string Name { get; set; }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 
     public class GroupConfig3
@@ -39,6 +48,10 @@ namespace DeviceManager.Model
         public List<Sensor> Sensors { get; set; }
         [XmlAttribute("name")]
         public string Name { get; set; }
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 
 
@@ -114,6 +127,11 @@ namespace DeviceManager.Model
                     inTime = value;             
                 }
             }
+        }
+
+        public override string ToString()
+        {
+            return Name;
         }
 
     }

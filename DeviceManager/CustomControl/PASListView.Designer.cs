@@ -32,12 +32,15 @@
             this.c1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.c2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.c3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.c4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.c5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.c6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.c7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripComboBox3 = new System.Windows.Forms.ToolStripComboBox();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.添加组ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
@@ -51,10 +54,7 @@
             this.toolStripComboBox1 = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripComboBox2 = new System.Windows.Forms.ToolStripComboBox();
             this.确定ToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripComboBox3 = new System.Windows.Forms.ToolStripComboBox();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripTextBox3 = new System.Windows.Forms.ToolStripTextBox();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -71,10 +71,6 @@
             // c3
             // 
             this.c3.Text = "类型";
-            // 
-            // c4
-            // 
-            this.c4.Text = "预警配置";
             // 
             // c5
             // 
@@ -102,19 +98,46 @@
             this.toolStripSeparator2,
             this.添加设备ToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(193, 160);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(137, 138);
             this.contextMenuStrip1.Text = "A";
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(192, 22);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(136, 22);
             this.toolStripMenuItem1.Text = "编辑此设备";
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(133, 6);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripComboBox3,
+            this.toolStripTextBox3,
+            this.toolStripMenuItem3});
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(136, 22);
+            this.toolStripMenuItem2.Text = "重命名分组";
+            // 
+            // toolStripComboBox3
+            // 
+            this.toolStripComboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.toolStripComboBox3.Name = "toolStripComboBox3";
+            this.toolStripComboBox3.Size = new System.Drawing.Size(121, 25);
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(181, 22);
+            this.toolStripMenuItem3.Text = "确定";
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(189, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(133, 6);
             // 
             // 添加组ToolStripMenuItem
             // 
@@ -122,7 +145,7 @@
             this.toolStripTextBox1,
             this.确定ToolStripMenuItem});
             this.添加组ToolStripMenuItem.Name = "添加组ToolStripMenuItem";
-            this.添加组ToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.添加组ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.添加组ToolStripMenuItem.Text = "添加组";
             // 
             // toolStripTextBox1
@@ -140,7 +163,7 @@
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(189, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(133, 6);
             // 
             // 添加地点ToolStripMenuItem
             // 
@@ -148,7 +171,7 @@
             this.toolStripTextBox2,
             this.确定ToolStripMenuItem1});
             this.添加地点ToolStripMenuItem.Name = "添加地点ToolStripMenuItem";
-            this.添加地点ToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.添加地点ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.添加地点ToolStripMenuItem.Text = "添加地点";
             // 
             // toolStripTextBox2
@@ -166,7 +189,7 @@
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(189, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(133, 6);
             // 
             // 添加设备ToolStripMenuItem
             // 
@@ -175,26 +198,20 @@
             this.toolStripComboBox2,
             this.确定ToolStripMenuItem2});
             this.添加设备ToolStripMenuItem.Name = "添加设备ToolStripMenuItem";
-            this.添加设备ToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.添加设备ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.添加设备ToolStripMenuItem.Text = "添加设备";
             // 
             // toolStripComboBox1
             // 
             this.toolStripComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.toolStripComboBox1.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
-            this.toolStripComboBox1.Items.AddRange(new object[] {
-            "一楼",
-            "二楼"});
+            this.toolStripComboBox1.FlatStyle = System.Windows.Forms.FlatStyle.Standard;           
             this.toolStripComboBox1.Name = "toolStripComboBox1";
             this.toolStripComboBox1.Size = new System.Drawing.Size(121, 25);
             // 
             // toolStripComboBox2
             // 
             this.toolStripComboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.toolStripComboBox2.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
-            this.toolStripComboBox2.Items.AddRange(new object[] {
-            "101",
-            "102"});
+            this.toolStripComboBox2.FlatStyle = System.Windows.Forms.FlatStyle.Standard;           
             this.toolStripComboBox2.Name = "toolStripComboBox2";
             this.toolStripComboBox2.Size = new System.Drawing.Size(121, 25);
             // 
@@ -204,34 +221,10 @@
             this.确定ToolStripMenuItem2.Size = new System.Drawing.Size(181, 22);
             this.确定ToolStripMenuItem2.Text = "确定";
             // 
-            // toolStripMenuItem2
+            // toolStripTextBox3
             // 
-            this.toolStripMenuItem2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripComboBox3,
-            this.toolStripMenuItem3});
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(192, 22);
-            this.toolStripMenuItem2.Text = "重命名";
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(189, 6);
-            // 
-            // toolStripComboBox3
-            // 
-            this.toolStripComboBox3.Items.AddRange(new object[] {
-            "博物馆",
-            "一楼",
-            "二楼"});
-            this.toolStripComboBox3.Name = "toolStripComboBox3";
-            this.toolStripComboBox3.Size = new System.Drawing.Size(121, 25);
-            // 
-            // toolStripMenuItem3
-            // 
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(181, 22);
-            this.toolStripMenuItem3.Text = "确定";
+            this.toolStripTextBox3.Name = "toolStripTextBox3";
+            this.toolStripTextBox3.Size = new System.Drawing.Size(100, 23);
             // 
             // PASListView
             // 
@@ -239,7 +232,6 @@
             this.c1,
             this.c2,
             this.c3,
-            this.c4,
             this.c5,
             this.c6,
             this.c7});
@@ -256,10 +248,12 @@
             this.ResumeLayout(false);
 
         }
+
+     
+
         private System.Windows.Forms.ColumnHeader c1;
         private System.Windows.Forms.ColumnHeader c2;
-        private System.Windows.Forms.ColumnHeader c3;
-        private System.Windows.Forms.ColumnHeader c4;
+        private System.Windows.Forms.ColumnHeader c3;        
         private System.Windows.Forms.ColumnHeader c5;
         private System.Windows.Forms.ColumnHeader c6;
         private System.Windows.Forms.ColumnHeader c7;
@@ -285,5 +279,6 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.ToolStripComboBox toolStripComboBox3;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
+        private System.Windows.Forms.ToolStripTextBox toolStripTextBox3;
     }
 }

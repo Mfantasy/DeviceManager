@@ -15,19 +15,24 @@ namespace DeviceManager
         public static List<Field> allFields = new List<Field>();
 
         public static SensorModelRoot SensorModelRoot
-        { get { if (sensorModelCfg == null)
+        {
+            get
+            {
+                if (sensorModelCfg == null)
                 {
                     string fileName = ConfigurationManager.AppSettings["传感器模型配置文件"];
                     string path = Path.Combine(Utils.GetUserPath(), fileName);
                     if (!File.Exists(path))
                     {
-                        sensorModelCfg = new SensorModelRoot();                        
+                        sensorModelCfg = new SensorModelRoot();
+                        sensorModelCfg.SensorModels = new List<SensorModel>();
                     }
                     else
                         sensorModelCfg = Utils.FromXMLFile<SensorModelRoot>(path);
                 }
                 return sensorModelCfg;
-                        } }
+            }
+        }
         public static GroupConfigRoot GroupConfigRoot
         {
             get
@@ -38,7 +43,8 @@ namespace DeviceManager
                     string path = Path.Combine(Utils.GetUserPath(), fileName);
                     if (!File.Exists(path))
                     {
-                        groupCfg = new GroupConfigRoot();                        
+                        groupCfg = new GroupConfigRoot();
+                        groupCfg.GroupConfig1s = new List<GroupConfig1>();         
                     }
                     else
                         groupCfg = Utils.FromXMLFile<GroupConfigRoot>(path);
@@ -57,6 +63,7 @@ namespace DeviceManager
                     if (!File.Exists(path))
                     {
                         alarmCfg = new AlarmConfigRoot();
+                        alarmCfg.AlarmConfigs = new List<AlarmConfig>();
                     }
                     else
                         alarmCfg = Utils.FromXMLFile<AlarmConfigRoot>(path);

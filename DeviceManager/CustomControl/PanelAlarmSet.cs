@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Threading;
 using DeviceManager.Model;
 using System.IO;
+using System.Configuration;
 
 namespace DeviceManager.CustomControl
 {
@@ -19,7 +20,7 @@ namespace DeviceManager.CustomControl
         {
             InitializeComponent();
         }
-        const string fileName = "AlarmConfig.xml";
+        
         string configPath;
         List<AlarmConfig> listAlarm = null;
         public CustomAlarmSetControl CurrentAlarmConfigUI { get; set; }
@@ -27,15 +28,20 @@ namespace DeviceManager.CustomControl
         public void Init()
         {
             //设置策略UI
+            string fileName = ConfigurationManager.AppSettings["预警配置文件"];
             configPath = Path.Combine(Utils.GetUserPath(), fileName);
-            listAlarm = ConfigData.AlarmConfigRoot.AlarmConfigs;
-            if (listAlarm == null)
-                listAlarm = new List<AlarmConfig>();
-            foreach (var item in listAlarm)
+            if (ConfigData.AlarmConfigRoot.AlarmConfigs == null)
             {
-                //menuStrip1.
+                ConfigData.AlarmConfigRoot.AlarmConfigs = new List<AlarmConfig>();
+            }
+            listAlarm = ConfigData.AlarmConfigRoot.AlarmConfigs;
+            foreach (var item in listAlarm)
+            {              
                 NewItem(item);
             }
+            //删除配置列表
+            toolStripComboBox1.Items.AddRange(listAlarm.ToArray());
+            
             //使策略生效
             SetCurrentAlarmConfig();
             Scheduler scheduler = new Scheduler();
@@ -46,6 +52,7 @@ namespace DeviceManager.CustomControl
         private void NewItem(AlarmConfig item)
         {
             ToolStripMenuItem tsmItem = new ToolStripMenuItem(item.Name);
+            menuStrip1.Items.Insert(0, tsmItem);
             CustomAlarmSetControl scg = new CustomAlarmSetControl(item);
             tsmItem.Tag = scg;
             tsmItem.Click += TsmItem_Click;
@@ -137,8 +144,7 @@ namespace DeviceManager.CustomControl
                 {
                     SetAlarm(ac);
                 }
-            }
-                   
+            }                   
         }
 
         void SetAlarm(AlarmConfig ac)
@@ -164,17 +170,38 @@ namespace DeviceManager.CustomControl
                 }                                
             }
         }
-
-        private void 添加一个配置ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            AlarmConfig ac = new AlarmConfig();
-            listAlarm.Add(ac);
-            CustomAlarmSetControl casc = new CustomAlarmSetControl("name",ac);
-        }
-
+     
         private void 保存配置ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Utils.ToFile<AlarmConfigRoot>(configPath, ConfigData.AlarmConfigRoot);
+        }
+       
+        private void 确定ToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            string name = null;
+            if (string.IsNullOrWhiteSpace(toolStripTextBox2.Text))
+            {
+                name = toolStripTextBox2.Text;
+            }
+            AlarmConfig ac = new AlarmConfig();
+            listAlarm.Add(ac);
+            CustomAlarmSetControl casc = new CustomAlarmSetControl("name", ac);
+        }
+
+        private void toolStripComboBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 确定ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (toolStripComboBox1.SelectedItem != null)
+            {
+                if (MessageBox.Show(string.Format("确定删除{0}?", ((AlarmConfig)toolStripComboBox1.SelectedItem).Name), "提醒", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                {
+                    listAlarm.Remove(toolStripComboBox1.SelectedItem as AlarmConfig);
+                }
+            }
         }
     }
 

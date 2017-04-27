@@ -29,14 +29,12 @@
         private void InitializeComponent()
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.夏季策略ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.启用ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.停用ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.冬季策略ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.启用ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.停用ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.添加一个配置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripTextBox2 = new System.Windows.Forms.ToolStripTextBox();
+            this.确定ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.删除一个配置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripComboBox1 = new System.Windows.Forms.ToolStripComboBox();
+            this.确定ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.保存配置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -44,8 +42,6 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.夏季策略ToolStripMenuItem,
-            this.冬季策略ToolStripMenuItem,
             this.添加一个配置ToolStripMenuItem,
             this.删除一个配置ToolStripMenuItem,
             this.保存配置ToolStripMenuItem});
@@ -55,60 +51,48 @@
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // 夏季策略ToolStripMenuItem
-            // 
-            this.夏季策略ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.启用ToolStripMenuItem,
-            this.停用ToolStripMenuItem});
-            this.夏季策略ToolStripMenuItem.Name = "夏季策略ToolStripMenuItem";
-            this.夏季策略ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
-            this.夏季策略ToolStripMenuItem.Text = "夏季策略";
-            // 
-            // 启用ToolStripMenuItem
-            // 
-            this.启用ToolStripMenuItem.Name = "启用ToolStripMenuItem";
-            this.启用ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
-            this.启用ToolStripMenuItem.Text = "启用";
-            // 
-            // 停用ToolStripMenuItem
-            // 
-            this.停用ToolStripMenuItem.Name = "停用ToolStripMenuItem";
-            this.停用ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
-            this.停用ToolStripMenuItem.Text = "停用";
-            // 
-            // 冬季策略ToolStripMenuItem
-            // 
-            this.冬季策略ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.启用ToolStripMenuItem1,
-            this.停用ToolStripMenuItem1});
-            this.冬季策略ToolStripMenuItem.Name = "冬季策略ToolStripMenuItem";
-            this.冬季策略ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
-            this.冬季策略ToolStripMenuItem.Text = "冬季策略";
-            // 
-            // 启用ToolStripMenuItem1
-            // 
-            this.启用ToolStripMenuItem1.Name = "启用ToolStripMenuItem1";
-            this.启用ToolStripMenuItem1.Size = new System.Drawing.Size(100, 22);
-            this.启用ToolStripMenuItem1.Text = "启用";
-            // 
-            // 停用ToolStripMenuItem1
-            // 
-            this.停用ToolStripMenuItem1.Name = "停用ToolStripMenuItem1";
-            this.停用ToolStripMenuItem1.Size = new System.Drawing.Size(100, 22);
-            this.停用ToolStripMenuItem1.Text = "停用";
-            // 
             // 添加一个配置ToolStripMenuItem
             // 
+            this.添加一个配置ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripTextBox2,
+            this.确定ToolStripMenuItem1});
             this.添加一个配置ToolStripMenuItem.Name = "添加一个配置ToolStripMenuItem";
             this.添加一个配置ToolStripMenuItem.Size = new System.Drawing.Size(92, 21);
             this.添加一个配置ToolStripMenuItem.Text = "添加一个配置";
-            this.添加一个配置ToolStripMenuItem.Click += new System.EventHandler(this.添加一个配置ToolStripMenuItem_Click);
+            // 
+            // toolStripTextBox2
+            // 
+            this.toolStripTextBox2.Name = "toolStripTextBox2";
+            this.toolStripTextBox2.Size = new System.Drawing.Size(100, 23);
+            // 
+            // 确定ToolStripMenuItem1
+            // 
+            this.确定ToolStripMenuItem1.Name = "确定ToolStripMenuItem1";
+            this.确定ToolStripMenuItem1.Size = new System.Drawing.Size(160, 22);
+            this.确定ToolStripMenuItem1.Text = "确定";
+            this.确定ToolStripMenuItem1.Click += new System.EventHandler(this.确定ToolStripMenuItem1_Click);
             // 
             // 删除一个配置ToolStripMenuItem
             // 
+            this.删除一个配置ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripComboBox1,
+            this.确定ToolStripMenuItem});
             this.删除一个配置ToolStripMenuItem.Name = "删除一个配置ToolStripMenuItem";
             this.删除一个配置ToolStripMenuItem.Size = new System.Drawing.Size(92, 21);
-            this.删除一个配置ToolStripMenuItem.Text = "删除一个配置";
+            this.删除一个配置ToolStripMenuItem.Text = "删除一个配置";            
+            // 
+            // toolStripComboBox1
+            // 
+            this.toolStripComboBox1.Name = "toolStripComboBox1";
+            this.toolStripComboBox1.Size = new System.Drawing.Size(121, 25);
+            this.toolStripComboBox1.Click += new System.EventHandler(this.toolStripComboBox1_Click);
+            // 
+            // 确定ToolStripMenuItem
+            // 
+            this.确定ToolStripMenuItem.Name = "确定ToolStripMenuItem";
+            this.确定ToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.确定ToolStripMenuItem.Text = "确定";
+            this.确定ToolStripMenuItem.Click += new System.EventHandler(this.确定ToolStripMenuItem_Click);
             // 
             // 保存配置ToolStripMenuItem
             // 
@@ -134,14 +118,12 @@
 
         #endregion
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem 夏季策略ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 冬季策略ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 添加一个配置ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 启用ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 停用ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 启用ToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem 停用ToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem 删除一个配置ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 保存配置ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 确定ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripTextBox toolStripTextBox2;
+        private System.Windows.Forms.ToolStripMenuItem 确定ToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripComboBox toolStripComboBox1;
     }
 }

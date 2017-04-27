@@ -80,6 +80,7 @@ namespace DeviceManager
         public MainForm()
         {
             InitializeComponent();
+            this.FormClosing += MainForm_FormClosing;
             ConfigData.InitConfig();
             //通用界面逻辑
             InitializeUI();
@@ -92,6 +93,19 @@ namespace DeviceManager
             InitializeUIEnd();            
             
             
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            string fileNameAS = ConfigurationManager.AppSettings["传感器列表"];
+            string pathAS = Path.Combine(Utils.GetUserPath(), fileNameAS);            
+            string fileNameSM = ConfigurationManager.AppSettings["传感器模型配置文件"];
+            string pathSM = Path.Combine(Utils.GetUserPath(), fileNameSM);
+            string fileNameAC = ConfigurationManager.AppSettings["预警配置文件"];
+            string pathAC = Path.Combine(Utils.GetUserPath(), fileNameAC);
+            Utils.ToFile(pathAS, ConfigData.GroupConfigRoot);
+            Utils.ToFile(pathSM, ConfigData.SensorModelRoot);
+            Utils.ToFile(pathAC, ConfigData.AlarmConfigRoot);
         }
         #region 模型按钮
         private void InitializeSModel()
