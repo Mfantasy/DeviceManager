@@ -223,11 +223,11 @@ namespace DeviceManager
                     }
                     if (chart.ChartAreas[0].AxisY.Minimum > double.Parse(_value))
                     {
-                        chart.ChartAreas[0].AxisY.Minimum = double.Parse(_value);
+                        chart.ChartAreas[0].AxisY.Minimum = double.Parse(_value)- double.Parse(_value)*0.01;
                     }
                     if (chart.ChartAreas[0].AxisY.Maximum < double.Parse(_value))
                     {
-                        chart.ChartAreas[0].AxisY.Maximum = double.Parse(_value);
+                        chart.ChartAreas[0].AxisY.Maximum = double.Parse(_value)+ double.Parse(_value) * 0.01;
                     }                  
                 }
                 ValueUpdated?.Invoke(this, EventArgs.Empty);
