@@ -60,10 +60,12 @@ namespace DeviceManager
                     }
                     if (name == field.Name)
                     {
-                        if(name=="uid")
-                            field.Value = jt["raw"].ToString().Remove(0, 2);
+                        if (name == "uid")
+                        {
+                            Program.mainForm.Invoke(new Action(() => field.Value = jt["raw"].ToString().Remove(0, 2)));
+                            }
                         else
-                            field.Value = jt[key].ToString();
+                        { Program.mainForm.Invoke(new Action(() => field.Value = jt[key].ToString())); }
                     }                   
                 }
             }

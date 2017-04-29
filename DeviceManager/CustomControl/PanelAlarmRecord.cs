@@ -38,7 +38,7 @@ namespace DeviceManager.CustomControl
             }
 
             cdv = new CustomDataView();          
-            cdv.Font = new Font("宋体", 15);
+            cdv.Font = new Font("微软雅黑", 15);
             cdv.Parent = this;
             cdv.Dock = DockStyle.Fill;
             dt = SqlLiteHelper.ExecuteReader(db, "SELECT * FROM record");                    
@@ -49,7 +49,6 @@ namespace DeviceManager.CustomControl
             cdv.Columns["comment"].HeaderText = "备注";
             cdv.Columns["state"].HeaderText = "状态";
             cdv.CellFormatting += Cdv_CellFormatting;
-     
         }
 
         private void Cdv_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -59,7 +58,7 @@ namespace DeviceManager.CustomControl
                 switch (e.Value.ToString())
                 {
                     case state0:
-                        cdv.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightGreen;
+                        cdv.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.GreenYellow;
                         break;
                     case state1:
                         cdv.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Yellow;

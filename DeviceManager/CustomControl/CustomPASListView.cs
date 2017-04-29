@@ -10,11 +10,11 @@ using System.Windows.Forms;
 
 namespace DeviceManager.CustomControl
 {
-    public partial class PASListView : ListView
+    public partial class CustomPASListView : ListView
     {
         public GroupConfig1 G1 { get; set; }
 
-        public PASListView(GroupConfig1 g1)
+        public CustomPASListView(GroupConfig1 g1)
         {
             InitializeComponent();
             G1 = g1;

@@ -108,14 +108,16 @@ namespace DeviceManager
                             ss.GroupName = itemgc1.Name + " " + itemgc2.Name + " " + itemgc3.Name;
                             foreach (var field in ss.Model.Fields)
                             {
-                               allFields.Add(field);
-                               field.CurrentSensor = ss;                               
+                                allFields.Add(field);
+                                field.CurrentSensor = ss;
+                              //  field.InitChart();
                             }
+
                         }
                     }
                 }
             }
-
+            //Chart初始化
         }
     }
 

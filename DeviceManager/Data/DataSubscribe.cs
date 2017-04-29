@@ -20,11 +20,7 @@ namespace DeviceManager
             byte[] bts = (byte[])o;
             int length = bts.Length;
             string jstr0 = Encoding.UTF8.GetString(bts, 0, length);
-            //测试
-            lock (Utils.lockObj)
-            {                                                                  
-               //File.AppendAllText("收到的Json原始数据.txt", jstr0);
-            }                       
+                              
             if (bts.Length > 4 && bts[0] == 0 && bts[1] == 0)
             {
                 int jbtlength = bts[2] * 256 + bts[3];
@@ -33,7 +29,6 @@ namespace DeviceManager
                     return;
                 }
                 string jstr = Encoding.UTF8.GetString(bts, 4, jbtlength);             
-                Console.WriteLine(jstr);
                 try
                 {
                     JObject.Parse(jstr);

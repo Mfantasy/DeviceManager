@@ -48,7 +48,6 @@ namespace DeviceManager.CustomControl
             {
 
             }
-
         }
      
         public void Init()
@@ -59,7 +58,7 @@ namespace DeviceManager.CustomControl
                 TabPage tabpage = new TabPage(g1.Name);
                 tabpage.Tag = g1;         
                 tabControl1.TabPages.Add(tabpage);
-                PASListView paslv = new PASListView(g1);
+                CustomPASListView paslv = new CustomPASListView(g1);
                 paslv.Dock = DockStyle.Fill;
                 paslv.Parent = tabpage;
                 foreach (GroupConfig2 g2 in g1.GroupConfigs)
@@ -74,8 +73,7 @@ namespace DeviceManager.CustomControl
                             paslv.Items.Add(lvi);
                             lvi.Group = lvg;
                             lvi.Text = ss.GroupName;
-                            lvi.SubItems.AddRange(new ListViewItem.ListViewSubItem[] {
-                                new ListViewItem.ListViewSubItem(lvi,g3.Name),
+                            lvi.SubItems.AddRange(new ListViewItem.ListViewSubItem[] {                           
                                 new ListViewItem.ListViewSubItem(lvi,ss.Model.Title),
                                 new ListViewItem.ListViewSubItem(lvi,ss.Comment),                                
                                 new ListViewItem.ListViewSubItem(lvi,ss.Uid),

@@ -87,11 +87,11 @@ namespace DeviceManager.CustomControl
             {
                 if (ex.HResult == -2147467259)
                 {
-                    MessageBox.Show(string.Format("{0}({1})暂无数据", sensor.Model.Title, sensor.Comment));
+                    MessageBox.Show(string.Format("{0}({1})暂无数据", sensor.Model.Title, sensor.Comment),"提醒", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 }
                 else
                 {
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show(ex.Message,"提醒", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 }
             }
         }
@@ -102,7 +102,9 @@ namespace DeviceManager.CustomControl
             {
                 DataTable dt = customDataView1.DataSource as DataTable;
                 SaveFileDialog sfd = new SaveFileDialog();
-                sfd.Filter = "Excel文件|.xlsx";
+                sfd.Filter = "Excel文件|.xls";
+                string name = treeView1.SelectedNode.Text;
+                sfd.FileName =name + DateTime.Now.ToString("M月d日HH时mm分");
                 sfd.RestoreDirectory = true;
                 if (sfd.ShowDialog() == DialogResult.OK)
                 {
@@ -111,7 +113,7 @@ namespace DeviceManager.CustomControl
             }
             else
             {
-                MessageBox.Show("没有数据");
+                MessageBox.Show("没有数据", "提醒", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }            
         }
     }

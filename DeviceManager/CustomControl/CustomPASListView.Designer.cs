@@ -1,6 +1,6 @@
 ﻿namespace DeviceManager.CustomControl
 {
-    partial class PASListView
+    partial class CustomPASListView
     {
         /// <summary>
         /// 必需的设计器变量。

@@ -2,6 +2,7 @@
 using DeviceManager.Model;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.IO;
 using System.Linq;
@@ -174,8 +175,8 @@ namespace DeviceManager
                     StateChanged?.Invoke(this, EventArgs.Empty);
                     if (state == 0)
                     {
-                        Label.BackColor = System.Drawing.Color.LightGreen;
-                        ClickLabel.BackColor = System.Drawing.Color.LightGreen;
+                        Label.BackColor = System.Drawing.Color.GreenYellow;
+                        ClickLabel.BackColor = System.Drawing.Color.GreenYellow;
                     }
                     else if (state == 1)
                     {
@@ -184,7 +185,6 @@ namespace DeviceManager
                     }
                     else if (state == 2)
                     {
-
                         Label.BackColor = System.Drawing.Color.Red;
                         ClickLabel.BackColor = System.Drawing.Color.Red;
                     }
@@ -204,6 +204,7 @@ namespace DeviceManager
                 }
                 catch
                 { return; }
+                
                 Label.Text = LabelText;
                 ClickLabel.Text = CLabelText;
                 latest20.Add(DateTime.Now, double.Parse(_value));
@@ -214,15 +215,20 @@ namespace DeviceManager
                 if (chart != null)
                 {
                     int index = chart.Series[0].Points.AddXY(DateTime.Now, double.Parse(_value));
+#warning 会出问题
                     chart.Series[0].Points[index].ToolTip = DateTime.Now.ToString("HH:mm:ss");
                     if (chart.Series[0].Points.Count > 20)
                     {
                         chart.Series[0].Points.RemoveAt(0);
                     }
+                    if (chart.ChartAreas[0].AxisY.Minimum > double.Parse(_value))
+                    {
+                        chart.ChartAreas[0].AxisY.Minimum = double.Parse(_value);
+                    }
                     if (chart.ChartAreas[0].AxisY.Maximum < double.Parse(_value))
                     {
                         chart.ChartAreas[0].AxisY.Maximum = double.Parse(_value);
-                    }
+                    }                  
                 }
                 ValueUpdated?.Invoke(this, EventArgs.Empty);
            
@@ -265,8 +271,7 @@ namespace DeviceManager
                 {
                     chart = new CustomChart();
                     chart.MinimumSize = new System.Drawing.Size(0, 400);
-                    chart.Titles[0].Text = CurrentSensor.GroupName;
-                    chart.Titles[1].Text = CurrentSensor.Comment;
+                    chart.Titles[0].Text = string.Format("{0} ( {1} )", CurrentSensor.GroupName, CurrentSensor.Comment); 
                     chart.Legends[0].Title = this.Alias;
                     chart.Series[0].Name = this.Unit;                    
                     foreach (var item in Latest20)
@@ -276,6 +281,17 @@ namespace DeviceManager
                 }
                 return chart;
             }            
+        }
+        public void InitChart()
+        {
+            //string sql = "SELECT * FROM SCity_MX8100_result WHERE nodeid=2000  order by time desc limit 5";
+            string sql = string.Format("SELECT {0} FROM {1}_result WHERE time nodeid = {2}  ", "*", CurrentSensor.Model.Sname, CurrentSensor.NodeId);
+            var dt = SqlLiteHelper.ExecuteReader(ConfigurationManager.AppSettings["dbPath"], sql);
+            
+            foreach (DataRow row in dt.Rows)
+            {
+                chart.Series[0].Points.AddXY(row["time"], row[Name]);
+            }
         }
 
 
@@ -291,12 +307,13 @@ namespace DeviceManager
         public string LabelText
         {
             get
-            {               
-                return Alias + " : " + Value+" "+Unit;
+            {
+                        
+                return " "+Alias +  " : " + Value+" "+  Unit;
             }
         }
         [XmlIgnore]
-        public string CLabelText { get { return Value + "\r\n" + Unit; } }
-
+        public string CLabelText { get { return Value + "\r\n" +"    "+ Unit; } }
+        
     }
 }

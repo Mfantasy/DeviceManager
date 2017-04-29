@@ -38,7 +38,7 @@ namespace DeviceManager.CustomControl
             this.CaptionLabel = new Label();
             this.CaptionLabel.AutoSize = true;
             this.CaptionLabel.BackColor = Color.Transparent;
-            this.CaptionLabel.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.CaptionLabel.Font = new System.Drawing.Font("微软雅黑", 13F, System.Drawing.FontStyle.Regular);
             this.CaptionLabel.ForeColor = Color.White;
             this.Controls.Add(CaptionLabel);
             this.CaptionText = "Caption";
@@ -100,7 +100,7 @@ namespace DeviceManager.CustomControl
 
         private void MenuButtonPanel_SizeChanged(object sender, EventArgs e)
         {
-            this.CaptionLabel.Location = new Point((this.Width - CaptionLabel.Width) / 2, (this.Height - CaptionLabel.Height) - 12);
+            this.CaptionLabel.Location = new Point((this.Width - CaptionLabel.Width) / 2, (this.Height - CaptionLabel.Height) - 10);
             if (this.Width > this.Height)
             {
                 this.Width = this.Height;

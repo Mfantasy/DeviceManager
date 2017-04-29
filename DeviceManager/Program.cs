@@ -19,7 +19,7 @@ namespace DeviceManager
         /// </summary>
         [STAThread]
         static void Main()
-        {
+        { 
             //Application.Run(new TestForm());
             //return;
             Application.EnableVisualStyles();                    
