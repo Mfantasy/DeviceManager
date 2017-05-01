@@ -244,8 +244,10 @@ namespace DeviceManager
                 foreach (Field item in ss.Model.Fields)
                 {
                     if (item.Realtime)
-                    {                        
-                        flp.Controls.Add(item.Chart);
+                    {
+                   
+                        flp.Controls.Add(item.ChartPanel);
+                        //flp.Controls.Add(item.Chart);
                     }
                 }
             }
@@ -316,7 +318,7 @@ namespace DeviceManager
         {
             Field field = (Field)((sender as Label).Tag);
             ChartForm cf = new ChartForm();
-            field.Chart.Parent = cf;
+            field.ChartPanel.Parent = cf;
             cf.ShowDialog();
         }
         #endregion

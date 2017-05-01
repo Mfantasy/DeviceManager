@@ -207,11 +207,11 @@ namespace DeviceManager
                 
                 Label.Text = LabelText;
                 ClickLabel.Text = CLabelText;
-                latest20.Add(DateTime.Now, double.Parse(_value));
-                if (latest20.Count > 20)
-                {
-                    latest20.Remove(latest20.ElementAt(0).Key);
-                }
+                //latest20.Add(DateTime.Now, double.Parse(_value));
+                //if (latest20.Count > 20)
+                //{
+                //    latest20.Remove(latest20.ElementAt(0).Key);
+                //}
                 if (chart != null)
                 {
                     int index = chart.Series[0].Points.AddXY(DateTime.Now, double.Parse(_value));
@@ -223,11 +223,11 @@ namespace DeviceManager
                     }
                     if (chart.ChartAreas[0].AxisY.Minimum > double.Parse(_value))
                     {
-                        chart.ChartAreas[0].AxisY.Minimum = double.Parse(_value)- double.Parse(_value)*0.01;
+                        chart.ChartAreas[0].AxisY.Minimum = double.Parse(_value)- (int)(double.Parse(_value)*0.01);
                     }
                     if (chart.ChartAreas[0].AxisY.Maximum < double.Parse(_value))
                     {
-                        chart.ChartAreas[0].AxisY.Maximum = double.Parse(_value)+ double.Parse(_value) * 0.01;
+                        chart.ChartAreas[0].AxisY.Maximum = double.Parse(_value)+ (int)(double.Parse(_value) * 0.01);
                     }                  
                 }
                 ValueUpdated?.Invoke(this, EventArgs.Empty);
@@ -261,8 +261,51 @@ namespace DeviceManager
             }
         }
 
-        private CustomChart chart;
+        private ComboBox comboBox;
+        [XmlIgnore]
+        public ComboBox ComboBox
+        {
+            get
+            {
+                if (comboBox == null)
+                {
+                    comboBox = new ComboBox();
+                    comboBox.Items.Add("最新数据");
+                    comboBox.Items.Add("全部数据");
+                    comboBox.Items.Add("历史数据");
+                    comboBox.SelectedIndex = 0;                    
+                }
+                return comboBox;
+            }
+            
+        }
 
+        private void ComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (comboBox.SelectedIndex)
+            {
+                case 0:
+                    break;
+                case 1:
+                    break;
+                case 2:
+                    break;
+
+            }
+        }
+
+
+        private Panel chartPanel;
+        [XmlIgnore]
+        public Panel ChartPanel
+        {
+            get { return chartPanel; }
+            set { chartPanel = value; }
+        }
+
+
+        private CustomChart chart;
+        [XmlIgnore]
         public CustomChart  Chart
         {
             get
@@ -270,28 +313,37 @@ namespace DeviceManager
                 if (chart == null)
                 {
                     chart = new CustomChart();
-                    chart.MinimumSize = new System.Drawing.Size(0, 400);
+                    //chart.MinimumSize = new System.Drawing.Size(0, 400);
                     chart.Titles[0].Text = string.Format("{0} ( {1} )", CurrentSensor.GroupName, CurrentSensor.Comment); 
                     chart.Legends[0].Title = this.Alias;
                     chart.Series[0].Name = this.Unit;                    
-                    foreach (var item in Latest20)
-                    {
-                        chart.Series[0].Points.AddXY(item.Key, item.Value);
-                    }                    
+                    //foreach (var item in Latest20)
+                    //{
+                    //    chart.Series[0].Points.AddXY(item.Key, item.Value);
+                    //}                    
                 }
                 return chart;
-            }            
+            }                    
         }
         public void InitChart()
         {
+            ComboBox.Location = new System.Drawing.Point(20, 20);
+            ComboBox.Visible = true;
+            ComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            chartPanel = new Panel();
+            chartPanel.Dock = DockStyle.Fill;
+            chartPanel.MinimumSize = new System.Drawing.Size(0, 400);
+            chartPanel.Controls.Add(Chart);
+            chartPanel.Controls.Add(ComboBox);
+            ComboBox.BringToFront();
             //string sql = "SELECT * FROM SCity_MX8100_result WHERE nodeid=2000  order by time desc limit 5";
-            string sql = string.Format("SELECT {0} FROM {1}_result WHERE time nodeid = {2}  ", "*", CurrentSensor.Model.Sname, CurrentSensor.NodeId);
-            var dt = SqlLiteHelper.ExecuteReader(ConfigurationManager.AppSettings["dbPath"], sql);
-            
-            foreach (DataRow row in dt.Rows)
-            {
-                chart.Series[0].Points.AddXY(row["time"], row[Name]);
-            }
+            //string sql = string.Format("SELECT {0} FROM {1}_result WHERE time nodeid = {2}  ", "*", CurrentSensor.Model.Sname, CurrentSensor.NodeId);
+            //var dt = SqlLiteHelper.ExecuteReader(ConfigurationManager.AppSettings["dbPath"], sql);
+
+            //foreach (DataRow row in dt.Rows)
+            //{
+            //    chart.Series[0].Points.AddXY(row["time"], row[Name]);
+            //}
         }
 
 

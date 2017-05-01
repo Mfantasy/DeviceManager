@@ -23,11 +23,18 @@ namespace DeviceManager.CustomControl
             this.Titles.Add(title1);
         
             chartArea1.AxisX.MajorTickMark.Enabled = false;
-            chartArea1.AxisY.MajorTickMark.Enabled = false;                        
+            chartArea1.AxisY.MajorTickMark.Enabled = true;            
             chartArea1.AxisX.MajorGrid.Enabled = false;
             chartArea1.AxisY.MajorGrid.Enabled = false;
             chartArea1.AxisY.IsStartedFromZero = false;            
             chartArea1.Name = "ChartArea1";
+            chartArea1.CursorX.AutoScroll = true;
+            chartArea1.CursorX.AxisType = AxisType.Primary;
+            //chartArea1.CursorX.IsUserEnabled = true;
+            chartArea1.CursorX.IntervalOffsetType = DateTimeIntervalType.Auto;
+            chartArea1.CursorX.IntervalType = DateTimeIntervalType.Auto;
+            chartArea1.CursorX.IsUserSelectionEnabled = true;
+        
             ChartAreas.Add(chartArea1);
             
             series1.ChartArea = "ChartArea1";
@@ -38,7 +45,7 @@ namespace DeviceManager.CustomControl
             series1.MarkerColor = System.Drawing.Color.Red;
             series1.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
             series1.Name = "Series1";
-            series1.XValueType = ChartValueType.Time;
+            series1.XValueType = ChartValueType.Time;        
             series1.IsXValueIndexed = true;           
             Series.Add(series1);
             this.Dock = System.Windows.Forms.DockStyle.Fill;

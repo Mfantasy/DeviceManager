@@ -22,13 +22,14 @@ namespace DeviceManager
                 {
                     string fileName = ConfigurationManager.AppSettings["传感器模型配置文件"];
                     string path = Path.Combine(Utils.GetUserPath(), fileName);
+                    
                     if (!File.Exists(path))
                     {
                         sensorModelCfg = new SensorModelRoot();
                         sensorModelCfg.SensorModels = new List<SensorModel>();
                     }
                     else
-                        sensorModelCfg = Utils.FromXMLFile<SensorModelRoot>(path);
+                        sensorModelCfg = Utils.FromXMLFile<SensorModelRoot>(fileName);
                 }
                 return sensorModelCfg;
             }
@@ -47,7 +48,7 @@ namespace DeviceManager
                         groupCfg.GroupConfig1s = new List<GroupConfig1>();         
                     }
                     else
-                        groupCfg = Utils.FromXMLFile<GroupConfigRoot>(path);
+                        groupCfg = Utils.FromXMLFile<GroupConfigRoot>(fileName);
                 }
                 return groupCfg;
             }
@@ -66,7 +67,7 @@ namespace DeviceManager
                         alarmCfg.AlarmConfigs = new List<AlarmConfig>();
                     }
                     else
-                        alarmCfg = Utils.FromXMLFile<AlarmConfigRoot>(path);
+                        alarmCfg = Utils.FromXMLFile<AlarmConfigRoot>(fileName);
                 }
                 return alarmCfg;
             }
@@ -110,7 +111,7 @@ namespace DeviceManager
                             {
                                 allFields.Add(field);
                                 field.CurrentSensor = ss;
-                              //  field.InitChart();
+                                field.InitChart();
                             }
 
                         }

@@ -22,13 +22,16 @@ namespace DeviceManagerO
             //ContextMenu = new ContextMenu();            
         }
 
+        Random r = new Random();
         private void button1_Click(object sender, EventArgs e)
         {
-
+            int i=r.Next(0, 10);
+            customChart2.Series[0].Points.AddXY(DateTime.Now.ToString("HH:MM:ss"), i);
         }
-        int i = 0;
+        
         private void button2_Click(object sender, EventArgs e)
         {           
+            //加上按钮控制属性 
             //string x = new tex
             //添加一个节点
             //treeView1.Nodes.Add(i.ToString());
@@ -43,23 +46,14 @@ namespace DeviceManagerO
 
         private void TestForm_Load(object sender, EventArgs e)
         {
-            customChart1.Parent = panel1;
-            customChart1.Dock = DockStyle.Fill;
-            System.Windows.Forms.Timer tm = new System.Windows.Forms.Timer();
-            tm.Interval = 1 * 1000;
-            tm.Tick += new EventHandler(tm_Tick);
-            tm.Start();
+         
         }
-        Random r = new Random();
-        int y = 5678;
-        CustomChart customChart1 = new CustomChart();
-        private void tm_Tick(object sender, EventArgs e)
+
+        private void button3_Click(object sender, EventArgs e)
         {
-            //y = r.Next(1, 1111111);
-            y += 10;
-            customChart1.Series[0].Points.AddXY(DateTime.Now, y);
-            if (customChart1.Series[0].Points.Count > 10)
-                customChart1.Series[0].Points.RemoveAt(0);
+            customChart2.ChartAreas[0].CursorX.IsUserSelectionEnabled = false;
+
+            
         }
     }
 
