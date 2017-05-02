@@ -51,16 +51,17 @@ namespace DeviceManager.CustomControl
 
         private void NewItem(AlarmConfig item)
         {
-            ToolStripMenuItem tsmItem = new ToolStripMenuItem(item.Name);
+            ToolStripMenuItem tsmItem = new ToolStripMenuItem(item.Name);            
             menuStrip1.Items.Insert(0, tsmItem);
             CustomAlarmSetControl scg = new CustomAlarmSetControl(item);
+            scg.Visible = true;
             tsmItem.Tag = scg;
             tsmItem.Click += TsmItem_Click;
             ToolStripMenuItem enable = (ToolStripMenuItem)tsmItem.DropDownItems.Add("启用");
             enable.Tag = item;
             enable.Click += Enable_Click;                                    
         }
-
+  
         private void TsmItem_Click(object sender, EventArgs e)
         {
             ToolStripMenuItem tsmItem = sender as ToolStripMenuItem;

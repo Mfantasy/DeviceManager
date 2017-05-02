@@ -20,7 +20,7 @@ namespace DeviceManager.CustomControl
             ToolStripItem tsc = new ToolStripButton("重命名");
             tsc.Click += Tsc_Click;
             ToolStripItem tsd = new ToolStripButton("删除");
-            tsd.Click += Tsi_Click;
+            tsd.Click += Tsd_Click;
             cs.Items.Add(tsc);
             cs.Items.Add(tsd);                        
             tabControl1.ContextMenuStrip = cs;
@@ -36,17 +36,24 @@ namespace DeviceManager.CustomControl
                 if (!string.IsNullOrWhiteSpace(name))
                 {
                     MessageBox.Show(string.Format("确定将[{0}]重命名为[{1}]?",tabControl1.SelectedTab.Text,name), "提醒", MessageBoxButtons.YesNo);
+                    GroupConfig1 g1 = tabControl1.SelectedTab.Tag as GroupConfig1;
                     tabControl1.SelectedTab.Text = name;
+                    g1.Name = name;
                     return;                    
                 }
             }
         }
 
-        private void Tsi_Click(object sender, EventArgs e)
+        private void Tsd_Click(object sender, EventArgs e)
         {
-            if(MessageBox.Show("确定删除?", "提醒", MessageBoxButtons.OKCancel)== DialogResult.OK)
+            if (tabControl1.SelectedTab != null)
             {
-
+                if (MessageBox.Show("确定删除[" + tabControl1.SelectedTab.Name + "]?", "提醒", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                {
+                    GroupConfig1 g1 = tabControl1.SelectedTab.Tag as GroupConfig1;
+                    tabControl1.TabPages.Remove(tabControl1.SelectedTab);
+                    ConfigData.GroupConfigRoot.GroupConfig1s.Remove(g1);
+                }
             }
         }
      
@@ -70,6 +77,7 @@ namespace DeviceManager.CustomControl
                         foreach (Sensor ss in g3.Sensors)
                         {
                             ListViewItem lvi = new ListViewItem(lvg);
+                            lvi.Tag = ss;
                             paslv.Items.Add(lvi);
                             lvi.Group = lvg;
                             lvi.Text = ss.GroupName;
@@ -106,6 +114,8 @@ namespace DeviceManager.CustomControl
                         GroupConfig1 gc1 = new GroupConfig1();
                         gc1.Name = name;
                         tabControl1.TabPages[name].Tag = gc1;
+                        CustomPASListView cp = new CustomPASListView(gc1);
+                        cp.Parent = tabControl1.TabPages[name];
                         return;
                     }
                 }                                

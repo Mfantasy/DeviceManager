@@ -20,6 +20,10 @@ namespace DeviceManager.CustomControl
             G1 = g1;
             this.ContextMenuStrip = contextMenuStrip1;
             //重命名分组
+            if (g1.GroupConfigs == null)
+            {
+                g1.GroupConfigs = new List<GroupConfig2>();
+            }
             this.toolStripComboBox3.Items.AddRange(g1.GroupConfigs.ToArray());
             //添加设备
             this.toolStripComboBox1.Items.AddRange(g1.GroupConfigs.ToArray());
@@ -39,7 +43,10 @@ namespace DeviceManager.CustomControl
         private void  ToolStripComboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             toolStripComboBox2.Items.Clear();
-            toolStripComboBox2.Items.AddRange((toolStripComboBox1.SelectedItem as GroupConfig2).GroupConfigs.ToArray());
+            if ((toolStripComboBox1.SelectedItem as GroupConfig2).GroupConfigs != null)
+            {
+                toolStripComboBox2.Items.AddRange((toolStripComboBox1.SelectedItem as GroupConfig2).GroupConfigs.ToArray());
+            }
         }
 
         private void 确定ToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -50,19 +57,38 @@ namespace DeviceManager.CustomControl
 
         private void 确定ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //添加组
-            //toolStripTextBox1.txt
+            //添加组(楼层)
+            if (String.IsNullOrWhiteSpace(toolStripTextBox1.Text))
+            {
+                GroupConfig2 g2 = new GroupConfig2();
+                g2.Name = toolStripTextBox1.Text;
+                g2.GroupConfigs = new List<GroupConfig3>();
+                this.toolStripComboBox3.Items.Add(g2);
+                this.toolStripComboBox1.Items.Add(g2);
+                G1.GroupConfigs.Add(g2);
+            }
         }
 
         private void ToolStripMenuItem3_Click(object sender, EventArgs e)
         {
             //重命名分组
-            //toolStripTextBox3.text
+            if (String.IsNullOrWhiteSpace(toolStripTextBox3.Text))
+            {
+                ((GroupConfig2)toolStripComboBox3.SelectedItem).Name = toolStripTextBox3.Text;
+            }
         }
 
         private void ToolStripMenuItem1_Click(object sender, System.EventArgs e)
         {
             //编辑此设备
+            if (SelectedItems != null)
+            {
+                Sensor ss = SelectedItems[0].Tag as Sensor;
+                if (MessageBox.Show("确认编辑["+ss.GroupName+" "+ss.ModelKey+" "+ss.Comment+" "+"]?","提醒", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                {
+                    
+                }
+            }
         }
 
     }
