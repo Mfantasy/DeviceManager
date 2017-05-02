@@ -47,18 +47,22 @@
             // 
             // dateTimePickerRetrieveBegin
             // 
+            this.dateTimePickerRetrieveBegin.CustomFormat = "yyyy年M月d日 HH:mm";
             this.dateTimePickerRetrieveBegin.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.dateTimePickerRetrieveBegin.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePickerRetrieveBegin.Location = new System.Drawing.Point(143, 13);
             this.dateTimePickerRetrieveBegin.Name = "dateTimePickerRetrieveBegin";
-            this.dateTimePickerRetrieveBegin.Size = new System.Drawing.Size(200, 33);
+            this.dateTimePickerRetrieveBegin.Size = new System.Drawing.Size(286, 33);
             this.dateTimePickerRetrieveBegin.TabIndex = 1;
             // 
             // dateTimePickerRetrieveEnd
             // 
+            this.dateTimePickerRetrieveEnd.CustomFormat = "yyyy年M月d日 HH:mm";
             this.dateTimePickerRetrieveEnd.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.dateTimePickerRetrieveEnd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePickerRetrieveEnd.Location = new System.Drawing.Point(143, 71);
             this.dateTimePickerRetrieveEnd.Name = "dateTimePickerRetrieveEnd";
-            this.dateTimePickerRetrieveEnd.Size = new System.Drawing.Size(200, 33);
+            this.dateTimePickerRetrieveEnd.Size = new System.Drawing.Size(286, 33);
             this.dateTimePickerRetrieveEnd.TabIndex = 3;
             // 
             // label2
@@ -74,7 +78,7 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button1.Location = new System.Drawing.Point(393, 62);
+            this.button1.Location = new System.Drawing.Point(531, 68);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(108, 42);
             this.button1.TabIndex = 4;
@@ -86,7 +90,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(513, 122);
+            this.ClientSize = new System.Drawing.Size(650, 122);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dateTimePickerRetrieveEnd);
             this.Controls.Add(this.label2);

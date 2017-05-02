@@ -54,7 +54,8 @@ namespace DeviceManager.CustomControl
             ToolStripMenuItem tsmItem = new ToolStripMenuItem(item.Name);            
             menuStrip1.Items.Insert(0, tsmItem);
             CustomAlarmSetControl scg = new CustomAlarmSetControl(item);
-            scg.Visible = true;
+            scg.Parent = this;
+            scg.Dock = DockStyle.Fill;       
             tsmItem.Tag = scg;
             tsmItem.Click += TsmItem_Click;
             ToolStripMenuItem enable = (ToolStripMenuItem)tsmItem.DropDownItems.Add("启用");
@@ -65,7 +66,7 @@ namespace DeviceManager.CustomControl
         private void TsmItem_Click(object sender, EventArgs e)
         {
             ToolStripMenuItem tsmItem = sender as ToolStripMenuItem;
-            var scg = tsmItem.Tag as CustomAlarmSetControl;
+            var scg = tsmItem.Tag as CustomAlarmSetControl;            
             scg.BringToFront();    
         }
     

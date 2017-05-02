@@ -363,6 +363,8 @@ namespace DeviceManager
             menuButtonPanel3.Panel = par;
             menuButtonPanel4.Panel = paset;
             menuButtonPanel5.Panel = pas;
+            paset.Visible = false;
+            pas.Visible = false;
         }  
 
         void InitializeUI()

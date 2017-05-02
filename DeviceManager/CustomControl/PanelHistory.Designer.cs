@@ -49,42 +49,46 @@
             // dateTimePickerRetrieveEnd
             // 
             this.dateTimePickerRetrieveEnd.CustomFormat = "yyyy年M月d日 HH:mm";
+            this.dateTimePickerRetrieveEnd.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.dateTimePickerRetrieveEnd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePickerRetrieveEnd.Location = new System.Drawing.Point(217, 19);
+            this.dateTimePickerRetrieveEnd.Location = new System.Drawing.Point(244, 19);
             this.dateTimePickerRetrieveEnd.MaxDate = new System.DateTime(2111, 11, 11, 0, 0, 0, 0);
             this.dateTimePickerRetrieveEnd.MinDate = new System.DateTime(2015, 9, 15, 0, 0, 0, 0);
             this.dateTimePickerRetrieveEnd.Name = "dateTimePickerRetrieveEnd";
-            this.dateTimePickerRetrieveEnd.Size = new System.Drawing.Size(161, 21);
+            this.dateTimePickerRetrieveEnd.Size = new System.Drawing.Size(209, 29);
             this.dateTimePickerRetrieveEnd.TabIndex = 4;
             this.dateTimePickerRetrieveEnd.Value = new System.DateTime(2016, 6, 28, 0, 0, 0, 0);
             // 
             // dateTimePickerRetrieveBegin
             // 
             this.dateTimePickerRetrieveBegin.CustomFormat = "yyyy年M月d日 HH:mm";
+            this.dateTimePickerRetrieveBegin.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.dateTimePickerRetrieveBegin.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePickerRetrieveBegin.Location = new System.Drawing.Point(8, 19);
             this.dateTimePickerRetrieveBegin.MaxDate = new System.DateTime(2111, 11, 11, 0, 0, 0, 0);
             this.dateTimePickerRetrieveBegin.MinDate = new System.DateTime(2015, 9, 15, 0, 0, 0, 0);
             this.dateTimePickerRetrieveBegin.Name = "dateTimePickerRetrieveBegin";
-            this.dateTimePickerRetrieveBegin.Size = new System.Drawing.Size(161, 21);
+            this.dateTimePickerRetrieveBegin.Size = new System.Drawing.Size(199, 29);
             this.dateTimePickerRetrieveBegin.TabIndex = 3;
             this.dateTimePickerRetrieveBegin.Value = new System.DateTime(2016, 6, 28, 0, 0, 0, 0);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label1.Location = new System.Drawing.Point(6, 4);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(53, 12);
+            this.label1.Size = new System.Drawing.Size(74, 21);
             this.label1.TabIndex = 6;
             this.label1.Text = "开始时间";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(215, 4);
+            this.label2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label2.Location = new System.Drawing.Point(240, 4);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(53, 12);
+            this.label2.Size = new System.Drawing.Size(74, 21);
             this.label2.TabIndex = 7;
             this.label2.Text = "结束时间";
             // 

@@ -68,7 +68,7 @@ namespace DeviceManager.CustomControl
         void SelectData(Sensor sensor)
         {
             //DataTable dt= SqlLiteHelper.ExecuteReader("SELECT * FROM SCity_MX8100_result");
-            string sql = string.Format("SELECT {0} FROM {1}_result WHERE time < '{2}' and time >'{3}' and nodeid = {4} ", sensor.HisColumnStr, sensor.Model.Sname, dateTimePickerRetrieveEnd.Value.ToString("yyyy-MM-dd HH-mm"), dateTimePickerRetrieveBegin.Value.ToString("yyyy-MM-dd HH-mm"), sensor.NodeId);
+            string sql = string.Format("SELECT {0} FROM {1}_result WHERE time < '{2}' and time >'{3}' and nodeid = {4} ", sensor.HisColumnStr, sensor.Model.Sname, dateTimePickerRetrieveEnd.Value.ToString("yyyy-MM-dd HH:mm"), dateTimePickerRetrieveBegin.Value.ToString("yyyy-MM-dd HH:mm"), sensor.NodeId);
             try
             {
                 DataTable dt = SqlLiteHelper.ExecuteReader(ConfigurationManager.AppSettings["dbPath"], sql);

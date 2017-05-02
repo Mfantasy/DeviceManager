@@ -292,14 +292,15 @@ namespace DeviceManager
                     break;
                 case 1:
                     ChartAll.Series[0].Points.Clear();
-                    string sqlAll = string.Format("SELECT {0} FROM {1}_result WHERE time nodeid = {2}  ", Name + ",time", CurrentSensor.Model.Sname, CurrentSensor.NodeId);
+                    string sqlAll = string.Format("SELECT {0} FROM {1}_result WHERE nodeid = {2}  ", Name + ",time", CurrentSensor.Model.Sname, CurrentSensor.NodeId);
                     DataTable tableAll = null;
                     try
                     {
                         tableAll = SqlLiteHelper.ExecuteReader(ConfigurationManager.AppSettings["dbPath"], sqlAll);
                         foreach (DataRow row in tableAll.Rows)
                         {
-                            ChartAll.Series[0].Points.AddXY(row["time"], row[Name]);
+                            int index = ChartAll.Series[0].Points.AddXY(row["time"].ToString(), row[Name]);
+                            ChartAll.Series[0].Points[index].ToolTip = string.Format("{0} 数据{1}",row["time"],row[Name]);
                         }
                         ChartAll.BringToFront();
                         ComboBox.BringToFront();
@@ -316,14 +317,15 @@ namespace DeviceManager
                     if (dtpf.ShowDialog() == DialogResult.OK)
                     {
                         ChartHis.Series[0].Points.Clear();
-                        string sqlHis = string.Format("SELECT {0} FROM {1}_result WHERE time nodeid = {2} and time < '{3}' and time >'{4}' ", Name+",time", CurrentSensor.Model.Sname, CurrentSensor.NodeId, dtpf.dateTimePickerRetrieveEnd.Value.ToString("yyyy-MM-dd HH-mm"), dtpf.dateTimePickerRetrieveBegin.Value.ToString("yyyy-MM-dd HH-mm"));
+                        string sqlHis = string.Format("SELECT {0} FROM {1}_result WHERE nodeid = {2} and time < '{3}' and time >'{4}' ", Name+",time", CurrentSensor.Model.Sname, CurrentSensor.NodeId, dtpf.dateTimePickerRetrieveEnd.Value.ToString("yyyy-MM-dd HH:mm"), dtpf.dateTimePickerRetrieveBegin.Value.ToString("yyyy-MM-dd HH:mm"));
                         DataTable tableHis = null;
                         try
                         {
                             tableHis = SqlLiteHelper.ExecuteReader(ConfigurationManager.AppSettings["dbPath"], sqlHis);
                             foreach (DataRow row in tableHis.Rows)
                             {
-                                ChartAll.Series[0].Points.AddXY(row["time"], row[Name]);
+                                int idx = ChartHis.Series[0].Points.AddXY(row["time"].ToString(), row[Name]);
+                                ChartHis.Series[0].Points[idx].ToolTip = string.Format("{0} 数据{1}", row["time"], row[Name]);
                             }
                             ChartHis.BringToFront();
                             ComboBox.BringToFront();
@@ -385,10 +387,7 @@ namespace DeviceManager
                     chartHis.Titles[0].Text = string.Format("{0} ( {1} )", CurrentSensor.GroupName, CurrentSensor.Comment);
                     chartHis.Legends[0].Title = this.Alias;
                     chartHis.Series[0].Name = this.Unit;
-                    //foreach (var item in Latest20)
-                    //{
-                    //    chart.Series[0].Points.AddXY(item.Key, item.Value);
-                    //}                    
+                                 
                 }
                 return chartHis;
             }
@@ -402,14 +401,11 @@ namespace DeviceManager
                 if (chartAll == null)
                 {
                     chartAll = new CustomChart();
-                    chartHis.Series[0].IsValueShownAsLabel = false;
+                    chartAll.Series[0].IsValueShownAsLabel = false;
                     chartAll.Titles[0].Text = string.Format("{0} ( {1} )", CurrentSensor.GroupName, CurrentSensor.Comment);
                     chartAll.Legends[0].Title = this.Alias;
                     chartAll.Series[0].Name = this.Unit;                    
-                    //foreach (var item in Latest20)
-                    //{
-                    //    chart.Series[0].Points.AddXY(item.Key, item.Value);
-                    //}                    
+                               
                 }
                 return chartAll;
             }                    
@@ -417,6 +413,7 @@ namespace DeviceManager
         public void InitChart()
         {
             ComboBox.Location = new System.Drawing.Point(20, 20);
+            ComboBox.SelectedIndexChanged += ComboBox_SelectedIndexChanged;
             ComboBox.Visible = true;
             ComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             chartPanel = new Panel();
@@ -438,8 +435,7 @@ namespace DeviceManager
             //}
         }
 
-
-         
+      
         [XmlIgnore]
         public Label Label { get; set; }
         [XmlIgnore]

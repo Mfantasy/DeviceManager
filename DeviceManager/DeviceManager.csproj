@@ -33,8 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>
-    </ApplicationIcon>
+    <ApplicationIcon>20170416011401263_easyicon_net_256.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup />
   <ItemGroup>
@@ -111,12 +110,6 @@
     </Compile>
     <Compile Include="CustomControl\PanelAllSensors.Designer.cs">
       <DependentUpon>PanelAllSensors.cs</DependentUpon>
-    </Compile>
-    <Compile Include="CustomControl\PanelSet.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="CustomControl\PanelSet.Designer.cs">
-      <DependentUpon>PanelSet.cs</DependentUpon>
     </Compile>
     <Compile Include="CustomControl\CustomPASListView.cs">
       <SubType>Component</SubType>
@@ -207,9 +200,6 @@
     <EmbeddedResource Include="CustomControl\PanelAllSensors.resx">
       <DependentUpon>PanelAllSensors.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CustomControl\PanelSet.resx">
-      <DependentUpon>PanelSet.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="CustomControl\CustomPASListView.resx">
       <DependentUpon>CustomPASListView.cs</DependentUpon>
     </EmbeddedResource>
@@ -266,6 +256,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="20170416011401263_easyicon_net_256.ico" />
     <Content Include="Config\AlarmConfig.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
