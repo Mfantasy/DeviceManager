@@ -1,4 +1,5 @@
 ﻿using DeviceManager.CustomControl;
+using DeviceManager.CustomForm;
 using DeviceManager.Model;
 using System;
 using System.Collections.Generic;
@@ -215,7 +216,6 @@ namespace DeviceManager
                 if (chart != null)
                 {
                     int index = chart.Series[0].Points.AddXY(DateTime.Now, double.Parse(_value));
-#warning 会出问题
                     chart.Series[0].Points[index].ToolTip = DateTime.Now.ToString("HH:mm:ss");
                     if (chart.Series[0].Points.Count > 20)
                     {
@@ -261,6 +261,8 @@ namespace DeviceManager
             }
         }
 
+
+
         private ComboBox comboBox;
         [XmlIgnore]
         public ComboBox ComboBox
@@ -285,12 +287,58 @@ namespace DeviceManager
             switch (comboBox.SelectedIndex)
             {
                 case 0:
+                    Chart.BringToFront();
+                    ComboBox.BringToFront();
                     break;
                 case 1:
+                    ChartAll.Series[0].Points.Clear();
+                    string sqlAll = string.Format("SELECT {0} FROM {1}_result WHERE time nodeid = {2}  ", Name + ",time", CurrentSensor.Model.Sname, CurrentSensor.NodeId);
+                    DataTable tableAll = null;
+                    try
+                    {
+                        tableAll = SqlLiteHelper.ExecuteReader(ConfigurationManager.AppSettings["dbPath"], sqlAll);
+                        foreach (DataRow row in tableAll.Rows)
+                        {
+                            ChartAll.Series[0].Points.AddXY(row["time"], row[Name]);
+                        }
+                        ChartAll.BringToFront();
+                        ComboBox.BringToFront();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("查询数据失败");
+                        ComboBox.SelectedIndex = 0;
+                    }
+                    
                     break;
                 case 2:
+                    DateTimePickerForm dtpf = new DateTimePickerForm();
+                    if (dtpf.ShowDialog() == DialogResult.OK)
+                    {
+                        ChartHis.Series[0].Points.Clear();
+                        string sqlHis = string.Format("SELECT {0} FROM {1}_result WHERE time nodeid = {2} and time < '{3}' and time >'{4}' ", Name+",time", CurrentSensor.Model.Sname, CurrentSensor.NodeId, dtpf.dateTimePickerRetrieveEnd.Value.ToString("yyyy-MM-dd HH-mm"), dtpf.dateTimePickerRetrieveBegin.Value.ToString("yyyy-MM-dd HH-mm"));
+                        DataTable tableHis = null;
+                        try
+                        {
+                            tableHis = SqlLiteHelper.ExecuteReader(ConfigurationManager.AppSettings["dbPath"], sqlHis);
+                            foreach (DataRow row in tableHis.Rows)
+                            {
+                                ChartAll.Series[0].Points.AddXY(row["time"], row[Name]);
+                            }
+                            ChartHis.BringToFront();
+                            ComboBox.BringToFront();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("查询数据失败");
+                            ComboBox.SelectedIndex = 0;
+                        }
+                    }
+                    else
+                    {
+                        ComboBox.SelectedIndex = 0;
+                    }          
                     break;
-
             }
         }
 
@@ -303,10 +351,9 @@ namespace DeviceManager
             set { chartPanel = value; }
         }
 
-
         private CustomChart chart;
         [XmlIgnore]
-        public CustomChart  Chart
+        public CustomChart Chart
         {
             get
             {
@@ -314,15 +361,57 @@ namespace DeviceManager
                 {
                     chart = new CustomChart();
                     //chart.MinimumSize = new System.Drawing.Size(0, 400);
-                    chart.Titles[0].Text = string.Format("{0} ( {1} )", CurrentSensor.GroupName, CurrentSensor.Comment); 
+                    chart.Titles[0].Text = string.Format("{0} ( {1} )", CurrentSensor.GroupName, CurrentSensor.Comment);
                     chart.Legends[0].Title = this.Alias;
-                    chart.Series[0].Name = this.Unit;                    
+                    chart.Series[0].Name = this.Unit;
                     //foreach (var item in Latest20)
                     //{
                     //    chart.Series[0].Points.AddXY(item.Key, item.Value);
                     //}                    
                 }
                 return chart;
+            }
+        }
+        private CustomChart chartHis;
+        [XmlIgnore]
+        public CustomChart ChartHis
+        {
+            get
+            {
+                if (chartHis == null)
+                {
+                    chartHis = new CustomChart();
+                    chartHis.Series[0].IsValueShownAsLabel = false;                    
+                    chartHis.Titles[0].Text = string.Format("{0} ( {1} )", CurrentSensor.GroupName, CurrentSensor.Comment);
+                    chartHis.Legends[0].Title = this.Alias;
+                    chartHis.Series[0].Name = this.Unit;
+                    //foreach (var item in Latest20)
+                    //{
+                    //    chart.Series[0].Points.AddXY(item.Key, item.Value);
+                    //}                    
+                }
+                return chartHis;
+            }
+        }
+        private CustomChart chartAll;
+        [XmlIgnore]
+        public CustomChart  ChartAll
+        {
+            get
+            {
+                if (chartAll == null)
+                {
+                    chartAll = new CustomChart();
+                    chartHis.Series[0].IsValueShownAsLabel = false;
+                    chartAll.Titles[0].Text = string.Format("{0} ( {1} )", CurrentSensor.GroupName, CurrentSensor.Comment);
+                    chartAll.Legends[0].Title = this.Alias;
+                    chartAll.Series[0].Name = this.Unit;                    
+                    //foreach (var item in Latest20)
+                    //{
+                    //    chart.Series[0].Points.AddXY(item.Key, item.Value);
+                    //}                    
+                }
+                return chartAll;
             }                    
         }
         public void InitChart()
@@ -334,7 +423,10 @@ namespace DeviceManager
             chartPanel.Dock = DockStyle.Fill;
             chartPanel.MinimumSize = new System.Drawing.Size(0, 400);
             chartPanel.Controls.Add(Chart);
+            chartPanel.Controls.Add(ChartHis);
+            chartPanel.Controls.Add(ChartAll);
             chartPanel.Controls.Add(ComboBox);
+            Chart.BringToFront();
             ComboBox.BringToFront();
             //string sql = "SELECT * FROM SCity_MX8100_result WHERE nodeid=2000  order by time desc limit 5";
             //string sql = string.Format("SELECT {0} FROM {1}_result WHERE time nodeid = {2}  ", "*", CurrentSensor.Model.Sname, CurrentSensor.NodeId);
@@ -347,9 +439,6 @@ namespace DeviceManager
         }
 
 
-        Dictionary<DateTime, double> latest20 = new Dictionary<DateTime, double>();
-        [XmlIgnore]
-        public Dictionary<DateTime,double> Latest20 { get { return latest20; } }
          
         [XmlIgnore]
         public Label Label { get; set; }

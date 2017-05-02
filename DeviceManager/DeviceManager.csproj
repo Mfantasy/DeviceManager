@@ -130,6 +130,12 @@
     <Compile Include="CustomForm\ChartForm.Designer.cs">
       <DependentUpon>ChartForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="CustomForm\DateTimePickerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomForm\DateTimePickerForm.Designer.cs">
+      <DependentUpon>DateTimePickerForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="CustomForm\DeviceEditForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -209,6 +215,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CustomForm\ChartForm.resx">
       <DependentUpon>ChartForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomForm\DateTimePickerForm.resx">
+      <DependentUpon>DateTimePickerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CustomForm\DeviceEditForm.resx">
       <DependentUpon>DeviceEditForm.cs</DependentUpon>
