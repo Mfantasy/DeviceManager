@@ -40,7 +40,7 @@ namespace DeviceManager.CustomControl
         }       
 
         private void Init()
-        {
+        {                                    
             listBox1.DoubleClick += ListBox1_DoubleClick;
             foreach (var item in ConfigData.SensorModelRoot.SensorModels)
             {
@@ -96,6 +96,19 @@ namespace DeviceManager.CustomControl
             tableLayoutPanel1.Controls.Add(scg.AroundLb);
             tableLayoutPanel1.Controls.Add(scg.Around);
         }
+
+        private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        {
+            //添加 soure=null;source=list; dataGridView1.EditMode = DataGridViewEditMode.EditProgrammatically;
+            //if (e.RowIndex >= 0 && e.ColumnIndex == 0)
+            //{
+            //    dataGridView1.DataSource = null;
+            //    testList.RemoveAt(e.RowIndex);
+            //    dataGridView1.DataSource = testList;
+            //    dataGridView1.Columns[0].DisplayIndex = 2;                                
+            //}
+
+        }
     }
 
     class SetControlGroup
@@ -103,6 +116,7 @@ namespace DeviceManager.CustomControl
         string uptext = "上限值";
         string lowtext = "下限值";
         string aroundtext = "允许误差(+-)";
+
         public SetControlGroup(Field fd, AlarmField af)
         {            
             Model = new Label();
@@ -120,8 +134,10 @@ namespace DeviceManager.CustomControl
             AroundLb.Text = aroundtext;            
             af.Model = fd.CurrentSensor.Model.Title;
             af.Name = fd.Alias;
-            AField = af;            
+            AField = af;
+            Init();
         }
+
         public SetControlGroup(AlarmField fd)
         {
             AField = fd;
@@ -141,7 +157,9 @@ namespace DeviceManager.CustomControl
             UpLb.Text = uptext;
             LowLb.Text = lowtext;
             AroundLb.Text = aroundtext;
+            Init();
         }
+
         void Init()
         {
             Up.LostFocus += Up_LostFocus;
@@ -168,7 +186,7 @@ namespace DeviceManager.CustomControl
             try
             {
                 double low = Double.Parse(Low.Text);
-                AField.Around = low;
+                AField.Low = low;
             }
             catch (Exception ex)
             {
@@ -181,7 +199,7 @@ namespace DeviceManager.CustomControl
             try
             {
                 double up = Double.Parse(Up.Text);
-                AField.Around = up;
+                AField.Up = up;
             }
             catch (Exception ex)
             {

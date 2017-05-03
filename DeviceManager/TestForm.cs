@@ -4,8 +4,10 @@ using DeviceManager.CustomForm;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,42 +21,41 @@ namespace DeviceManagerO
         public TestForm()
         {
             InitializeComponent();
+            this.FormClosing += TestForm_FormClosing;
             //ContextMenu = new ContextMenu();            
         }
 
-        Random r = new Random();
+        private void TestForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
-            int i=r.Next(0, 10);
-            customChart2.Series[0].Points.AddXY(DateTime.Now.ToString("HH:MM:ss"), i);
+        
+        
         }
         
         private void button2_Click(object sender, EventArgs e)
-        {           
-            //加上按钮控制属性 
-            //string x = new tex
-            //添加一个节点
-            //treeView1.Nodes.Add(i.ToString());
-            //i ++;
-        }
-
-        private void 测试1ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
-            
+            string fileNameAC = ConfigurationManager.AppSettings["预警配置文件"];
+            string pathAC = Path.Combine(Utils.GetUserPath(), fileNameAC);
+            Utils.ToFile(pathAC, ConfigData.AlarmConfigRoot);
         }
+
+     
 
         private void TestForm_Load(object sender, EventArgs e)
         {
-         
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            customChart2.ChartAreas[0].CursorX.IsUserSelectionEnabled = false;
-
+            PanelAlarmSet pas = new PanelAlarmSet();
+            pas.Init();
+            pas.Parent = this;
+            pas.Dock = DockStyle.Fill;
+           
             
         }
+
+       
     }
 
     }

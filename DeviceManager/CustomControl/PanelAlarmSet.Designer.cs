@@ -79,7 +79,7 @@
             this.确定ToolStripMenuItem});
             this.删除一个配置ToolStripMenuItem.Name = "删除一个配置ToolStripMenuItem";
             this.删除一个配置ToolStripMenuItem.Size = new System.Drawing.Size(92, 21);
-            this.删除一个配置ToolStripMenuItem.Text = "删除一个配置";            
+            this.删除一个配置ToolStripMenuItem.Text = "删除一个配置";
             // 
             // toolStripComboBox1
             // 
@@ -105,7 +105,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.menuStrip1);
             this.Name = "PanelAlarmSet";
             this.Size = new System.Drawing.Size(690, 612);
