@@ -40,37 +40,53 @@ namespace DeviceManager.CustomControl
         }       
 
         private void Init()
-        {                                    
-            listBox1.DoubleClick += ListBox1_DoubleClick;
-            foreach (var item in ConfigData.SensorModelRoot.SensorModels)
-            {
-                if (AlarmConfig.AlarmField.Exists(af => af.Model == item.Name))
-                {
-                    List<AlarmField> afList = AlarmConfig.AlarmField.FindAll(af=>af.Model == item.Name);
-                    foreach (var af in afList)
-                    {
-                        SetControlGroup scg = new SetControlGroup(af);
-                        AddControls(scg);
-                    }
-                }
-                else
-                {
-                    listBox1.Items.Add(item);
-                }
-            }
-        }
-
-        private void ListBox1_DoubleClick(object sender, EventArgs e)
         {
-            if (listBox1.SelectedItem != null)
+            //测试
+            ConfigData.InitConfig();
+            foreach (var item in ConfigData.allFields)
             {
-                SensorModel smodel = (SensorModel)listBox1.SelectedItem;
-                AddModel(smodel);
-                listBox1.Items.Remove(listBox1.SelectedItem);
+                if ( item.Realtime && !AlarmConfig.AlarmField.Exists(field=>field.Name == item.Name))
+                {
+                    AlarmConfig.AlarmField.Add(new AlarmField() { Name = item.Name, NameChnName = item.Alias, Model = item.CurrentSensor.Model.Name, ModelChnName = item.CurrentSensor.Model.Title });
+                }
+            }
+
+            DataGridViewButtonColumn btnCol = new DataGridViewButtonColumn() {HeaderText="",Name="del", Text = "删除", UseColumnTextForButtonValue = true };                                                                 
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView1.DataSource = AlarmConfig.AlarmField;
+            dataGridView1.EditMode = DataGridViewEditMode.EditProgrammatically;
+            dataGridView1.CellClick += DataGridView1_CellClick;            
+            dataGridView1.Columns.Add(btnCol);            
+            AfterDataSourceUpdate();
+            
+        }
+  
+        void AfterDataSourceUpdate()
+        {
+            dataGridView1.Columns["del"].DisplayIndex = dataGridView1.Columns.Count - 1;
+            dataGridView1.Columns["Model"].HeaderText = "型号";
+            dataGridView1.Columns["ModelChnName"].HeaderText = "型号名称";
+            dataGridView1.Columns["Name"].HeaderText = "监测项";
+            dataGridView1.Columns["NameChnName"].HeaderText = "监测名称";
+            dataGridView1.Columns["Up"].HeaderText = "上限值";
+            dataGridView1.Columns["Low"].HeaderText = "下限值";
+            dataGridView1.Columns["Around"].HeaderText = "阈值";            
+        }
+
+        private void DataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex == 0)
+            {
+                if (MessageBox.Show("确定删除?","提醒", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.OK)
+                {
+                    dataGridView1.DataSource = null;
+                    AlarmConfig.AlarmField.RemoveAt(e.RowIndex);
+                    dataGridView1.DataSource = AlarmConfig.AlarmField;
+                    AfterDataSourceUpdate();
+                }
             }
         }
 
-        List<SetControlGroup> scgList = new List<SetControlGroup>();
         void AddModel(SensorModel sm)
         {
             foreach (Field fd in sm.Fields)
@@ -79,23 +95,14 @@ namespace DeviceManager.CustomControl
                 {
                     AlarmField af = new AlarmField();
                     AlarmConfig.AlarmField.Add(af);
-                    SetControlGroup scg = new SetControlGroup(fd, af);
-                    AddControls(scg);
+                    dataGridView1.DataSource = null;
+                    dataGridView1.DataSource = AlarmConfig.AlarmField;
+                    dataGridView1.Columns[0].DisplayIndex = 8;
                 }
             }
         }
 
-        void AddControls(SetControlGroup scg)
-        {
-            tableLayoutPanel1.Controls.Add(scg.Model);
-            tableLayoutPanel1.Controls.Add(scg.Name);
-            tableLayoutPanel1.Controls.Add(scg.UpLb);
-            tableLayoutPanel1.Controls.Add(scg.Up);
-            tableLayoutPanel1.Controls.Add(scg.LowLb);
-            tableLayoutPanel1.Controls.Add(scg.Low);
-            tableLayoutPanel1.Controls.Add(scg.AroundLb);
-            tableLayoutPanel1.Controls.Add(scg.Around);
-        }
+     
 
         private void radioButton3_CheckedChanged(object sender, EventArgs e)
         {
@@ -109,113 +116,22 @@ namespace DeviceManager.CustomControl
             //}
 
         }
+
+        private void 编辑ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedCells != null && dataGridView1.SelectedCells.Count>0 && new string[] { "ModelChnName","NameChnName", "Up", "Low", "Around" }.Contains(dataGridView1.SelectedCells[0].OwningColumn.Name))
+            {
+                dataGridView1.BeginEdit(true);
+            }
+            else
+            {
+                if (dataGridView1.SelectedCells != null && dataGridView1.SelectedCells.Count > 0)
+                {
+                    MessageBox.Show(string.Format("{0}列不允许编辑", dataGridView1.SelectedCells[0].OwningColumn.HeaderText), "提醒", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            
+        }
     }
 
-    class SetControlGroup
-    {
-        string uptext = "上限值";
-        string lowtext = "下限值";
-        string aroundtext = "允许误差(+-)";
-
-        public SetControlGroup(Field fd, AlarmField af)
-        {            
-            Model = new Label();
-            Name = new Label();
-            UpLb = new Label();
-            LowLb = new Label();
-            AroundLb = new Label();
-            Up = new TextBox();
-            Low = new TextBox();
-            Around = new TextBox();
-            Model.Text = fd.CurrentSensor.Model.Title;
-            Name.Text = fd.Alias;
-            UpLb.Text = uptext;
-            LowLb.Text = lowtext;
-            AroundLb.Text = aroundtext;            
-            af.Model = fd.CurrentSensor.Model.Title;
-            af.Name = fd.Alias;
-            AField = af;
-            Init();
-        }
-
-        public SetControlGroup(AlarmField fd)
-        {
-            AField = fd;
-            Model = new Label();
-            Name = new Label();
-            UpLb = new Label();
-            LowLb = new Label();
-            AroundLb = new Label();
-            Up = new TextBox();
-            Low = new TextBox();
-            Around = new TextBox();
-            Up.Text = fd.Up.ToString();
-            Around.Text = fd.Around.ToString();
-            Low.Text = fd.Low.ToString();
-            Model.Text = fd.Model;
-            Name.Text = fd.Name;
-            UpLb.Text = uptext;
-            LowLb.Text = lowtext;
-            AroundLb.Text = aroundtext;
-            Init();
-        }
-
-        void Init()
-        {
-            Up.LostFocus += Up_LostFocus;
-            Low.LostFocus += Low_LostFocus;
-            Around.LostFocus += Around_LostFocus;
-        }
-
-        private void Around_LostFocus(object sender, EventArgs e)
-        {
-            //AField.Around
-            try
-            {
-                double ar = Double.Parse(Around.Text);
-                AField.Around = ar;
-            }
-            catch (Exception ex)
-            {
-                
-            }
-        }
-
-        private void Low_LostFocus(object sender, EventArgs e)
-        {
-            try
-            {
-                double low = Double.Parse(Low.Text);
-                AField.Low = low;
-            }
-            catch (Exception ex)
-            {
-
-            }
-        }
-
-        private void Up_LostFocus(object sender, EventArgs e)
-        {
-            try
-            {
-                double up = Double.Parse(Up.Text);
-                AField.Up = up;
-            }
-            catch (Exception ex)
-            {
-
-            }
-        }
-
-        public AlarmField AField { get; set; }
-        public Field Field { get; set; }
-        public Label Model { get; set; }
-        public Label Name { get; set; }
-        public Label UpLb { get; set; }
-        public Label LowLb { get; set; }
-        public Label AroundLb { get; set; }
-        public TextBox Up { get; set; }
-        public TextBox Low { get; set; }
-        public TextBox Around { get; set; }
-    }
 }

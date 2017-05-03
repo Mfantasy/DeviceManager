@@ -36,6 +36,7 @@
             this.toolStripComboBox1 = new System.Windows.Forms.ToolStripComboBox();
             this.确定ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.保存配置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -101,11 +102,20 @@
             this.保存配置ToolStripMenuItem.Text = "保存配置";
             this.保存配置ToolStripMenuItem.Click += new System.EventHandler(this.保存配置ToolStripMenuItem_Click);
             // 
+            // panel1
+            // 
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 25);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(690, 587);
+            this.panel1.TabIndex = 2;
+            // 
             // PanelAlarmSet
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
             this.Name = "PanelAlarmSet";
             this.Size = new System.Drawing.Size(690, 612);
@@ -125,5 +135,6 @@
         private System.Windows.Forms.ToolStripTextBox toolStripTextBox2;
         private System.Windows.Forms.ToolStripMenuItem 确定ToolStripMenuItem1;
         private System.Windows.Forms.ToolStripComboBox toolStripComboBox1;
+        private System.Windows.Forms.Panel panel1;
     }
 }

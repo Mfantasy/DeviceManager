@@ -140,8 +140,12 @@ namespace DeviceManager.Model
     {     
         [XmlAttribute("model")]
         public string Model { get; set; }
+        [XmlAttribute("modelcn")]
+        public string ModelChnName { get; set; }
         [XmlAttribute("name")]
         public string Name { get; set; }
+        [XmlAttribute("namecn")]
+        public string NameChnName { get; set; }
         [XmlAttribute("up")]
         public double Up { get; set; }
         [XmlAttribute("low")]

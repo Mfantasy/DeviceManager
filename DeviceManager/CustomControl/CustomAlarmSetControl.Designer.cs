@@ -28,13 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.radioButton6 = new System.Windows.Forms.RadioButton();
-            this.radioButton5 = new System.Windows.Forms.RadioButton();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -49,28 +45,24 @@
             this.dateTimePicker4 = new System.Windows.Forms.DateTimePicker();
             this.radioButton3 = new System.Windows.Forms.RadioButton();
             this.radioButton4 = new System.Windows.Forms.RadioButton();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.编辑ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.groupBox5.SuspendLayout();
-            this.groupBox4.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.splitContainer1);
-            this.groupBox1.Controls.Add(this.tableLayoutPanel1);
             this.groupBox1.Controls.Add(this.dataGridView1);
-            this.groupBox1.Controls.Add(this.panel2);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(5);
@@ -81,71 +73,22 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "夏季策略";
             // 
-            // panel2
+            // splitContainer1
             // 
-            this.panel2.Controls.Add(this.groupBox5);
-            this.panel2.Controls.Add(this.groupBox4);
-            this.panel2.Location = new System.Drawing.Point(5, 80);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(191, 815);
-            this.panel2.TabIndex = 6;
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.splitContainer1.Location = new System.Drawing.Point(5, 19);
+            this.splitContainer1.Name = "splitContainer1";
             // 
-            // groupBox5
+            // splitContainer1.Panel1
             // 
-            this.groupBox5.Controls.Add(this.listBox1);
-            this.groupBox5.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupBox5.Location = new System.Drawing.Point(0, 71);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Padding = new System.Windows.Forms.Padding(6);
-            this.groupBox5.Size = new System.Drawing.Size(191, 744);
-            this.groupBox5.TabIndex = 1;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "未配置型号";
+            this.splitContainer1.Panel1.Controls.Add(this.groupBox2);
             // 
-            // listBox1
+            // splitContainer1.Panel2
             // 
-            this.listBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 12;
-            this.listBox1.Location = new System.Drawing.Point(6, 20);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(179, 718);
-            this.listBox1.TabIndex = 0;
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.radioButton6);
-            this.groupBox4.Controls.Add(this.radioButton5);
-            this.groupBox4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox4.Location = new System.Drawing.Point(0, 0);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Padding = new System.Windows.Forms.Padding(6);
-            this.groupBox4.Size = new System.Drawing.Size(191, 65);
-            this.groupBox4.TabIndex = 0;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "启用状态";
-            // 
-            // radioButton6
-            // 
-            this.radioButton6.AutoSize = true;
-            this.radioButton6.Location = new System.Drawing.Point(93, 33);
-            this.radioButton6.Name = "radioButton6";
-            this.radioButton6.Size = new System.Drawing.Size(47, 16);
-            this.radioButton6.TabIndex = 2;
-            this.radioButton6.TabStop = true;
-            this.radioButton6.Text = "停用";
-            this.radioButton6.UseVisualStyleBackColor = true;
-            // 
-            // radioButton5
-            // 
-            this.radioButton5.AutoSize = true;
-            this.radioButton5.Location = new System.Drawing.Point(9, 33);
-            this.radioButton5.Name = "radioButton5";
-            this.radioButton5.Size = new System.Drawing.Size(47, 16);
-            this.radioButton5.TabIndex = 1;
-            this.radioButton5.TabStop = true;
-            this.radioButton5.Text = "启用";
-            this.radioButton5.UseVisualStyleBackColor = true;
+            this.splitContainer1.Panel2.Controls.Add(this.groupBox3);
+            this.splitContainer1.Size = new System.Drawing.Size(1790, 55);
+            this.splitContainer1.SplitterDistance = 846;
+            this.splitContainer1.TabIndex = 8;
             // 
             // groupBox2
             // 
@@ -291,57 +234,35 @@
             this.radioButton4.Text = "全年";
             this.radioButton4.UseVisualStyleBackColor = true;
             // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel1.ColumnCount = 8;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(1605, 129);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(127, 85);
-            this.tableLayoutPanel1.TabIndex = 3;
-            // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(202, 86);
+            this.dataGridView1.ContextMenuStrip = this.contextMenuStrip1;
+            this.dataGridView1.Location = new System.Drawing.Point(5, 86);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(1590, 803);
+            this.dataGridView1.Size = new System.Drawing.Size(1787, 803);
             this.dataGridView1.TabIndex = 7;
             // 
-            // splitContainer1
+            // contextMenuStrip1
             // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.splitContainer1.Location = new System.Drawing.Point(5, 19);
-            this.splitContainer1.Name = "splitContainer1";
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.编辑ToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 48);
             // 
-            // splitContainer1.Panel1
+            // 编辑ToolStripMenuItem
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.groupBox2);
-            // 
-            // splitContainer1.Panel2
-            // 
-            this.splitContainer1.Panel2.Controls.Add(this.groupBox3);
-            this.splitContainer1.Size = new System.Drawing.Size(1790, 55);
-            this.splitContainer1.SplitterDistance = 846;
-            this.splitContainer1.TabIndex = 8;
+            this.编辑ToolStripMenuItem.Name = "编辑ToolStripMenuItem";
+            this.编辑ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.编辑ToolStripMenuItem.Text = "编辑";
+            this.编辑ToolStripMenuItem.Click += new System.EventHandler(this.编辑ToolStripMenuItem_Click);
             // 
             // CustomAlarmSetControl
             // 
@@ -351,19 +272,16 @@
             this.Name = "CustomAlarmSetControl";
             this.Size = new System.Drawing.Size(1800, 900);
             this.groupBox1.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
-            this.splitContainer1.ResumeLayout(false);
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -371,13 +289,11 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.DateTimePicker dateTimePicker3;
         private System.Windows.Forms.DateTimePicker dateTimePicker4;
@@ -387,12 +303,9 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.RadioButton radioButton6;
-        private System.Windows.Forms.RadioButton radioButton5;
-        private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem 编辑ToolStripMenuItem;
     }
 }

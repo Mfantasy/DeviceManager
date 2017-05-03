@@ -54,7 +54,7 @@ namespace DeviceManager.CustomControl
             ToolStripMenuItem tsmItem = new ToolStripMenuItem(item.Name);                  
             menuStrip1.Items.Insert(0, tsmItem);
             CustomAlarmSetControl scg = new CustomAlarmSetControl(item);
-            scg.Parent = this;
+            scg.Parent = panel1;
             scg.Dock = DockStyle.Fill;       
             tsmItem.Tag = scg;
             tsmItem.Click += TsmItem_Click;            
@@ -96,13 +96,13 @@ namespace DeviceManager.CustomControl
         private void Scheduler_TimeChanged(object sender, EventArgs e)
         {
             Scheduler s = sender as Scheduler;
-            AlarmConfig endAlarm = ConfigData.AlarmConfigRoot.AlarmConfigs.Find(alac => alac.Enable && alac.Enddate == s.Time && alac.Using);
+            AlarmConfig endAlarm = ConfigData.AlarmConfigRoot.AlarmConfigs.Find(alac =>  alac.Enddate == s.Time && alac.Using);
             if (endAlarm != null)
             {                
                 SetAlarmNull(endAlarm);
             }
 
-            List<AlarmConfig> currentInTimeAlarms = ConfigData.AlarmConfigRoot.AlarmConfigs.FindAll(alac => alac.Enable && alac.Startdate == s.Time);
+            List<AlarmConfig> currentInTimeAlarms = ConfigData.AlarmConfigRoot.AlarmConfigs.FindAll(alac =>  alac.Startdate == s.Time);
             foreach (AlarmConfig ac in currentInTimeAlarms)
             {
                 ac.InTime = true;
@@ -116,13 +116,13 @@ namespace DeviceManager.CustomControl
         {
             Scheduler s = sender as Scheduler;
             //先处理结束,再处理开始(为了让下个开始能够顺利执行,避免时间冲突)
-            AlarmConfig endAlarm = ConfigData.AlarmConfigRoot.AlarmConfigs.Find(alac => alac.Enable && alac.Enddate == s.Date && alac.Using);
+            AlarmConfig endAlarm = ConfigData.AlarmConfigRoot.AlarmConfigs.Find(alac =>  alac.Enddate == s.Date && alac.Using);
             if (endAlarm != null)
             {
                 SetAlarmNull(endAlarm);
             }
             //先处理开始日期,再处理结束
-            List<AlarmConfig> currentInDateAlarms = ConfigData.AlarmConfigRoot.AlarmConfigs.FindAll(alac => alac.Enable && alac.Startdate == s.Date);
+            List<AlarmConfig> currentInDateAlarms = ConfigData.AlarmConfigRoot.AlarmConfigs.FindAll(alac => alac.Startdate == s.Date);
             foreach (AlarmConfig ac in currentInDateAlarms)
             {
                 ac.InDate = true;
