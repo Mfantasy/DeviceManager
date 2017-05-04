@@ -363,7 +363,7 @@ namespace DeviceManager
             menuButtonPanel3.Panel = par;
             menuButtonPanel4.Panel = paset;
             menuButtonPanel5.Panel = pas;
-            paset.Visible = false;
+            //paset.Visible = false;
             pas.Visible = false;
         }  
 
@@ -384,14 +384,14 @@ namespace DeviceManager
      
         //测试
         bool b = false;
-        int value1 = 8888;
-        int value2 = 8888;
+        int value1 = 1226;
+        int value2 = 6666;
         Random r = new Random();
         private void glassButton1_Click(object sender, EventArgs e)
         {
             //panelRuntime.BringToFront();
             //测试
-            int add = r.Next(-50, 50);
+            int add = r.Next(-20, 20);
             string jstr;
             if (b)
             {

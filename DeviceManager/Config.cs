@@ -113,7 +113,6 @@ namespace DeviceManager
                                 field.CurrentSensor = ss;
                                 field.InitChart();
                             }
-
                         }
                     }
                 }

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DeviceManager.Model;
 using System.IO;
+using System.Configuration;
 
 namespace DeviceManager.CustomControl
 {
@@ -21,49 +22,155 @@ namespace DeviceManager.CustomControl
 
 
         public AlarmConfig AlarmConfig { get; set; }
-
-        public CustomAlarmSetControl(string name,AlarmConfig ac)
-        {
-            InitializeComponent();
-            groupBox1.Text = name;
-            AlarmConfig = ac;
-            AlarmConfig.Name = name;
-            Init();
-        }
-
+    
         public CustomAlarmSetControl(AlarmConfig ac)
         {
             InitializeComponent();
             groupBox1.Text = ac.Name;
-            AlarmConfig = ac;
+            AlarmConfig = ac;         
             Init();
-        }       
+        }
 
+        DateTime GetTimeValue(int time)
+        {
+            int H = time / 100;
+            int M = time % 100;
+            string dtStr = string.Format("{0}:{1}:0", H, M);
+            return DateTime.Parse(dtStr);
+        }
+        DateTime GetDateValue(int date)
+        {
+            int M = date / 100;
+            int d = date % 100;
+            string dtStr = string.Format("2017/{0}/{1}",M,d);
+            return DateTime.Parse(dtStr);
+        }
         private void Init()
         {
             //测试
-            ConfigData.InitConfig();
-            foreach (var item in ConfigData.allFields)
+            ConfigData.InitConfig();            
+            //时间
+            if (AlarmConfig.Starttime < AlarmConfig.Endtime)
             {
-                if ( item.Realtime && !AlarmConfig.AlarmField.Exists(field=>field.Name == item.Name))
-                {
-                    AlarmConfig.AlarmField.Add(new AlarmField() { Name = item.Name, NameChnName = item.Alias, Model = item.CurrentSensor.Model.Name, ModelChnName = item.CurrentSensor.Model.Title });
-                }
+                radioButton2.Checked = true;
+                dateTimePicker1.Value= GetTimeValue(AlarmConfig.Starttime);
+                dateTimePicker2.Value = GetTimeValue(AlarmConfig.Endtime);
             }
-
-            DataGridViewButtonColumn btnCol = new DataGridViewButtonColumn() {HeaderText="",Name="del", Text = "删除", UseColumnTextForButtonValue = true };                                                                 
+            else
+            {
+                radioButton1.Checked = true;
+            }
+            //日期
+            if (AlarmConfig.Startdate < AlarmConfig.Enddate)
+            {
+                radioButton3.Checked = true;
+                dateTimePicker4.Value = GetDateValue(AlarmConfig.Startdate);
+                dateTimePicker3.Value = GetDateValue(AlarmConfig.Enddate);
+            }
+            else
+            {
+                radioButton4.Checked = true;
+            }
+            foreach (SensorModel model in ConfigData.SensorModelRoot.SensorModels)
+            {
+                foreach (Field field in model.Fields)
+                {
+                    if (field.Realtime && !AlarmConfig.AlarmField.Exists(fd => fd.Name == field.Name))
+                    {
+                        AlarmConfig.AlarmField.Add(new AlarmField() { Name = field.Name, NameChnName = field.Alias, Model = model.Name, ModelChnName = model.Title });
+                    }
+                }
+            }           
+         
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.DataSource = AlarmConfig.AlarmField;
             dataGridView1.EditMode = DataGridViewEditMode.EditProgrammatically;
-            dataGridView1.CellClick += DataGridView1_CellClick;            
-            dataGridView1.Columns.Add(btnCol);            
             AfterDataSourceUpdate();
-            
+            dataGridView1.CellEndEdit += DataGridView1_CellEndEdit;
+            dateTimePicker1.ValueChanged += DateTimePicker1_ValueChanged;
+            dateTimePicker2.ValueChanged += DateTimePicker2_ValueChanged;
+            dateTimePicker3.ValueChanged += DateTimePicker3_ValueChanged;
+            dateTimePicker4.ValueChanged += DateTimePicker4_ValueChanged;
+            radioButton1.CheckedChanged += RadioButton1_CheckedChanged;
+            radioButton4.CheckedChanged += RadioButton4_CheckedChanged;                                
         }
-  
-        void AfterDataSourceUpdate()
+
+        private void DateTimePicker4_ValueChanged(object sender, EventArgs e)
         {
-            dataGridView1.Columns["del"].DisplayIndex = dataGridView1.Columns.Count - 1;
+            if (radioButton3.Checked)
+            {
+                AlarmConfig.Startdate = dateTimePicker4.Value.Day + dateTimePicker4.Value.Month * 100;
+                Utils.ToFile(ConfigurationManager.AppSettings["预警配置文件"], ConfigData.AlarmConfigRoot);
+            }
+        }
+
+        private void DateTimePicker3_ValueChanged(object sender, EventArgs e)
+        {
+            if (radioButton3.Checked)
+            {
+                AlarmConfig.Enddate = dateTimePicker3.Value.Day + dateTimePicker3.Value.Month * 100;
+                Utils.ToFile(ConfigurationManager.AppSettings["预警配置文件"], ConfigData.AlarmConfigRoot);
+            }
+        }
+
+        private void DateTimePicker2_ValueChanged(object sender, EventArgs e)
+        {
+            if (radioButton2.Checked)
+            {
+                AlarmConfig.Endtime = dateTimePicker2.Value.Minute + dateTimePicker2.Value.Hour * 100;
+                Utils.ToFile(ConfigurationManager.AppSettings["预警配置文件"], ConfigData.AlarmConfigRoot);
+            }
+        }
+
+        private void DateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            if (radioButton2.Checked)
+            {
+                AlarmConfig.Starttime = dateTimePicker1.Value.Minute + dateTimePicker1.Value.Hour * 100;
+                Utils.ToFile(ConfigurationManager.AppSettings["预警配置文件"], ConfigData.AlarmConfigRoot);
+            }
+        }
+
+        private void RadioButton4_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton4.Checked)
+            {
+                AlarmConfig.Startdate = 0;
+                AlarmConfig.Enddate = 0;
+            }
+            else
+            {
+                AlarmConfig.Startdate = dateTimePicker4.Value.Day + dateTimePicker4.Value.Month * 100;
+                AlarmConfig.Enddate = dateTimePicker3.Value.Day + dateTimePicker3.Value.Month * 100;
+            }
+            Utils.ToFile(ConfigurationManager.AppSettings["预警配置文件"], ConfigData.AlarmConfigRoot);
+        }
+
+        private void RadioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton1.Checked)
+            {
+                AlarmConfig.Starttime = 0;
+                AlarmConfig.Endtime = 0;
+            }
+            else
+            {
+                AlarmConfig.Starttime = dateTimePicker1.Value.Minute + dateTimePicker1.Value.Hour * 100;
+                AlarmConfig.Endtime = dateTimePicker2.Value.Minute + dateTimePicker2.Value.Hour * 100;
+            }
+            Utils.ToFile(ConfigurationManager.AppSettings["预警配置文件"], ConfigData.AlarmConfigRoot);
+        }
+
+
+        private void DataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {            
+            //string pathAC = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), fileNameAC);
+            // string pathAC = Path.Combine(Utils.GetUserPath(), fileNameAC);
+            Utils.ToFile(ConfigurationManager.AppSettings["预警配置文件"], ConfigData.AlarmConfigRoot);
+        }
+
+        void AfterDataSourceUpdate()
+        {            
             dataGridView1.Columns["Model"].HeaderText = "型号";
             dataGridView1.Columns["ModelChnName"].HeaderText = "型号名称";
             dataGridView1.Columns["Name"].HeaderText = "监测项";
@@ -72,21 +179,7 @@ namespace DeviceManager.CustomControl
             dataGridView1.Columns["Low"].HeaderText = "下限值";
             dataGridView1.Columns["Around"].HeaderText = "阈值";            
         }
-
-        private void DataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0 && e.ColumnIndex == 0)
-            {
-                if (MessageBox.Show("确定删除?","提醒", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.OK)
-                {
-                    dataGridView1.DataSource = null;
-                    AlarmConfig.AlarmField.RemoveAt(e.RowIndex);
-                    dataGridView1.DataSource = AlarmConfig.AlarmField;
-                    AfterDataSourceUpdate();
-                }
-            }
-        }
-
+  
         void AddModel(SensorModel sm)
         {
             foreach (Field fd in sm.Fields)
@@ -100,22 +193,7 @@ namespace DeviceManager.CustomControl
                     dataGridView1.Columns[0].DisplayIndex = 8;
                 }
             }
-        }
-
-     
-
-        private void radioButton3_CheckedChanged(object sender, EventArgs e)
-        {
-            //添加 soure=null;source=list; dataGridView1.EditMode = DataGridViewEditMode.EditProgrammatically;
-            //if (e.RowIndex >= 0 && e.ColumnIndex == 0)
-            //{
-            //    dataGridView1.DataSource = null;
-            //    testList.RemoveAt(e.RowIndex);
-            //    dataGridView1.DataSource = testList;
-            //    dataGridView1.Columns[0].DisplayIndex = 2;                                
-            //}
-
-        }
+        }    
 
         private void 编辑ToolStripMenuItem_Click(object sender, EventArgs e)
         {

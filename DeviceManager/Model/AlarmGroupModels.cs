@@ -68,8 +68,7 @@ namespace DeviceManager.Model
         public string Name { get; set; }
         [XmlElement("field")]
         public List<AlarmField> AlarmField { get; set; }
-        [XmlAttribute("enable")]
-        public bool Enable { get; set; }
+      
         [XmlAttribute("startdate")]
         public int Startdate { get; set; }
         [XmlAttribute("enddate")]
@@ -92,7 +91,7 @@ namespace DeviceManager.Model
         public bool InDate
         {
             get
-            {
+            {                
                 if (IsAllDate)
                 {
                     inDate = true;

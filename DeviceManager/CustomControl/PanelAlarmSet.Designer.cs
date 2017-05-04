@@ -35,7 +35,6 @@
             this.删除一个配置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripComboBox1 = new System.Windows.Forms.ToolStripComboBox();
             this.确定ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.保存配置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -44,8 +43,7 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.添加一个配置ToolStripMenuItem,
-            this.删除一个配置ToolStripMenuItem,
-            this.保存配置ToolStripMenuItem});
+            this.删除一个配置ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(690, 25);
@@ -81,12 +79,12 @@
             this.删除一个配置ToolStripMenuItem.Name = "删除一个配置ToolStripMenuItem";
             this.删除一个配置ToolStripMenuItem.Size = new System.Drawing.Size(92, 21);
             this.删除一个配置ToolStripMenuItem.Text = "删除一个配置";
+            
             // 
             // toolStripComboBox1
             // 
             this.toolStripComboBox1.Name = "toolStripComboBox1";
             this.toolStripComboBox1.Size = new System.Drawing.Size(121, 25);
-            this.toolStripComboBox1.Click += new System.EventHandler(this.toolStripComboBox1_Click);
             // 
             // 确定ToolStripMenuItem
             // 
@@ -94,13 +92,6 @@
             this.确定ToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.确定ToolStripMenuItem.Text = "确定";
             this.确定ToolStripMenuItem.Click += new System.EventHandler(this.确定ToolStripMenuItem_Click);
-            // 
-            // 保存配置ToolStripMenuItem
-            // 
-            this.保存配置ToolStripMenuItem.Name = "保存配置ToolStripMenuItem";
-            this.保存配置ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
-            this.保存配置ToolStripMenuItem.Text = "保存配置";
-            this.保存配置ToolStripMenuItem.Click += new System.EventHandler(this.保存配置ToolStripMenuItem_Click);
             // 
             // panel1
             // 
@@ -130,7 +121,6 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem 添加一个配置ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 删除一个配置ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 保存配置ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 确定ToolStripMenuItem;
         private System.Windows.Forms.ToolStripTextBox toolStripTextBox2;
         private System.Windows.Forms.ToolStripMenuItem 确定ToolStripMenuItem1;

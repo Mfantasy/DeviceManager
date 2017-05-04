@@ -232,8 +232,8 @@ namespace DeviceManager
                 }
                 ValueUpdated?.Invoke(this, EventArgs.Empty);
            
-                if (Alarm != null)
-                {
+                if (Alarm != null || Alarm.Low >= Alarm.Up)
+                {                  
                     double db = double.Parse(_value);
                     //报警
                     bool mtUp = db > Alarm.Up + Alarm.Around;

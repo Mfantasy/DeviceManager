@@ -38,10 +38,7 @@ namespace DeviceManagerO
         
         private void button2_Click(object sender, EventArgs e)
         {
-            string fileNameAC = ConfigurationManager.AppSettings["预警配置文件"];
-            string pathAC = Path.Combine( Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), fileNameAC);
-            //string pathAC = Path.Combine(Utils.GetUserPath(), fileNameAC);
-            Utils.ToFile(pathAC, ConfigData.AlarmConfigRoot);
+        
         }
 
      

@@ -20,8 +20,8 @@ namespace DeviceManager
         [STAThread]
         static void Main()
         { 
-            Application.Run(new TestForm());
-            return;
+            //Application.Run(new TestForm());
+            //return;
             Application.EnableVisualStyles();                    
             Application.SetCompatibleTextRenderingDefault(false);
             if (Config.IsShowLogon)
