@@ -232,7 +232,7 @@ namespace DeviceManager
                 }
                 ValueUpdated?.Invoke(this, EventArgs.Empty);
            
-                if (Alarm != null || Alarm.Low >= Alarm.Up)
+                if (Alarm != null && Alarm.Low <= Alarm.Up)
                 {                  
                     double db = double.Parse(_value);
                     //报警
@@ -300,7 +300,7 @@ namespace DeviceManager
                         foreach (DataRow row in tableAll.Rows)
                         {
                             int index = ChartAll.Series[0].Points.AddXY(row["time"].ToString(), row[Name]);
-                            ChartAll.Series[0].Points[index].ToolTip = string.Format("{0} 数据{1}",row["time"],row[Name]);
+                            ChartAll.Series[0].Points[index].ToolTip = string.Format("时间:{0} {1}:{2}{3}", row["time"], Alias, row[Name],Unit);
                         }
                         ChartAll.BringToFront();
                         ComboBox.BringToFront();
@@ -325,7 +325,7 @@ namespace DeviceManager
                             foreach (DataRow row in tableHis.Rows)
                             {
                                 int idx = ChartHis.Series[0].Points.AddXY(row["time"].ToString(), row[Name]);
-                                ChartHis.Series[0].Points[idx].ToolTip = string.Format("{0} 数据{1}", row["time"], row[Name]);
+                                ChartHis.Series[0].Points[idx].ToolTip = string.Format("时间:{0} {1}:{2}{3}", row["time"],Alias, row[Name],Unit);
                             }
                             ChartHis.BringToFront();
                             ComboBox.BringToFront();

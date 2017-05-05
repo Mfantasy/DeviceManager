@@ -17,107 +17,112 @@ namespace DeviceManager.CustomControl
     public partial class PanelAlarmSet : UserControl
     {
         #region 控制策略生效
-        private void SetCurrentAlarmConfig()
+
+        AlarmConfig currentAlarmCfg = null;
+        public AlarmConfig CurrentAlarmCfg
         {
-            AlarmConfig current = ConfigData.AlarmConfigRoot.AlarmConfigs.Find(ac =>
+            get { return currentAlarmCfg; }
+            set
             {
-                bool intime = false;
-                bool indate = false;
-                if (ac.IsAllTime)
-                    intime = true;
-                if (ac.IsAllDate)
-                    indate = true;
-                int nowTime = int.Parse(DateTime.Now.ToString("Hmm"));
-                int nowDate = int.Parse(DateTime.Now.ToString("Mdd"));
-                if (nowDate >= ac.Startdate && nowDate < ac.Enddate)
-                    indate = true;
-                if (nowTime >= ac.Starttime && nowTime < ac.Endtime)
-                    intime = true;
-                return (intime && indate);
-            });
-            if (current != null)
-            {
-                SetAlarm(current);
+                if (currentAlarmCfg != value)
+                {
+                    currentAlarmCfg = value;
+                    SetAlarm(currentAlarmCfg);
+                }
             }
         }
-
+      
         private void Scheduler_TimeChanged(object sender, EventArgs e)
         {
             Scheduler s = sender as Scheduler;
-            AlarmConfig endAlarm = ConfigData.AlarmConfigRoot.AlarmConfigs.Find(alac => alac.Enddate == s.Time && alac.Using);
-            if (endAlarm != null)
+            foreach (var item in ConfigData.AlarmConfigRoot.AlarmConfigs)
             {
-                SetAlarmNull(endAlarm);
-            }
-
-            List<AlarmConfig> currentInTimeAlarms = ConfigData.AlarmConfigRoot.AlarmConfigs.FindAll(alac => alac.Startdate == s.Time);
-            foreach (AlarmConfig ac in currentInTimeAlarms)
-            {
-                ac.InTime = true;
-                if (ac.InTime && ac.InDate)
+                if (s.Time >= item.Starttime && s.Time <= item.Endtime)
                 {
-                    SetAlarm(ac);
+                    item.InTime = true;
                 }
+                else
+                {
+                    item.InTime = false;
+                }                
+            }
+            List<AlarmConfig> currentAlarms = ConfigData.AlarmConfigRoot.AlarmConfigs.FindAll(ala => ala.InDate && ala.InTime);
+            if (currentAlarms != null && currentAlarms.Count > 0)
+            {
+                CurrentAlarmCfg = currentAlarms[currentAlarms.Count - 1];
+            }
+            else
+            {
+                SetAlarmNull();
             }
         }
+
         private void Scheduler_DateChanged(object sender, EventArgs e)
         {
-            Scheduler s = sender as Scheduler;
-            //先处理结束,再处理开始(为了让下个开始能够顺利执行,避免时间冲突)
-            AlarmConfig endAlarm = ConfigData.AlarmConfigRoot.AlarmConfigs.Find(alac => alac.Enddate == s.Date && alac.Using);
-            if (endAlarm != null)
+            Scheduler s = sender as Scheduler;           
+            foreach (var item in ConfigData.AlarmConfigRoot.AlarmConfigs)
             {
-                SetAlarmNull(endAlarm);
-            }
-            //先处理开始日期,再处理结束
-            List<AlarmConfig> currentInDateAlarms = ConfigData.AlarmConfigRoot.AlarmConfigs.FindAll(alac => alac.Startdate == s.Date);
-            foreach (AlarmConfig ac in currentInDateAlarms)
-            {
-                ac.InDate = true;
-                if (ac.IsAllTime)
+                if (s.Date >= item.Startdate && s.Date < item.Enddate)
                 {
-                    SetAlarm(ac);
+                    item.InDate = true;
                 }
-            }
+                else
+                {
+                    item.InDate = false;
+                }                
+            }         
         }
 
         void SetAlarm(AlarmConfig ac)
         {
-            ac.Using = true;
             foreach (var fd in ConfigData.allFields)
             {
                 fd.Alarm = ac.AlarmField.Find(af => af.Name == fd.Name);
             }
             foreach (ToolStripMenuItem item in menuStrip1.Items)
             {
-                if (item.Name == ac.Name)
+                if (InvokeRequired)
                 {
-                    item.BackColor = Color.BlueViolet;
-                    item.ForeColor = Color.White;
-                    TsmItem_Click(item, null);
+                    this.Invoke(new Action(() =>
+                    {
+                        if (item.Name == ac.Name)
+                        {
+                            item.BackColor = Color.BlueViolet;
+                            item.ForeColor = Color.White;
+                            TsmItem_Click(item, null);
+                        }
+                        else
+                        {
+                            item.BackColor = Color.Transparent;
+                            item.ForeColor = Color.Black;
+                        }
+                    }));
                 }
                 else
                 {
-                    item.BackColor = Color.Transparent;
-                    item.ForeColor = Color.Black;
-                }
-            }
-        }
-
-        void SetAlarmNull(AlarmConfig ac)
-        {
-            ac.Using = false;
-            foreach (var fd in ConfigData.allFields)
-            {
-                foreach (AlarmField af in ac.AlarmField)
-                {
-                    if (fd.Alarm == af)
+                    if (item.Name == ac.Name)
                     {
-                        fd.Alarm = null;
+                        item.BackColor = Color.BlueViolet;
+                        item.ForeColor = Color.White;
+                        TsmItem_Click(item, null);
+                    }
+                    else
+                    {
+                        item.BackColor = Color.Transparent;
+                        item.ForeColor = Color.Black;
                     }
                 }
             }
         }
+
+        void SetAlarmNull()
+        {       
+            foreach (var fd in ConfigData.allFields)
+            {
+                fd.Alarm = null;
+            }
+        }
+
         #endregion
         public PanelAlarmSet()
         {
@@ -145,8 +150,7 @@ namespace DeviceManager.CustomControl
             //删除配置列表
             toolStripComboBox1.Items.AddRange(listAlarm.ToArray());
             
-            //使策略生效
-            SetCurrentAlarmConfig();
+            //使策略生效            
             Scheduler scheduler = new Scheduler();
             scheduler.DateChanged += Scheduler_DateChanged;
             scheduler.TimeChanged += Scheduler_TimeChanged;                        
@@ -186,17 +190,17 @@ namespace DeviceManager.CustomControl
                 return;
             }
             AlarmConfig ac = new AlarmConfig();
-            ac.Name = name;
             ac.AlarmField = new List<AlarmField>();
+            ac.AllDate = true;
+            ac.AllTime = true;
+            ac.Name = name;           
             listAlarm.Add(ac);
             NewItem(ac);
+            toolStripComboBox1.Items.Add(ac);
             Utils.ToFile(ConfigurationManager.AppSettings["预警配置文件"], ConfigData.AlarmConfigRoot);
         }
 
-        private void toolStripComboBox1_Click(object sender, EventArgs e)
-        {
-
-        }
+      
 
         private void 确定ToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -219,7 +223,8 @@ namespace DeviceManager.CustomControl
 
     public class Scheduler
     {
-        const int interval = 30 * 60 * 1000; //30分钟     
+        // const int interval = 30 * 60 * 1000; //30分钟     
+        const int interval = 60 * 1000; //30秒     
         public event EventHandler DateChanged;
         public event EventHandler TimeChanged;
 
@@ -270,8 +275,8 @@ namespace DeviceManager.CustomControl
         {
             while (true)
             {
-                Date = int.Parse(DateTime.Now.ToString("MMdd"));
-                Time = int.Parse(DateTime.Now.ToString("HHmm"));
+                Date = int.Parse(DateTime.Now.ToString("Mdd"));
+                Time = int.Parse(DateTime.Now.ToString("Hmm"));
                 Thread.Sleep(interval);
             }
         }

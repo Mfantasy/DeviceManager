@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.panelRuntime = new System.Windows.Forms.Panel();
             this.panelLeft = new System.Windows.Forms.FlowLayoutPanel();
+            this.glassButtonAll = new FOF.UserControlModel.GlassButton();
             this.panelRight = new System.Windows.Forms.Panel();
             this.panelBotttom = new System.Windows.Forms.Panel();
             this.panelTop = new System.Windows.Forms.Panel();
@@ -38,13 +39,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.glassButtonAll = new FOF.UserControlModel.GlassButton();
             this.menuButtonPanel5 = new DeviceManager.CustomControl.MenuButtonPanel();
             this.menuButtonPanel4 = new DeviceManager.CustomControl.MenuButtonPanel();
             this.menuButtonPanel3 = new DeviceManager.CustomControl.MenuButtonPanel();
             this.menuButtonPanel2 = new DeviceManager.CustomControl.MenuButtonPanel();
             this.menuButtonPanel1 = new DeviceManager.CustomControl.MenuButtonPanel();
+            this.button1 = new System.Windows.Forms.Button();
             this.panelRuntime.SuspendLayout();
             this.panelLeft.SuspendLayout();
             this.panelBotttom.SuspendLayout();
@@ -76,6 +76,18 @@
             this.panelLeft.Padding = new System.Windows.Forms.Padding(3);
             this.panelLeft.Size = new System.Drawing.Size(204, 935);
             this.panelLeft.TabIndex = 4;
+            // 
+            // glassButtonAll
+            // 
+            this.glassButtonAll.BackColor = System.Drawing.Color.Transparent;
+            this.glassButtonAll.ButtonText = "全部";
+            this.glassButtonAll.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.glassButtonAll.Location = new System.Drawing.Point(9, 9);
+            this.glassButtonAll.Margin = new System.Windows.Forms.Padding(6);
+            this.glassButtonAll.Name = "glassButtonAll";
+            this.glassButtonAll.Size = new System.Drawing.Size(182, 40);
+            this.glassButtonAll.TabIndex = 3;
+            this.glassButtonAll.Click += new System.EventHandler(this.glassButtonAll_Click);
             // 
             // panelRight
             // 
@@ -193,28 +205,6 @@
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(724, 68);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "测试";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // glassButtonAll
-            // 
-            this.glassButtonAll.BackColor = System.Drawing.Color.Transparent;
-            this.glassButtonAll.ButtonText = "全部";
-            this.glassButtonAll.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.glassButtonAll.Location = new System.Drawing.Point(9, 9);
-            this.glassButtonAll.Margin = new System.Windows.Forms.Padding(6);
-            this.glassButtonAll.Name = "glassButtonAll";
-            this.glassButtonAll.Size = new System.Drawing.Size(182, 40);
-            this.glassButtonAll.TabIndex = 3;
-            this.glassButtonAll.Click += new System.EventHandler(this.glassButtonAll_Click);
-            // 
             // menuButtonPanel5
             // 
             this.menuButtonPanel5.BackColor = System.Drawing.Color.Transparent;
@@ -285,6 +275,16 @@
             this.menuButtonPanel1.Size = new System.Drawing.Size(114, 114);
             this.menuButtonPanel1.TabIndex = 8;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(724, 68);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "测试";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -302,7 +302,6 @@
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "山西省榆社县博物馆环境监测系统";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.panelRuntime.ResumeLayout(false);
             this.panelLeft.ResumeLayout(false);

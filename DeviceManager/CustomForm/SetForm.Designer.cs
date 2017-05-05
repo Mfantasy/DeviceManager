@@ -28,24 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.SuspendLayout();
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Location = new System.Drawing.Point(147, 108);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(200, 100);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
             // 
             // SetForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(590, 429);
-            this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "SetForm";
             this.Text = "设置";
@@ -54,7 +43,5 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.GroupBox groupBox1;
     }
 }

@@ -78,13 +78,12 @@ namespace DeviceManager.Model
         [XmlAttribute("endtime")]
         public int Endtime { get; set; }
 
-        [XmlIgnore]
-        public bool IsAllDate { get { return Startdate == 0; } }
-        [XmlIgnore]
-        public bool IsAllTime { get { return Starttime == 0; } }
+        [XmlAttribute("alldate")]
+        public bool AllDate { get; set; }
 
-        [XmlIgnore]
-        public bool Using { get; set; }
+        [XmlAttribute("alltime")]
+        public bool AllTime { get; set; }
+
 
         private bool inDate;
         [XmlIgnore]
@@ -92,9 +91,9 @@ namespace DeviceManager.Model
         {
             get
             {                
-                if (IsAllDate)
+                if (AllDate)
                 {
-                    inDate = true;
+                    return true;
                 }
                 return inDate;
             }
@@ -113,9 +112,9 @@ namespace DeviceManager.Model
         {
             get
             {
-                if (IsAllTime)
+                if (AllTime)
                 {
-                    inTime = true;
+                    return true;
                 }
                    return inTime;
             }

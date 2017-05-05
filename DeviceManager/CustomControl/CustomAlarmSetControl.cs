@@ -46,30 +46,28 @@ namespace DeviceManager.CustomControl
             return DateTime.Parse(dtStr);
         }
         private void Init()
-        {
-            //测试
-            ConfigData.InitConfig();            
+        {                             
             //时间
-            if (AlarmConfig.Starttime < AlarmConfig.Endtime)
+            if (AlarmConfig.AllTime)
             {
-                radioButton2.Checked = true;
-                dateTimePicker1.Value= GetTimeValue(AlarmConfig.Starttime);
-                dateTimePicker2.Value = GetTimeValue(AlarmConfig.Endtime);
+                radioButton1.Checked = true;           
             }
             else
             {
-                radioButton1.Checked = true;
+                radioButton2.Checked = true;
+                dateTimePicker1.Value = GetTimeValue(AlarmConfig.Starttime);
+                dateTimePicker2.Value = GetTimeValue(AlarmConfig.Endtime);
             }
             //日期
-            if (AlarmConfig.Startdate < AlarmConfig.Enddate)
+            if (AlarmConfig.AllDate)
+            {
+                radioButton4.Checked = true;           
+            }
+            else
             {
                 radioButton3.Checked = true;
                 dateTimePicker4.Value = GetDateValue(AlarmConfig.Startdate);
                 dateTimePicker3.Value = GetDateValue(AlarmConfig.Enddate);
-            }
-            else
-            {
-                radioButton4.Checked = true;
             }
             foreach (SensorModel model in ConfigData.SensorModelRoot.SensorModels)
             {
@@ -135,11 +133,11 @@ namespace DeviceManager.CustomControl
         {
             if (radioButton4.Checked)
             {
-                AlarmConfig.Startdate = 0;
-                AlarmConfig.Enddate = 0;
+                AlarmConfig.AllDate = true;                
             }
             else
             {
+                AlarmConfig.AllDate = false;
                 AlarmConfig.Startdate = dateTimePicker4.Value.Day + dateTimePicker4.Value.Month * 100;
                 AlarmConfig.Enddate = dateTimePicker3.Value.Day + dateTimePicker3.Value.Month * 100;
             }
@@ -150,11 +148,11 @@ namespace DeviceManager.CustomControl
         {
             if (radioButton1.Checked)
             {
-                AlarmConfig.Starttime = 0;
-                AlarmConfig.Endtime = 0;
+                AlarmConfig.AllTime = true;                
             }
             else
             {
+                AlarmConfig.AllTime = false;
                 AlarmConfig.Starttime = dateTimePicker1.Value.Minute + dateTimePicker1.Value.Hour * 100;
                 AlarmConfig.Endtime = dateTimePicker2.Value.Minute + dateTimePicker2.Value.Hour * 100;
             }

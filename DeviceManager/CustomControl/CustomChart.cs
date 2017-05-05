@@ -40,9 +40,10 @@ namespace DeviceManager.CustomControl
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
             series1.IsValueShownAsLabel = true;
-            series1.MarkerBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            series1.MarkerBorderWidth = 2;
-            series1.MarkerColor = System.Drawing.Color.Red;
+            //series1.MarkerBorderColor = System.Drawing.Color.DarkOrange;
+            series1.MarkerSize = 6;            
+            //series1.MarkerBorderWidth = 1;
+            //series1.MarkerColor = System.Drawing.Color.WhiteSmoke;
             series1.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
             series1.Name = "Series1";
             series1.XValueType = ChartValueType.Time;        

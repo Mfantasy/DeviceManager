@@ -70,6 +70,8 @@ namespace DeviceManager
         }
         private void MainForm_Load(object sender, EventArgs e)
         {
+            //测试
+            this.Size = new Size(1024, 768);
             Thread thStatus = new Thread(MonitorStatus);
             thStatus.IsBackground = true;
             thStatus.Start();
@@ -84,8 +86,7 @@ namespace DeviceManager
         PanelAlarmSet paset = new PanelAlarmSet();
         public MainForm()
         {
-            InitializeComponent();
-            this.FormClosing += MainForm_FormClosing;
+            InitializeComponent();            
             ConfigData.InitConfig();
             //通用界面逻辑
             InitializeUI();
@@ -96,22 +97,9 @@ namespace DeviceManager
             //实时数据中左侧按钮点击            
             InitialModelClickSensors();
             InitializeUIEnd();            
-            
-            
+                                    
         }
-
-        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            string fileNameAS = ConfigurationManager.AppSettings["传感器列表"];
-            string pathAS = Path.Combine(Utils.GetUserPath(), fileNameAS);            
-            string fileNameSM = ConfigurationManager.AppSettings["传感器模型配置文件"];
-            string pathSM = Path.Combine(Utils.GetUserPath(), fileNameSM);
-            string fileNameAC = ConfigurationManager.AppSettings["预警配置文件"];
-            string pathAC = Path.Combine(Utils.GetUserPath(), fileNameAC);
-            Utils.ToFile(pathAS, ConfigData.GroupConfigRoot);
-            Utils.ToFile(pathSM, ConfigData.SensorModelRoot);
-            Utils.ToFile(pathAC, ConfigData.AlarmConfigRoot);
-        }
+       
         #region 模型按钮
         private void InitializeSModel()
         {
@@ -421,7 +409,8 @@ namespace DeviceManager
 
         private void button4_Click(object sender, EventArgs e)
         {
-          
+            //设置窗口
+
         }
     }
 
