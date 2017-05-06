@@ -17,6 +17,8 @@ namespace DeviceManager.CustomForm
         public SetForm()
         {
             InitializeComponent();
+            Init();
+            
             this.FormClosing += SetForm_FormClosing;
             dataGridView1.RowHeaderMouseDoubleClick += DataGridView1_RowHeaderMouseDoubleClick;
         }
@@ -32,9 +34,29 @@ namespace DeviceManager.CustomForm
         {
             // < sensor model = "MXN820" uid = "81817F01E524226D" nodeid = "1"  portid = "0" comment = "状态包" />
             string dateTime = DateTime.Now.AddDays(-30).ToString("yyyy-MM-dd HH:mm");
+            string dataSource = ConfigurationManager.AppSettings["dbPath"];
             foreach (SensorModel model in ConfigData.SensorModelRoot.SensorModels)
             {
-                string sql = string.Format("SELECT distinct uid,nodeid,portid FROM {0}");
+                string sql = string.Format("SELECT distinct uid,nodeid,port FROM {0}_result WHERE time > '{1}'",model.Sname,dateTime);
+                try
+                {
+                    DataTable dt = SqlLiteHelper.ExecuteReader(dataSource, sql);
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        Sensor ss = new Sensor();
+                        ss.Comment = "";
+                        ss.ModelKey = model.Name;
+                        ss.NodeId = row["nodeid"].ToString();
+                        ss.PortId = row["port"].ToString();
+                        ss.Uid = row["uid"].ToString();
+                        listS.Add(ss);
+                    }                                    
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                
             }
         }
 
@@ -49,6 +71,8 @@ namespace DeviceManager.CustomForm
 
         public void Init()
         {
+            GetListS();
+            dataGridView1.DataSource = listS;
             List<GroupConfig1> groups = ConfigData.GroupConfigRoot.GroupConfig1s;
             foreach (GroupConfig1 g1 in groups)
             {

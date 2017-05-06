@@ -40,6 +40,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.glassButtonAll = new FOF.UserControlModel.GlassButton();
+            this.menuButtonPanel5 = new DeviceManager.CustomControl.MenuButtonPanel();
             this.menuButtonPanel4 = new DeviceManager.CustomControl.MenuButtonPanel();
             this.menuButtonPanel3 = new DeviceManager.CustomControl.MenuButtonPanel();
             this.menuButtonPanel2 = new DeviceManager.CustomControl.MenuButtonPanel();
@@ -110,6 +111,7 @@
             this.panelTop.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.panelTop.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panelTop.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panelTop.Controls.Add(this.menuButtonPanel5);
             this.panelTop.Controls.Add(this.button4);
             this.panelTop.Controls.Add(this.label1);
             this.panelTop.Controls.Add(this.button3);
@@ -193,7 +195,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(712, 48);
+            this.button1.Location = new System.Drawing.Point(646, 29);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 0;
@@ -212,6 +214,20 @@
             this.glassButtonAll.Size = new System.Drawing.Size(182, 40);
             this.glassButtonAll.TabIndex = 3;
             this.glassButtonAll.Click += new System.EventHandler(this.glassButtonAll_Click);
+            // 
+            // menuButtonPanel5
+            // 
+            this.menuButtonPanel5.BackColor = System.Drawing.Color.Transparent;
+            this.menuButtonPanel5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.menuButtonPanel5.CaptionText = "设备管理";
+            this.menuButtonPanel5.CheckedImage = global::DeviceManager.Properties.Resources.设备管理_副本;
+            this.menuButtonPanel5.DefaultImage = global::DeviceManager.Properties.Resources.设备管理;
+            this.menuButtonPanel5.Location = new System.Drawing.Point(497, 13);
+            this.menuButtonPanel5.Margin = new System.Windows.Forms.Padding(10);
+            this.menuButtonPanel5.Name = "menuButtonPanel5";
+            this.menuButtonPanel5.Panel = null;
+            this.menuButtonPanel5.Size = new System.Drawing.Size(114, 114);
+            this.menuButtonPanel5.TabIndex = 17;
             // 
             // menuButtonPanel4
             // 
@@ -313,6 +329,7 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button4;
+        private CustomControl.MenuButtonPanel menuButtonPanel5;
     }
 }
 

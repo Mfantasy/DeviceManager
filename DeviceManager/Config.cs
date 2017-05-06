@@ -21,9 +21,9 @@ namespace DeviceManager
                 if (sensorModelCfg == null)
                 {
                     string fileName = ConfigurationManager.AppSettings["传感器模型配置文件"];
-                    string path = Path.Combine(Utils.GetUserPath(), fileName);
+                    //string path = Path.Combine(Utils.GetUserPath(), fileName);
                     
-                    if (!File.Exists(path))
+                    if (!File.Exists(fileName))
                     {
                         sensorModelCfg = new SensorModelRoot();
                         sensorModelCfg.SensorModels = new List<SensorModel>();

@@ -71,7 +71,7 @@ namespace DeviceManager
         private void MainForm_Load(object sender, EventArgs e)
         {
             //测试
-            this.Size = new Size(1024, 768);
+            //this.Size = new Size(1024, 768);
             Thread thStatus = new Thread(MonitorStatus);
             thStatus.IsBackground = true;
             thStatus.Start();
@@ -83,6 +83,7 @@ namespace DeviceManager
         PanelHistory ph = new PanelHistory();
         PanelAlarmRecord par = new PanelAlarmRecord();
         PanelAlarmSet paset = new PanelAlarmSet();
+        PanelGroupSensors pgs = new PanelGroupSensors();
         public MainForm()
         {
             InitializeComponent();            
@@ -95,7 +96,8 @@ namespace DeviceManager
             InitRealtime();
             //实时数据中左侧按钮点击            
             InitialModelClickSensors();
-            InitializeUIEnd();            
+            InitializeUIEnd();
+            this.WindowState = FormWindowState.Maximized;         
                                     
         }
        
@@ -314,13 +316,16 @@ namespace DeviceManager
         {
             ph.Init();       
             par.Init();
-            paset.Init();                     
+            paset.Init();
+            pgs.Init();                    
             ph.Parent = panelBotttom;
             ph.Dock = DockStyle.Fill;
             par.Parent = panelBotttom;
             par.Dock = DockStyle.Fill;
             paset.Parent = panelBotttom;
             paset.Dock = DockStyle.Fill;
+            pgs.Parent = panelBotttom;
+            pgs.Dock = DockStyle.Fill;
             this.Text = ConfigurationManager.AppSettings["软件名称"];
             if (menuButtonPanel1.DefaultImage != null)
             {
@@ -338,12 +343,16 @@ namespace DeviceManager
             {
                 menuButtonPanel4.ShowDefaultImage(null, null);
             }
-          
+            if (menuButtonPanel5.DefaultImage != null)
+            {
+                menuButtonPanel5.ShowDefaultImage(null, null);
+            }
+
             menuButtonPanel1.Panel = panelRuntime;
             menuButtonPanel2.Panel = ph;
             menuButtonPanel3.Panel = par;
             menuButtonPanel4.Panel = paset;
-        
+            menuButtonPanel5.Panel = pgs;
          
         }  
 
@@ -399,11 +408,11 @@ namespace DeviceManager
             this.WindowState = FormWindowState.Minimized;
         }
 
+       // SetForm sf = new SetForm();
         private void button4_Click(object sender, EventArgs e)
         {
-            //设置窗口
-            SetForm sf = new SetForm();
-            sf.ShowDialog();
+            //设置窗口         
+         //   sf.ShowDialog();
         }
     }
 

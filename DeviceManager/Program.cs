@@ -20,8 +20,6 @@ namespace DeviceManager
         [STAThread]
         static void Main()
         {
-            string sql = "select distinct * from SCity_MX8100_result";
-            var X = SqlLiteHelper.ExecuteReader(ConfigurationManager.AppSettings["dbPath"],sql);
            // Application.Run(new TestForm());
            //return;
             Application.EnableVisualStyles();                    
