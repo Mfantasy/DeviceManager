@@ -17,6 +17,20 @@ namespace DeviceManager.CustomControl
         public PanelGroupSensors()
         {
             InitializeComponent();
+            dataGridView1.RowHeaderMouseDoubleClick += DataGridView1_RowHeaderMouseDoubleClick;
+            dataGridView2.RowHeaderMouseDoubleClick += DataGridView2_RowHeaderMouseDoubleClick;
+        }
+
+        private void DataGridView2_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            
+        }
+
+        private void DataGridView1_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+           
+            e.RowIndex
+            //e.RowIndex
         }
 
         List<Sensor> listS = new List<Sensor>();
@@ -45,8 +59,7 @@ namespace DeviceManager.CustomControl
                         ss.NodeId = row["nodeid"].ToString();
                         ss.PortId = row["port"].ToString();
                         ss.Uid = row["uid"].ToString();
-                        listS.Add(ss);
-                        
+                        listS.Add(ss);                        
                     }
                 }
                 catch (Exception ex)
@@ -71,8 +84,7 @@ namespace DeviceManager.CustomControl
             dgv.Columns["Model"].Visible = false;
             dgv.Columns["GroupName"].Visible = false;
             dgv.Columns["CurrentGroup3"].Visible = false;
-            dgv.Columns["HisColumnStr"].Visible = false;
-            
+            dgv.Columns["HisColumnStr"].Visible = false;            
         }
 
         public void Init()
@@ -98,9 +110,14 @@ namespace DeviceManager.CustomControl
             treeView1.NodeMouseClick += TreeView1_NodeMouseClick;
         }
 
+        public GroupConfig3 G3 { get; set; }
+
         private void TreeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            
+            GroupConfig3 g3 = e.Node.Tag as GroupConfig3;
+            dataGridView2.DataSource = null;
+            dataGridView2.DataSource = g3.Sensors;
+            AfterSourceChange(dataGridView2);
         }
 
         private void 编辑ToolStripMenuItem_Click(object sender, EventArgs e)
