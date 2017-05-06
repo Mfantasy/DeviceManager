@@ -92,6 +92,12 @@
     <Compile Include="CustomControl\CustomChart.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="CustomControl\CustomSensorDataView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomControl\CustomSensorDataView.Designer.cs">
+      <DependentUpon>CustomSensorDataView.cs</DependentUpon>
+    </Compile>
     <Compile Include="CustomControl\MenuButtonPanel.cs" />
     <Compile Include="CustomControl\PanelAlarmRecord.cs">
       <SubType>UserControl</SubType>
@@ -134,12 +140,6 @@
     </Compile>
     <Compile Include="CustomForm\DateTimePickerForm.Designer.cs">
       <DependentUpon>DateTimePickerForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="CustomForm\DeviceEditForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CustomForm\DeviceEditForm.Designer.cs">
-      <DependentUpon>DeviceEditForm.cs</DependentUpon>
     </Compile>
     <Compile Include="CustomForm\SetForm.cs">
       <SubType>Form</SubType>
@@ -197,6 +197,9 @@
     <EmbeddedResource Include="CustomControl\CustomAlarmSetControl.resx">
       <DependentUpon>CustomAlarmSetControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CustomControl\CustomSensorDataView.resx">
+      <DependentUpon>CustomSensorDataView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CustomControl\PanelAlarmRecord.resx">
       <DependentUpon>PanelAlarmRecord.cs</DependentUpon>
     </EmbeddedResource>
@@ -217,9 +220,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CustomForm\DateTimePickerForm.resx">
       <DependentUpon>DateTimePickerForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CustomForm\DeviceEditForm.resx">
-      <DependentUpon>DeviceEditForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CustomForm\InputForm.resx">
       <DependentUpon>InputForm.cs</DependentUpon>

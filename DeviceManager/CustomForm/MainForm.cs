@@ -79,8 +79,7 @@ namespace DeviceManager
             thMonitor.IsBackground = true;
             thMonitor.Start();
         }
-
-        PanelAllSensors pas = new PanelAllSensors();
+    
         PanelHistory ph = new PanelHistory();
         PanelAlarmRecord par = new PanelAlarmRecord();
         PanelAlarmSet paset = new PanelAlarmSet();
@@ -313,12 +312,9 @@ namespace DeviceManager
 
         void InitializeUIEnd()
         {
-            ph.Init();
-            pas.Init();
+            ph.Init();       
             par.Init();
-            paset.Init();
-            pas.Parent = panelBotttom;
-            pas.Dock = DockStyle.Fill;
+            paset.Init();                     
             ph.Parent = panelBotttom;
             ph.Dock = DockStyle.Fill;
             par.Parent = panelBotttom;
@@ -342,17 +338,13 @@ namespace DeviceManager
             {
                 menuButtonPanel4.ShowDefaultImage(null, null);
             }
-            if (menuButtonPanel5.DefaultImage != null)
-            {
-                menuButtonPanel5.ShowDefaultImage(null, null);
-            }
+          
             menuButtonPanel1.Panel = panelRuntime;
             menuButtonPanel2.Panel = ph;
             menuButtonPanel3.Panel = par;
             menuButtonPanel4.Panel = paset;
-            menuButtonPanel5.Panel = pas;
-            //paset.Visible = false;
-            pas.Visible = false;
+        
+         
         }  
 
         void InitializeUI()
@@ -410,7 +402,8 @@ namespace DeviceManager
         private void button4_Click(object sender, EventArgs e)
         {
             //设置窗口
-
+            SetForm sf = new SetForm();
+            sf.ShowDialog();
         }
     }
 

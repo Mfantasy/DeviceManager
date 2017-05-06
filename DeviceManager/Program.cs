@@ -19,9 +19,11 @@ namespace DeviceManager
         /// </summary>
         [STAThread]
         static void Main()
-        { 
-            Application.Run(new TestForm());
-            return;
+        {
+            string sql = "select distinct * from SCity_MX8100_result";
+            var X = SqlLiteHelper.ExecuteReader(ConfigurationManager.AppSettings["dbPath"],sql);
+           // Application.Run(new TestForm());
+           //return;
             Application.EnableVisualStyles();                    
             Application.SetCompatibleTextRenderingDefault(false);
             if (Config.IsShowLogon)

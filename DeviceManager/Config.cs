@@ -40,9 +40,8 @@ namespace DeviceManager
             {
                 if (groupCfg == null)
                 {
-                    string fileName = ConfigurationManager.AppSettings["传感器列表"];
-                    string path = Path.Combine(Utils.GetUserPath(), fileName);
-                    if (!File.Exists(path))
+                    string fileName = ConfigurationManager.AppSettings["传感器列表"];                    
+                    if (!File.Exists(fileName))
                     {
                         groupCfg = new GroupConfigRoot();
                         groupCfg.GroupConfig1s = new List<GroupConfig1>();         
@@ -60,8 +59,8 @@ namespace DeviceManager
                 if (alarmCfg == null)
                 {
                     string fileName = ConfigurationManager.AppSettings["预警配置文件"];
-                    string path = Path.Combine(Utils.GetUserPath(), fileName);
-                    if (!File.Exists(path))
+                   
+                    if (!File.Exists(fileName))
                     {
                         alarmCfg = new AlarmConfigRoot();
                         alarmCfg.AlarmConfigs = new List<AlarmConfig>();
