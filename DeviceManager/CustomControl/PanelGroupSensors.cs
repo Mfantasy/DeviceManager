@@ -29,10 +29,14 @@ namespace DeviceManager.CustomControl
             {
                 listS.Add(G3.Sensors[e.RowIndex]);
                 dataGridView1.DataSource = null;
-                dataGridView1.DataSource = listS;
+                BindingSource bindingSource = new BindingSource();
+                bindingSource.DataSource = listS;
+                dataGridView1.DataSource = bindingSource; ;
                 G3.Sensors.RemoveAt(e.RowIndex);
                 dataGridView2.DataSource = null;
-                dataGridView2.DataSource = G3.Sensors;
+                BindingSource bindingSource1 = new BindingSource();
+                bindingSource1.DataSource = G3.Sensors;
+                dataGridView2.DataSource = bindingSource1;
                 AfterSourceChange(dataGridView1);
                 AfterSourceChange(dataGridView2);
             }
@@ -46,9 +50,13 @@ namespace DeviceManager.CustomControl
                 G3.Sensors.Add(listS[e.RowIndex]);
                 listS.RemoveAt(e.RowIndex);
                 dataGridView1.DataSource = null;
-                dataGridView1.DataSource = listS;
+                BindingSource bindingSource = new BindingSource();
+                bindingSource.DataSource = listS;
+                dataGridView1.DataSource = bindingSource;
                 dataGridView2.DataSource = null;
-                dataGridView2.DataSource = G3.Sensors;
+                BindingSource bindingSource1 = new BindingSource();
+                bindingSource1.DataSource = G3.Sensors;
+                dataGridView2.DataSource = bindingSource1;
                 AfterSourceChange(dataGridView1);
                 AfterSourceChange(dataGridView2);
             }
