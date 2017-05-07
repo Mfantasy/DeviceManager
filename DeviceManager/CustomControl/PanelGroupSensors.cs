@@ -17,33 +17,48 @@ namespace DeviceManager.CustomControl
         public PanelGroupSensors()
         {
             InitializeComponent();
+            dataGridView1.EditMode = DataGridViewEditMode.EditProgrammatically;
+            dataGridView2.EditMode = DataGridViewEditMode.EditProgrammatically;
             dataGridView1.RowHeaderMouseDoubleClick += DataGridView1_RowHeaderMouseDoubleClick;
             dataGridView2.RowHeaderMouseDoubleClick += DataGridView2_RowHeaderMouseDoubleClick;
         }
 
         private void DataGridView2_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            
-        }
-
-        private void DataGridView1_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-           
-            e.RowIndex
-            //e.RowIndex
-        }
+            if (G3 != null && G3.Sensors.Count >0)
+            {
+                listS.Add(G3.Sensors[e.RowIndex]);
+                dataGridView1.DataSource = null;
+                dataGridView1.DataSource = listS;
+                G3.Sensors.RemoveAt(e.RowIndex);
+                dataGridView2.DataSource = null;
+                dataGridView2.DataSource = G3.Sensors;
+                AfterSourceChange(dataGridView1);
+                AfterSourceChange(dataGridView2);
+            }
+        }       
 
         List<Sensor> listS = new List<Sensor>();
         private void DataGridView1_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            listS.RemoveAt(e.RowIndex);
-            //e.RowIndex
+            if (G3 != null)
+            {
+                G3.Sensors.Add(listS[e.RowIndex]);
+                listS.RemoveAt(e.RowIndex);
+                dataGridView1.DataSource = null;
+                dataGridView1.DataSource = listS;
+                dataGridView2.DataSource = null;
+                dataGridView2.DataSource = G3.Sensors;
+                AfterSourceChange(dataGridView1);
+                AfterSourceChange(dataGridView2);
+            }
+            
         }
 
         void GetListS()
         {
             // < sensor model = "MXN820" uid = "81817F01E524226D" nodeid = "1"  portid = "0" comment = "状态包" />
-            string dateTime = DateTime.Now.AddDays(-30).ToString("yyyy-MM-dd HH:mm");
+            string dateTime = DateTime.Now.AddDays(-60).ToString("yyyy-MM-dd HH:mm");
             string dataSource = ConfigurationManager.AppSettings["dbPath"];
             foreach (SensorModel model in ConfigData.SensorModelRoot.SensorModels)
             {
@@ -59,6 +74,10 @@ namespace DeviceManager.CustomControl
                         ss.NodeId = row["nodeid"].ToString();
                         ss.PortId = row["port"].ToString();
                         ss.Uid = row["uid"].ToString();
+                        if (ConfigData.allSensors.Exists(sensor => sensor.Uid == ss.Uid && sensor.NodeId == ss.NodeId && sensor.PortId == ss.PortId))
+                        {
+                            continue;
+                        }
                         listS.Add(ss);                        
                     }
                 }
@@ -70,27 +89,25 @@ namespace DeviceManager.CustomControl
             }
         }
 
-        private void SetForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (MessageBox.Show("是否保存", "提醒", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.OK)
-            {
-                string fileName = ConfigurationManager.AppSettings["传感器列表"];
-                Utils.ToFile(fileName, ConfigData.GroupConfigRoot);
-            }
-        }
-
         void AfterSourceChange(DataGridView dgv)
-        {
+        {       
             dgv.Columns["Model"].Visible = false;
             dgv.Columns["GroupName"].Visible = false;
             dgv.Columns["CurrentGroup3"].Visible = false;
-            dgv.Columns["HisColumnStr"].Visible = false;            
+            dgv.Columns["HisColumnStr"].Visible = false;
+            dgv.Columns["Uid"].HeaderText = "网关号";
+            dgv.Columns["NodeId"].HeaderText = "网关号";
+            dgv.Columns["PortId"].HeaderText = "通道";
+            dgv.Columns["Comment"].HeaderText = "备注";
+            dgv.Columns["ModelKey"].HeaderText = "型号";          
         }
 
         public void Init()
         {
             GetListS();
-            dataGridView1.DataSource = listS;
+            BindingSource bindingSource = new BindingSource();
+            bindingSource.DataSource = listS;
+            dataGridView1.DataSource = bindingSource;
             AfterSourceChange(dataGridView1);
             List<GroupConfig1> groups = ConfigData.GroupConfigRoot.GroupConfig1s;
             foreach (GroupConfig1 g1 in groups)
@@ -115,9 +132,16 @@ namespace DeviceManager.CustomControl
         private void TreeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
             GroupConfig3 g3 = e.Node.Tag as GroupConfig3;
-            dataGridView2.DataSource = null;
-            dataGridView2.DataSource = g3.Sensors;
-            AfterSourceChange(dataGridView2);
+            
+            if (g3 != null )//&& g3.Sensors.Count>0)
+            {
+                G3 = g3;
+                BindingSource bindingSource = new BindingSource();
+                bindingSource.DataSource = g3.Sensors;              
+                dataGridView2.DataSource = null;
+                dataGridView2.DataSource = bindingSource;                
+                AfterSourceChange(dataGridView2);
+            }
         }
 
         private void 编辑ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -134,6 +158,13 @@ namespace DeviceManager.CustomControl
                     MessageBox.Show(string.Format("{0}列不允许编辑", dgv.SelectedCells[0].OwningColumn.HeaderText), "提醒", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
+        }
+
+        private void 保存ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string fileName = ConfigurationManager.AppSettings["传感器列表"];
+            Utils.ToFile(fileName, ConfigData.GroupConfigRoot);
+            MessageBox.Show("保存成功", "提醒", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
         }
     }
 }

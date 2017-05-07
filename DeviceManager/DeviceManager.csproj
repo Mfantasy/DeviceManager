@@ -267,11 +267,9 @@
   <ItemGroup>
     <Content Include="20170416011401263_easyicon_net_256.ico" />
     <Content Include="Config\AlarmConfig.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Config\AllSensors.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>
     <Content Include="File\close20.png" />
@@ -279,7 +277,6 @@
     <Content Include="File\Record.txt" />
     <Content Include="Config\SensorModel.xml">
       <SubType>Designer</SubType>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Lib\ICSharpCode.SharpZipLib.dll" />
     <Content Include="Lib\MySql.Data.dll" />
