@@ -31,20 +31,20 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.panelRuntime = new System.Windows.Forms.Panel();
             this.panelLeft = new System.Windows.Forms.FlowLayoutPanel();
+            this.glassButtonAll = new FOF.UserControlModel.GlassButton();
             this.panelRight = new System.Windows.Forms.Panel();
             this.panelBotttom = new System.Windows.Forms.Panel();
             this.panelTop = new System.Windows.Forms.Panel();
+            this.menuButtonPanel5 = new DeviceManager.CustomControl.MenuButtonPanel();
             this.button4 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.glassButtonAll = new FOF.UserControlModel.GlassButton();
-            this.menuButtonPanel5 = new DeviceManager.CustomControl.MenuButtonPanel();
             this.menuButtonPanel4 = new DeviceManager.CustomControl.MenuButtonPanel();
             this.menuButtonPanel3 = new DeviceManager.CustomControl.MenuButtonPanel();
             this.menuButtonPanel2 = new DeviceManager.CustomControl.MenuButtonPanel();
             this.menuButtonPanel1 = new DeviceManager.CustomControl.MenuButtonPanel();
+            this.button1 = new System.Windows.Forms.Button();
             this.panelRuntime.SuspendLayout();
             this.panelLeft.SuspendLayout();
             this.panelBotttom.SuspendLayout();
@@ -76,6 +76,18 @@
             this.panelLeft.Padding = new System.Windows.Forms.Padding(3);
             this.panelLeft.Size = new System.Drawing.Size(204, 935);
             this.panelLeft.TabIndex = 4;
+            // 
+            // glassButtonAll
+            // 
+            this.glassButtonAll.BackColor = System.Drawing.Color.Transparent;
+            this.glassButtonAll.ButtonText = "全部";
+            this.glassButtonAll.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.glassButtonAll.Location = new System.Drawing.Point(9, 9);
+            this.glassButtonAll.Margin = new System.Windows.Forms.Padding(6);
+            this.glassButtonAll.Name = "glassButtonAll";
+            this.glassButtonAll.Size = new System.Drawing.Size(182, 40);
+            this.glassButtonAll.TabIndex = 3;
+            this.glassButtonAll.Click += new System.EventHandler(this.glassButtonAll_Click);
             // 
             // panelRight
             // 
@@ -128,6 +140,20 @@
             this.panelTop.Name = "panelTop";
             this.panelTop.Size = new System.Drawing.Size(1916, 141);
             this.panelTop.TabIndex = 1;
+            // 
+            // menuButtonPanel5
+            // 
+            this.menuButtonPanel5.BackColor = System.Drawing.Color.Transparent;
+            this.menuButtonPanel5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.menuButtonPanel5.CaptionText = "设备管理";
+            this.menuButtonPanel5.CheckedImage = global::DeviceManager.Properties.Resources.设备管理_副本;
+            this.menuButtonPanel5.DefaultImage = global::DeviceManager.Properties.Resources.设备管理;
+            this.menuButtonPanel5.Location = new System.Drawing.Point(497, 13);
+            this.menuButtonPanel5.Margin = new System.Windows.Forms.Padding(10);
+            this.menuButtonPanel5.Name = "menuButtonPanel5";
+            this.menuButtonPanel5.Panel = null;
+            this.menuButtonPanel5.Size = new System.Drawing.Size(114, 114);
+            this.menuButtonPanel5.TabIndex = 17;
             // 
             // button4
             // 
@@ -193,42 +219,6 @@
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(646, 29);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "测试";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // glassButtonAll
-            // 
-            this.glassButtonAll.BackColor = System.Drawing.Color.Transparent;
-            this.glassButtonAll.ButtonText = "全部";
-            this.glassButtonAll.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.glassButtonAll.Location = new System.Drawing.Point(9, 9);
-            this.glassButtonAll.Margin = new System.Windows.Forms.Padding(6);
-            this.glassButtonAll.Name = "glassButtonAll";
-            this.glassButtonAll.Size = new System.Drawing.Size(182, 40);
-            this.glassButtonAll.TabIndex = 3;
-            this.glassButtonAll.Click += new System.EventHandler(this.glassButtonAll_Click);
-            // 
-            // menuButtonPanel5
-            // 
-            this.menuButtonPanel5.BackColor = System.Drawing.Color.Transparent;
-            this.menuButtonPanel5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.menuButtonPanel5.CaptionText = "设备管理";
-            this.menuButtonPanel5.CheckedImage = global::DeviceManager.Properties.Resources.设备管理_副本;
-            this.menuButtonPanel5.DefaultImage = global::DeviceManager.Properties.Resources.设备管理;
-            this.menuButtonPanel5.Location = new System.Drawing.Point(497, 13);
-            this.menuButtonPanel5.Margin = new System.Windows.Forms.Padding(10);
-            this.menuButtonPanel5.Name = "menuButtonPanel5";
-            this.menuButtonPanel5.Panel = null;
-            this.menuButtonPanel5.Size = new System.Drawing.Size(114, 114);
-            this.menuButtonPanel5.TabIndex = 17;
-            // 
             // menuButtonPanel4
             // 
             this.menuButtonPanel4.BackColor = System.Drawing.Color.Transparent;
@@ -284,6 +274,17 @@
             this.menuButtonPanel1.Panel = this.panelRuntime;
             this.menuButtonPanel1.Size = new System.Drawing.Size(114, 114);
             this.menuButtonPanel1.TabIndex = 8;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(957, 27);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "测试";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // MainForm
             // 
