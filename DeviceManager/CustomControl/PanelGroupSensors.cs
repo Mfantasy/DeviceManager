@@ -144,6 +144,7 @@ namespace DeviceManager.CustomControl
             if (g3 != null )//&& g3.Sensors.Count>0)
             {
                 G3 = g3;
+                groupBox4.Text = g3.Name;
                 BindingSource bindingSource = new BindingSource();
                 bindingSource.DataSource = g3.Sensors;              
                 dataGridView2.DataSource = null;
