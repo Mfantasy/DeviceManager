@@ -39,7 +39,7 @@ namespace DeviceManager.CustomControl
             this.CaptionLabel.AutoSize = true;
             this.CaptionLabel.BackColor = Color.Transparent;
             this.CaptionLabel.Font = new System.Drawing.Font("微软雅黑", 13F, System.Drawing.FontStyle.Regular);
-            this.CaptionLabel.ForeColor = Color.White;
+            this.CaptionLabel.ForeColor = Color.Black;
             this.Controls.Add(CaptionLabel);
             this.CaptionText = "Caption";
             this.SizeChanged += MenuButtonPanel_SizeChanged;

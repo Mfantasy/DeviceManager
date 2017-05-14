@@ -38,15 +38,7 @@ namespace DeviceManager
             {
                 if (success)
                 {
-                    label1.Invoke(new Action(() => { label1.Text = "连接成功"; }));
-                    Thread.Sleep(1000);
-                    label1.Invoke(new Action(() => { label1.Text = "连接成功(3)"; }));
-                    Thread.Sleep(1000);
-                    label1.Invoke(new Action(() => { label1.Text = "连接成功(2)"; }));
-                    Thread.Sleep(1000);
-                    label1.Invoke(new Action(() => { label1.Text = "连接成功(1)"; }));
-                    Thread.Sleep(1000);
-                    label1.Invoke(new Action(() => { label1.Visible = false; }));
+                    this.Invoke(new Action(() => { toolStripStatusLabel2.Text = "已连接"; }));                 
                     return;
                 }
                 Thread.Sleep(reConnectInterval);
@@ -61,7 +53,7 @@ namespace DeviceManager
             }
             catch (Exception ex)
             {                
-                label1.Invoke(new Action(() => { label1.Text = string.Format("连接至smeshserver失败:{0}\r\n正在重连", ex.HResult== -2147467259?"连接至smeshserver端口"+ConfigurationManager.AppSettings["port"]+"失败":ex.Message); label1.Visible = true; }));
+                this.Invoke(new Action(() => { toolStripStatusLabel2.Text = "正在连接"; }));
                 Thread.Sleep(reConnectInterval);
                 Thread thCon = new Thread(ConnectMethod);
                 thCon.IsBackground = true;
@@ -262,8 +254,8 @@ namespace DeviceManager
                     {
                         TableLayoutPanel spanel = new TableLayoutPanel();
                         spanel.Margin = new Padding(5);
-                        spanel.MinimumSize = new Size(160, 160);
-                        spanel.MaximumSize = new Size(160, 160);
+                        spanel.MinimumSize = new Size(168, 168);
+                        spanel.MaximumSize = new Size(168, 168);
                         spanel.ColumnCount = 1;
                         spanel.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
                         spanel.Parent = flp;
@@ -280,15 +272,15 @@ namespace DeviceManager
                             field.ClickLabel = lb;
                             if (ss.Model.Fields.FindAll(f => f.Realtime).Count == 1)
                             {
-                                lb.Font = new Font("微软雅黑", 32, FontStyle.Bold);
+                                lb.Font = new Font("微软雅黑", 30, FontStyle.Bold);
                             }
                             else if (ss.Model.Fields.FindAll(f => f.Realtime).Count == 2)
                             {
-                                lb.Font = new Font("微软雅黑", 22, FontStyle.Bold);
+                                lb.Font = new Font("微软雅黑", 20, FontStyle.Bold);
                             }
                             else
                             {
-                                lb.Font = new Font("微软雅黑", 12, FontStyle.Bold);
+                                lb.Font = new Font("微软雅黑", 10, FontStyle.Bold);
                             }
                             lb.Margin = new Padding(2);
                             spanel.RowStyles.Add(new RowStyle(SizeType.Percent, 50));
@@ -412,7 +404,7 @@ namespace DeviceManager
         private void button4_Click(object sender, EventArgs e)
         {
             //设置窗口         
-         //   sf.ShowDialog();
+            new AboutBox1().ShowDialog();
         }
     }
 

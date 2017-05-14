@@ -16,7 +16,8 @@ namespace DeviceManager.CustomControl
     {
         public PanelHistory()
         {
-            InitializeComponent();                   
+            InitializeComponent();
+            this.customDataView1.Font = new Font("微软雅黑", 11);
         }
 
         public void Init()
@@ -33,7 +34,7 @@ namespace DeviceManager.CustomControl
                         TreeNode tns = tn3.Nodes.Add(g3.Name);
                         foreach (Sensor ss in g3.Sensors)
                         {
-                            TreeNode tn = tns.Nodes.Add(ss.Comment);
+                            TreeNode tn = tns.Nodes.Add(string.IsNullOrWhiteSpace(ss.Comment)?"未备注":ss.Comment);
                             tn.ToolTipText = ss.Model.Title;
                             tn.Tag = ss;
                         }
@@ -116,5 +117,7 @@ namespace DeviceManager.CustomControl
                 MessageBox.Show("没有数据", "提醒", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }            
         }
+
+      
     }
 }

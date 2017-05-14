@@ -18,8 +18,13 @@ namespace DeviceManager.CustomControl
         {
             InitializeComponent();
         }
-        DataTable dt;
+
         CustomDataView cdv;
+        CustomDataView cdv3;
+
+        DataTable dt;
+        DataTable dt3;
+
         string db = "null";
         public void Init()
         {
@@ -37,7 +42,15 @@ namespace DeviceManager.CustomControl
                 field.StateChanged += Field_StateChanged;
             }
 
-            cdv = new CustomDataView();          
+            cdv3 = new CustomDataView();
+            cdv3.ContextMenuStrip = contextMenuStrip1;
+            cdv3.Font = new Font("微软雅黑", 15);
+            cdv3.Parent = this;
+            cdv3.Dock = DockStyle.Fill;
+            cdv3.CellFormatting += Cdv_CellFormatting;
+
+            cdv = new CustomDataView();
+            cdv.ContextMenuStrip = contextMenuStrip1;  
             cdv.Font = new Font("微软雅黑", 15);
             cdv.Parent = this;
             cdv.Dock = DockStyle.Fill;
@@ -49,6 +62,7 @@ namespace DeviceManager.CustomControl
             cdv.Columns["comment"].HeaderText = "备注";
             cdv.Columns["state"].HeaderText = "状态";
             cdv.CellFormatting += Cdv_CellFormatting;
+            cdv.BringToFront();
         }
 
         private void Cdv_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -103,6 +117,26 @@ namespace DeviceManager.CustomControl
             {
                 Utils.WriteEX(ex);
             }
+        }
+
+        private void 全部预警ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            cdv.BringToFront();
+        }
+
+        private void 最近三天ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            cdv3.DataSource = null;
+            //string timeStrS = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            string timeStrE = DateTime.Now.AddDays(-3).ToString("yyyy-MM-dd HH:mm:ss");
+            dt3 = SqlLiteHelper.ExecuteReader(db, string.Format("SELECT * FROM record where time > '{0}'",timeStrE));
+            cdv3.DataSource = dt3;
+            cdv3.Columns["time"].HeaderText = "时间";
+            cdv3.Columns["field"].HeaderText = "监测项";
+            cdv3.Columns["groupname"].HeaderText = "位置";
+            cdv3.Columns["comment"].HeaderText = "备注";
+            cdv3.Columns["state"].HeaderText = "状态";
+            cdv3.BringToFront();            
         }
     }
 

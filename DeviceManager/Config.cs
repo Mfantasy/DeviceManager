@@ -122,7 +122,7 @@ namespace DeviceManager
 
     public static class Config
     {
-        public static bool IsShowLogon = false;
+        public static bool IsShowLogon = true;
         
     }
 

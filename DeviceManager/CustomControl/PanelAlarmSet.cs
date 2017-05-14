@@ -127,6 +127,7 @@ namespace DeviceManager.CustomControl
         public PanelAlarmSet()
         {
             InitializeComponent();
+            this.BorderStyle = BorderStyle.Fixed3D;
         }
         
         string configPath;

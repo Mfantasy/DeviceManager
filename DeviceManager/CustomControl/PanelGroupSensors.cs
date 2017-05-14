@@ -17,10 +17,54 @@ namespace DeviceManager.CustomControl
         public PanelGroupSensors()
         {
             InitializeComponent();
+            this.BorderStyle = BorderStyle.Fixed3D;           
+                       
+            treeView1.AfterLabelEdit += TreeView1_AfterLabelEdit;
+            
+         
             dataGridView1.EditMode = DataGridViewEditMode.EditProgrammatically;
             dataGridView2.EditMode = DataGridViewEditMode.EditProgrammatically;
             dataGridView1.RowHeaderMouseDoubleClick += DataGridView1_RowHeaderMouseDoubleClick;
             dataGridView2.RowHeaderMouseDoubleClick += DataGridView2_RowHeaderMouseDoubleClick;
+        }
+
+        private void TreeView1_AfterLabelEdit(object sender, NodeLabelEditEventArgs e)
+        {
+            if (e.Node.Tag is GroupConfig1)
+            {
+                var g1 = e.Node.Tag as GroupConfig1;
+                g1.Name = e.Label;
+                if (e.Node.Nodes.Count == 0)
+                {
+                    TreeNode node = new TreeNode("未命名节点");
+                    GroupConfig2 g2 = new GroupConfig2();
+                    g2.GroupConfigs = new List<GroupConfig3>();
+                    ((GroupConfig1)(e.Node.Tag)).GroupConfigs.Add(g2);
+                    node.Tag = g2;
+                    e.Node.Nodes.Add(node);
+                    node.Parent.ExpandAll();
+                }
+            }
+            else if (e.Node.Tag is GroupConfig2)
+            {
+                var g2 = e.Node.Tag as GroupConfig2;
+                g2.Name = e.Label;
+                if (e.Node.Nodes.Count == 0)
+                {
+                    TreeNode node = new TreeNode("未命名节点");                  
+                    GroupConfig3 g3 = new GroupConfig3();
+                    g3.Sensors = new List<Sensor>();
+                    ((GroupConfig2)(e.Node.Tag)).GroupConfigs.Add(g3);
+                    node.Tag = g3;
+                    e.Node.Nodes.Add(node);
+                    node.Parent.ExpandAll();
+                }
+            }
+            else if (e.Node.Tag is GroupConfig3)
+            {
+                var g3 = e.Node.Tag as GroupConfig3;
+                g3.Name = e.Label;
+            }
         }
 
         private void DataGridView2_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -121,9 +165,11 @@ namespace DeviceManager.CustomControl
             foreach (GroupConfig1 g1 in groups)
             {
                 TreeNode tn2 = treeView1.Nodes.Add(g1.Name);
+                tn2.Tag = g1;
                 foreach (GroupConfig2 g2 in g1.GroupConfigs)
                 {
                     TreeNode tn3 = tn2.Nodes.Add(g2.Name);
+                    tn3.Tag = g2;
                     foreach (GroupConfig3 g3 in g2.GroupConfigs)
                     {
                         TreeNode tns = tn3.Nodes.Add(g3.Name);
@@ -139,17 +185,19 @@ namespace DeviceManager.CustomControl
 
         private void TreeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            GroupConfig3 g3 = e.Node.Tag as GroupConfig3;
-            
-            if (g3 != null )//&& g3.Sensors.Count>0)
+            if (e.Button == MouseButtons.Left)
             {
-                G3 = g3;
-                groupBox4.Text = g3.Name;
-                BindingSource bindingSource = new BindingSource();
-                bindingSource.DataSource = g3.Sensors;              
-                dataGridView2.DataSource = null;
-                dataGridView2.DataSource = bindingSource;                
-                AfterSourceChange(dataGridView2);
+                GroupConfig3 g3 = e.Node.Tag as GroupConfig3;
+                if (g3 != null)//&& g3.Sensors.Count>0)
+                {
+                    G3 = g3;
+                    groupBox4.Text = g3.Name;
+                    BindingSource bindingSource = new BindingSource();
+                    bindingSource.DataSource = g3.Sensors;
+                    dataGridView2.DataSource = null;
+                    dataGridView2.DataSource = bindingSource;
+                    AfterSourceChange(dataGridView2);
+                }
             }
         }
 
@@ -174,6 +222,48 @@ namespace DeviceManager.CustomControl
             string fileName = ConfigurationManager.AppSettings["传感器列表"];
             Utils.ToFile(fileName, ConfigData.GroupConfigRoot);
             MessageBox.Show("保存成功", "提醒", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+        }
+
+        private void 添加根级分组ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (treeView1.SelectedNode != null)
+            {
+                treeView1.SelectedNode.BeginEdit();
+            }
+        }
+
+        private void 添加次级分组ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (treeView1.SelectedNode != null)
+            {
+                if (treeView1.SelectedNode.Tag is GroupConfig1)
+                {
+                    var node = treeView1.Nodes.Add("未命名");
+                    GroupConfig1 g1 = new GroupConfig1();
+                    ConfigData.GroupConfigRoot.GroupConfig1s.Add(g1);
+                    g1.GroupConfigs = new List<GroupConfig2>();
+                    node.Tag = g1;
+                    node.BeginEdit();                    
+                }
+                else if (treeView1.SelectedNode.Tag is GroupConfig2)
+                {
+                    var node = treeView1.SelectedNode.Parent.Nodes.Add("未命名");
+                    GroupConfig2 g2 = new GroupConfig2();
+                    g2.GroupConfigs = new List<GroupConfig3>();
+                    ((GroupConfig1)(treeView1.SelectedNode.Parent.Tag)).GroupConfigs.Add(g2);
+                    node.Tag = g2;
+                    node.BeginEdit();
+                }
+                else if (treeView1.SelectedNode.Tag is GroupConfig3)
+                {
+                    var node = treeView1.SelectedNode.Parent.Nodes.Add("未命名");
+                    GroupConfig3 g3 = new GroupConfig3();
+                    g3.Sensors = new List<Sensor>();
+                    ((GroupConfig2)(treeView1.SelectedNode.Parent.Tag)).GroupConfigs.Add(g3);
+                    node.Tag = g3;
+                    node.BeginEdit();
+                }
+            }
         }
     }
 }
