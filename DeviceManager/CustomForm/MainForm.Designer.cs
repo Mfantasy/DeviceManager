@@ -41,6 +41,7 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.glassButtonAll = new FOF.UserControlModel.GlassButton();
             this.menuButtonPanel5 = new DeviceManager.CustomControl.MenuButtonPanel();
             this.menuButtonPanel4 = new DeviceManager.CustomControl.MenuButtonPanel();
@@ -52,6 +53,7 @@
             this.panelBotttom.SuspendLayout();
             this.panelTop.SuspendLayout();
             this.statusStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panelRuntime
@@ -114,6 +116,7 @@
             this.panelTop.BackColor = System.Drawing.Color.Transparent;
             this.panelTop.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panelTop.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panelTop.Controls.Add(this.pictureBox1);
             this.panelTop.Controls.Add(this.menuButtonPanel5);
             this.panelTop.Controls.Add(this.button4);
             this.panelTop.Controls.Add(this.button3);
@@ -184,7 +187,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(613, 13);
+            this.button1.Location = new System.Drawing.Point(709, 10);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 0;
@@ -218,6 +221,16 @@
             this.toolStripStatusLabel2.Size = new System.Drawing.Size(42, 17);
             this.toolStripStatusLabel2.Text = "status";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(470, -2);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(1101, 141);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 18;
+            this.pictureBox1.TabStop = false;
+            // 
             // glassButtonAll
             // 
             this.glassButtonAll.BackColor = System.Drawing.Color.Transparent;
@@ -237,11 +250,11 @@
             this.menuButtonPanel5.CaptionText = "设备管理";
             this.menuButtonPanel5.CheckedImage = global::DeviceManager.Properties.Resources.设备管理_副本;
             this.menuButtonPanel5.DefaultImage = global::DeviceManager.Properties.Resources.设备管理;
-            this.menuButtonPanel5.Location = new System.Drawing.Point(497, 13);
+            this.menuButtonPanel5.Location = new System.Drawing.Point(373, 23);
             this.menuButtonPanel5.Margin = new System.Windows.Forms.Padding(10);
             this.menuButtonPanel5.Name = "menuButtonPanel5";
             this.menuButtonPanel5.Panel = null;
-            this.menuButtonPanel5.Size = new System.Drawing.Size(114, 114);
+            this.menuButtonPanel5.Size = new System.Drawing.Size(88, 88);
             this.menuButtonPanel5.TabIndex = 17;
             // 
             // menuButtonPanel4
@@ -251,11 +264,11 @@
             this.menuButtonPanel4.CaptionText = "预警配置";
             this.menuButtonPanel4.CheckedImage = global::DeviceManager.Properties.Resources.预警设置_副本;
             this.menuButtonPanel4.DefaultImage = global::DeviceManager.Properties.Resources.预警设置;
-            this.menuButtonPanel4.Location = new System.Drawing.Point(376, 13);
+            this.menuButtonPanel4.Location = new System.Drawing.Point(284, 23);
             this.menuButtonPanel4.Margin = new System.Windows.Forms.Padding(10);
             this.menuButtonPanel4.Name = "menuButtonPanel4";
             this.menuButtonPanel4.Panel = null;
-            this.menuButtonPanel4.Size = new System.Drawing.Size(114, 114);
+            this.menuButtonPanel4.Size = new System.Drawing.Size(88, 88);
             this.menuButtonPanel4.TabIndex = 11;
             // 
             // menuButtonPanel3
@@ -265,11 +278,11 @@
             this.menuButtonPanel3.CaptionText = "预警记录";
             this.menuButtonPanel3.CheckedImage = global::DeviceManager.Properties.Resources.预警记录_副本;
             this.menuButtonPanel3.DefaultImage = global::DeviceManager.Properties.Resources.预警记录;
-            this.menuButtonPanel3.Location = new System.Drawing.Point(255, 13);
+            this.menuButtonPanel3.Location = new System.Drawing.Point(195, 23);
             this.menuButtonPanel3.Margin = new System.Windows.Forms.Padding(10);
             this.menuButtonPanel3.Name = "menuButtonPanel3";
             this.menuButtonPanel3.Panel = null;
-            this.menuButtonPanel3.Size = new System.Drawing.Size(114, 114);
+            this.menuButtonPanel3.Size = new System.Drawing.Size(88, 88);
             this.menuButtonPanel3.TabIndex = 10;
             // 
             // menuButtonPanel2
@@ -279,11 +292,11 @@
             this.menuButtonPanel2.CaptionText = "数据查询";
             this.menuButtonPanel2.CheckedImage = global::DeviceManager.Properties.Resources.历史数据_副本;
             this.menuButtonPanel2.DefaultImage = global::DeviceManager.Properties.Resources.历史数据;
-            this.menuButtonPanel2.Location = new System.Drawing.Point(134, 13);
+            this.menuButtonPanel2.Location = new System.Drawing.Point(106, 23);
             this.menuButtonPanel2.Margin = new System.Windows.Forms.Padding(10);
             this.menuButtonPanel2.Name = "menuButtonPanel2";
             this.menuButtonPanel2.Panel = null;
-            this.menuButtonPanel2.Size = new System.Drawing.Size(114, 114);
+            this.menuButtonPanel2.Size = new System.Drawing.Size(88, 88);
             this.menuButtonPanel2.TabIndex = 9;
             // 
             // menuButtonPanel1
@@ -293,11 +306,11 @@
             this.menuButtonPanel1.CaptionText = "实时数据";
             this.menuButtonPanel1.CheckedImage = global::DeviceManager.Properties.Resources.实时数据1;
             this.menuButtonPanel1.DefaultImage = global::DeviceManager.Properties.Resources.实时数据;
-            this.menuButtonPanel1.Location = new System.Drawing.Point(13, 13);
+            this.menuButtonPanel1.Location = new System.Drawing.Point(17, 23);
             this.menuButtonPanel1.Margin = new System.Windows.Forms.Padding(10);
             this.menuButtonPanel1.Name = "menuButtonPanel1";
             this.menuButtonPanel1.Panel = this.panelRuntime;
-            this.menuButtonPanel1.Size = new System.Drawing.Size(114, 114);
+            this.menuButtonPanel1.Size = new System.Drawing.Size(88, 88);
             this.menuButtonPanel1.TabIndex = 8;
             // 
             // MainForm
@@ -325,6 +338,7 @@
             this.panelTop.ResumeLayout(false);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -350,6 +364,7 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 
