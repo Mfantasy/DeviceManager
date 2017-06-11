@@ -13,6 +13,8 @@ namespace DeviceManager
         static AlarmConfigRoot alarmCfg = null;
         public static List<Sensor> allSensors = new List<Sensor>();
         public static List<Field> allFields = new List<Field>();
+        public static List<GroupConfig2> allG2 = new List<GroupConfig2>();
+        public static List<GroupConfig3> allG3 = new List<GroupConfig3>();
 
         public static SensorModelRoot SensorModelRoot
         {
@@ -99,8 +101,10 @@ namespace DeviceManager
             {
                 foreach (var itemgc2 in itemgc1.GroupConfigs)
                 {
+                    allG2.Add(itemgc2);
                     foreach (var itemgc3 in itemgc2.GroupConfigs)
                     {
+                        allG3.Add(itemgc3);
                         foreach (var ss in itemgc3.Sensors)
                         {
                             allSensors.Add(ss);
@@ -125,16 +129,6 @@ namespace DeviceManager
         public static bool IsShowLogon = true;
         
     }
-
-    public class ConfigSaver
-    {        
-        void Test()
-        {
-            XmlDocument xdoc = new XmlDocument();
-            xdoc.Load("");
-            xdoc.ChildNodes[1].Attributes[0].Value = "";
-            xdoc.Save("");
-        }
-    }
+    
 
 }

@@ -76,6 +76,7 @@ namespace DeviceManager
         PanelAlarmRecord par = new PanelAlarmRecord();
         PanelAlarmSet paset = new PanelAlarmSet();
         PanelGroupSensors pgs = new PanelGroupSensors();
+        PanelDrag pdg = new PanelDrag();
         public MainForm()
         {
             InitializeComponent();            
@@ -104,9 +105,10 @@ namespace DeviceManager
                 flp.Padding = new Padding(8);
                 flp.Tag = panelItem;
                 GlassButton gbtn = new GlassButton();
+                gbtn.CornerRadius = 0;
                 gbtn.Name = smodel.Name;
                 gbtn.ButtonText = smodel.Title;
-                gbtn.Font = new System.Drawing.Font("微软雅黑", 14, System.Drawing.FontStyle.Bold);
+                gbtn.Font = new System.Drawing.Font("幼圆", 12, System.Drawing.FontStyle.Regular);
                 gbtn.Size = new System.Drawing.Size(182, 40);
                 gbtn.Tag = flp;
                 gbtn.Click += Gbtn_Click;
@@ -154,9 +156,9 @@ namespace DeviceManager
                     {
                         //组显示模块
                         TableLayoutPanel tlp = new TableLayoutPanel();
-                        tlp.BackColor = System.Drawing.Color.White;
+                        tlp.BackColor = System.Drawing.Color.FromArgb(255, 83, 100, 132);
                         tlp.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;                        
-                        tlp.MinimumSize = new System.Drawing.Size(540, 0);
+                        tlp.MinimumSize = new System.Drawing.Size(545, 0);
                         tlp.ColumnCount = 1;
                         tlp.Dock = DockStyle.Top;
                         tlp.AutoSize = true;
@@ -165,19 +167,19 @@ namespace DeviceManager
                         panelAll.Controls.Add(tlp);
                         //每个模块的标题
                         Button lbtitle = new Button();
-                        lbtitle.FlatStyle = FlatStyle.Popup;
+                        lbtitle.FlatStyle = FlatStyle.Flat;
                         lbtitle.Cursor = Cursors.Hand;
-                        lbtitle.BackgroundImage = Properties.Resources.未标题_1;
+                        lbtitle.BackgroundImage = Properties.Resources.博物馆副本;
                         lbtitle.BackgroundImageLayout = ImageLayout.Stretch;
                         lbtitle.Click += Lbtitle_DoubleClick;
                         lbtitle.TextAlign = ContentAlignment.MiddleLeft;
                         //lbtitle.DoubleClick += Lbtitle_DoubleClick;
-                        lbtitle.Font = new System.Drawing.Font("微软雅黑", 16, System.Drawing.FontStyle.Bold);
-                        lbtitle.BackColor = System.Drawing.Color.Blue;
+                        lbtitle.Font = new System.Drawing.Font("幼圆", 14, System.Drawing.FontStyle.Bold);
+                        lbtitle.BackColor = System.Drawing.Color.FromArgb(255, 13, 5, 5);
                         lbtitle.ForeColor = System.Drawing.Color.White;
                         lbtitle.Margin = new Padding(0);
                         lbtitle.Dock = DockStyle.Fill;
-                        lbtitle.Text = " "+g1.Name + " " + g2.Name + " " + g3.Name;
+                        lbtitle.Text = "        " + g1.Name + " " + g2.Name + " " + g3.Name;
                         lbtitle.AutoSize = true;
                         lbtitle.Parent = tlp;
                         TableLayoutPanel flp = new TableLayoutPanel();
@@ -196,15 +198,16 @@ namespace DeviceManager
                                 if (!field.Realtime)
                                     continue;
                                 Label lb = new Label();
-                                lb.BackColor = System.Drawing.Color.GreenYellow;
+                                   lb.BackColor = System.Drawing.Color.Transparent;
+                                lb.ForeColor = System.Drawing.Color.GreenYellow;
                                 lb.Dock = DockStyle.Fill;
                                 lb.TextAlign = ContentAlignment.MiddleLeft;
                                 lb.Margin = new Padding(3);
                                 field.Label = lb;
                                 lb.AutoSize = true;
                                 lb.Parent = tlp;
-                                
-                                lb.Font = new System.Drawing.Font("微软雅黑", 16, System.Drawing.FontStyle.Regular);
+
+                                lb.Font = new System.Drawing.Font("幼圆", 12, System.Drawing.FontStyle.Regular);
                                 field.Label.Text = field.LabelText;
                             }
                         }
@@ -309,7 +312,10 @@ namespace DeviceManager
             ph.Init();       
             par.Init();
             paset.Init();
-            pgs.Init();                    
+            pgs.Init();
+            pdg.Init();
+            pdg.Parent = panelBotttom;
+            pdg.Dock = DockStyle.Fill;
             ph.Parent = panelBotttom;
             ph.Dock = DockStyle.Fill;
             par.Parent = panelBotttom;
@@ -320,7 +326,7 @@ namespace DeviceManager
             pgs.Dock = DockStyle.Fill;
             this.Text = ConfigurationManager.AppSettings["软件名称"];
             if (menuButtonPanel1.DefaultImage != null)
-            {
+            {                
                 menuButtonPanel1.ShowDefaultImage(null, null);
             }
             if (menuButtonPanel2.DefaultImage != null)
@@ -339,13 +345,16 @@ namespace DeviceManager
             {
                 menuButtonPanel5.ShowDefaultImage(null, null);
             }
-
+            if (menuButtonPanel6.DefaultImage != null)
+            {
+                menuButtonPanel6.ShowDefaultImage(null, null);
+            }
             menuButtonPanel1.Panel = panelRuntime;
             menuButtonPanel2.Panel = ph;
             menuButtonPanel3.Panel = par;
             menuButtonPanel4.Panel = paset;
             menuButtonPanel5.Panel = pgs;
-         
+            menuButtonPanel6.Panel = pdg;
         }  
 
         void InitializeUI()
@@ -406,6 +415,8 @@ namespace DeviceManager
             //设置窗口         
             new AboutBox1().ShowDialog();
         }
+
+      
     }
 
 }

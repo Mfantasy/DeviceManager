@@ -176,17 +176,17 @@ namespace DeviceManager
                     StateChanged?.Invoke(this, EventArgs.Empty);
                     if (state == 0)
                     {
-                        Label.BackColor = System.Drawing.Color.GreenYellow;
+                        Label.ForeColor = System.Drawing.Color.GreenYellow;
                         ClickLabel.BackColor = System.Drawing.Color.GreenYellow;
                     }
                     else if (state == 1)
                     {
-                        Label.BackColor = System.Drawing.Color.Yellow;
+                        Label.ForeColor = System.Drawing.Color.Yellow;
                         ClickLabel.BackColor = System.Drawing.Color.Yellow;
                     }
                     else if (state == 2)
                     {
-                        Label.BackColor = System.Drawing.Color.Red;
+                        Label.ForeColor = System.Drawing.Color.Red;
                         ClickLabel.BackColor = System.Drawing.Color.Red;
                     }
                 }
@@ -363,7 +363,14 @@ namespace DeviceManager
                 {
                     chart = new CustomChart();
                     //chart.MinimumSize = new System.Drawing.Size(0, 400);
-                    chart.Titles[0].Text = string.Format("{0} ( {1} )", CurrentSensor.GroupName, CurrentSensor.Comment);
+                    if (string.IsNullOrWhiteSpace(CurrentSensor.Comment))
+                    {
+                        chart.Titles[0].Text = string.Format("{0}", CurrentSensor.GroupName);
+                    }
+                    else
+                    {
+                        chart.Titles[0].Text = string.Format("{0} ( {1} )", CurrentSensor.GroupName, CurrentSensor.Comment);
+                    }
                     chart.Legends[0].Title = this.Alias;
                     chart.Series[0].Name = this.Unit;
                     //foreach (var item in Latest20)
@@ -383,8 +390,15 @@ namespace DeviceManager
                 if (chartHis == null)
                 {
                     chartHis = new CustomChart();
-                    chartHis.Series[0].IsValueShownAsLabel = false;                    
-                    chartHis.Titles[0].Text = string.Format("{0} ( {1} )", CurrentSensor.GroupName, CurrentSensor.Comment);
+                    chartHis.Series[0].IsValueShownAsLabel = false;
+                    if (string.IsNullOrWhiteSpace(CurrentSensor.Comment))
+                    {
+                        chartHis.Titles[0].Text = string.Format("{0}", CurrentSensor.GroupName);
+                    }
+                    else
+                    {
+                        chartHis.Titles[0].Text = string.Format("{0} ( {1} )", CurrentSensor.GroupName, CurrentSensor.Comment);
+                    }                       
                     chartHis.Legends[0].Title = this.Alias;
                     chartHis.Series[0].Name = this.Unit;
                                  
@@ -402,7 +416,14 @@ namespace DeviceManager
                 {
                     chartAll = new CustomChart();
                     chartAll.Series[0].IsValueShownAsLabel = false;
-                    chartAll.Titles[0].Text = string.Format("{0} ( {1} )", CurrentSensor.GroupName, CurrentSensor.Comment);
+                    if (string.IsNullOrWhiteSpace(CurrentSensor.Comment))
+                    {
+                        chartAll.Titles[0].Text = string.Format("{0}", CurrentSensor.GroupName);
+                    }
+                    else
+                    {
+                        chartAll.Titles[0].Text = string.Format("{0} ( {1} )", CurrentSensor.GroupName, CurrentSensor.Comment);
+                    }
                     chartAll.Legends[0].Title = this.Alias;
                     chartAll.Series[0].Name = this.Unit;                    
                                

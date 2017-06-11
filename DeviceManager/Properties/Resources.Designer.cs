@@ -63,9 +63,9 @@ namespace DeviceManager.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap close20 {
+        internal static System.Drawing.Bitmap LOGO_拷贝 {
             get {
-                object obj = ResourceManager.GetObject("close20", resourceCulture);
+                object obj = ResourceManager.GetObject("LOGO_拷贝", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace DeviceManager.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap 历史数据 {
+        internal static System.Drawing.Bitmap TOP_BAR20 {
             get {
-                object obj = ResourceManager.GetObject("历史数据", resourceCulture);
+                object obj = ResourceManager.GetObject("TOP_BAR20", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,9 +83,9 @@ namespace DeviceManager.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap 历史数据_副本 {
+        internal static System.Drawing.Bitmap 关于 {
             get {
-                object obj = ResourceManager.GetObject("历史数据 副本", resourceCulture);
+                object obj = ResourceManager.GetObject("关于", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -93,9 +93,9 @@ namespace DeviceManager.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap 实时数据 {
+        internal static System.Drawing.Bitmap 博物馆副本 {
             get {
-                object obj = ResourceManager.GetObject("实时数据", resourceCulture);
+                object obj = ResourceManager.GetObject("博物馆副本", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -103,9 +103,9 @@ namespace DeviceManager.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap 实时数据1 {
+        internal static System.Drawing.Bitmap 历史数据_new_blue {
             get {
-                object obj = ResourceManager.GetObject("实时数据1", resourceCulture);
+                object obj = ResourceManager.GetObject("历史数据_new_blue", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -113,9 +113,9 @@ namespace DeviceManager.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap 未标题_1 {
+        internal static System.Drawing.Bitmap 历史数据_new_white {
             get {
-                object obj = ResourceManager.GetObject("未标题_1", resourceCulture);
+                object obj = ResourceManager.GetObject("历史数据_new_white", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -123,9 +123,9 @@ namespace DeviceManager.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap 设备管理 {
+        internal static System.Drawing.Bitmap 实时数据_new_blue {
             get {
-                object obj = ResourceManager.GetObject("设备管理", resourceCulture);
+                object obj = ResourceManager.GetObject("实时数据_new_blue", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -133,9 +133,9 @@ namespace DeviceManager.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap 设备管理_副本 {
+        internal static System.Drawing.Bitmap 实时数据_new_white {
             get {
-                object obj = ResourceManager.GetObject("设备管理 副本", resourceCulture);
+                object obj = ResourceManager.GetObject("实时数据_new_white", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -143,9 +143,9 @@ namespace DeviceManager.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap 预警记录 {
+        internal static System.Drawing.Bitmap 报警记录_new_blue {
             get {
-                object obj = ResourceManager.GetObject("预警记录", resourceCulture);
+                object obj = ResourceManager.GetObject("报警记录_new_blue", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -153,9 +153,9 @@ namespace DeviceManager.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap 预警记录_副本 {
+        internal static System.Drawing.Bitmap 报警记录_new_white {
             get {
-                object obj = ResourceManager.GetObject("预警记录 副本", resourceCulture);
+                object obj = ResourceManager.GetObject("报警记录_new_white", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -163,9 +163,9 @@ namespace DeviceManager.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap 预警设置 {
+        internal static System.Drawing.Bitmap 报警设置_new_blue {
             get {
-                object obj = ResourceManager.GetObject("预警设置", resourceCulture);
+                object obj = ResourceManager.GetObject("报警设置_new_blue", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -173,9 +173,49 @@ namespace DeviceManager.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap 预警设置_副本 {
+        internal static System.Drawing.Bitmap 报警设置_new_white {
             get {
-                object obj = ResourceManager.GetObject("预警设置 副本", resourceCulture);
+                object obj = ResourceManager.GetObject("报警设置_new_white", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap 最小化 {
+            get {
+                object obj = ResourceManager.GetObject("最小化", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap 电源 {
+            get {
+                object obj = ResourceManager.GetObject("电源", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap 设备管理_new_blue {
+            get {
+                object obj = ResourceManager.GetObject("设备管理_new_blue", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap 设备管理_new_white {
+            get {
+                object obj = ResourceManager.GetObject("设备管理_new_white", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

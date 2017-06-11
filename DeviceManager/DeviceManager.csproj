@@ -36,6 +36,7 @@
     <ApplicationIcon>20170416011401263_easyicon_net_256.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup />
+  <PropertyGroup />
   <ItemGroup>
     <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
       <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
@@ -123,6 +124,12 @@
     <Compile Include="CustomControl\CustomPASListView.Designer.cs">
       <DependentUpon>CustomPASListView.cs</DependentUpon>
     </Compile>
+    <Compile Include="CustomControl\PanelDrag.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomControl\PanelDrag.Designer.cs">
+      <DependentUpon>PanelDrag.cs</DependentUpon>
+    </Compile>
     <Compile Include="CustomControl\PanelGroupSensors.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -174,6 +181,11 @@
       <DependentUpon>Logon.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\AlarmGroupModels.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="TestForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -218,6 +230,9 @@
     <EmbeddedResource Include="CustomControl\CustomPASListView.resx">
       <DependentUpon>CustomPASListView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CustomControl\PanelDrag.resx">
+      <DependentUpon>PanelDrag.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CustomControl\PanelGroupSensors.resx">
       <DependentUpon>PanelGroupSensors.cs</DependentUpon>
     </EmbeddedResource>
@@ -244,14 +259,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="TestForm.resx">
       <DependentUpon>TestForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -281,9 +291,6 @@
     <Content Include="Config\AllSensors.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="File\close20.png" />
-    <Content Include="File\f047.png" />
-    <Content Include="File\Record.txt" />
     <Content Include="Config\SensorModel.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -306,6 +313,22 @@
     <None Include="Resources\预警设置 副本.png" />
     <None Include="Resources\预警设置.png" />
     <None Include="Resources\未标题-1.png" />
+    <None Include="Resources\TOP_BAR20.png" />
+    <None Include="Resources\报警记录_new_blue.png" />
+    <None Include="Resources\报警记录_new_white.png" />
+    <None Include="Resources\报警设置_new_blue.png" />
+    <None Include="Resources\报警设置_new_white.png" />
+    <None Include="Resources\博物馆副本.png" />
+    <None Include="Resources\电源 %282%29.png" />
+    <None Include="Resources\关于 %281%29.png" />
+    <None Include="Resources\历史数据_new_blue.png" />
+    <None Include="Resources\历史数据_new_white.png" />
+    <None Include="Resources\设备管理_new_blue.png" />
+    <None Include="Resources\设备管理_new_white.png" />
+    <None Include="Resources\实时数据_new_blue.png" />
+    <None Include="Resources\实时数据_new_white.png" />
+    <None Include="Resources\最小化.png" />
+    <None Include="Resources\LOGO 拷贝.png" />
     <Content Include="x64\SQLite.Interop.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

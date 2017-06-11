@@ -45,12 +45,7 @@ namespace DeviceManagerO
 
         private void TestForm_Load(object sender, EventArgs e)
         {
-            PanelGroupSensors pgs = new PanelGroupSensors();
-            //PanelAlarmSet pas = new PanelAlarmSet();
-            pgs.Init();
-            pgs.Parent = this;
-            pgs.Dock = DockStyle.Fill;
-           
+        
             
         }
 

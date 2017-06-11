@@ -131,7 +131,8 @@ namespace DeviceManager.CustomControl
         [Browsable(true)]
         public Image DefaultImage
         {
-            get; set;
+            get;
+            set;
         }
     }
 }
