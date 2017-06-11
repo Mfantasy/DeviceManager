@@ -110,6 +110,7 @@ namespace DeviceManager
                 gbtn.ButtonText = smodel.Title;
                 gbtn.Font = new System.Drawing.Font("幼圆", 12, System.Drawing.FontStyle.Regular);
                 gbtn.Size = new System.Drawing.Size(182, 40);
+                gbtn.Margin = new Padding(6);
                 gbtn.Tag = flp;
                 gbtn.Click += Gbtn_Click;
                 panelLeft.Controls.Add(gbtn);

@@ -194,9 +194,10 @@ namespace DeviceManager.CustomControl
 
         private void PicTop_Click(object sender, EventArgs e)
         {
-            PictureBox picTop = sender as PictureBox;
+            PictureBox picTop = sender as PictureBox;            
             this.BackgroundImage = picTop.Image;
-            Page page = picTop.Tag as Page;         
+            Page page = picTop.Tag as Page;
+            label1.Text = page.Name;
             ShowPb(page);
         }
 
