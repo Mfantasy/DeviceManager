@@ -1,19 +1,114 @@
-﻿<GroupConfig>
-  <config1 name="博物馆">
-    <config2 name="一楼">
-      <config3 name="101室">
-        <sensor model="MXS1501" uid="81817F01E524226D" nodeid="1" portid="1" comment="光照传感器"  />
-        <sensor model="MXN820" uid="81817F01E524226D" nodeid="1"  portid="0" comment="状态包"  />
-        <sensor model="MXN820" uid="81817F01E524226D" nodeid="1"  portid="0" comment="状态包"  />
-      </config3>
-      <config3 name="102室">
-        <sensor model="MX8100" uid="0100000000000210" nodeid="2000" portid="1" comment="苗圃地下水监测"  />
-        <sensor model="MX8100" uid="0100000000000210" nodeid="3000" portid="1" comment="西张村大田地下水监测"  />
-      </config3>
+<?xml version="1.0"?>
+<GroupConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <config1 name="化石博物馆一楼">
+    <config2 name="古生物化石一厅">
+		<config3 name="柜外">
+			<sensor uid="01E6F5DC180000AE" nodeid="26" comment="" portid="1" model="MXS9909" />
+			<sensor uid="01E6F5DC180000AE" nodeid="101" comment="" portid="1" model="MXS1206" />
+			<sensor uid="01E6F5DC180000AE" nodeid="19" comment="" portid="1" model="MXS9903" />
+			<sensor uid="01E6F5DC180000AE" nodeid="20" comment="" portid="1" model="MXS1501" />
+			<sensor uid="01E6F5DC180000AE" nodeid="32" comment="" portid="1" model="MXS1301" />
+		</config3>
     </config2>
-    <config2 name="二楼">
-      <config3 name="201室" />
-      <config3 name="202室" />
+    <config2 name="古生物化石二厅">
+		<config3 name="东侧柜">
+			<sensor uid="01E6F5DC180000AE" nodeid="60" comment="" portid="1" model="MXS1201" />
+		</config3>
+		<config3 name="北侧柜">
+			<sensor uid="01E6F5DC180000AE" nodeid="59" comment="" portid="1" model="MXS1201" />
+		</config3>
+		<config3 name="柜外">
+			<sensor uid="01E6F5DC180000AE" nodeid="36" comment="" portid="1" model="MXS9909" />
+			<sensor uid="01E6F5DC180000AE" nodeid="102" comment="" portid="1" model="MXS1206" />
+			<sensor uid="01E6F5DC180000AE" nodeid="29" comment="" portid="1" model="MXS9903" />
+			<sensor uid="01E6F5DC180000AE" nodeid="105" comment="" portid="1" model="MXS1501" />
+			<sensor uid="01E6F5DC180000AE" nodeid="43" comment="" portid="1" model="MXS1301" />
+		</config3>
     </config2>
-  </config1>  
+    <config2 name="石刻造像厅">
+		<config3 name="柜外">
+			<sensor uid="01E6F5DC180000AE" nodeid="30" comment="" portid="1" model="MXS9909" />
+			<sensor uid="01E6F5DC180000AE" nodeid="100" comment="" portid="1" model="MXS1206" />
+			<sensor uid="01E6F5DC180000AE" nodeid="40" comment="" portid="1" model="MXS9903" />
+			<sensor uid="01E6F5DC180000AE" nodeid="55" comment="" portid="1" model="MXS1501" />
+			<sensor uid="01E6F5DC180000AE" nodeid="22" comment="" portid="1" model="MXS1301" />
+		</config3>
+    </config2>
+	</config1>
+  <config1 name="化石博物馆二楼">
+    <config2 name="文明之光展厅">
+		<config3 name="柜外">
+			<sensor uid="01E6F5DC180000AE" nodeid="34" comment="" portid="1" model="MXS9909" />
+			<sensor uid="01E6F5DC180000AE" nodeid="33" comment="" portid="1" model="MXS1206" />
+			<sensor uid="01E6F5DC180000AE" nodeid="18" comment="" portid="1" model="MXS9903" />
+			<sensor uid="01E6F5DC180000AE" nodeid="51" comment="" portid="1" model="MXS1501" />
+			<sensor uid="01E6F5DC180000AE" nodeid="38" comment="" portid="1" model="MXS1301" />
+		</config3>
+    </config2>
+    <config2 name="红色回忆厅">
+		<config3 name="柜外">
+			<sensor uid="01E6F5DC180000AE" nodeid="31" comment="" portid="1" model="MXS9909" />
+			<sensor uid="01E6F5DC180000AE" nodeid="1" comment="" portid="1" model="MXS9909" />
+			<sensor uid="01E6F5DC180000AE" nodeid="24" comment="" portid="1" model="MXS9903" />
+			<sensor uid="01E6F5DC180000AE" nodeid="46" comment="" portid="1" model="MXS9903" />
+			<sensor uid="01E6F5DC180000AE" nodeid="42" comment="" portid="1" model="MXS1301" />
+			<sensor uid="01E6F5DC180000AE" nodeid="21" comment="" portid="1" model="MXS1301" />
+		</config3>
+    </config2>
+    <config2 name="书画临时厅">
+		<config3 name="柜外">
+			<sensor uid="01E6F5DC180000AE" nodeid="25" comment="" portid="1" model="MXS9909" />
+			<sensor uid="01E6F5DC180000AE" nodeid="39" comment="" portid="1" model="MXS9903" />
+			<sensor uid="01E6F5DC180000AE" nodeid="45" comment="" portid="1" model="MXS1301" />
+		</config3>
+    </config2>
+    <config2 name="墓志厅">
+		<config3 name="柜外">
+			<sensor uid="01E6F5DC180000AE" nodeid="23" comment="" portid="1" model="MXS9909" />
+			<sensor uid="01E6F5DC180000AE" nodeid="35" comment="" portid="1" model="MXS9903" />
+			<sensor uid="01E6F5DC180000AE" nodeid="41" comment="" portid="1" model="MXS1301" />
+		</config3>
+    </config2>
+	</config1>
+	<config1 name="化石博物馆">
+	<config2 name="设备状态">
+		<config3 name="全部">
+		<sensor uid="01E6F5DC180000AE" nodeid="26" comment="" portid="0" model="MXN820" />
+		<sensor uid="01E6F5DC180000AE" nodeid="101" comment="" portid="0" model="MXN820" />
+		<sensor uid="01E6F5DC180000AE" nodeid="19" comment="" portid="0" model="MXN820" />
+		<sensor uid="01E6F5DC180000AE" nodeid="20" comment="" portid="0" model="MXN820" />
+		<sensor uid="01E6F5DC180000AE" nodeid="32" comment="" portid="0" model="MXN820" />		
+		<sensor uid="01E6F5DC180000AE" nodeid="60" comment="" portid="0" model="MXN820" />
+		<sensor uid="01E6F5DC180000AE" nodeid="59" comment="" portid="0" model="MXN820" />
+		<sensor uid="01E6F5DC180000AE" nodeid="36" comment="" portid="0" model="MXN820" />
+		<sensor uid="01E6F5DC180000AE" nodeid="102" comment="" portid="0" model="MXN820" />
+		<sensor uid="01E6F5DC180000AE" nodeid="29" comment="" portid="0" model="MXN820" />
+		<sensor uid="01E6F5DC180000AE" nodeid="105" comment="" portid="0" model="MXN820" />
+		<sensor uid="01E6F5DC180000AE" nodeid="43" comment="" portid="0" model="MXN820" />
+		<sensor uid="01E6F5DC180000AE" nodeid="30" comment="" portid="0" model="MXN820" />
+		<sensor uid="01E6F5DC180000AE" nodeid="100" comment="" portid="0" model="MXN820" />
+		<sensor uid="01E6F5DC180000AE" nodeid="40" comment="" portid="0" model="MXN820" />
+		<sensor uid="01E6F5DC180000AE" nodeid="55" comment="" portid="0" model="MXN820" />
+		<sensor uid="01E6F5DC180000AE" nodeid="22" comment="" portid="0" model="MXN820" />
+		<sensor uid="01E6F5DC180000AE" nodeid="34" comment="" portid="0" model="MXN820" />
+		<sensor uid="01E6F5DC180000AE" nodeid="33" comment="" portid="0" model="MXN820" />
+		<sensor uid="01E6F5DC180000AE" nodeid="18" comment="" portid="0" model="MXN820" />
+		<sensor uid="01E6F5DC180000AE" nodeid="51" comment="" portid="0" model="MXN820" />
+		<sensor uid="01E6F5DC180000AE" nodeid="38" comment="" portid="0" model="MXN820" />
+		<sensor uid="01E6F5DC180000AE" nodeid="31" comment="" portid="0" model="MXN820" />
+		<sensor uid="01E6F5DC180000AE" nodeid="1" comment="" portid="0" model="MXN820" />
+		<sensor uid="01E6F5DC180000AE" nodeid="24" comment="" portid="0" model="MXN820" />
+		<sensor uid="01E6F5DC180000AE" nodeid="46" comment="" portid="0" model="MXN820" />
+		<sensor uid="01E6F5DC180000AE" nodeid="42" comment="" portid="0" model="MXN820" />
+		<sensor uid="01E6F5DC180000AE" nodeid="21" comment="" portid="0" model="MXN820" />
+		<sensor uid="01E6F5DC180000AE" nodeid="25" comment="" portid="0" model="MXN820" />
+		<sensor uid="01E6F5DC180000AE" nodeid="39" comment="" portid="0" model="MXN820" />
+		<sensor uid="01E6F5DC180000AE" nodeid="45" comment="" portid="0" model="MXN820" />
+		<sensor uid="01E6F5DC180000AE" nodeid="23" comment="" portid="0" model="MXN820" />
+		<sensor uid="01E6F5DC180000AE" nodeid="35" comment="" portid="0" model="MXN820" />
+		<sensor uid="01E6F5DC180000AE" nodeid="41" comment="" portid="0" model="MXN820" />
+		</config3>
+    </config2>
+
+	</config1>
 </GroupConfig>

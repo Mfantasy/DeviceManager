@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <page name="古生物化石一厅" level="2" pic="1417508354740.jpg">
+    <sensor uid="01E6F5DC180000AE" node="26" port="1" x="233" y="96" />
+    <sensor uid="01E6F5DC180000AE" node="101" port="1" x="522" y="112" />
+    <sensor uid="01E6F5DC180000AE" node="19" port="1" x="166" y="155" />
+    <sensor uid="01E6F5DC180000AE" node="20" port="1" x="136" y="103" />
+    <sensor uid="01E6F5DC180000AE" node="32" port="1" x="387" y="170" />
+  </page>
+  <page name="古生物化石二厅" level="2" pic="1417508354740.jpg">
+    <sensor uid="01E6F5DC180000AE" node="60" port="1" x="640" y="278" />
+    <sensor uid="01E6F5DC180000AE" node="59" port="1" x="850" y="423" />
+    <sensor uid="01E6F5DC180000AE" node="36" port="1" x="1116" y="425" />
+    <sensor uid="01E6F5DC180000AE" node="102" port="1" x="391" y="434" />
+    <sensor uid="01E6F5DC180000AE" node="29" port="1" x="1392" y="416" />
+    <sensor uid="01E6F5DC180000AE" node="105" port="1" x="415" y="177" />
+    <sensor uid="01E6F5DC180000AE" node="43" port="1" x="989" y="294" />
+  </page>
+</root>

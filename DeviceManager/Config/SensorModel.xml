@@ -20,8 +20,19 @@
     <field name="uid" alias="网关唯一号" unit="" realtime="false" history="false"/>
     <field name="battVol" alias="电池电压" unit="mv" realtime="true" history="false"/>
   </sensor>
-  <!--测试用例--> 
-  <sensor name="MX8100" title="井下液位" sname="SCity_MX8100" >
-    <field name="waterLevel" alias="液位" unit="mm" realtime="true" history="true" />
+  <sensor name="MXS1206" title="紫外线强度" sname="SeaBo_MXS1206" >
+    <field name="nodeid" alias="节点编号" unit="" realtime="false" history="false"/>
+    <field name="uid" alias="网关唯一号" unit="" realtime="false" history="false"/>
+    <field name="uvsensor" alias="紫外线强度" unit="mw/cm2" realtime="true" history="false"/>
   </sensor>
-</Sensors>
+  <sensor name="MXS9903" title="甲醛传感器" sname="SeaBo_MXS9903" >
+    <field name="nodeid" alias="节点编号" unit="" realtime="false" history="false"/>
+    <field name="uid" alias="网关唯一号" unit="" realtime="false" history="false"/>
+    <field name="uvsensor" alias="甲醛浓度" unit="mg/m3" realtime="true" history="false"/>
+  </sensor>
+  <sensor name="MXS9909" title="VOC传感器" sname="SeaBo_MXS9909" >
+    <field name="nodeid" alias="节点编号" unit="" realtime="false" history="false"/>
+    <field name="uid" alias="网关唯一号" unit="" realtime="false" history="false"/>
+    <field name="voc" alias="voc浓度" unit="ppm" realtime="true" history="false"/>
+  </sensor>
+  </Sensors>

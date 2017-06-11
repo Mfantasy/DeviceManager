@@ -285,15 +285,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="20170416011401263_easyicon_net_256.ico" />
-    <Content Include="Config\AlarmConfig.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Config\AllSensors.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Config\SensorModel.xml">
-      <SubType>Designer</SubType>
-    </Content>
+    <Content Include="Config\AlarmConfig.xml" />
+    <Content Include="Config\AllSensors.xml" />
+    <Content Include="Config\dragConfig.xml" />
+    <Content Include="Config\SensorModel.xml" />
     <Content Include="Lib\ICSharpCode.SharpZipLib.dll" />
     <Content Include="Lib\MySql.Data.dll" />
     <Content Include="Lib\Newtonsoft.Json.dll" />

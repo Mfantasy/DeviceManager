@@ -1,10 +1,13 @@
-﻿<AlarmConfigs>
-  <config name="冬天策略" enable="true" startdate="0" enddate="0" starttime="0" endtime="0" >
-    <field model="MXS1501" name="light" up="11111" low="11103" around="2" />
-    <field model="MXN820" name="battVol" up="9999" low="9988" around="10" />
+<?xml version="1.0"?>
+<AlarmConfigs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <config name="文博预警策略" startdate="0" enddate="0" starttime="0" endtime="2359" alldate="true" alltime="true">
+    <field model="MXS1201" modelcn="空气温湿度" name="humid" namecn="湿度(%)" up="80" low="10" around="0" />
+    <field model="MXS1201" modelcn="空气温湿度" name="humtemp" namecn="温度(℃)" up="32" low="18" around="0" />
+    <field model="MXS1301" modelcn="二氧化碳" name="co2" namecn="co2浓度(ppm)" up="1500" low="100" around="0" />
+    <field model="MXS9903" modelcn="甲醛传感器" name="hcho" namecn="甲醛浓度" up="1" low="0" around="0" />
+    <field model="MXS9909" modelcn="VOC传感器" name="voc" namecn="voc浓度(ppm)" up="1" low="0" around="0" />
+    <field model="MXS1501" modelcn="光照强度" name="light" namecn="太阳光照（lux）" up="5000" low="0" around="0" />
+    <field model="MXN820_STATUS" modelcn="节点状态" name="battVol" namecn="电池电压" up="3700" low="3000" around="0" />
+    <field model="MXS1206" modelcn="紫外线强度" name="uvsensor" namecn="紫外线强度（mw/cm2）" up="2" low="0" around="0" />
   </config>
-  <config name="夏天策略" enable="false" startdate="0" enddate="0" starttime="0" endtime="0" >
-    <field model="MXS1501" name="light" up="1234" low="1222" around="2" />
-    <field model="MXN820" name="battVol" up="6689" low="6650" around="5" />
-   </config>
 </AlarmConfigs>
