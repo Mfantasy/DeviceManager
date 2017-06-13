@@ -240,7 +240,7 @@ namespace DeviceManager.CustomControl
         public PicBox(SensorS s)
         {
             this.Size = new Size(64, 64);
-            this.BackgroundImage = Image.FromFile("ico.png");
+            this.BackgroundImage = Image.FromFile("ico.png");//Properties.Resources.ico;//
             this.BackColor = Color.Transparent;
             this.BackgroundImageLayout = ImageLayout.Stretch;
             this.Ss = s;                        

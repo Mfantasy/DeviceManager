@@ -267,9 +267,9 @@
             this.menuButtonPanel6.BackColor = System.Drawing.Color.Transparent;
             this.menuButtonPanel6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.menuButtonPanel6.CaptionText = "";
-            this.menuButtonPanel6.CheckedImage = global::DeviceManager.Properties.Resources.设备管理_new_white;
-            this.menuButtonPanel6.DefaultImage = global::DeviceManager.Properties.Resources.设备管理_new_blue;
-            this.menuButtonPanel6.Location = new System.Drawing.Point(574, 46);
+            this.menuButtonPanel6.CheckedImage = global::DeviceManager.Properties.Resources.GIS_传感_white;
+            this.menuButtonPanel6.DefaultImage = global::DeviceManager.Properties.Resources.GIS_传感_blue;
+            this.menuButtonPanel6.Location = new System.Drawing.Point(216, 46);
             this.menuButtonPanel6.Margin = new System.Windows.Forms.Padding(10);
             this.menuButtonPanel6.Name = "menuButtonPanel6";
             this.menuButtonPanel6.Panel = null;
@@ -297,7 +297,7 @@
             this.menuButtonPanel5.CaptionText = "";
             this.menuButtonPanel5.CheckedImage = global::DeviceManager.Properties.Resources.设备管理_new_white;
             this.menuButtonPanel5.DefaultImage = global::DeviceManager.Properties.Resources.设备管理_new_blue;
-            this.menuButtonPanel5.Location = new System.Drawing.Point(484, 46);
+            this.menuButtonPanel5.Location = new System.Drawing.Point(574, 46);
             this.menuButtonPanel5.Margin = new System.Windows.Forms.Padding(10);
             this.menuButtonPanel5.Name = "menuButtonPanel5";
             this.menuButtonPanel5.Panel = null;
@@ -311,7 +311,7 @@
             this.menuButtonPanel4.CaptionText = "";
             this.menuButtonPanel4.CheckedImage = global::DeviceManager.Properties.Resources.报警设置_new_white;
             this.menuButtonPanel4.DefaultImage = global::DeviceManager.Properties.Resources.报警设置_new_blue;
-            this.menuButtonPanel4.Location = new System.Drawing.Point(395, 46);
+            this.menuButtonPanel4.Location = new System.Drawing.Point(485, 46);
             this.menuButtonPanel4.Margin = new System.Windows.Forms.Padding(10);
             this.menuButtonPanel4.Name = "menuButtonPanel4";
             this.menuButtonPanel4.Panel = null;
@@ -325,7 +325,7 @@
             this.menuButtonPanel3.CaptionText = "";
             this.menuButtonPanel3.CheckedImage = global::DeviceManager.Properties.Resources.报警记录_new_white;
             this.menuButtonPanel3.DefaultImage = global::DeviceManager.Properties.Resources.报警记录_new_blue;
-            this.menuButtonPanel3.Location = new System.Drawing.Point(306, 46);
+            this.menuButtonPanel3.Location = new System.Drawing.Point(396, 46);
             this.menuButtonPanel3.Margin = new System.Windows.Forms.Padding(10);
             this.menuButtonPanel3.Name = "menuButtonPanel3";
             this.menuButtonPanel3.Panel = null;
@@ -339,7 +339,7 @@
             this.menuButtonPanel2.CaptionText = "";
             this.menuButtonPanel2.CheckedImage = global::DeviceManager.Properties.Resources.历史数据_new_white;
             this.menuButtonPanel2.DefaultImage = global::DeviceManager.Properties.Resources.历史数据_new_blue;
-            this.menuButtonPanel2.Location = new System.Drawing.Point(217, 46);
+            this.menuButtonPanel2.Location = new System.Drawing.Point(306, 46);
             this.menuButtonPanel2.Margin = new System.Windows.Forms.Padding(10);
             this.menuButtonPanel2.Name = "menuButtonPanel2";
             this.menuButtonPanel2.Panel = null;
