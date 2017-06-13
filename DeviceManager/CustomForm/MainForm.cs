@@ -100,6 +100,7 @@ namespace DeviceManager
             foreach (SensorModel smodel in ConfigData.SensorModelRoot.SensorModels)
             {
                 FlowLayoutPanel flp = new FlowLayoutPanel();
+                flp.AutoScroll = true;
                 flp.Dock = DockStyle.Fill;
                 flp.Parent = panelItem;
                 flp.Padding = new Padding(8);
