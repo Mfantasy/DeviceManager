@@ -210,8 +210,17 @@ namespace DeviceManager
                         }
                         catch (Exception ex)
                         {
-
                         }                                                                                                
+                    }
+                }
+                if (!string.IsNullOrWhiteSpace(_value))
+                {
+                    try
+                    {
+                        _value = double.Parse(_value).ToString("0.##");
+                    }
+                    catch (Exception ex)
+                    {                        
                     }
                 }
                 return _value;
