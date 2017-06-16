@@ -148,7 +148,7 @@ namespace DeviceManager.CustomControl
             dgv.Columns["CurrentGroup3"].Visible = false;
             dgv.Columns["HisColumnStr"].Visible = false;
             dgv.Columns["Uid"].HeaderText = "网关号";
-            dgv.Columns["NodeId"].HeaderText = "网关号";
+            dgv.Columns["NodeId"].HeaderText = "节点";
             dgv.Columns["PortId"].HeaderText = "通道";
             dgv.Columns["Comment"].HeaderText = "备注";
             dgv.Columns["ModelKey"].HeaderText = "型号";          

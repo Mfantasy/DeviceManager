@@ -196,7 +196,26 @@ namespace DeviceManager
         string _value = "";
         [XmlIgnore]
         public string Value {
-            get { return _value; }
+            get
+            {
+                if (string.IsNullOrWhiteSpace(_value))
+                {
+                    if (CurrentSensor != null)
+                    {//"yyyy-MM-dd HH:mm"
+                        string sql = string.Format("SELECT {0} FROM {1}_result_l WHERE  nodeid = {2} ",
+                          this.Name, CurrentSensor.Model.Sname,   CurrentSensor.NodeId);                        
+                        try
+                        {                            
+                            _value = SqlLiteHelper.ExecuteScalar(ConfigurationManager.AppSettings["dbPath"], sql).ToString();
+                        }
+                        catch (Exception ex)
+                        {
+
+                        }                                                                                                
+                    }
+                }
+                return _value;
+            }
             set {
                 _value = value;
                 try

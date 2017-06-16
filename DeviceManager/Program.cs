@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -20,8 +21,11 @@ namespace DeviceManager
         [STAThread]
         static void Main()
         {
-           // Application.Run(new TestForm());
-           //return;
+            //string sql = "SELECT * FROM sqlite_master";
+            //DataTable dt = SqlLiteHelper.ExecuteReader(ConfigurationManager.AppSettings["dbPath"], sql);
+            //Application.Run(new TestForm());
+            //Console.WriteLine(dt.ToString());
+            //return;
             Application.EnableVisualStyles();                    
             Application.SetCompatibleTextRenderingDefault(false);
             if (Config.IsShowLogon)
