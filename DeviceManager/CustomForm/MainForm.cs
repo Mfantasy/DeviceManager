@@ -99,12 +99,21 @@ namespace DeviceManager
         {
             foreach (SensorModel smodel in ConfigData.SensorModelRoot.SensorModels)
             {
-                FlowLayoutPanel flp = new FlowLayoutPanel();
-                flp.AutoScroll = true;
-                flp.Dock = DockStyle.Fill;
-                flp.Parent = panelItem;
-                flp.Padding = new Padding(8);
-                flp.Tag = panelItem;
+                TableLayoutPanel tlp = new TableLayoutPanel();
+                tlp.AutoScroll = true;
+                tlp.Dock = DockStyle.Fill;
+                tlp.Parent = panelItem;
+                tlp.Padding = new Padding(8);
+                tlp.ColumnCount = 2;                
+                tlp.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 11));
+                tlp.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 89));
+                tlp.Tag = panelItem;
+                //FlowLayoutPanel flp = new FlowLayoutPanel();
+                //flp.AutoScroll = true;
+                //flp.Dock = DockStyle.Fill;
+                //flp.Parent = panelItem;
+                //flp.Padding = new Padding(8);
+                //flp.Tag = panelItem;
                 GlassButton gbtn = new GlassButton();
                 gbtn.CornerRadius = 0;
                 gbtn.Name = smodel.Name;
@@ -112,18 +121,37 @@ namespace DeviceManager
                 gbtn.Font = new System.Drawing.Font("幼圆", 12, System.Drawing.FontStyle.Regular);
                 gbtn.Size = new System.Drawing.Size(182, 40);
                 gbtn.Margin = new Padding(6);
-                gbtn.Tag = flp;
+                gbtn.Tag = tlp;
                 gbtn.Click += Gbtn_Click;
                 panelLeft.Controls.Add(gbtn);
             }
         }
         private void Gbtn_Click(object sender, EventArgs e)
         {
-            GlassButton gbtn = sender as GlassButton;
-            FlowLayoutPanel flp = gbtn.Tag as FlowLayoutPanel;
+            GlassButton gbtn = sender as GlassButton;            
+            TableLayoutPanel flp = gbtn.Tag as TableLayoutPanel;
+            //FlowLayoutPanel flp = gbtn.Tag as FlowLayoutPanel;
             Panel panel = flp.Tag as Panel;
             panel.BringToFront();
             flp.BringToFront();
+            foreach (Control item in flp.Controls)
+            {
+                if (item is TableLayoutPanel)
+                {
+                    foreach (var lb in item.Controls)
+                    {
+                        if (lb is Label)
+                        {
+                            Label l = lb as Label;
+                            if (l.Tag is Field)
+                            {
+                                (l.Tag as Field).RefreshPanel2();
+                            }
+                        }
+                    }
+                }
+            }
+
         }
         #endregion
         #region 实时数据
@@ -253,47 +281,49 @@ namespace DeviceManager
                 if (panelLeft.Controls[i] is GlassButton)
                 {
                     GlassButton gb = panelLeft.Controls[i] as GlassButton;
-                    FlowLayoutPanel flp = gb.Tag as FlowLayoutPanel;
+                    //FlowLayoutPanel flp = gb.Tag as FlowLayoutPanel;
+                    TableLayoutPanel flp = gb.Tag as TableLayoutPanel;
                     List<Sensor> sensors = ConfigData.allSensors.FindAll(ss => ss.ModelKey == gb.Name);
                     foreach (Sensor ss in sensors)
-                    {
-                        TableLayoutPanel spanel = new TableLayoutPanel();
-                        spanel.Margin = new Padding(5);
-                        spanel.MinimumSize = new Size(168, 168);
-                        spanel.MaximumSize = new Size(168, 168);
-                        spanel.ColumnCount = 1;
-                        spanel.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
-                        spanel.Parent = flp;
-                        spanel.ForeColor = Color.Black;
-                        spanel.BackColor = Color.White;
-                        spanel.AutoScroll = true;
+                    {                  
                         foreach (Field field in ss.Model.Fields)
                         {
                             if (!field.Realtime)
                                 continue;
+                            TableLayoutPanel spanel = new TableLayoutPanel();
+                            spanel.Margin = new Padding(5);
+                            spanel.MinimumSize = new Size(168, 168);
+                            spanel.MaximumSize = new Size(168, 168);
+                            spanel.ColumnCount = 1;
+                            spanel.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
+                            spanel.Parent = flp;
+                            flp.Controls.Add(field.ChartPanel2);
+                            spanel.ForeColor = Color.Black;
+                            spanel.BackColor = Color.White;
+                            spanel.AutoScroll = true;
                             Label lb = new Label();
                             lb.BackColor = Color.GreenYellow;
                             toolTip1.SetToolTip(lb, ss.GroupName);
                             field.ClickLabel = lb;
-                            if (ss.Model.Fields.FindAll(f => f.Realtime).Count == 1)
-                            {
+                            //if (ss.Model.Fields.FindAll(f => f.Realtime).Count == 1)
+                            //{
                                 lb.Font = new Font("微软雅黑", 30, FontStyle.Bold);
-                            }
-                            else if (ss.Model.Fields.FindAll(f => f.Realtime).Count == 2)
-                            {
-                                lb.Font = new Font("微软雅黑", 20, FontStyle.Bold);
-                            }
-                            else
-                            {
-                                lb.Font = new Font("微软雅黑", 10, FontStyle.Bold);
-                            }
+                            //}
+                            //else if (ss.Model.Fields.FindAll(f => f.Realtime).Count == 2)
+                            //{
+                            //    lb.Font = new Font("微软雅黑", 20, FontStyle.Bold);
+                            //}
+                            //else
+                            //{
+                            //    lb.Font = new Font("微软雅黑", 10, FontStyle.Bold);
+                            //}
                             lb.Margin = new Padding(2);
                             spanel.RowStyles.Add(new RowStyle(SizeType.Percent, 50));
                             lb.Parent = spanel;
                             lb.Dock = DockStyle.Fill;
                             lb.Text = field.CLabelText;
                             lb.Tag = field;
-                            lb.DoubleClick += Lb_DoubleClick;
+                            //lb.DoubleClick += Lb_DoubleClick;
                         }
                     }
                 }

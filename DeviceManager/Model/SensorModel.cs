@@ -380,7 +380,13 @@ namespace DeviceManager
             get { return chartPanel; }
             set { chartPanel = value; }
         }
-
+        private Panel chartPanel2;
+        [XmlIgnore]
+        public Panel ChartPanel2
+        {
+            get { return chartPanel2; }
+            set { chartPanel2 = value; }
+        }
         private CustomChart chart;
         [XmlIgnore]
         public CustomChart Chart
@@ -459,6 +465,8 @@ namespace DeviceManager
                 return chartAll;
             }                    
         }
+        public void RefreshPanel2()
+        { chartPanel2.Controls.Add(chartPanel); }
         public void InitChart()
         {
             ComboBox.Location = new System.Drawing.Point(20, 20);
@@ -472,6 +480,10 @@ namespace DeviceManager
             chartPanel.Controls.Add(ChartHis);
             chartPanel.Controls.Add(ChartAll);
             chartPanel.Controls.Add(ComboBox);
+            //copychartpanel
+            chartPanel2 = new Panel();
+            chartPanel2.Dock = DockStyle.Fill;
+            chartPanel2.MinimumSize = new System.Drawing.Size(0, 400);            
             Chart.BringToFront();
             ComboBox.BringToFront();
             //string sql = "SELECT * FROM SCity_MX8100_result WHERE nodeid=2000  order by time desc limit 5";
