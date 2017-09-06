@@ -136,6 +136,12 @@
     <Compile Include="CustomControl\PanelGroupSensors.Designer.cs">
       <DependentUpon>PanelGroupSensors.cs</DependentUpon>
     </Compile>
+    <Compile Include="CustomControl\UserControl1.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomControl\UserControl1.Designer.cs">
+      <DependentUpon>UserControl1.cs</DependentUpon>
+    </Compile>
     <Compile Include="CustomForm\AboutBox1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -235,6 +241,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CustomControl\PanelGroupSensors.resx">
       <DependentUpon>PanelGroupSensors.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomControl\UserControl1.resx">
+      <DependentUpon>UserControl1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CustomForm\AboutBox1.resx">
       <DependentUpon>AboutBox1.cs</DependentUpon>

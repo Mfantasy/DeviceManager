@@ -23,9 +23,9 @@ namespace DeviceManager
         {
             //string sql = "SELECT * FROM sqlite_master";
             //DataTable dt = SqlLiteHelper.ExecuteReader(ConfigurationManager.AppSettings["dbPath"], sql);
-            //Application.Run(new TestForm());
+            Application.Run(new TestForm());
             //Console.WriteLine(dt.ToString());
-            //return;
+            return;
             Application.EnableVisualStyles();                    
             Application.SetCompatibleTextRenderingDefault(false);
             if (Config.IsShowLogon)

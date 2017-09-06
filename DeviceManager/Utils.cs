@@ -266,5 +266,10 @@ namespace DeviceManager
             StreamReader sr = new StreamReader(cst);
             return sr.ReadToEnd();
         }
+
+        public static void FmtExcel(string dt)
+        {
+            HSSFWorkbook workBook = new HSSFWorkbook();
+        }
     }
 }

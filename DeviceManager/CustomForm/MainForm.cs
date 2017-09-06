@@ -27,7 +27,10 @@ namespace DeviceManager
         //测试
         private void button1_Click(object sender, EventArgs e)
         {           
-            glassButton1_Click(null, null);           
+            glassButton1_Click(null, null);
+            Screen screen = Screen.FromControl(this);
+            int sh = screen.Bounds.Height;
+            int sw = screen.Bounds.Width;
         }
 
         const int reConnectInterval = 10 * 1000;//10s
@@ -243,8 +246,7 @@ namespace DeviceManager
                         }
                     }
                 }
-            }
-                      
+            }                      
         }
         //组模块标题label点击事件
         private void Lbtitle_DoubleClick(object sender, EventArgs e)
