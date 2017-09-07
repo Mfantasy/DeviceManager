@@ -18,6 +18,7 @@ using DeviceManager.CustomControl;
 using DeviceManager.Model;
 using System.Configuration;
 using DeviceManager.CustomForm;
+using DeviceManagerO;
 
 namespace DeviceManager
 {
@@ -73,6 +74,9 @@ namespace DeviceManager
             Thread thMonitor = new Thread(ConnectMethod);
             thMonitor.IsBackground = true;
             thMonitor.Start();
+
+            this.Visible = false;
+            new TestForm().Show();
         }
     
         PanelHistory ph = new PanelHistory();

@@ -17,9 +17,13 @@ namespace DeviceManager.CustomControl
             InitializeComponent();
             tableLayoutPanel1.GetType().GetProperty("DoubleBuffered",
      System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic).SetValue(tableLayoutPanel1,
-     true, null);
-            
-
+     true, null);            
         }
+
+
+
+
+
     }
+
 }
