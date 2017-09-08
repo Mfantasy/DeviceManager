@@ -35,10 +35,7 @@ namespace DeviceManager
                 }
                 catch (Exception ex)
                 {
-                    lock (Utils.lockObj)
-                    {
-                        File.AppendAllText("error.txt", ex.Message);
-                    }
+                    Utils.WriteEX(ex);
                     return;               
                 }
                 JObject jobj = JObject.Parse(jstr);
@@ -67,8 +64,11 @@ namespace DeviceManager
             {
                 byte[] bufferR = new byte[byteLength];
                 int bfLength = streamToServer.Read(bufferR, 0, bufferR.Length);
-                byte[] bts = bufferR.Take(bfLength).ToArray();
-                ThreadPool.QueueUserWorkItem(ProcessBytes, bts);
+                if (bfLength > 0)
+                {
+                    byte[] bts = bufferR.Take(bfLength).ToArray();
+                    ThreadPool.QueueUserWorkItem(ProcessBytes, bts);
+                }
             }                     
         }
     }

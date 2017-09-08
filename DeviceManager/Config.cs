@@ -127,6 +127,8 @@ namespace DeviceManager
     public static class Config
     {
         public static bool IsShowLogon = true;
+        //0 未初始化 1 管理员 2 访问者
+        public static int UserLevel = 0;
         
     }
     

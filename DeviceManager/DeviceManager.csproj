@@ -148,6 +148,12 @@
     <Compile Include="CustomForm\AboutBox1.Designer.cs">
       <DependentUpon>AboutBox1.cs</DependentUpon>
     </Compile>
+    <Compile Include="CustomForm\Account.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomForm\Account.Designer.cs">
+      <DependentUpon>Account.cs</DependentUpon>
+    </Compile>
     <Compile Include="CustomForm\ChartForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -171,6 +177,12 @@
     </Compile>
     <Compile Include="CustomForm\SetForm.Designer.cs">
       <DependentUpon>SetForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomForm\UserInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomForm\UserInfo.Designer.cs">
+      <DependentUpon>UserInfo.cs</DependentUpon>
     </Compile>
     <Compile Include="Data\DataAccess.cs" />
     <Compile Include="Data\DataSubscribe.cs" />
@@ -254,6 +266,9 @@
     <EmbeddedResource Include="CustomForm\AboutBox1.resx">
       <DependentUpon>AboutBox1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CustomForm\Account.resx">
+      <DependentUpon>Account.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CustomForm\ChartForm.resx">
       <DependentUpon>ChartForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -274,6 +289,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CustomForm\SetForm.resx">
       <DependentUpon>SetForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomForm\UserInfo.resx">
+      <DependentUpon>UserInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
