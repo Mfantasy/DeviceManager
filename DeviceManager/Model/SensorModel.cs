@@ -130,6 +130,33 @@ namespace DeviceManager
 
     public class Field
     {
+        public string GetValue(DateTime dt)
+        {
+            string sql = string.Format("SELECT {0} FROM {1}_result WHERE nodeid = {2} and time < '{3}' order by time desc limit 1 ", Name + ",time",
+                CurrentSensor.Model.Sname, CurrentSensor.NodeId,
+                dt.ToString("yyyy-MM-dd HH:mm"));
+            object o = null;
+            try
+            {
+                o = SqlLiteHelper.ExecuteScalar(ConfigurationManager.AppSettings["dbPath"], sql);
+            }
+            catch (Exception ex)
+            { }
+
+            string result = o == null ? "" : o.ToString();
+            if (!string.IsNullOrWhiteSpace(result))
+            {
+                try
+                {
+                    result = double.Parse(result).ToString("0.##");
+                }
+                catch (Exception ex)
+                {
+                }
+            }
+            return result;
+        }
+
         private AlarmField alarm;       
         [XmlIgnore]
         public AlarmField Alarm

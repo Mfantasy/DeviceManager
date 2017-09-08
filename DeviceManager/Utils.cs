@@ -1,6 +1,7 @@
 ﻿using NPOI.HSSF.UserModel;
 using NPOI.HSSF.Util;
 using NPOI.SS.UserModel;
+using NPOI.SS.Util;
 using NPOI.XSSF.UserModel;
 using System;
 using System.Collections.Generic;
@@ -268,36 +269,139 @@ namespace DeviceManager
             return sr.ReadToEnd();
         }
 
-        public static void FmtExcel(DateTime dt)
+        public static void ExcelTest()
         {
             HSSFWorkbook workBook = new HSSFWorkbook();
-            ISheet st = workBook.CreateSheet(dt.ToString("yyyy.M.d"));            
-            foreach (var g1 in ConfigData.GroupConfigRoot.GroupConfig1s)
+            ISheet st = workBook.CreateSheet("yyyy.M.d");
+            IRow r0 = st.CreateRow(0);
+            r0.Height = 200;
+            IRow r1 = st.CreateRow(1);
+            st.SetColumnBreak(1);
+            st.SetColumnBreak(0);
+            ICell c1 = r1.CreateCell(0);
+            ICell c2 = r1.CreateCell(1);
+            ICell c3 = r1.CreateCell(2);
+            c1.SetCellValue ( "XXXSB泰斯特斯特斯特斯特" );         
+            IRow r2 = st.CreateRow(2);
+            ICell c21 = r2.CreateCell(0);
+            ICell c22 = r2.CreateCell(1);
+            ICell c23 = r2.CreateCell(2);
+            c21.SetCellValue("c21");
+            c22.SetCellValue("c22");
+            c23.SetCellValue("c23");
+
+            CellRangeAddress cra = new CellRangeAddress(1, 1, 0, 1);
+            st.AddMergedRegion(cra);
+
+            using (FileStream fs = File.OpenWrite("xxx.xls"))
             {
-                ICellStyle r1s = workBook.CreateCellStyle();               
-                r1s.FillForegroundColor = HSSFColor.Grey40Percent.Index;
-                r1s.BorderTop = NPOI.SS.UserModel.BorderStyle.Thin;
-                r1s.BorderBottom = NPOI.SS.UserModel.BorderStyle.Thin;
-                r1s.BorderLeft = NPOI.SS.UserModel.BorderStyle.Thin;
-                r1s.BorderRight = NPOI.SS.UserModel.BorderStyle.Thin;
-                IFont font = workBook.CreateFont();
-                font.IsBold = true;
-                font.FontName = "宋体";
-                font.FontHeightInPoints = 14;
-                r1s.SetFont(font);
-                r1s.FillPattern = FillPattern.SolidForeground;
-                IRow row = st.CreateRow(st.LastRowNum+1);
-                
+                workBook.Write(fs);
+            }
+        }
+
+        public static string FmtExcel(DateTime dt,string fileName)
+        {
+            HSSFWorkbook workBook = new HSSFWorkbook();
+            ISheet st = workBook.CreateSheet(dt.ToString("yyyy.M.d"));
+            //先创建cellstyle
+            
+            ICellStyle r1s = workBook.CreateCellStyle();
+            r1s.FillForegroundColor = HSSFColor.Grey40Percent.Index;
+            r1s.BorderTop = NPOI.SS.UserModel.BorderStyle.Thin;
+            r1s.BorderBottom = NPOI.SS.UserModel.BorderStyle.Thin;
+            r1s.BorderLeft = NPOI.SS.UserModel.BorderStyle.Thin;
+            r1s.BorderRight = NPOI.SS.UserModel.BorderStyle.Thin;
+            IFont font = workBook.CreateFont();
+            font.IsBold = true;
+            font.FontName = "宋体";
+            font.FontHeightInPoints = 14;
+            r1s.SetFont(font);
+            r1s.FillPattern = FillPattern.SolidForeground;
+
+            ICellStyle r2s = workBook.CreateCellStyle();
+            r2s.FillForegroundColor = HSSFColor.LemonChiffon.Index;
+            r2s.FillPattern = FillPattern.SolidForeground;
+            r2s.BorderTop = NPOI.SS.UserModel.BorderStyle.Thin;
+            r2s.BorderBottom = NPOI.SS.UserModel.BorderStyle.Thin;
+            r2s.BorderLeft = NPOI.SS.UserModel.BorderStyle.Thin;
+            r2s.BorderRight = NPOI.SS.UserModel.BorderStyle.Thin;
+            IFont font2 = workBook.CreateFont();
+            font2.IsBold = true;
+            font2.FontHeightInPoints = 12;
+            font2.FontName = "宋体";
+            r2s.SetFont(font2);
+
+            ICellStyle r3s = workBook.CreateCellStyle();
+            r3s.FillForegroundColor = HSSFColor.Grey25Percent.Index;
+            r3s.BorderTop = NPOI.SS.UserModel.BorderStyle.Thin;
+            r3s.BorderBottom = NPOI.SS.UserModel.BorderStyle.Thin;
+            r3s.BorderLeft = NPOI.SS.UserModel.BorderStyle.Thin;
+            r3s.BorderRight = NPOI.SS.UserModel.BorderStyle.Thin;
+            r3s.FillPattern = FillPattern.SolidForeground;
+            IFont font3 = workBook.CreateFont();
+            font3.FontName = "宋体";
+            font3.IsBold = true;
+            font3.FontHeightInPoints = 10;
+            r3s.SetFont(font3);
+
+            ICellStyle rfs = workBook.CreateCellStyle();
+            //rfs.FillForegroundColor = HSSFColor.LemonChiffon.Index;
+            //rfs.FillPattern = FillPattern.SolidForeground;
+            rfs.BorderTop = NPOI.SS.UserModel.BorderStyle.Thin;
+            rfs.BorderBottom = NPOI.SS.UserModel.BorderStyle.Thin;
+            rfs.BorderLeft = NPOI.SS.UserModel.BorderStyle.Thin;
+            rfs.BorderRight = NPOI.SS.UserModel.BorderStyle.Thin;
+            ICellStyle rf0s = workBook.CreateCellStyle();
+            rf0s.BorderTop = NPOI.SS.UserModel.BorderStyle.Thin;
+            rf0s.BorderBottom = NPOI.SS.UserModel.BorderStyle.Thin;
+            rf0s.BorderLeft = NPOI.SS.UserModel.BorderStyle.Thin;
+            rf0s.BorderRight = NPOI.SS.UserModel.BorderStyle.Thin;
+            IFont frfs = workBook.CreateFont();
+            frfs.FontName = "宋体";
+            IFont frf0s = workBook.CreateFont();
+            frf0s.FontName = "宋体";
+            frfs.FontHeightInPoints = 10;
+            frf0s.FontHeightInPoints = 10;
+            frf0s.IsBold = true;
+            rf0s.SetFont(frf0s);
+            rfs.SetFont(frfs);
+
+            //榆社化石博物馆传感监测典型数据统计(2017 / 8 / 6)
+            IRow r0 = st.CreateRow(0);
+            ICellStyle r0s = workBook.CreateCellStyle();
+            IFont font0 = workBook.CreateFont();
+            font0.IsBold = true;
+            font0.FontHeightInPoints = 18;
+            font0.FontName = "黑体";
+            r0s.SetFont(font0);
+            ICell cr0 = r0.CreateCell(0);
+            cr0.SetCellValue("榆社化石博物馆传感监测典型数据统计("+dt.ToString("yyyy/M/d")+")");
+            cr0.CellStyle = r0s;
+
+            CellRangeAddress crar0 = new CellRangeAddress(0, 0, 0, 5);
+            st.AddMergedRegion(crar0);
+
+            st.CreateRow(1).Height = 200;
+
+            foreach (var g1 in ConfigData.GroupConfigRoot.GroupConfig1s)
+            {               
+                IRow row = st.CreateRow(st.LastRowNum+1);                
                 ICell c0 = row.CreateCell(0);                
                 c0.SetCellValue(g1.Name);
-                ICell c1 = row.CreateCell(1);
+                ICell c0sp = row.CreateCell(1);
+                c0sp.SetCellValue("");
+                ICell c1 = row.CreateCell(2);
                 c1.SetCellValue("数值");
-                ICell c2 = row.CreateCell(2);
+                ICell c2 = row.CreateCell(3);
                 c2.SetCellValue("节点号");
-                ICell c3 = row.CreateCell(3);
+                ICell c3 = row.CreateCell(4);
                 c3.SetCellValue("时间");
-                ICell c4 = row.CreateCell(4);                                
+                ICell c4 = row.CreateCell(5);                                
                 c4.SetCellValue("备注");
+
+                CellRangeAddress cra = new CellRangeAddress(c0.RowIndex, c0.RowIndex, c0.ColumnIndex, c0.ColumnIndex+1);
+                st.AddMergedRegion(cra);
+                c0sp.CellStyle = r1s;
                 c0.CellStyle = r1s;
                 c1.CellStyle = r1s;
                 c2.CellStyle = r1s;
@@ -305,33 +409,34 @@ namespace DeviceManager
                 c4.CellStyle = r1s;
                 foreach (var g2 in g1.GroupConfigs)
                 {
-                    IRow row2 = st.CreateRow(st.LastRowNum+1);
-                    ICellStyle r2s = workBook.CreateCellStyle();                    
-                    IFont font2 = workBook.CreateFont();
-                    font2.IsBold = true;
-                    font2.FontHeightInPoints = 12;
-                    font2.FontName = "宋体";
-                    r2s.SetFont(font2);                             
+                    IRow row2 = st.CreateRow(st.LastRowNum+1);                                  
                     ICell c20 = row2.CreateCell(0);
                     c20.CellStyle = r2s;
-                    c20.SetCellValue(g2.Name);
+                    c20.SetCellValue("  "+g2.Name);
+                    ICell c21 = row2.CreateCell(1);
+                    c21.CellStyle = r2s;
+                    c21.SetCellValue("");
+                    ICell c22 = row2.CreateCell(2);
+                    c22.CellStyle = r2s;
+                    c22.SetCellValue("");
+                    ICell c23 = row2.CreateCell(3);
+                    c23.CellStyle = r2s;
+                    c23.SetCellValue("");
+                    ICell c24 = row2.CreateCell(4);
+                    c24.CellStyle = r2s;
+                    c24.SetCellValue("");
+                    ICell c25 = row2.CreateCell(5);
+                    c25.CellStyle = r2s;
+                    c25.SetCellValue("");
+
+                    CellRangeAddress cra20 = new CellRangeAddress(c20.RowIndex, c20.RowIndex, 0, 1);
+                    st.AddMergedRegion(cra20);
+
                     foreach (var g3 in g2.GroupConfigs)
                     {
-                        IRow row3 = st.CreateRow(st.LastRowNum+1);
-                        ICellStyle r3s = workBook.CreateCellStyle();
-                        r3s.FillForegroundColor = HSSFColor.Grey25Percent.Index;
-                        r3s.BorderTop = NPOI.SS.UserModel.BorderStyle.Thin;
-                        r3s.BorderBottom = NPOI.SS.UserModel.BorderStyle.Thin;
-                        r3s.BorderLeft = NPOI.SS.UserModel.BorderStyle.Thin;
-                        r3s.BorderRight = NPOI.SS.UserModel.BorderStyle.Thin;
-                        r3s.FillPattern = FillPattern.SolidForeground;
-                        IFont font3 = workBook.CreateFont();
-                        font3.FontName = "宋体";
-                        font3.IsBold = true;
-                        font3.FontHeightInPoints = 10;                        
-                        r3s.SetFont(font3);
+                        IRow row3 = st.CreateRow(st.LastRowNum+1);                       
                         ICell c30 = row3.CreateCell(0);
-                        c30.SetCellValue(g3.Name);
+                        c30.SetCellValue("     "+g3.Name);
                         c30.CellStyle = r3s;
                         ICell c31 = row3.CreateCell(1);
                         c31.SetCellValue("");
@@ -345,42 +450,33 @@ namespace DeviceManager
                         ICell c34 = row3.CreateCell(4);
                         c34.SetCellValue("");
                         c34.CellStyle = r3s;
+                        ICell c35 = row3.CreateCell(5);
+                        c35.SetCellValue("");
+                        c35.CellStyle = r3s;                                                
+
                         bool ir1 = true;
                         foreach (var s in g3.Sensors)
-                        {
-                            ICellStyle rfs = workBook.CreateCellStyle();
-                            //rfs.FillForegroundColor = HSSFColor.LemonChiffon.Index;
-                            //rfs.FillPattern = FillPattern.SolidForeground;
-                            rfs.BorderTop = NPOI.SS.UserModel.BorderStyle.Thin;
-                            rfs.BorderBottom = NPOI.SS.UserModel.BorderStyle.Thin;
-                            rfs.BorderLeft = NPOI.SS.UserModel.BorderStyle.Thin;
-                            rfs.BorderRight = NPOI.SS.UserModel.BorderStyle.Thin;
-                            ICellStyle rf0s = workBook.CreateCellStyle();
-                            IFont frfs = workBook.CreateFont();
-                            frfs.FontName = "宋体";
-                            IFont frf0s = workBook.CreateFont();
-                            frf0s.FontName = "宋体";
-                            frfs.FontHeightInPoints = 10;
-                            frf0s.FontHeightInPoints = 10;
-                            frf0s.IsBold = true;
-                            rf0s.SetFont(frf0s);
-                            rfs.SetFont(frfs);
+                        {                        
                             foreach (var f in s.Model.Fields)
                             {
                                 if (!f.Realtime) continue;
                                 IRow rf = st.CreateRow(st.LastRowNum+1);
                                 ICell cf0 = rf.CreateCell(0);
+                                cf0.CellStyle = rf0s;
                                 if (ir1)
                                 {
-                                    ir1 = false;
-                                    cf0.CellStyle = rf0s;
+                                    ir1 = false;                                    
                                     cf0.SetCellValue("包括:");
+                                }
+                                else
+                                {
+                                    cf0.SetCellValue("");
                                 }
                                 ICell cf1 = rf.CreateCell(1);
                                 cf1.SetCellValue(f.Name + "(" + f.Unit + ")");
                                 cf1.CellStyle = rfs;
                                 ICell cf2 = rf.CreateCell(2);
-                                cf2.SetCellValue("cf2");
+                                cf2.SetCellValue(f.GetValue(dt));
                                 cf2.CellStyle = rfs;
                                 ICell cf3 = rf.CreateCell(3);
                                 cf3.SetCellValue(s.NodeId.ToString());
@@ -388,15 +484,28 @@ namespace DeviceManager
                                 ICell cf4 = rf.CreateCell(4);
                                 cf4.SetCellValue(dt.ToString("H:mm"));
                                 cf4.CellStyle = rfs;
+                                ICell cf5 = rf.CreateCell(5);
+                                cf5.SetCellValue(s.Comment);
+                                cf5.CellStyle = rfs;
                             }                          
                         }
                     }
                 }
             }
-            using (FileStream fs = File.OpenWrite("test.xls"))
+            //自动宽度
+            
+            st.AutoSizeColumn(1);
+            st.AutoSizeColumn(2);
+            st.AutoSizeColumn(3);
+            st.AutoSizeColumn(4);
+            st.SetColumnWidth(0, 4000);
+            st.SetColumnWidth(5, 9000);
+            //16_00榆社化石博物馆传感监测典型数据统计表2017.8.6.xls            
+            using (FileStream fs = File.OpenWrite(fileName))
             {
                 workBook.Write(fs);
             }
+            return fileName;
         }
     }
 }

@@ -454,7 +454,11 @@ namespace DeviceManager
             new AboutBox1().ShowDialog();
         }
 
-      
+        private void 数据报表ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DTPickerForm df = new DTPickerForm();
+            df.ShowDialog();
+        }
     }
 
 }

@@ -33,7 +33,7 @@ namespace DeviceManagerO
         
         private void button2_Click(object sender, EventArgs e)
         {
-            Utils.FmtExcel(DateTime.Now);
+            //Utils.FmtExcel(dateTimePicker1.Value);
         }
 
      
@@ -44,7 +44,16 @@ namespace DeviceManagerO
             
         }
 
-       
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Utils.ExcelTest();
+        }
+
+        private void 数据报表ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DTPickerForm df = new DTPickerForm();
+            df.ShowDialog();
+        }
     }
 
     }
