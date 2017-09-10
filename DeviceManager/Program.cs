@@ -1,4 +1,5 @@
-﻿using DeviceManagerO;
+﻿using DeviceManager.CustomForm;
+using DeviceManagerO;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -25,7 +26,8 @@ namespace DeviceManager
             //DataTable dt = SqlLiteHelper.ExecuteReader(ConfigurationManager.AppSettings["dbPath"], sql);
             //Application.Run(new TestForm());
             //Console.WriteLine(dt.ToString());
-            //return;
+            Application.Run(new Account());
+            return;
             Application.EnableVisualStyles();                    
             Application.SetCompatibleTextRenderingDefault(false);
             //if (Config.IsShowLogon)
