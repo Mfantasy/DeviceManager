@@ -39,6 +39,7 @@
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.数据报表ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.用户管理ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panelTop = new System.Windows.Forms.Panel();
             this.menuButtonPanel6 = new DeviceManager.CustomControl.MenuButtonPanel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -69,7 +70,7 @@
             this.panelRuntime.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelRuntime.Location = new System.Drawing.Point(0, 0);
             this.panelRuntime.Name = "panelRuntime";
-            this.panelRuntime.Size = new System.Drawing.Size(1920, 805);
+            this.panelRuntime.Size = new System.Drawing.Size(1404, 736);
             this.panelRuntime.TabIndex = 6;
             // 
             // panelLeft
@@ -83,7 +84,7 @@
             this.panelLeft.Margin = new System.Windows.Forms.Padding(0);
             this.panelLeft.Name = "panelLeft";
             this.panelLeft.Padding = new System.Windows.Forms.Padding(3);
-            this.panelLeft.Size = new System.Drawing.Size(204, 805);
+            this.panelLeft.Size = new System.Drawing.Size(204, 736);
             this.panelLeft.TabIndex = 4;
             // 
             // glassButtonAll
@@ -110,7 +111,7 @@
             this.panelRight.Margin = new System.Windows.Forms.Padding(0);
             this.panelRight.Name = "panelRight";
             this.panelRight.Padding = new System.Windows.Forms.Padding(1);
-            this.panelRight.Size = new System.Drawing.Size(1716, 805);
+            this.panelRight.Size = new System.Drawing.Size(1200, 736);
             this.panelRight.TabIndex = 5;
             // 
             // panelBotttom
@@ -123,7 +124,7 @@
             this.panelBotttom.Location = new System.Drawing.Point(0, 142);
             this.panelBotttom.Margin = new System.Windows.Forms.Padding(0);
             this.panelBotttom.Name = "panelBotttom";
-            this.panelBotttom.Size = new System.Drawing.Size(1920, 805);
+            this.panelBotttom.Size = new System.Drawing.Size(1404, 736);
             this.panelBotttom.TabIndex = 7;
             // 
             // statusStrip1
@@ -132,16 +133,16 @@
             this.toolStripStatusLabel1,
             this.toolStripStatusLabel2,
             this.toolStripSplitButton1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 947);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 878);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1916, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1400, 22);
             this.statusStrip1.TabIndex = 8;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(1799, 17);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(1283, 17);
             this.toolStripStatusLabel1.Spring = true;
             this.toolStripStatusLabel1.Text = "山西省榆社县博物馆环境监测系统";
             // 
@@ -156,7 +157,8 @@
             // 
             this.toolStripSplitButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolStripSplitButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.数据报表ToolStripMenuItem});
+            this.数据报表ToolStripMenuItem,
+            this.用户管理ToolStripMenuItem});
             this.toolStripSplitButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton1.Image")));
             this.toolStripSplitButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripSplitButton1.Name = "toolStripSplitButton1";
@@ -170,6 +172,14 @@
             this.数据报表ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.数据报表ToolStripMenuItem.Text = "数据报表";
             this.数据报表ToolStripMenuItem.Click += new System.EventHandler(this.数据报表ToolStripMenuItem_Click);
+            // 
+            // 用户管理ToolStripMenuItem
+            // 
+            this.用户管理ToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("用户管理ToolStripMenuItem.Image")));
+            this.用户管理ToolStripMenuItem.Name = "用户管理ToolStripMenuItem";
+            this.用户管理ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.用户管理ToolStripMenuItem.Text = "用户管理";
+            this.用户管理ToolStripMenuItem.Click += new System.EventHandler(this.用户管理ToolStripMenuItem_Click);
             // 
             // panelTop
             // 
@@ -193,7 +203,7 @@
             this.panelTop.Location = new System.Drawing.Point(0, 0);
             this.panelTop.Margin = new System.Windows.Forms.Padding(0);
             this.panelTop.Name = "panelTop";
-            this.panelTop.Size = new System.Drawing.Size(1916, 141);
+            this.panelTop.Size = new System.Drawing.Size(1400, 900);
             this.panelTop.TabIndex = 1;
             // 
             // menuButtonPanel6
@@ -215,7 +225,7 @@
             this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(1319, 46);
+            this.pictureBox2.Location = new System.Drawing.Point(803, 46);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(591, 88);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -272,7 +282,7 @@
             this.button4.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.button4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Location = new System.Drawing.Point(1800, 10);
+            this.button4.Location = new System.Drawing.Point(1284, 10);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(24, 24);
             this.button4.TabIndex = 16;
@@ -290,7 +300,7 @@
             this.button3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Location = new System.Drawing.Point(1838, 10);
+            this.button3.Location = new System.Drawing.Point(1322, 10);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(24, 24);
             this.button3.TabIndex = 14;
@@ -308,7 +318,7 @@
             this.button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Location = new System.Drawing.Point(1876, 10);
+            this.button2.Location = new System.Drawing.Point(1360, 10);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(24, 24);
             this.button2.TabIndex = 13;
@@ -374,7 +384,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1916, 969);
+            this.ClientSize = new System.Drawing.Size(1400, 900);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.panelBotttom);
             this.Controls.Add(this.panelTop);
@@ -426,6 +436,7 @@
         private CustomControl.MenuButtonPanel menuButtonPanel6;
         private System.Windows.Forms.ToolStripDropDownButton toolStripSplitButton1;
         private System.Windows.Forms.ToolStripMenuItem 数据报表ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 用户管理ToolStripMenuItem;
     }
 }
 

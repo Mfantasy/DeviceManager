@@ -26,8 +26,8 @@ namespace DeviceManager.CustomForm
 
         private void button1_Click(object sender, EventArgs e)
         {
-            (this.ParentForm as Account).Del(User);
-        }
+            (this.ParentForm as Account).Del(this);
+        }        
 
         public AccountModel User { get; set; }
 
@@ -36,6 +36,18 @@ namespace DeviceManager.CustomForm
             User.Level = comboBox1.SelectedIndex + 1;
             User.UserName = textBox1.Text;
             User.PassWord = textBox2.Text;
+        }
+
+        public bool Judge()
+        {
+            if (string.IsNullOrWhiteSpace(textBox1.Text) || string.IsNullOrWhiteSpace(textBox2.Text))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
       
     }

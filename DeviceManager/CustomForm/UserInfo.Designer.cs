@@ -63,7 +63,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(623, 33);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(621, 33);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // panel1
@@ -72,13 +72,13 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(511, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(109, 27);
+            this.panel1.Size = new System.Drawing.Size(107, 27);
             this.panel1.TabIndex = 0;
             // 
             // button1
             // 
             this.button1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.button1.Location = new System.Drawing.Point(34, 0);
+            this.button1.Location = new System.Drawing.Point(32, 0);
             this.button1.Margin = new System.Windows.Forms.Padding(0);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 27);
@@ -177,9 +177,10 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "UserInfo";
-            this.Size = new System.Drawing.Size(623, 33);
+            this.Size = new System.Drawing.Size(621, 33);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);

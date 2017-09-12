@@ -66,8 +66,7 @@ namespace DeviceManager
         }
         private void MainForm_Load(object sender, EventArgs e)
         {
-            //测试
-            //this.Size = new Size(1024, 768);
+            //测试                                
             Thread thStatus = new Thread(MonitorStatus);
             thStatus.IsBackground = true;
             thStatus.Start();
@@ -75,8 +74,8 @@ namespace DeviceManager
             thMonitor.IsBackground = true;
             thMonitor.Start();
 
-            this.Visible = false;
-            new TestForm().Show();
+            //this.Visible = false;
+            //new TestForm().Show();
         }
     
         PanelHistory ph = new PanelHistory();
@@ -84,9 +83,35 @@ namespace DeviceManager
         PanelAlarmSet paset = new PanelAlarmSet();
         PanelGroupSensors pgs = new PanelGroupSensors();
         PanelDrag pdg = new PanelDrag();
-        public MainForm()
+        
+        public MainForm(int userLevel)
         {
-            InitializeComponent();            
+            InitializeComponent();
+            if (userLevel == 2)
+            {
+                menuButtonPanel4.Visible = false;
+                menuButtonPanel5.Visible = false;
+                用户管理ToolStripMenuItem.Visible = false;
+            }
+            else if (userLevel == 1)
+            {
+                用户管理ToolStripMenuItem.Visible = false;
+            }
+            
+            if (Screen.PrimaryScreen.Bounds.Width > 1500)
+            {
+                panelAll.ColumnCount = 3;
+                panelAll.ColumnStyles.Add(new ColumnStyle(SizeType.Percent,34));
+                panelAll.ColumnStyles.Add(new ColumnStyle(SizeType.Percent,33));
+                panelAll.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33));
+            }
+            else
+            {
+                panelAll.ColumnCount = 2;
+                panelAll.ColumnStyles.Add(new ColumnStyle(SizeType.Percent));
+                panelAll.ColumnStyles.Add(new ColumnStyle(SizeType.Percent));
+            }
+            Utils.SetDoubleBuffer(panelAll);
             ConfigData.InitConfig();
             //通用界面逻辑
             InitializeUI();
@@ -97,8 +122,7 @@ namespace DeviceManager
             //实时数据中左侧按钮点击            
             InitialModelClickSensors();
             InitializeUIEnd();
-            this.WindowState = FormWindowState.Maximized;         
-                                    
+            this.WindowState = FormWindowState.Maximized;                                             
         }
        
         #region 模型按钮
@@ -166,7 +190,7 @@ namespace DeviceManager
         Label lbAll = new Label();
         public Panel panelItem = new Panel();
         //全部
-        public FlowLayoutPanel panelAll = new FlowLayoutPanel();
+        public TableLayoutPanel panelAll = new TableLayoutPanel();
         public Panel panelAllP = new Panel();
         public void glassButtonAll_Click(object sender, EventArgs e)
         {
@@ -192,10 +216,10 @@ namespace DeviceManager
                     foreach (GroupConfig3 g3 in g2.GroupConfigs)
                     {
                         //组显示模块
-                        TableLayoutPanel tlp = new TableLayoutPanel();
+                        TableLayoutPanel tlp = new TableLayoutPanel();                        
                         tlp.BackColor = System.Drawing.Color.FromArgb(255, 83, 100, 132);
                         tlp.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;                        
-                        tlp.MinimumSize = new System.Drawing.Size(545, 0);
+                        //tlp.MinimumSize = new System.Drawing.Size(, 0);
                         tlp.ColumnCount = 1;
                         tlp.Dock = DockStyle.Top;
                         tlp.AutoSize = true;
@@ -458,6 +482,12 @@ namespace DeviceManager
         {
             DTPickerForm df = new DTPickerForm();
             df.ShowDialog();
+        }
+
+        private void 用户管理ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Account acc = new Account();
+            acc.ShowDialog();
         }
     }
 

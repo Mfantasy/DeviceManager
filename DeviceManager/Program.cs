@@ -26,20 +26,19 @@ namespace DeviceManager
             //DataTable dt = SqlLiteHelper.ExecuteReader(ConfigurationManager.AppSettings["dbPath"], sql);
             //Application.Run(new TestForm());
             //Console.WriteLine(dt.ToString());
-            Application.Run(new Account());
-            return;
+            //Application.Run(new Account());
+            //return;
             Application.EnableVisualStyles();                    
             Application.SetCompatibleTextRenderingDefault(false);
-            //if (Config.IsShowLogon)
-            //{
-            //    Logon logon = new Logon();
-            //    DialogResult dialogResult = logon.ShowDialog();
-            //    if (dialogResult != DialogResult.OK)
-            //    {
-            //        return;
-            //    }
-            //}
-           mainForm = new MainForm();
+
+            Logon logon = new Logon();
+            DialogResult dialogResult = logon.ShowDialog();
+            if (dialogResult != DialogResult.OK)
+            {
+                return;
+            }
+
+           mainForm = new MainForm(logon.logonResult);            
            Application.Run(mainForm);      
                  
         }

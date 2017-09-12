@@ -34,17 +34,19 @@
             this.dateTimePickerRetrieveBegin = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.treeView1 = new System.Windows.Forms.TreeView();
             this.panel1 = new System.Windows.Forms.Panel();
             this.glassButton2 = new FOF.UserControlModel.GlassButton();
             this.glassButton1 = new FOF.UserControlModel.GlassButton();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.customDataView1 = new DeviceManager.CustomControl.CustomDataView();
+            this.treeView1 = new System.Windows.Forms.TreeView();
+            this.panel1.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customDataView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -53,11 +55,11 @@
             this.dateTimePickerRetrieveEnd.CustomFormat = "yyyy年M月d日 HH:mm";
             this.dateTimePickerRetrieveEnd.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.dateTimePickerRetrieveEnd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePickerRetrieveEnd.Location = new System.Drawing.Point(256, 19);
+            this.dateTimePickerRetrieveEnd.Location = new System.Drawing.Point(391, 6);
             this.dateTimePickerRetrieveEnd.MaxDate = new System.DateTime(2111, 11, 11, 0, 0, 0, 0);
             this.dateTimePickerRetrieveEnd.MinDate = new System.DateTime(2015, 9, 15, 0, 0, 0, 0);
             this.dateTimePickerRetrieveEnd.Name = "dateTimePickerRetrieveEnd";
-            this.dateTimePickerRetrieveEnd.Size = new System.Drawing.Size(209, 29);
+            this.dateTimePickerRetrieveEnd.Size = new System.Drawing.Size(204, 29);
             this.dateTimePickerRetrieveEnd.TabIndex = 4;
             this.dateTimePickerRetrieveEnd.Value = new System.DateTime(2016, 6, 28, 0, 0, 0, 0);
             // 
@@ -66,11 +68,11 @@
             this.dateTimePickerRetrieveBegin.CustomFormat = "yyyy年M月d日 HH:mm";
             this.dateTimePickerRetrieveBegin.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.dateTimePickerRetrieveBegin.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePickerRetrieveBegin.Location = new System.Drawing.Point(7, 19);
+            this.dateTimePickerRetrieveBegin.Location = new System.Drawing.Point(78, 6);
             this.dateTimePickerRetrieveBegin.MaxDate = new System.DateTime(2111, 11, 11, 0, 0, 0, 0);
             this.dateTimePickerRetrieveBegin.MinDate = new System.DateTime(2015, 9, 15, 0, 0, 0, 0);
             this.dateTimePickerRetrieveBegin.Name = "dateTimePickerRetrieveBegin";
-            this.dateTimePickerRetrieveBegin.Size = new System.Drawing.Size(199, 29);
+            this.dateTimePickerRetrieveBegin.Size = new System.Drawing.Size(204, 29);
             this.dateTimePickerRetrieveBegin.TabIndex = 3;
             this.dateTimePickerRetrieveBegin.Value = new System.DateTime(2016, 6, 28, 0, 0, 0, 0);
             // 
@@ -78,7 +80,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(5, 4);
+            this.label1.Location = new System.Drawing.Point(3, 10);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(74, 21);
             this.label1.TabIndex = 6;
@@ -88,44 +90,11 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label2.Location = new System.Drawing.Point(252, 4);
+            this.label2.Location = new System.Drawing.Point(314, 10);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(74, 21);
             this.label2.TabIndex = 7;
             this.label2.Text = "结束时间";
-            // 
-            // splitContainer1
-            // 
-            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 47);
-            this.splitContainer1.Name = "splitContainer1";
-            // 
-            // splitContainer1.Panel1
-            // 
-            this.splitContainer1.Panel1.Controls.Add(this.treeView1);
-            // 
-            // splitContainer1.Panel2
-            // 
-            this.splitContainer1.Panel2.Controls.Add(this.customDataView1);
-            this.splitContainer1.Size = new System.Drawing.Size(1862, 879);
-            this.splitContainer1.SplitterDistance = 241;
-            this.splitContainer1.SplitterWidth = 1;
-            this.splitContainer1.TabIndex = 10;
-            // 
-            // treeView1
-            // 
-            this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeView1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.treeView1.Location = new System.Drawing.Point(0, 0);
-            this.treeView1.Name = "treeView1";
-            this.treeView1.ShowLines = false;
-            this.treeView1.ShowNodeToolTips = true;
-            this.treeView1.ShowRootLines = false;
-            this.treeView1.Size = new System.Drawing.Size(237, 875);
-            this.treeView1.TabIndex = 0;
             // 
             // panel1
             // 
@@ -137,11 +106,11 @@
             this.panel1.Controls.Add(this.dateTimePickerRetrieveBegin);
             this.panel1.Controls.Add(this.dateTimePickerRetrieveEnd);
             this.panel1.Controls.Add(this.label2);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1862, 48);
+            this.panel1.Size = new System.Drawing.Size(1327, 44);
             this.panel1.TabIndex = 1;
             // 
             // glassButton2
@@ -154,7 +123,7 @@
             this.glassButton2.CornerRadius = 0;
             this.glassButton2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.glassButton2.HighlightColor = System.Drawing.Color.SeaShell;
-            this.glassButton2.Location = new System.Drawing.Point(1605, 5);
+            this.glassButton2.Location = new System.Drawing.Point(1070, 5);
             this.glassButton2.Margin = new System.Windows.Forms.Padding(4);
             this.glassButton2.Name = "glassButton2";
             this.glassButton2.Size = new System.Drawing.Size(116, 35);
@@ -171,12 +140,49 @@
             this.glassButton1.CornerRadius = 0;
             this.glassButton1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.glassButton1.HighlightColor = System.Drawing.Color.SeaShell;
-            this.glassButton1.Location = new System.Drawing.Point(1738, 5);
+            this.glassButton1.Location = new System.Drawing.Point(1203, 5);
             this.glassButton1.Margin = new System.Windows.Forms.Padding(4);
             this.glassButton1.Name = "glassButton1";
             this.glassButton1.Size = new System.Drawing.Size(116, 35);
             this.glassButton1.TabIndex = 9;
             this.glassButton1.Click += new System.EventHandler(this.glassButton1_Click);
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 1;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.splitContainer1, 0, 1);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 44F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1327, 742);
+            this.tableLayoutPanel1.TabIndex = 12;
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.splitContainer1.Location = new System.Drawing.Point(3, 47);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.treeView1);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.customDataView1);
+            this.splitContainer1.Size = new System.Drawing.Size(1321, 692);
+            this.splitContainer1.SplitterDistance = 170;
+            this.splitContainer1.SplitterWidth = 1;
+            this.splitContainer1.TabIndex = 10;
             // 
             // customDataView1
             // 
@@ -211,24 +217,35 @@
             this.customDataView1.ReadOnly = true;
             this.customDataView1.RowHeadersVisible = false;
             this.customDataView1.RowTemplate.Height = 23;
-            this.customDataView1.Size = new System.Drawing.Size(1616, 875);
+            this.customDataView1.Size = new System.Drawing.Size(1146, 688);
             this.customDataView1.TabIndex = 8;
+            // 
+            // treeView1
+            // 
+            this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeView1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.treeView1.Location = new System.Drawing.Point(0, 0);
+            this.treeView1.Name = "treeView1";
+            this.treeView1.ShowLines = false;
+            this.treeView1.ShowNodeToolTips = true;
+            this.treeView1.ShowRootLines = false;
+            this.treeView1.Size = new System.Drawing.Size(166, 688);
+            this.treeView1.TabIndex = 0;
             // 
             // PanelHistory
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.splitContainer1);
+            this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "PanelHistory";
-            this.Size = new System.Drawing.Size(1862, 926);
+            this.Size = new System.Drawing.Size(1327, 742);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.tableLayoutPanel1.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customDataView1)).EndInit();
             this.ResumeLayout(false);
 
@@ -240,11 +257,12 @@
         private System.Windows.Forms.DateTimePicker dateTimePickerRetrieveBegin;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private CustomDataView customDataView1;
         private FOF.UserControlModel.GlassButton glassButton1;
-        private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.TreeView treeView1;
         private FOF.UserControlModel.GlassButton glassButton2;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.TreeView treeView1;
+        private CustomDataView customDataView1;
     }
 }

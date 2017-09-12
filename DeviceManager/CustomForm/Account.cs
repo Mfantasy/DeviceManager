@@ -44,26 +44,46 @@ namespace DeviceManager.CustomForm
             { }
         }
 
-        public void Del(AccountModel user)
+        public void Del(UserInfo user)
         {
-
+            panel2.Controls.Remove(user);
+            if (ar.Users.Contains(user.User))
+            {
+                ar.Users.Remove(user.User);
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            this.Close();
+            this.DialogResult = DialogResult.Cancel;
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             //添加
             groupBox1.Text = "用户列表";
+            AccountModel am = new AccountModel();
+            am.Level = 1;
+            am.UserName = "";
+            am.PassWord = "";
+            UserInfo uinfo = new UserInfo(am);
+            uinfo.Parent = panel2;
+            uinfo.Dock = DockStyle.Top;
+            uinfo.BringToFront();
 
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //保存
+            foreach (UserInfo item in panel2.Controls)
+            {
+                if (!item.Judge())
+                {
+                    MessageBox.Show("用户名或密码为空,请核对");
+                    return;
+                }
+            }
+                //保存
             foreach (UserInfo item in panel2.Controls)
             {
                 item.Save();
@@ -72,7 +92,13 @@ namespace DeviceManager.CustomForm
                     ar.Users.Add(item.User);
                 }
             }
+            if (ar.Users.Count > 0)
+            {
+                Utils.ToFile<AccountRoot>(file, ar);
+            }
+            this.DialogResult = DialogResult.OK;
         }
+
     }
 
     [XmlRoot("Root")]

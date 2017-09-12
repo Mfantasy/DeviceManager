@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using DeviceManager.CustomForm;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -20,10 +21,24 @@ namespace DeviceManager
         {
             //首先查询数据库中账户acc的用户权限,如果存在查询密码对不对,如果不存在返回错
             if (acc == "admin" && pwd == "admin")
-                return 1;
-            else
-                return 0;
-        }
+                return 3;
+            string file = Path.Combine(Utils.GetUserPath(), "userInfo");
+            if (File.Exists(file))
+            {
+                AccountRoot ar = Utils.FromXMLFile<AccountRoot>(file);
+                foreach (var item in ar.Users)
+                {
+                    if (acc == item.UserName && pwd == item.PassWord)
+                    {
+                        return item.Level;
+                    }
+                }
+            }
+            return 0;
+
+        }   
+
+
     }
 
     public static class SqlLiteHelper

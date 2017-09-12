@@ -112,10 +112,10 @@
     <Compile Include="CustomControl\PanelAlarmSet.Designer.cs">
       <DependentUpon>PanelAlarmSet.cs</DependentUpon>
     </Compile>
-    <Compile Include="CustomControl\PanelAllSensors.cs">
+    <Compile Include="Useless\PanelAllSensors.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="CustomControl\PanelAllSensors.Designer.cs">
+    <Compile Include="Useless\PanelAllSensors.Designer.cs">
       <DependentUpon>PanelAllSensors.cs</DependentUpon>
     </Compile>
     <Compile Include="CustomControl\CustomPASListView.cs">
@@ -136,10 +136,10 @@
     <Compile Include="CustomControl\PanelGroupSensors.Designer.cs">
       <DependentUpon>PanelGroupSensors.cs</DependentUpon>
     </Compile>
-    <Compile Include="CustomControl\UserControl1.cs">
+    <Compile Include="Useless\UserControl1.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="CustomControl\UserControl1.Designer.cs">
+    <Compile Include="Useless\UserControl1.Designer.cs">
       <DependentUpon>UserControl1.cs</DependentUpon>
     </Compile>
     <Compile Include="CustomForm\AboutBox1.cs">
@@ -248,7 +248,7 @@
     <EmbeddedResource Include="CustomControl\PanelAlarmSet.resx">
       <DependentUpon>PanelAlarmSet.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CustomControl\PanelAllSensors.resx">
+    <EmbeddedResource Include="Useless\PanelAllSensors.resx">
       <DependentUpon>PanelAllSensors.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CustomControl\CustomPASListView.resx">
@@ -260,7 +260,7 @@
     <EmbeddedResource Include="CustomControl\PanelGroupSensors.resx">
       <DependentUpon>PanelGroupSensors.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CustomControl\UserControl1.resx">
+    <EmbeddedResource Include="Useless\UserControl1.resx">
       <DependentUpon>UserControl1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CustomForm\AboutBox1.resx">

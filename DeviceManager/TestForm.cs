@@ -33,7 +33,7 @@ namespace DeviceManagerO
         
         private void button2_Click(object sender, EventArgs e)
         {
-            //Utils.FmtExcel(dateTimePicker1.Value);
+            new Account().ShowDialog();
         }
 
      

@@ -194,7 +194,7 @@
             this.dateTimePicker1.CustomFormat = "yyyy年M月d日 HH:mm";
             this.dateTimePicker1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(450, 70);
+            this.dateTimePicker1.Location = new System.Drawing.Point(555, 60);
             this.dateTimePicker1.MaxDate = new System.DateTime(2111, 11, 11, 0, 0, 0, 0);
             this.dateTimePicker1.MinDate = new System.DateTime(2015, 9, 15, 0, 0, 0, 0);
             this.dateTimePicker1.Name = "dateTimePicker1";
@@ -226,7 +226,7 @@
             // 数据报表ToolStripMenuItem
             // 
             this.数据报表ToolStripMenuItem.Name = "数据报表ToolStripMenuItem";
-            this.数据报表ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.数据报表ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.数据报表ToolStripMenuItem.Text = "数据报表";
             this.数据报表ToolStripMenuItem.Click += new System.EventHandler(this.数据报表ToolStripMenuItem_Click);
             // 

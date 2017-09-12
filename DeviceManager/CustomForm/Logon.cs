@@ -20,18 +20,19 @@ namespace DeviceManager
             SetUser();           
         }
 
+        public int logonResult = 0;
         private void button1_Click(object sender, EventArgs e)
         {
-            int logonResult = DataAccess.Logon(textBox1.Text, textBox2.Text);
-            if (logonResult == 1)
+            logonResult = DataAccess.Logon(textBox1.Text, textBox2.Text);                           
+            if(logonResult == 0)
             {
+                MessageBox.Show("用户名或密码有误!");
+            }
+            else
+            {                
                 RecordUser();
                 this.DialogResult = DialogResult.OK;
                 this.Close();
-            }        
-            else
-            {
-                MessageBox.Show("用户名或密码有误!");
             }
         }
 

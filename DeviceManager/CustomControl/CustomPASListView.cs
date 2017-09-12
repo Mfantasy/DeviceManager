@@ -13,7 +13,7 @@ namespace DeviceManager.CustomControl
     public partial class CustomPASListView : ListView
     {
         public GroupConfig1 G1 { get; set; }
-
+        
         public CustomPASListView(GroupConfig1 g1)
         {
             InitializeComponent();

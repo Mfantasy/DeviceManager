@@ -21,6 +21,13 @@ namespace DeviceManager
 {
     public static class Utils
     {
+        public static void SetDoubleBuffer(Control ctrl)
+        {
+            ctrl.GetType().GetProperty("DoubleBuffered",
+  System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic).SetValue(ctrl,
+  true, null);
+        }
+
         public static void WriteEX(Exception ex)
         {
             lock (lockObj)
