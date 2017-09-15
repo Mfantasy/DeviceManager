@@ -112,6 +112,12 @@
     <Compile Include="CustomControl\PanelAlarmSet.Designer.cs">
       <DependentUpon>PanelAlarmSet.cs</DependentUpon>
     </Compile>
+    <Compile Include="UC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC.Designer.cs">
+      <DependentUpon>UC.cs</DependentUpon>
+    </Compile>
     <Compile Include="Useless\PanelAllSensors.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -247,6 +253,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CustomControl\PanelAlarmSet.resx">
       <DependentUpon>PanelAlarmSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC.resx">
+      <DependentUpon>UC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Useless\PanelAllSensors.resx">
       <DependentUpon>PanelAllSensors.cs</DependentUpon>

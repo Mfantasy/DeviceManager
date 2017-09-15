@@ -108,8 +108,8 @@ namespace DeviceManager
             else
             {
                 panelAll.ColumnCount = 2;
-                panelAll.ColumnStyles.Add(new ColumnStyle(SizeType.Percent));
-                panelAll.ColumnStyles.Add(new ColumnStyle(SizeType.Percent));
+                panelAll.ColumnStyles.Add(new ColumnStyle(SizeType.Percent,50));
+                panelAll.ColumnStyles.Add(new ColumnStyle(SizeType.Percent,50));
             }
             Utils.SetDoubleBuffer(panelAll);
             ConfigData.InitConfig();

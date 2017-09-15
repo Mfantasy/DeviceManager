@@ -41,26 +41,25 @@
             this.全部预警ToolStripMenuItem,
             this.最近三天ToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 70);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(125, 48);
             // 
             // 全部预警ToolStripMenuItem
             // 
             this.全部预警ToolStripMenuItem.Name = "全部预警ToolStripMenuItem";
-            this.全部预警ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.全部预警ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.全部预警ToolStripMenuItem.Text = "全部预警";
             this.全部预警ToolStripMenuItem.Click += new System.EventHandler(this.全部预警ToolStripMenuItem_Click);
             // 
             // 最近三天ToolStripMenuItem
             // 
             this.最近三天ToolStripMenuItem.Name = "最近三天ToolStripMenuItem";
-            this.最近三天ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.最近三天ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.最近三天ToolStripMenuItem.Text = "最近三天";
             this.最近三天ToolStripMenuItem.Click += new System.EventHandler(this.最近三天ToolStripMenuItem_Click);
             // 
             // PanelAlarmRecord
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.Name = "PanelAlarmRecord";
             this.Size = new System.Drawing.Size(675, 416);
             this.contextMenuStrip1.ResumeLayout(false);

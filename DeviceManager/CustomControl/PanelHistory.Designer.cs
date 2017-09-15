@@ -39,8 +39,8 @@
             this.glassButton1 = new FOF.UserControlModel.GlassButton();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.customDataView1 = new DeviceManager.CustomControl.CustomDataView();
             this.treeView1 = new System.Windows.Forms.TreeView();
+            this.customDataView1 = new DeviceManager.CustomControl.CustomDataView();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -110,7 +110,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1327, 44);
+            this.panel1.Size = new System.Drawing.Size(410, 44);
             this.panel1.TabIndex = 1;
             // 
             // glassButton2
@@ -123,7 +123,7 @@
             this.glassButton2.CornerRadius = 0;
             this.glassButton2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.glassButton2.HighlightColor = System.Drawing.Color.SeaShell;
-            this.glassButton2.Location = new System.Drawing.Point(1070, 5);
+            this.glassButton2.Location = new System.Drawing.Point(153, 5);
             this.glassButton2.Margin = new System.Windows.Forms.Padding(4);
             this.glassButton2.Name = "glassButton2";
             this.glassButton2.Size = new System.Drawing.Size(116, 35);
@@ -140,7 +140,7 @@
             this.glassButton1.CornerRadius = 0;
             this.glassButton1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.glassButton1.HighlightColor = System.Drawing.Color.SeaShell;
-            this.glassButton1.Location = new System.Drawing.Point(1203, 5);
+            this.glassButton1.Location = new System.Drawing.Point(286, 5);
             this.glassButton1.Margin = new System.Windows.Forms.Padding(4);
             this.glassButton1.Name = "glassButton1";
             this.glassButton1.Size = new System.Drawing.Size(116, 35);
@@ -160,7 +160,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 44F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1327, 742);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(410, 240);
             this.tableLayoutPanel1.TabIndex = 12;
             // 
             // splitContainer1
@@ -179,10 +179,22 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.customDataView1);
-            this.splitContainer1.Size = new System.Drawing.Size(1321, 692);
-            this.splitContainer1.SplitterDistance = 170;
+            this.splitContainer1.Size = new System.Drawing.Size(404, 190);
+            this.splitContainer1.SplitterDistance = 51;
             this.splitContainer1.SplitterWidth = 1;
             this.splitContainer1.TabIndex = 10;
+            // 
+            // treeView1
+            // 
+            this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeView1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.treeView1.Location = new System.Drawing.Point(0, 0);
+            this.treeView1.Name = "treeView1";
+            this.treeView1.ShowLines = false;
+            this.treeView1.ShowNodeToolTips = true;
+            this.treeView1.ShowRootLines = false;
+            this.treeView1.Size = new System.Drawing.Size(47, 186);
+            this.treeView1.TabIndex = 0;
             // 
             // customDataView1
             // 
@@ -217,20 +229,8 @@
             this.customDataView1.ReadOnly = true;
             this.customDataView1.RowHeadersVisible = false;
             this.customDataView1.RowTemplate.Height = 23;
-            this.customDataView1.Size = new System.Drawing.Size(1146, 688);
+            this.customDataView1.Size = new System.Drawing.Size(348, 186);
             this.customDataView1.TabIndex = 8;
-            // 
-            // treeView1
-            // 
-            this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeView1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.treeView1.Location = new System.Drawing.Point(0, 0);
-            this.treeView1.Name = "treeView1";
-            this.treeView1.ShowLines = false;
-            this.treeView1.ShowNodeToolTips = true;
-            this.treeView1.ShowRootLines = false;
-            this.treeView1.Size = new System.Drawing.Size(166, 688);
-            this.treeView1.TabIndex = 0;
             // 
             // PanelHistory
             // 
@@ -238,7 +238,7 @@
             this.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "PanelHistory";
-            this.Size = new System.Drawing.Size(1327, 742);
+            this.Size = new System.Drawing.Size(410, 240);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);

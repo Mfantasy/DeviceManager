@@ -63,7 +63,7 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox1.Size = new System.Drawing.Size(2400, 1666);
+            this.groupBox1.Size = new System.Drawing.Size(391, 354);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "设备管理";
@@ -82,7 +82,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(2392, 1637);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(383, 325);
             this.tableLayoutPanel1.TabIndex = 6;
             // 
             // groupBox2
@@ -93,7 +93,7 @@
             this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox2.Size = new System.Drawing.Size(948, 1627);
+            this.groupBox2.Size = new System.Drawing.Size(145, 315);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "未分组设备";
@@ -110,7 +110,7 @@
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(940, 1598);
+            this.dataGridView1.Size = new System.Drawing.Size(137, 286);
             this.dataGridView1.TabIndex = 0;
             // 
             // contextMenuStrip1
@@ -139,11 +139,11 @@
             // 
             this.groupBox4.Controls.Add(this.dataGridView2);
             this.groupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox4.Location = new System.Drawing.Point(1438, 5);
+            this.groupBox4.Location = new System.Drawing.Point(233, 5);
             this.groupBox4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox4.Size = new System.Drawing.Size(950, 1627);
+            this.groupBox4.Size = new System.Drawing.Size(146, 315);
             this.groupBox4.TabIndex = 5;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "分组名称";
@@ -160,18 +160,18 @@
             this.dataGridView2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowTemplate.Height = 23;
-            this.dataGridView2.Size = new System.Drawing.Size(942, 1598);
+            this.dataGridView2.Size = new System.Drawing.Size(138, 286);
             this.dataGridView2.TabIndex = 2;
             // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.treeView1);
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox3.Location = new System.Drawing.Point(960, 5);
+            this.groupBox3.Location = new System.Drawing.Point(157, 5);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox3.Size = new System.Drawing.Size(470, 1627);
+            this.groupBox3.Size = new System.Drawing.Size(68, 315);
             this.groupBox3.TabIndex = 4;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "分组菜单";
@@ -184,7 +184,7 @@
             this.treeView1.Location = new System.Drawing.Point(4, 24);
             this.treeView1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(462, 1598);
+            this.treeView1.Size = new System.Drawing.Size(60, 286);
             this.treeView1.TabIndex = 1;
             // 
             // contextMenuStrip2
@@ -194,38 +194,37 @@
             this.添加次级分组ToolStripMenuItem,
             this.保存ToolStripMenuItem1});
             this.contextMenuStrip2.Name = "contextMenuStrip2";
-            this.contextMenuStrip2.Size = new System.Drawing.Size(153, 92);
+            this.contextMenuStrip2.Size = new System.Drawing.Size(149, 70);
             // 
             // 添加根级分组ToolStripMenuItem
             // 
             this.添加根级分组ToolStripMenuItem.Name = "添加根级分组ToolStripMenuItem";
-            this.添加根级分组ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.添加根级分组ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.添加根级分组ToolStripMenuItem.Text = "编辑";
             this.添加根级分组ToolStripMenuItem.Click += new System.EventHandler(this.添加根级分组ToolStripMenuItem_Click);
             // 
             // 添加次级分组ToolStripMenuItem
             // 
             this.添加次级分组ToolStripMenuItem.Name = "添加次级分组ToolStripMenuItem";
-            this.添加次级分组ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.添加次级分组ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.添加次级分组ToolStripMenuItem.Text = "添加同级节点";
             this.添加次级分组ToolStripMenuItem.Click += new System.EventHandler(this.添加次级分组ToolStripMenuItem_Click);
             // 
             // 保存ToolStripMenuItem1
             // 
             this.保存ToolStripMenuItem1.Name = "保存ToolStripMenuItem1";
-            this.保存ToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.保存ToolStripMenuItem1.Size = new System.Drawing.Size(148, 22);
             this.保存ToolStripMenuItem1.Text = "保存";
             this.保存ToolStripMenuItem1.Click += new System.EventHandler(this.保存ToolStripMenuItem_Click);
             // 
             // PanelGroupSensors
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "PanelGroupSensors";
-            this.Size = new System.Drawing.Size(2400, 1666);
+            this.Size = new System.Drawing.Size(391, 354);
             this.groupBox1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);

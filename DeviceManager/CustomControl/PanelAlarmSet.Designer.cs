@@ -41,13 +41,13 @@
             // 
             // menuStrip1
             // 
-            this.menuStrip1.Font = new System.Drawing.Font("Microsoft YaHei UI", 11F);
+            this.menuStrip1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.添加一个配置ToolStripMenuItem,
             this.删除一个配置ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(690, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(690, 26);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -57,7 +57,7 @@
             this.toolStripTextBox2,
             this.确定ToolStripMenuItem1});
             this.添加一个配置ToolStripMenuItem.Name = "添加一个配置ToolStripMenuItem";
-            this.添加一个配置ToolStripMenuItem.Size = new System.Drawing.Size(111, 24);
+            this.添加一个配置ToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
             this.添加一个配置ToolStripMenuItem.Text = "添加一个配置";
             // 
             // toolStripTextBox2
@@ -68,7 +68,7 @@
             // 确定ToolStripMenuItem1
             // 
             this.确定ToolStripMenuItem1.Name = "确定ToolStripMenuItem1";
-            this.确定ToolStripMenuItem1.Size = new System.Drawing.Size(160, 24);
+            this.确定ToolStripMenuItem1.Size = new System.Drawing.Size(160, 22);
             this.确定ToolStripMenuItem1.Text = "确定";
             this.确定ToolStripMenuItem1.Click += new System.EventHandler(this.确定ToolStripMenuItem1_Click);
             // 
@@ -78,7 +78,7 @@
             this.toolStripComboBox1,
             this.确定ToolStripMenuItem});
             this.删除一个配置ToolStripMenuItem.Name = "删除一个配置ToolStripMenuItem";
-            this.删除一个配置ToolStripMenuItem.Size = new System.Drawing.Size(111, 24);
+            this.删除一个配置ToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
             this.删除一个配置ToolStripMenuItem.Text = "删除一个配置";
             // 
             // toolStripComboBox1
@@ -89,7 +89,7 @@
             // 确定ToolStripMenuItem
             // 
             this.确定ToolStripMenuItem.Name = "确定ToolStripMenuItem";
-            this.确定ToolStripMenuItem.Size = new System.Drawing.Size(181, 24);
+            this.确定ToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.确定ToolStripMenuItem.Text = "确定";
             this.确定ToolStripMenuItem.Click += new System.EventHandler(this.确定ToolStripMenuItem_Click);
             // 
@@ -97,15 +97,14 @@
             // 
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Font = new System.Drawing.Font("微软雅黑", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.panel1.Location = new System.Drawing.Point(0, 28);
+            this.panel1.Location = new System.Drawing.Point(0, 26);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(690, 584);
+            this.panel1.Size = new System.Drawing.Size(690, 586);
             this.panel1.TabIndex = 2;
             // 
             // PanelAlarmSet
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
