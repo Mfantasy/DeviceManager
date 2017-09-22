@@ -83,6 +83,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Alarm\Alarm24.cs" />
+    <Compile Include="Alarm\AlarmChart.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Alarm\AlarmChart.Designer.cs">
+      <DependentUpon>AlarmChart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Alarm\ValueSet.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Alarm\ValueSet.Designer.cs">
+      <DependentUpon>ValueSet.cs</DependentUpon>
+    </Compile>
     <Compile Include="Config.cs" />
     <Compile Include="CustomControl\CustomAlarmSetControl.cs">
       <SubType>UserControl</SubType>
@@ -112,10 +125,10 @@
     <Compile Include="CustomControl\PanelAlarmSet.Designer.cs">
       <DependentUpon>PanelAlarmSet.cs</DependentUpon>
     </Compile>
-    <Compile Include="UC.cs">
+    <Compile Include="Alarm\UC.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UC.Designer.cs">
+    <Compile Include="Alarm\UC.Designer.cs">
       <DependentUpon>UC.cs</DependentUpon>
     </Compile>
     <Compile Include="Useless\PanelAllSensors.cs">
@@ -242,6 +255,12 @@
     </Compile>
     <Compile Include="Utils.cs" />
     <Compile Include="Data\DataParser.cs" />
+    <EmbeddedResource Include="Alarm\AlarmChart.resx">
+      <DependentUpon>AlarmChart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Alarm\ValueSet.resx">
+      <DependentUpon>ValueSet.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CustomControl\CustomAlarmSetControl.resx">
       <DependentUpon>CustomAlarmSetControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -254,7 +273,7 @@
     <EmbeddedResource Include="CustomControl\PanelAlarmSet.resx">
       <DependentUpon>PanelAlarmSet.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UC.resx">
+    <EmbeddedResource Include="Alarm\UC.resx">
       <DependentUpon>UC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Useless\PanelAllSensors.resx">

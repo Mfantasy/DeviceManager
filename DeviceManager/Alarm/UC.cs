@@ -16,5 +16,8 @@ namespace DeviceManager
         {
             InitializeComponent();
         }
+
+        //当前Field
+        public Field CurrentField { get; set; }
     }
 }
