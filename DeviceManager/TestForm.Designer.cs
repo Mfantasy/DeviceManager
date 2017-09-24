@@ -51,6 +51,7 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.数据报表ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.alarmChart1 = new DeviceManager.Alarm.AlarmChart();
             this.contextMenuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -230,11 +231,21 @@
             this.数据报表ToolStripMenuItem.Text = "数据报表";
             this.数据报表ToolStripMenuItem.Click += new System.EventHandler(this.数据报表ToolStripMenuItem_Click);
             // 
+            // alarmChart1
+            // 
+            this.alarmChart1.A24 = null;
+            this.alarmChart1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.alarmChart1.Location = new System.Drawing.Point(0, 139);
+            this.alarmChart1.Name = "alarmChart1";
+            this.alarmChart1.Size = new System.Drawing.Size(784, 443);
+            this.alarmChart1.TabIndex = 8;
+            // 
             // TestForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 604);
+            this.Controls.Add(this.alarmChart1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.button1);
@@ -273,5 +284,6 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
         private System.Windows.Forms.ToolStripMenuItem 数据报表ToolStripMenuItem;
+        private DeviceManager.Alarm.AlarmChart alarmChart1;
     }
 }
