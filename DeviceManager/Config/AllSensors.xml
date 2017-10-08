@@ -12,7 +12,7 @@
     </config2>
     <config2 name="古生物化石二厅">
 		<config3 name="东侧柜">
-			<sensor uid="01E6F5DC180000AE" nodeid="60" comment="" portid="1" model="MXS1201" />
+			<sensor uid="01E6F5DC180000AE" nodeid="60" comment="" portid="1" model="MXS1201" />        
 		</config3>
 		<config3 name="北侧柜">
 			<sensor uid="01E6F5DC180000AE" nodeid="59" comment="" portid="1" model="MXS1201" />

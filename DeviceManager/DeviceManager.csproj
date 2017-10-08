@@ -90,6 +90,12 @@
     <Compile Include="Alarm\AlarmChart.Designer.cs">
       <DependentUpon>AlarmChart.cs</DependentUpon>
     </Compile>
+    <Compile Include="Alarm\UserCalendar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Alarm\UserCalendar.Designer.cs">
+      <DependentUpon>UserCalendar.cs</DependentUpon>
+    </Compile>
     <Compile Include="Alarm\ValueSet.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -258,6 +264,9 @@
     <EmbeddedResource Include="Alarm\AlarmChart.resx">
       <DependentUpon>AlarmChart.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Alarm\UserCalendar.resx">
+      <DependentUpon>UserCalendar.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Alarm\ValueSet.resx">
       <DependentUpon>ValueSet.cs</DependentUpon>
     </EmbeddedResource>
@@ -349,9 +358,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="20170416011401263_easyicon_net_256.ico" />
+    <Content Include="Config\1417508354740.jpg" />
     <Content Include="Config\AlarmConfig.xml" />
     <Content Include="Config\AllSensors.xml" />
     <Content Include="Config\dragConfig.xml" />
+    <Content Include="Config\ico.png" />
     <Content Include="Config\SensorModel.xml" />
     <Content Include="Lib\ICSharpCode.SharpZipLib.dll" />
     <Content Include="Lib\MySql.Data.dll" />

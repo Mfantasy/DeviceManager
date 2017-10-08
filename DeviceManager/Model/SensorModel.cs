@@ -1,4 +1,5 @@
-﻿using DeviceManager.CustomControl;
+﻿using DeviceManager.Alarm;
+using DeviceManager.CustomControl;
 using DeviceManager.CustomForm;
 using DeviceManager.Model;
 using System;
@@ -13,7 +14,8 @@ using System.Xml.Serialization;
 namespace DeviceManager
 {
     public class Sensor
-    {    
+    {
+ 
         [XmlAttribute("uid")]
         public string Uid { get; set; }
         [XmlAttribute("nodeid")]
@@ -23,10 +25,17 @@ namespace DeviceManager
         [XmlAttribute("portid")]
         public string PortId { get; set; }
         [XmlAttribute("model")]
-        public string ModelKey { get; set; }
-               
+        public string ModelKey { get; set; }               
         [XmlIgnore]
         public string GroupName { get; set; }
+
+        [XmlIgnore] //时间,"20171006",AS
+        public Dictionary<string, AlarmStrategy> AlarmDic = new Dictionary<string, AlarmStrategy>();
+
+        public override string ToString()
+        {
+            return Model.Title+" 节点:" + NodeId;
+        }
 
         string hisColStr = null;
         [XmlIgnore]
@@ -130,6 +139,28 @@ namespace DeviceManager
 
     public class Field
     {
+        //新预警
+        [XmlIgnore]
+        public Alarm24 CurrentA24 { get; set; }
+      
+
+        public override string ToString()
+        {
+            return this.Alias;
+        }
+        public string GetModelKey()
+        {
+            SensorModel sm = ConfigData.SensorModelRoot.SensorModels.Find(s => s.Fields.Exists(f => f.Name == this.Name));
+            if (sm != null)
+            {
+                return sm.Name;
+            }
+            else
+            {
+                return "";
+            }
+        }
+
         public string GetValue(DateTime dt)
         {
             string sql = string.Format("SELECT {0} FROM {1}_result WHERE nodeid = {2} and time < '{3}' order by time desc limit 1 ", Name + ",time",
@@ -169,8 +200,7 @@ namespace DeviceManager
             }
         }
         [XmlIgnore]
-        public Sensor CurrentSensor { get; set; }
-    
+        public Sensor CurrentSensor { get; set; }                
         [XmlAttribute("unit")]
         public string Unit { get; set; }
         [XmlAttribute("name")]

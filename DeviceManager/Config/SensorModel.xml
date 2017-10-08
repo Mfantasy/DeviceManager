@@ -8,7 +8,7 @@
   <sensor name="MXS1301" title="二氧化碳" sname="SeaBo_MXS1301" >
     <field name="nodeid" alias="节点编号" unit="" realtime="false" history="false" />
     <field name="uid" alias="网关唯一号" unit="" realtime="false" history="false" />
-    <field name="co2" alias="co2浓度" unit="ppm" realtime="true" history="true" />    
+    <field name="co2" alias="co2浓度(ppm)" unit="ppm" realtime="true" history="true" />    
   </sensor>
   <sensor name="MXS1501" title="光照强度" sname="SeaBo_MXS1501" >
     <field name="nodeid" alias="节点编号" unit="" realtime="false" history="false"/>

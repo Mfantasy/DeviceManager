@@ -29,95 +29,84 @@
         private void InitializeComponent()
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.sELECTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mODELToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.g1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.g1C1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.g1C1CC1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.g2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mODEL2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sETToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripComboBox1 = new System.Windows.Forms.ToolStripComboBox();
+            this.toolStripComboBox2 = new System.Windows.Forms.ToolStripComboBox();
+            this.toolStripComboBox3 = new System.Windows.Forms.ToolStripComboBox();
+            this.toolStripComboBox4 = new System.Windows.Forms.ToolStripComboBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.userCalendar1 = new DeviceManager.Alarm.UserCalendar();
             this.menuStrip1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.sELECTToolStripMenuItem,
-            this.sETToolStripMenuItem});
+            this.toolStripComboBox1,
+            this.toolStripComboBox2,
+            this.toolStripComboBox3,
+            this.toolStripComboBox4});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(976, 25);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(0);
+            this.menuStrip1.Size = new System.Drawing.Size(785, 25);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // sELECTToolStripMenuItem
+            // toolStripComboBox1
             // 
-            this.sELECTToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mODELToolStripMenuItem,
-            this.mODEL2ToolStripMenuItem});
-            this.sELECTToolStripMenuItem.Name = "sELECTToolStripMenuItem";
-            this.sELECTToolStripMenuItem.Size = new System.Drawing.Size(62, 21);
-            this.sELECTToolStripMenuItem.Text = "SELECT";
+            this.toolStripComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.toolStripComboBox1.Margin = new System.Windows.Forms.Padding(0);
+            this.toolStripComboBox1.Name = "toolStripComboBox1";
+            this.toolStripComboBox1.Size = new System.Drawing.Size(128, 25);
             // 
-            // mODELToolStripMenuItem
+            // toolStripComboBox2
             // 
-            this.mODELToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.g1ToolStripMenuItem,
-            this.g2ToolStripMenuItem});
-            this.mODELToolStripMenuItem.Name = "mODELToolStripMenuItem";
-            this.mODELToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
-            this.mODELToolStripMenuItem.Text = "MODEL";
+            this.toolStripComboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.toolStripComboBox2.Name = "toolStripComboBox2";
+            this.toolStripComboBox2.Size = new System.Drawing.Size(128, 25);
             // 
-            // g1ToolStripMenuItem
+            // toolStripComboBox3
             // 
-            this.g1ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.g1C1ToolStripMenuItem});
-            this.g1ToolStripMenuItem.Name = "g1ToolStripMenuItem";
-            this.g1ToolStripMenuItem.Size = new System.Drawing.Size(92, 22);
-            this.g1ToolStripMenuItem.Text = "G1";
+            this.toolStripComboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.toolStripComboBox3.Name = "toolStripComboBox3";
+            this.toolStripComboBox3.Size = new System.Drawing.Size(128, 25);
             // 
-            // g1C1ToolStripMenuItem
+            // toolStripComboBox4
             // 
-            this.g1C1ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.g1C1CC1ToolStripMenuItem});
-            this.g1C1ToolStripMenuItem.Name = "g1C1ToolStripMenuItem";
-            this.g1C1ToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
-            this.g1C1ToolStripMenuItem.Text = "G1C1";
+            this.toolStripComboBox4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.toolStripComboBox4.Name = "toolStripComboBox4";
+            this.toolStripComboBox4.Size = new System.Drawing.Size(138, 25);
             // 
-            // g1C1CC1ToolStripMenuItem
+            // panel1
             // 
-            this.g1C1CC1ToolStripMenuItem.Name = "g1C1CC1ToolStripMenuItem";
-            this.g1C1CC1ToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
-            this.g1C1CC1ToolStripMenuItem.Text = "G1C1CC1";
+            this.panel1.Controls.Add(this.userCalendar1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 25);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(785, 494);
+            this.panel1.TabIndex = 1;
             // 
-            // g2ToolStripMenuItem
+            // userCalendar1
             // 
-            this.g2ToolStripMenuItem.Name = "g2ToolStripMenuItem";
-            this.g2ToolStripMenuItem.Size = new System.Drawing.Size(92, 22);
-            this.g2ToolStripMenuItem.Text = "G2";
-            // 
-            // mODEL2ToolStripMenuItem
-            // 
-            this.mODEL2ToolStripMenuItem.Name = "mODEL2ToolStripMenuItem";
-            this.mODEL2ToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
-            this.mODEL2ToolStripMenuItem.Text = "MODEL2";
-            // 
-            // sETToolStripMenuItem
-            // 
-            this.sETToolStripMenuItem.Name = "sETToolStripMenuItem";
-            this.sETToolStripMenuItem.Size = new System.Drawing.Size(41, 21);
-            this.sETToolStripMenuItem.Text = "SET";
+            this.userCalendar1.CurrentSensor = null;
+            this.userCalendar1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.userCalendar1.Location = new System.Drawing.Point(0, 0);
+            this.userCalendar1.Name = "userCalendar1";
+            this.userCalendar1.Size = new System.Drawing.Size(785, 494);
+            this.userCalendar1.TabIndex = 0;
             // 
             // UC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
             this.Name = "UC";
-            this.Size = new System.Drawing.Size(976, 773);
+            this.Size = new System.Drawing.Size(785, 519);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -126,13 +115,11 @@
         #endregion
 
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem sELECTToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mODELToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem g1ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem g1C1ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem g1C1CC1ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem g2ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mODEL2ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem sETToolStripMenuItem;
+        private System.Windows.Forms.ToolStripComboBox toolStripComboBox1;
+        private System.Windows.Forms.ToolStripComboBox toolStripComboBox2;
+        private System.Windows.Forms.ToolStripComboBox toolStripComboBox3;
+        private System.Windows.Forms.ToolStripComboBox toolStripComboBox4;
+        private System.Windows.Forms.Panel panel1;
+        private Alarm.UserCalendar userCalendar1;
     }
 }

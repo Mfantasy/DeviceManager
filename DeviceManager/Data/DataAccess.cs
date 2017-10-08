@@ -35,9 +35,7 @@ namespace DeviceManager
                 }
             }
             return 0;
-
         }   
-
 
     }
 

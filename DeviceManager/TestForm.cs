@@ -1,4 +1,5 @@
 ﻿using DeviceManager;
+using DeviceManager.Alarm;
 using DeviceManager.CustomControl;
 using DeviceManager.CustomForm;
 using System;
@@ -21,33 +22,26 @@ namespace DeviceManagerO
         public TestForm()
         {
             InitializeComponent();
-            this.FormClosing += TestForm_FormClosing;
-            //ContextMenu = new ContextMenu();            
+            //UserCalendar uc = new UserCalendar();
+            //uc.Parent = this;
+            //uc.Visible = true;
+            //uc.Dock = DockStyle.Fill;
         }
 
         private void TestForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            
-        }
-    
-        
-        private void button2_Click(object sender, EventArgs e)
-        {
-            
-        }
 
-     
+
+        }
 
         private void TestForm_Load(object sender, EventArgs e)
         {
-
-//            Table name model field warn low high hour(0 - 24)
-
-//    未命名.m.10.10.10
-//Table smap
-
-//    sensor gate, node, port, date, a_name, model
-//	//sensor.alarm
+            uc1.Init();
+            //this.userCalendar1.Init();
+           // MainForm mf = new MainForm(3);
+           // uc1.Init();
+            //mf.Show();
+            //mf.Visible = false;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -64,11 +58,19 @@ namespace DeviceManagerO
 
         private void 数据报表ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-        
+
+        }
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+          
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+           
         }
     }
 
-    }
-
-   
+}
 

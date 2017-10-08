@@ -6,31 +6,60 @@ using System.Threading.Tasks;
 
 namespace DeviceManager.Alarm
 {
+
+    public class AlarmStrategy
+    {
+        public string Name { get; set; }
+        public List<Alarm24> A24s = new List<Alarm24>();
+        public override string ToString()
+        {
+            return this.Name;
+        }
+    }
+
     public class Alarm24
     {
-        public int H0 { get; set; }
-        public int H1 { get; set; }
-        public int H2 { get; set; }
-        public int H3 { get; set; }
-        public int H4 { get; set; }
-        public int H5 { get; set; }
-        public int H6 { get; set; }
-        public int H7 { get; set; }
-        public int H8 { get; set; }
-        public int H9 { get; set; }
-        public int H10 { get; set; }
-        public int H11 { get; set; }
-        public int H12 { get; set; }
-        public int H13 { get; set; }
-        public int H14 { get; set; }
-        public int H15 { get; set; }
-        public int H16 { get; set; }
-        public int H17 { get; set; }
-        public int H18 { get; set; }
-        public int H19 { get; set; }
-        public int H20 { get; set; }
-        public int H21 { get; set; }
-        public int H22 { get; set; }
-        public int H23 { get; set; }
+        public Alarm24()
+        { }
+
+        public Alarm24(Field f)
+        {            
+            this.Field = f.Name;
+            this.Model = f.GetModelKey();
+            Warn = 100;
+        }
+        
+        public string Model { get; set; }
+        public string Field { get; set; }
+        public int Warn { get; set; }
+
+        public TLValue[] Hs = new TLValue[24]
+        {new TLValue() { Top = 65535,Low=1000},new TLValue() { Top = 65535,Low=1000},new TLValue() { Top = 65535,Low=1000},new TLValue() { Top = 65535,Low=1000},new TLValue() { Top = 65535,Low=1000},new TLValue() { Top = 65535,Low=1000},
+        new TLValue() { Top = 65535,Low=1000},new TLValue() { Top = 65535,Low=1000},new TLValue() { Top = 65535,Low=1000},new TLValue() { Top = 65535,Low=1000},new TLValue() { Top = 65535,Low=1000},new TLValue() { Top = 65535,Low=1000},
+        new TLValue() { Top = 65535,Low=1000},new TLValue() { Top = 65535,Low=1000},new TLValue() { Top = 65535,Low=1000},new TLValue() { Top = 65535,Low=1000},new TLValue() { Top = 65535,Low=1000},new TLValue() { Top = 65535,Low=1000},
+        new TLValue() { Top = 65535,Low=1000},new TLValue() { Top = 65535,Low=1000},new TLValue() { Top = 65535,Low=1000},new TLValue() { Top = 65535,Low=1000},new TLValue() { Top = 65535,Low=1000},new TLValue() { Top = 65535,Low=1000},};
+
+    }
+    //<AlarmMap aname="博物馆监测策略" date="20170608" uid = "01E6F5DC180000AE" node="60" port="1" />
+    //<Alarms><am name="博物馆监测策略">
+    // <a24 name="博物馆监测策略" model="" field="" warn="" h0t="" h0l="" />
+    // <a24 name="博物馆监测策略" model="" field="" warn="" h0t="" h0l="" />
+
+
+    public class TLValue
+    {
+        public double Top { get; set; }
+        public double Low { get; set; }
+    }
+
+    public class AlarmMap
+    {
+        public string Name { get; set; }
+        public string Model { get; set; }
+        public string Field { get; set; }
+        public string Date { get; set; }
+        public string Gate { get; set; }
+        public string Node { get; set; }
+        public string Port { get; set; }
     }
 }

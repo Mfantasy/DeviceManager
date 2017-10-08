@@ -1,4 +1,5 @@
-﻿using DeviceManager.Model;
+﻿using DeviceManager.Alarm;
+using DeviceManager.Model;
 using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
@@ -15,6 +16,8 @@ namespace DeviceManager
         public static List<Field> allFields = new List<Field>();
         public static List<GroupConfig2> allG2 = new List<GroupConfig2>();
         public static List<GroupConfig3> allG3 = new List<GroupConfig3>();
+
+        public static List<AlarmStrategy> AllStrategy = new List<AlarmStrategy>();
 
         public static SensorModelRoot SensorModelRoot
         {
