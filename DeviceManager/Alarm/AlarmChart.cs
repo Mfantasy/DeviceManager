@@ -127,14 +127,9 @@ namespace DeviceManager.Alarm
 
         //新建一个策略
         public void CreateNew()
-        {
-            Alarm24 a24 = new Alarm24();
-            a24.Hs[10].Top = 60000;
-            a24.Hs[11].Low = 2000;
-            NewA(a24);
-            //a24s.Clear();
-            //textBox1.Text = "未命名";
-            //RefreshCombox();
+        {                                                         
+            textBox1.Text = "未命名";
+            RefreshCombox();
             //CAS = new AlarmStrategy();
             //if (comboBox1.Items[0] is Field)
             //{
@@ -229,9 +224,9 @@ namespace DeviceManager.Alarm
             {
                 foreach (var item in CAS.A24s)
                 {
-                    string insertSql = @"INSERT INTO T_ALARM(name,model,field,warn,h0t,h0l,h1t,h1l,h2t,h2l,h3t,h3l,h4t,h4l,h5t,h5l,h6t,h6l,h7t,h7l,
+                    string insertSql = @"INSERT INTO T_ALARM(name,field,warn,h0t,h0l,h1t,h1l,h2t,h2l,h3t,h3l,h4t,h4l,h5t,h5l,h6t,h6l,h7t,h7l,
                     h8t,h8l,h9t,h9l,h10t,h10l,h11t,h11l,h12t,h12l,h13t,h13l,h14t,h14l,h15t,h15l,h16t,h16l,h17t,h17l,h18t,h18l,h19t,h19l,h20t,h20l,h21t,h21l,h22t,h22l,h23t,h23l) 
-                    VALUES('" + CAS.Name + "','"+item.Model+ "','" + item.Field + "','" + item.Warn + "','" + item.Model + "','"+ item.Hs[0].Top + "','" + item.Hs[0].Low + "','" + item.Hs[1].Top + "','" + item.Hs[1].Low + "','" + item.Hs[2].Top + "','" + item.Hs[2].Low + "','" + item.Hs[3].Top + "','" + item.Hs[3].Low + "','" + item.Hs[4].Top + "','" + item.Hs[4].Low + "','" + item.Hs[5].Top + "','" + item.Hs[5].Low + "','" + item.Hs[6].Top + "','" + item.Hs[6].Low + "','" + item.Hs[7].Top + "','" + item.Hs[7].Low +
+                    VALUES('" + CAS.Name + "','" + item.Field + "','" + item.Warn + "','" + item.Model + "','"+ item.Hs[0].Top + "','" + item.Hs[0].Low + "','" + item.Hs[1].Top + "','" + item.Hs[1].Low + "','" + item.Hs[2].Top + "','" + item.Hs[2].Low + "','" + item.Hs[3].Top + "','" + item.Hs[3].Low + "','" + item.Hs[4].Top + "','" + item.Hs[4].Low + "','" + item.Hs[5].Top + "','" + item.Hs[5].Low + "','" + item.Hs[6].Top + "','" + item.Hs[6].Low + "','" + item.Hs[7].Top + "','" + item.Hs[7].Low +
                     "','" + item.Hs[8].Top + "','" + item.Hs[8].Low + "','" + item.Hs[9].Top + "','" + item.Hs[9].Low + "','" + item.Hs[10].Top + "','" + item.Hs[10].Low + "','" + item.Hs[11].Top + "','" + item.Hs[11].Low + "','" + item.Hs[12].Top + "','" + item.Hs[12].Low + "','" + item.Hs[13].Top + "','" + item.Hs[13].Low + "','" + item.Hs[14].Top + "','" + item.Hs[14].Low + "','" + item.Hs[15].Top + "','" + item.Hs[15].Low + "','" + item.Hs[16].Top + "','" + item.Hs[16].Low + "','" + item.Hs[17].Top + "','" + item.Hs[17].Low +
                     "','" + item.Hs[18].Top + "','" + item.Hs[18].Low + "','" + item.Hs[19].Top + "','" + item.Hs[19].Low + "','" + item.Hs[20].Top + "','" + item.Hs[20].Low + "','" + item.Hs[21].Top + "','" + item.Hs[21].Low + "','" + item.Hs[22].Top + "','" + item.Hs[22].Low + "','" + item.Hs[23].Top + "','" + item.Hs[23].Low + "')";
                     SqlLiteHelper.ExecuteNonQuery(db,insertSql);

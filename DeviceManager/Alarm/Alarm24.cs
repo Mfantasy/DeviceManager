@@ -15,6 +15,45 @@ namespace DeviceManager.Alarm
         {
             return this.Name;
         }
+
+        //比较并生成更新SQL
+        public string CompareTo(AlarmStrategy ast)
+        {
+            string sql = "";
+            if (ast.Name != this.Name)
+            {
+                sql += string.Format(@"UPDATE T_ALARM SET name='{0}' WHERE name='{1}';
+                    UPDATE T_ALARM_SENSOR_MAP SET aname = '{0}' WHERE aname = '{1}';",ast.Name,this.Name);
+            }
+            foreach (var item in A24s)
+            {
+                //item
+            }
+
+ 
+        }
+
+        public AlarmStrategy Copy()
+        {
+            AlarmStrategy acopy = new AlarmStrategy();
+            acopy.Name = this.Name;
+            acopy.A24s = new List<Alarm24>();
+            foreach (var item in this.A24s)
+            {
+                Alarm24 a24 = new Alarm24();
+                a24.Field = item.Field;
+                
+                a24.Warn = item.Warn;
+                for (int i = 0; i < a24.Hs.Length; i++)
+                {
+                    a24.Hs[i].Low = item.Hs[i].Low;
+                    a24.Hs[i].Top = item.Hs[i].Top;
+                }
+                acopy.A24s.Add(a24);
+            }
+            return acopy;
+        }
+
     }
 
     public class Alarm24
@@ -24,12 +63,10 @@ namespace DeviceManager.Alarm
 
         public Alarm24(Field f)
         {            
-            this.Field = f.Name;
-            this.Model = f.GetModelKey();
+            this.Field = f.Name;            
             Warn = 100;
         }
-        
-        public string Model { get; set; }
+           
         public string Field { get; set; }
         public int Warn { get; set; }
 

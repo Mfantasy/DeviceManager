@@ -122,14 +122,12 @@ namespace DeviceManager.Alarm
             {
                 ACShown.Invoke(null, null);
             }
-
             //MessageBox.Show(dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString());
             object obj = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
             if ( obj!= null && obj.ToString().Length > 2 )
             {
                                                     
-            }
-            
+            }            
             this.Visible = false;
             //this.SendToBack();            
         }

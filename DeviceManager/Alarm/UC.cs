@@ -87,20 +87,7 @@ h20l varchar(50),h21l varchar(50),h22l varchar(50),h23l varchar(50))";
         //查询 //只有初始化的时候使用
         string selectAlarmSql = "SELECT * FROM T_ALARM";
         string selectMapSql = "SELECT * FROM T_ALARM_SENSOR_MAP";
-        //增加 //经常使用
-//        string insertAlarmSql = @"INSERT INTO AlarmConfig(name,model,field,warn,h0t,h1t,h2t,h3t,h4t,h5t,h6t,h7t,h8t,h9t,h10t,h11t,h12t,h13t,h14t,h15t,h16t,h17t,h18t,h19t,h20t,h21t,h22t,h23t,h24t,
-//h0l,h1l,h2l,h3l,h4l,h5l,h6l,h7l,h8l,h9l,h10l,h11l,h12l,h13l,h14l,h15l,h16l,h17l,h18l,h19l,h20l,h21l,h22l,h23l,h24l
-//) VALUES('{0}','{1}','{2}','{3}'  ,'{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}','{15}','{16}','{17}','{18}','{19}','{20}','{21}','{22}','{23}','{24}','{25}','{26}','{27}','{28}','{29}',
-//'{30}','{31}','{32}','{33}','{34}','{35}','{36}','{37}','{38}','{39}','{40}','{41}','{42}','{43}','{44}','{45}','{46}','{47}','{48}','{49}','{50}','{51}','{52}','{53}')";
-//        string insertMapSql = "INSERT INTO AlarmMap(name,model,field,gate,node,port,date) VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}')";
-        //修改
-        string updateAlarmSql = @"UPDATE AlarmConfig SET name='{0}',h0t='{1}',h0l='{2}',h1t='{3}',h1l='{4}',h2t='{5}',h2l='{6}',h3t='{7}',h3l='{8}',h4t='{9}',h4l='{10}',h5t='{11}',h5l='{12}',h6t='{13}',h6l='{14}',h7t='{15}',h7l='{16}',
-h8t ='{17}',h8l ='{18}',h9t ='{19}',h9l ='{20}',h10t ='{21}',h10l ='{22}',h11t ='{23}',h11l ='{24}',h12t ='{25}',h12l ='{26}',h13t='{27}',h13l='{28}',h14t='{29}',h14l='{30}',h15t='{31}',h15l='{32}',h16t='{33}',h16l='{34}',h17t='{35}',h17l='{36}',h18t='{37}',h18l='{38}',
-h19t='{39}',h19l='{40}',h20t='{41}',h20l='{42}',h21t='{43}',h21l='{44}',h22t='{45}',h22l='{46}',h23t='{47}',h23l='{48}',h24t='{49}',h24l='{50},warn='{51}'' WHERE name='{52}' AND model='{53}' AND field='{54}'";
-        string updateMapSql = "UPDATE AlarmMap SET name='{0}' WHERE name='{1}' AND model='{2}' AND field= '{3}'";
-        //删除
-        string deleteAlarmSql = "DELETE FROM AlarmConfig WHERE name='{0}' AND model='{1}' AND field='{2}'";
-        string deleteMapSql = "DELETE FROM AlarmMap WHERE name='{0}' AND model='{1}' AND field='{2}' ";        
+   
         string db = Path.Combine(Utils.GetUserPath(),"alarm.db");
         void InitAlarm()
         {
@@ -136,8 +123,7 @@ h19t='{39}',h19l='{40}',h20t='{41}',h20l='{42}',h21t='{43}',h21l='{44}',h22t='{4
                 }
                 Alarm24 a24 = new Alarm24();
                 als.A24s.Add(a24);
-                a24.Field = r["field"].ToString();
-                a24.Model = r["model"].ToString();
+                a24.Field = r["field"].ToString();            
                 int warnTest = 0;
                 if (int.TryParse(r["warn"].ToString(), out warnTest))
                 {
