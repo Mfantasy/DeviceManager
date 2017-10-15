@@ -36,7 +36,20 @@ namespace DeviceManagerO
 
         private void TestForm_Load(object sender, EventArgs e)
         {
-            uc1.Init();
+            AlarmStrategy a1 = new AlarmStrategy();
+            a1.Name = "a1";
+            AlarmStrategy a2 = new AlarmStrategy();
+            a2.Name = "a2";
+            AlarmStrategy A1 = a1;
+            List<AlarmStrategy> la = new List<AlarmStrategy>();
+            AlarmStrategy a3 = new AlarmStrategy();
+            a3.Name = "a3";
+            la.Add(a1);
+            la.Add(a2);            
+            a1 = a3;
+            Console.WriteLine(A1.Name);
+            Console.WriteLine(la[0]);
+            //uc1.Init();
             //this.userCalendar1.Init();
            // MainForm mf = new MainForm(3);
            // uc1.Init();

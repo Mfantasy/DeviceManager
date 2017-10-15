@@ -76,7 +76,7 @@ namespace DeviceManager
             userCalendar1.Init();
         }
         //建表            
-        string createAlarmSql = @"CREATE TABLE T_ALARM(name varchar(50),model varchar(50),field varchar(50),warn varchar(50),
+        string createAlarmSql = @"CREATE TABLE T_ALARM(name varchar(50),field varchar(50),warn varchar(50),
 h0t varchar(50),h1t varchar(50),h2t varchar(50),h3t varchar(50),h4t varchar(50),h5t varchar(50),h6t varchar(50),h7t varchar(50),h8t varchar(50),h9t varchar(50),
 h10t varchar(50),h11t varchar(50),h12t varchar(50),h13t varchar(50),h14t varchar(50),h15t varchar(50),h16t varchar(50),h17t varchar(50),h18t varchar(50),h19t varchar(50),
 h20t varchar(50),h21t varchar(50),h22t varchar(50),h23t varchar(50),

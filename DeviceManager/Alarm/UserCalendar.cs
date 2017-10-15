@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DeviceManager.Alarm;
+using System.IO;
 
 namespace DeviceManager.Alarm
 {
@@ -26,6 +27,8 @@ namespace DeviceManager.Alarm
         public AlarmChart Ac;  //表格控件
         public event EventHandler ACShown;
         public Sensor currentSensor;//当前选择的传感器
+        string db = Path.Combine(Utils.GetUserPath(), "alarm.db");
+
         public Sensor CurrentSensor
         {
             get { return this.currentSensor; }
@@ -117,11 +120,7 @@ namespace DeviceManager.Alarm
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex == -1)//双击列头
-                return;
-            if (ACShown != null)
-            {
-                ACShown.Invoke(null, null);
-            }
+                return;          
             //MessageBox.Show(dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString());
             object obj = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
             if ( obj!= null && obj.ToString().Length > 2 )
@@ -172,13 +171,34 @@ namespace DeviceManager.Alarm
         private void button2_Click(object sender, EventArgs e)
         {
             //删除Cell
-            //if(CurrentSensor.AlarmDic.ContainsKey())
+            if (dataGridView1.CurrentCell.Value is DateCell)
+            {
+                DateCell dc = dataGridView1.CurrentCell.Value as DateCell;
+                AlarmStrategy ast = dc.AS;
+                if (ast != null)
+                {
+                    string dsql = string.Format("DELETE FROM T_ALARM_SENSOR_MAP WHERE date='{0}' AND aname ='{1}' AND uid='{2}' AND node='{3}' AND port='{4}'",dc.YYYYMMDD,ast.Name,CurrentSensor.Uid,CurrentSensor.NodeId,CurrentSensor.PortId);
+                    SqlLiteHelper.ExecuteNonQuery(db, dsql);
+                    dataGridView1.Refresh();
+                    if (CurrentSensor.AlarmDic.ContainsKey(dc.YYYYMMDD))
+                    {
+                        CurrentSensor.AlarmDic.Remove(dc.YYYYMMDD);
+                    }
+                }
+            }                        
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
             //编辑
-            //Ac.EditStrategy();
+            if (dataGridView1.CurrentCell.Value is DateCell)
+            {
+                DateCell dc = dataGridView1.CurrentCell.Value as DateCell;
+                if (dc.AS != null)
+                {
+                    Ac.EditStrategy(dc.AS);
+                }
+            }            
         }
     }
 }

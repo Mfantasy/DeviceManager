@@ -39,6 +39,7 @@ namespace DeviceManager.Alarm
         public Alarm24 CurrentA24 { get; set; }   //当前选中的预警字段
         public AlarmStrategy CAS { get; set; }  //当前策略
         public AlarmStrategy CASCopy { get; set; } //编辑缓存
+        public AlarmStrategy CASOrgin { get; set; } 
 
         //刷新字段列表
         void RefreshCombox()
@@ -121,8 +122,9 @@ namespace DeviceManager.Alarm
         //编辑当前策略
         public void EditStrategy(AlarmStrategy cas)
         {
-            CAS = cas;
-            //copy一个副本,然后通过对比生成sql
+            CASOrgin = cas;
+            CASCopy = CAS.Copy();
+            CAS = CASCopy;
         }
 
         //新建一个策略
@@ -130,14 +132,14 @@ namespace DeviceManager.Alarm
         {                                                         
             textBox1.Text = "未命名";
             RefreshCombox();
-            //CAS = new AlarmStrategy();
-            //if (comboBox1.Items[0] is Field)
-            //{
-            //    comboBox1.SelectedIndex = 0;
-            //    button1_Click(null, null);
-            //}
-
-            this.BringToFront();
+            CAS = new AlarmStrategy();
+            CASCopy = null;
+            CASOrgin = null;
+            if (comboBox1.Items[0] is Field)
+            {
+                comboBox1.SelectedIndex = 0;
+                button1_Click(null, null);
+            }                        
             this.Visible = true;
         }
 
@@ -217,8 +219,14 @@ namespace DeviceManager.Alarm
             if (ConfigData.AllStrategy.Contains(CAS))
             {
                 //编辑保存 //更新Alarm和Map
-                //UpdateSql
-                
+                string usql = CASOrgin.CompareTo(CAS);
+                if (!string.IsNullOrWhiteSpace(usql))
+                {
+                    //万一有人用这个策略咋办 此处想个办法调出Sensor的字典修改其引用.
+                    ConfigData.AllStrategy[ConfigData.AllStrategy.IndexOf(CASOrgin)] = CAS;
+                    SqlLiteHelper.ExecuteNonQuery(db, usql);
+                }
+               
             }
             else //新建保存
             {
@@ -226,11 +234,11 @@ namespace DeviceManager.Alarm
                 {
                     string insertSql = @"INSERT INTO T_ALARM(name,field,warn,h0t,h0l,h1t,h1l,h2t,h2l,h3t,h3l,h4t,h4l,h5t,h5l,h6t,h6l,h7t,h7l,
                     h8t,h8l,h9t,h9l,h10t,h10l,h11t,h11l,h12t,h12l,h13t,h13l,h14t,h14l,h15t,h15l,h16t,h16l,h17t,h17l,h18t,h18l,h19t,h19l,h20t,h20l,h21t,h21l,h22t,h22l,h23t,h23l) 
-                    VALUES('" + CAS.Name + "','" + item.Field + "','" + item.Warn + "','" + item.Model + "','"+ item.Hs[0].Top + "','" + item.Hs[0].Low + "','" + item.Hs[1].Top + "','" + item.Hs[1].Low + "','" + item.Hs[2].Top + "','" + item.Hs[2].Low + "','" + item.Hs[3].Top + "','" + item.Hs[3].Low + "','" + item.Hs[4].Top + "','" + item.Hs[4].Low + "','" + item.Hs[5].Top + "','" + item.Hs[5].Low + "','" + item.Hs[6].Top + "','" + item.Hs[6].Low + "','" + item.Hs[7].Top + "','" + item.Hs[7].Low +
+                    VALUES('" + CAS.Name + "','" + item.Field + "','" + item.Warn + "','" + item.Hs[0].Top + "','" + item.Hs[0].Low + "','" + item.Hs[1].Top + "','" + item.Hs[1].Low + "','" + item.Hs[2].Top + "','" + item.Hs[2].Low + "','" + item.Hs[3].Top + "','" + item.Hs[3].Low + "','" + item.Hs[4].Top + "','" + item.Hs[4].Low + "','" + item.Hs[5].Top + "','" + item.Hs[5].Low + "','" + item.Hs[6].Top + "','" + item.Hs[6].Low + "','" + item.Hs[7].Top + "','" + item.Hs[7].Low +
                     "','" + item.Hs[8].Top + "','" + item.Hs[8].Low + "','" + item.Hs[9].Top + "','" + item.Hs[9].Low + "','" + item.Hs[10].Top + "','" + item.Hs[10].Low + "','" + item.Hs[11].Top + "','" + item.Hs[11].Low + "','" + item.Hs[12].Top + "','" + item.Hs[12].Low + "','" + item.Hs[13].Top + "','" + item.Hs[13].Low + "','" + item.Hs[14].Top + "','" + item.Hs[14].Low + "','" + item.Hs[15].Top + "','" + item.Hs[15].Low + "','" + item.Hs[16].Top + "','" + item.Hs[16].Low + "','" + item.Hs[17].Top + "','" + item.Hs[17].Low +
                     "','" + item.Hs[18].Top + "','" + item.Hs[18].Low + "','" + item.Hs[19].Top + "','" + item.Hs[19].Low + "','" + item.Hs[20].Top + "','" + item.Hs[20].Low + "','" + item.Hs[21].Top + "','" + item.Hs[21].Low + "','" + item.Hs[22].Top + "','" + item.Hs[22].Low + "','" + item.Hs[23].Top + "','" + item.Hs[23].Low + "')";
                     SqlLiteHelper.ExecuteNonQuery(db,insertSql);
-                }
+                }                
                 ConfigData.AllStrategy.Add(CAS);
                 userCalendar.RefreshComb();
             }
