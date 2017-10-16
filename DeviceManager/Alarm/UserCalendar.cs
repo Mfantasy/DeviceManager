@@ -133,8 +133,7 @@ namespace DeviceManager.Alarm
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //新建
-            this.Visible = false;
+            //新建            
             Ac.CreateNew();
         }
 

@@ -25,10 +25,21 @@ namespace DeviceManager.Alarm
             lb.ForeColor = Color.White;
             tx.BorderStyle = BorderStyle.FixedSingle;
             tx.Width = 33;
-            tx.TextChanged += Tx_TextChanged;            
+            tx.TextChanged += Tx_TextChanged;
+            tx.KeyDown += Tx_KeyDown;
             tx.BringToFront();
             lb.BringToFront();                      
         }
+
+        private void Tx_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                tx.Visible = false;
+                lb.Visible = false;
+            }
+        }
+
         string db = Path.Combine(Utils.GetUserPath(), "alarm.db");
         TextBox tx = new TextBox(); //点击出现的txtbox
         Label lb = new Label();    //点击出现的label
@@ -77,29 +88,39 @@ namespace DeviceManager.Alarm
             }
             chart1.Series["Top"].Points.AddXY(24, CurrentA24.Hs[CurrentA24.Hs.Length - 1].Top);
             chart1.Series["Low"].Points.AddXY(24, CurrentA24.Hs[CurrentA24.Hs.Length - 1].Low);
+            chart1.Titles[0].Text = a24.Field;
         }
              
         private void Tx_TextChanged(object sender, EventArgs e)
         {
             if (this.CurrentA24 != null)
             {
-                double test = 0;
-                if (double.TryParse(tx.Text, out test))
+                if (tx.Visible)
                 {
-                    chart1.Series[l].Points[h].SetValueY(test);
-                    if (l == "Top")
+                    double test = 0;
+                    if (double.TryParse(tx.Text, out test))
                     {
-                        CurrentA24.Hs[h].Top = test;
+                        //由于使用的是相同txt所以会多次触发changed事件
+                        //chart1.Series[l].Points[h].SetValueXY(h,test);//SetValueY(test);
+                        chart1.Series[l].Points[h].SetValueY(test);
+                        Console.WriteLine(l);
+                        Console.WriteLine(h);
+                        if (l == "Top")
+                        {
+                            CurrentA24.Hs[h].Top = test;
+                        }
+                        else if (l == "Low")
+                        {
+                            CurrentA24.Hs[h].Low = test;
+                        }
+                        if (h == 23)
+                        {
+                            chart1.Series[l].Points[24].SetValueY(test);
+                        }
+                        //此处要想办法触发重绘事件才可更新chart
+                        //chart1.Series[l].
                     }
-                    else if (l == "Low")
-                    {
-                        CurrentA24.Hs[h].Low = test;
-                    }
-                    if (h == 23)
-                    {
-                        chart1.Series[l].Points[24].SetValueY(test);
-                    }
-                }             
+                }
             }
         }
 
@@ -128,17 +149,19 @@ namespace DeviceManager.Alarm
             textBox1.Text = cas.Name;
             RefreshCombox();
             foreach (var item in cas.A24s)
-            {                
-                for(int i =0; i < comboBox1.Items.Count;i++)
+            {
+                RadioButton rb = new RadioButton();
+                for (int i =0; i < comboBox1.Items.Count;i++)
                 {
                     if (comboBox1.Items[i] is Field && (comboBox1.Items[i] as Field).Name == item.Field)
                     {
                         comboBox1.Items.RemoveAt(i);
+                        rb.Text = comboBox1.Items[i].ToString();
                         break;
                         //i--;
                     }
                 }
-                RadioButton rb = new RadioButton();
+                                
                 rb.Parent = flowLayoutPanel1;
                 rb.Visible = true;
                 rb.CheckedChanged += (S, E) =>
@@ -149,7 +172,9 @@ namespace DeviceManager.Alarm
                     }
                 };
             }
+            
             this.Visible = true;
+            this.userCalendar.Visible = false;
         }
 
         //新建一个策略
@@ -166,6 +191,7 @@ namespace DeviceManager.Alarm
                 button1_Click(null, null);
             }                        
             this.Visible = true;
+            this.userCalendar.Visible = false;
         }
 
         private void chart1_MouseClick(object sender, MouseEventArgs e)
@@ -213,6 +239,7 @@ namespace DeviceManager.Alarm
                 Alarm24 a24 = new Alarm24(f);
                 CAS.A24s.Add(a24);                
                 RadioButton rb = new RadioButton();
+                rb.Text = f.Alias;
                 rb.Parent = flowLayoutPanel1;
                 rb.Visible = true;
                 rb.CheckedChanged += (S, E) =>
@@ -282,6 +309,7 @@ namespace DeviceManager.Alarm
         {
             //取消
             this.Visible = false;
+            this.userCalendar.Visible = true;
             //this.SendToBack();
             
         }
