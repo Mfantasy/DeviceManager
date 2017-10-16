@@ -14,8 +14,7 @@ namespace DeviceManager.Alarm
         public override string ToString()
         {
             return this.Name;
-        }
-
+        }       
 
         //比较并生成更新SQL
         public string CompareTo(AlarmStrategy ast)

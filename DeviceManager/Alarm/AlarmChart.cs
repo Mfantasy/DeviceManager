@@ -35,7 +35,7 @@ namespace DeviceManager.Alarm
         int h = 0; //小时
         string l = "Top"; //表中线名
 
-        public UserCalendar userCalendar;
+        public UserCalendar userCalendar;       
         public Alarm24 CurrentA24 { get; set; }   //当前选中的预警字段
         public AlarmStrategy CAS { get; set; }  //当前策略
         public AlarmStrategy CASCopy { get; set; } //编辑缓存
@@ -125,6 +125,31 @@ namespace DeviceManager.Alarm
             CASOrgin = cas;
             CASCopy = CAS.Copy();
             CAS = CASCopy;
+            textBox1.Text = cas.Name;
+            RefreshCombox();
+            foreach (var item in cas.A24s)
+            {                
+                for(int i =0; i < comboBox1.Items.Count;i++)
+                {
+                    if (comboBox1.Items[i] is Field && (comboBox1.Items[i] as Field).Name == item.Field)
+                    {
+                        comboBox1.Items.RemoveAt(i);
+                        break;
+                        //i--;
+                    }
+                }
+                RadioButton rb = new RadioButton();
+                rb.Parent = flowLayoutPanel1;
+                rb.Visible = true;
+                rb.CheckedChanged += (S, E) =>
+                {
+                    if (rb.Checked)
+                    {
+                        NewA(item);
+                    }
+                };
+            }
+            this.Visible = true;
         }
 
         //新建一个策略
@@ -134,7 +159,7 @@ namespace DeviceManager.Alarm
             RefreshCombox();
             CAS = new AlarmStrategy();
             CASCopy = null;
-            CASOrgin = null;
+            CASOrgin = CAS;
             if (comboBox1.Items[0] is Field)
             {
                 comboBox1.SelectedIndex = 0;
@@ -216,17 +241,26 @@ namespace DeviceManager.Alarm
                     return;
                 }
             }
-            if (ConfigData.AllStrategy.Contains(CAS))
+            if (ConfigData.AllStrategy.Contains(CASOrgin))
             {
                 //编辑保存 //更新Alarm和Map
                 string usql = CASOrgin.CompareTo(CAS);
                 if (!string.IsNullOrWhiteSpace(usql))
                 {
                     //万一有人用这个策略咋办 此处想个办法调出Sensor的字典修改其引用.
-                    ConfigData.AllStrategy[ConfigData.AllStrategy.IndexOf(CASOrgin)] = CAS;
+                    ConfigData.AllStrategy[ConfigData.AllStrategy.IndexOf(CASOrgin)] = CAS;                    
+                    foreach (var item in ConfigData.allSensors)
+                    {
+                        foreach (var k in item.AlarmDic.Keys)
+                        {
+                            if (item.AlarmDic[k] == CASOrgin)
+                            {
+                                item.AlarmDic[k] = CAS;
+                            }
+                        }
+                    }                    
                     SqlLiteHelper.ExecuteNonQuery(db, usql);
-                }
-               
+                }               
             }
             else //新建保存
             {
@@ -241,16 +275,14 @@ namespace DeviceManager.Alarm
                 }                
                 ConfigData.AllStrategy.Add(CAS);
                 userCalendar.RefreshComb();
-            }
-            
-            
+            }                        
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
             //取消
             this.Visible = false;
-            this.SendToBack();
+            //this.SendToBack();
             
         }
 

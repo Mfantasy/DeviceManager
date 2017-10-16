@@ -20,9 +20,9 @@ namespace DeviceManager.Alarm
             tableLayoutPanel1.GetType().GetProperty("DoubleBuffered",
  System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic).SetValue(tableLayoutPanel1,
  true, null);
-            dateTimePicker1.ValueChanged += DateTimePicker1_ValueChanged;            
-           
-                                    
+            dateTimePicker1.ValueChanged += DateTimePicker1_ValueChanged;
+
+
         }
         public AlarmChart Ac;  //表格控件
         public event EventHandler ACShown;
@@ -43,13 +43,13 @@ namespace DeviceManager.Alarm
         }
         //初始化策略列表
         public void Init()
-        {           
+        {
             dateTimePicker1.Value = DateTime.Now;
             RefreshComb();
         }
         //刷新Comb(策略列表)
         public void RefreshComb()
-        {            
+        {
             comboBox1.Items.Clear();
             comboBox1.Items.AddRange(ConfigData.AllStrategy.ToArray());
             if (comboBox1.Items.Count == 0)
@@ -102,41 +102,40 @@ namespace DeviceManager.Alarm
                     dc.Year = dateTimePicker1.Value.Year;
                     dc.Month = dateTimePicker1.Value.Month;
                     dc.Day = num;
-                    if (CurrentSensor!= null && CurrentSensor.AlarmDic.ContainsKey(dc.YYYYMMDD))
+                    if (CurrentSensor != null && CurrentSensor.AlarmDic.ContainsKey(dc.YYYYMMDD))
                     {
                         dc.AS = CurrentSensor.AlarmDic[dc.YYYYMMDD];
-                    }                    
+                    }
                     dataGridView1.Rows[i].Cells[j].Value = dc;
                     if (num == DateTime.Now.Day && dateTimePicker1.Value.Month == DateTime.Now.Month && dateTimePicker1.Value.Year == DateTime.Now.Year)
                     {
                         dataGridView1.Rows[i].Cells[j].Style.BackColor = Color.LightSkyBlue;
-                    }                      
+                    }
                 }
-            }       
-            dataGridView1.CurrentCell = null;            
+            }
+            dataGridView1.CurrentCell = null;
         }
-                                    
+
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex == -1)//双击列头
-                return;          
-            //MessageBox.Show(dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString());
-            object obj = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
-            if ( obj!= null && obj.ToString().Length > 2 )
-            {
-                                                    
-            }            
-            this.Visible = false;
-            //this.SendToBack();            
+                return;
+            //object obj = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+            //if (obj != null && obj.ToString().Length > 2)
+            //{
+            //}
+            //this.Visible = false;
+            ////this.SendToBack();            
+            button4_Click(null, null);
         }
-        
-      
+
+
         private void button1_Click(object sender, EventArgs e)
         {
             //新建
             this.Visible = false;
-            Ac.CreateNew();            
+            Ac.CreateNew();
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -144,7 +143,7 @@ namespace DeviceManager.Alarm
             //设定 comb1
             if (comboBox1.SelectedItem is AlarmStrategy)
             {
-                AlarmStrategy cas = comboBox1.SelectedItem as AlarmStrategy;                
+                AlarmStrategy cas = comboBox1.SelectedItem as AlarmStrategy;
                 //此处还应该操作数据库 使用helper+手写sql语句
                 if (dataGridView1.CurrentCell.Value is DateCell && (dataGridView1.CurrentCell.Value as DateCell).AS != cas)
                 {
@@ -155,16 +154,17 @@ namespace DeviceManager.Alarm
                     {
                         CurrentSensor.AlarmDic[dc.YYYYMMDD] = cas;
                         //UPDATE SQL
-                        string updateSql = "";
+                        string updateSql = string.Format("UPDATE T_ALARM_SENSOR_MAP SET aname='{0}' WHERE date='{1}' AND uid='{2}' AND node='{3}' AND port='{4}'",cas.Name,dc.YYYYMMDD,CurrentSensor.Uid,CurrentSensor.NodeId,CurrentSensor.PortId);
+                        SqlLiteHelper.ExecuteNonQuery(db, updateSql);
                     }
                     else
                     {
                         CurrentSensor.AlarmDic.Add(dc.YYYYMMDD, cas);
                         //insert
-                        string insertSql = "";
+                        string insertSql = string.Format("INSERT INTO T_ALARM_SENSOR_MAP (aname,date,uid,node,port) VALUES('{0}','{1}','{2}','{3}','{4}')",cas.Name,dc.YYYYMMDD,CurrentSensor.Uid,CurrentSensor.NodeId,CurrentSensor.PortId);
+                        SqlLiteHelper.ExecuteNonQuery(db, insertSql);
                     }
-
-                }                                                
+                }
             }
         }
 
@@ -177,7 +177,7 @@ namespace DeviceManager.Alarm
                 AlarmStrategy ast = dc.AS;
                 if (ast != null)
                 {
-                    string dsql = string.Format("DELETE FROM T_ALARM_SENSOR_MAP WHERE date='{0}' AND aname ='{1}' AND uid='{2}' AND node='{3}' AND port='{4}'",dc.YYYYMMDD,ast.Name,CurrentSensor.Uid,CurrentSensor.NodeId,CurrentSensor.PortId);
+                    string dsql = string.Format("DELETE FROM T_ALARM_SENSOR_MAP WHERE date='{0}' AND aname ='{1}' AND uid='{2}' AND node='{3}' AND port='{4}'", dc.YYYYMMDD, ast.Name, CurrentSensor.Uid, CurrentSensor.NodeId, CurrentSensor.PortId);
                     SqlLiteHelper.ExecuteNonQuery(db, dsql);
                     dataGridView1.Refresh();
                     if (CurrentSensor.AlarmDic.ContainsKey(dc.YYYYMMDD))
@@ -185,7 +185,7 @@ namespace DeviceManager.Alarm
                         CurrentSensor.AlarmDic.Remove(dc.YYYYMMDD);
                     }
                 }
-            }                        
+            }
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -198,7 +198,7 @@ namespace DeviceManager.Alarm
                 {
                     Ac.EditStrategy(dc.AS);
                 }
-            }            
+            }
         }
     }
 }
