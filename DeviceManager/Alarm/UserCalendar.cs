@@ -140,28 +140,31 @@ namespace DeviceManager.Alarm
         private void button3_Click(object sender, EventArgs e)
         {
             //设定 comb1
-            if (comboBox1.SelectedItem is AlarmStrategy)
+            if (dataGridView1.CurrentCell != null)
             {
-                AlarmStrategy cas = comboBox1.SelectedItem as AlarmStrategy;
-                //此处还应该操作数据库 使用helper+手写sql语句
-                if (dataGridView1.CurrentCell.Value is DateCell && (dataGridView1.CurrentCell.Value as DateCell).AS != cas)
+                if (comboBox1.SelectedItem is AlarmStrategy)
                 {
-                    DateCell dc = dataGridView1.CurrentCell.Value as DateCell;
-                    dc.AS = cas;
-                    dataGridView1.Refresh();
-                    if (CurrentSensor.AlarmDic.ContainsKey(dc.YYYYMMDD))
+                    AlarmStrategy cas = comboBox1.SelectedItem as AlarmStrategy;
+                    //此处还应该操作数据库 使用helper+手写sql语句
+                    if (dataGridView1.CurrentCell.Value is DateCell && (dataGridView1.CurrentCell.Value as DateCell).AS != cas)
                     {
-                        CurrentSensor.AlarmDic[dc.YYYYMMDD] = cas;
-                        //UPDATE SQL
-                        string updateSql = string.Format("UPDATE T_ALARM_SENSOR_MAP SET aname='{0}' WHERE date='{1}' AND uid='{2}' AND node='{3}' AND port='{4}'",cas.Name,dc.YYYYMMDD,CurrentSensor.Uid,CurrentSensor.NodeId,CurrentSensor.PortId);
-                        SqlLiteHelper.ExecuteNonQuery(db, updateSql);
-                    }
-                    else
-                    {
-                        CurrentSensor.AlarmDic.Add(dc.YYYYMMDD, cas);
-                        //insert
-                        string insertSql = string.Format("INSERT INTO T_ALARM_SENSOR_MAP (aname,date,uid,node,port) VALUES('{0}','{1}','{2}','{3}','{4}')",cas.Name,dc.YYYYMMDD,CurrentSensor.Uid,CurrentSensor.NodeId,CurrentSensor.PortId);
-                        SqlLiteHelper.ExecuteNonQuery(db, insertSql);
+                        DateCell dc = dataGridView1.CurrentCell.Value as DateCell;
+                        dc.AS = cas;
+                        dataGridView1.Refresh();
+                        if (CurrentSensor.AlarmDic.ContainsKey(dc.YYYYMMDD))
+                        {
+                            CurrentSensor.AlarmDic[dc.YYYYMMDD] = cas;
+                            //UPDATE SQL
+                            string updateSql = string.Format("UPDATE T_ALARM_SENSOR_MAP SET aname='{0}' WHERE date='{1}' AND uid='{2}' AND node='{3}' AND port='{4}'", cas.Name, dc.YYYYMMDD, CurrentSensor.Uid, CurrentSensor.NodeId, CurrentSensor.PortId);
+                            SqlLiteHelper.ExecuteNonQuery(db, updateSql);
+                        }
+                        else
+                        {
+                            CurrentSensor.AlarmDic.Add(dc.YYYYMMDD, cas);
+                            //insert
+                            string insertSql = string.Format("INSERT INTO T_ALARM_SENSOR_MAP (aname,date,uid,node,port) VALUES('{0}','{1}','{2}','{3}','{4}')", cas.Name, dc.YYYYMMDD, CurrentSensor.Uid, CurrentSensor.NodeId, CurrentSensor.PortId);
+                            SqlLiteHelper.ExecuteNonQuery(db, insertSql);
+                        }
                     }
                 }
             }

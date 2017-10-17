@@ -27,8 +27,17 @@ namespace DeviceManager.Alarm
             tx.Width = 33;
             tx.TextChanged += Tx_TextChanged;
             tx.KeyDown += Tx_KeyDown;
+            warnNum.ValueChanged += WarnNum_ValueChanged;
             tx.BringToFront();
             lb.BringToFront();                      
+        }
+
+        private void WarnNum_ValueChanged(object sender, EventArgs e)
+        {
+            if (this.CurrentA24 != null)
+            {
+                this.CurrentA24.Warn = (int)warnNum.Value;
+            }
         }
 
         private void Tx_KeyDown(object sender, KeyEventArgs e)
@@ -103,8 +112,8 @@ namespace DeviceManager.Alarm
                         //由于使用的是相同txt所以会多次触发changed事件
                         //chart1.Series[l].Points[h].SetValueXY(h,test);//SetValueY(test);
                         chart1.Series[l].Points[h].SetValueY(test);
-                        Console.WriteLine(l);
-                        Console.WriteLine(h);
+                        //Console.WriteLine(l);
+                        //Console.WriteLine(h);
                         if (l == "Top")
                         {
                             CurrentA24.Hs[h].Top = test;
@@ -118,7 +127,8 @@ namespace DeviceManager.Alarm
                             chart1.Series[l].Points[24].SetValueY(test);
                         }
                         //此处要想办法触发重绘事件才可更新chart
-                        //chart1.Series[l].
+                        //chart1.Padding = new Padding(1);
+                        chart1.ChartAreas[0].RecalculateAxesScale();
                     }
                 }
             }
@@ -144,24 +154,30 @@ namespace DeviceManager.Alarm
         public void EditStrategy(AlarmStrategy cas)
         {
             CASOrgin = cas;
-            CASCopy = CAS.Copy();
+            CASCopy = cas.Copy();
             CAS = CASCopy;
             textBox1.Text = cas.Name;
             RefreshCombox();
-            foreach (var item in cas.A24s)
+            flowLayoutPanel1.Controls.Clear();
+            foreach (var item in CAS.A24s)
             {
                 RadioButton rb = new RadioButton();
                 for (int i =0; i < comboBox1.Items.Count;i++)
                 {
                     if (comboBox1.Items[i] is Field && (comboBox1.Items[i] as Field).Name == item.Field)
                     {
-                        comboBox1.Items.RemoveAt(i);
                         rb.Text = comboBox1.Items[i].ToString();
+                        comboBox1.Items.RemoveAt(i);                        
                         break;
                         //i--;
                     }
                 }
-                                
+                if (comboBox1.Items.Count == 0)
+                {
+                    comboBox1.Items.Add("无");
+                }
+                comboBox1.SelectedIndex = 0;
+
                 rb.Parent = flowLayoutPanel1;
                 rb.Visible = true;
                 rb.CheckedChanged += (S, E) =>
@@ -171,6 +187,7 @@ namespace DeviceManager.Alarm
                         NewA(item);
                     }
                 };
+                rb.Checked = true;
             }
             
             this.Visible = true;
@@ -182,6 +199,7 @@ namespace DeviceManager.Alarm
         {                                                         
             textBox1.Text = "未命名";
             RefreshCombox();
+            flowLayoutPanel1.Controls.Clear();
             CAS = new AlarmStrategy();
             CASCopy = null;
             CASOrgin = CAS;
@@ -268,23 +286,28 @@ namespace DeviceManager.Alarm
                     return;
                 }
             }
-            if (ConfigData.AllStrategy.Contains(CASOrgin))
+            if (CASCopy!=null)
             {
                 //编辑保存 //更新Alarm和Map
                 string usql = CASOrgin.CompareTo(CAS);
                 if (!string.IsNullOrWhiteSpace(usql))
                 {
                     //万一有人用这个策略咋办 此处想个办法调出Sensor的字典修改其引用.
-                    ConfigData.AllStrategy[ConfigData.AllStrategy.IndexOf(CASOrgin)] = CAS;                    
+                    //ConfigData.AllStrategy[ConfigData.AllStrategy.IndexOf(CASOrgin)] = CAS;                    
+                    if (ConfigData.AllStrategy.Contains(CASOrgin))
+                    {
+                        int i = ConfigData.AllStrategy.IndexOf(CASOrgin);
+                        ConfigData.AllStrategy[i] = CAS;
+                    }
                     foreach (var item in ConfigData.allSensors)
                     {
-                        foreach (var k in item.AlarmDic.Keys)
+                        for (int i = 0; i < item.AlarmDic.Keys.Count; i++)
                         {
-                            if (item.AlarmDic[k] == CASOrgin)
+                            if (item.AlarmDic[item.AlarmDic.Keys.ElementAt(i)] == CASOrgin)
                             {
-                                item.AlarmDic[k] = CAS;
+                                item.AlarmDic[item.AlarmDic.Keys.ElementAt(i)] = CAS;
                             }
-                        }
+                        }                    
                     }                    
                     SqlLiteHelper.ExecuteNonQuery(db, usql);
                 }               
@@ -302,7 +325,9 @@ namespace DeviceManager.Alarm
                 }                
                 ConfigData.AllStrategy.Add(CAS);
                 userCalendar.RefreshComb();
-            }                        
+            }
+            this.Visible = false;
+            this.userCalendar.Visible = true;                        
         }
 
         private void button4_Click(object sender, EventArgs e)

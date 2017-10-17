@@ -22,11 +22,14 @@ namespace DeviceManager
         [STAThread]
         static void Main()
         {
-            //string sql = "SELECT * FROM sqlite_master";
-            //DataTable dt = SqlLiteHelper.ExecuteReader(ConfigurationManager.AppSettings["dbPath"], sql);
-            Application.Run(new TestForm());
-            //Console.WriteLine(dt.ToString());
-            //Application.Run(new Account());
+            //string db = Path.Combine(Utils.GetUserPath(), "alarm.db");
+            ////string sql = "SELECT * FROM sqlite_master";
+            //string sql = "SELECT * FROM T_ALARM";
+            ////string sql = "DELETE FROM T_ALARM_SENSOR_MAP";
+
+            //DataTable dt = SqlLiteHelper.ExecuteReader(db, sql);
+            //Console.WriteLine(dt);
+            Application.Run(new TestForm());   
             return;
             Application.EnableVisualStyles();                    
             Application.SetCompatibleTextRenderingDefault(false);
