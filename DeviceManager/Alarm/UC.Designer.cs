@@ -120,6 +120,6 @@
         private System.Windows.Forms.ToolStripComboBox toolStripComboBox3;
         private System.Windows.Forms.ToolStripComboBox toolStripComboBox4;
         private System.Windows.Forms.Panel panel1;
-        private Alarm.UserCalendar userCalendar1;
+        public Alarm.UserCalendar userCalendar1;
     }
 }

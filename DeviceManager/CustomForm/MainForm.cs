@@ -34,7 +34,7 @@ namespace DeviceManager
         {
             string jstr = "{\"state\":\"Stream\",\"parser\":\"MXS1501\",\"raw\":\"7E000B7D1A000001000000330A4081817F01E524226D050100000100B01C00\",\"data\":[{\"name\":\"nodeid\",\"alias\":\"节点编号\",\"type\":\"uint16\",\"raw\":\"0x0100\",\"converted\":\"20\"},{\"name\":\"uid\",\"alias\":\"网关唯一号\",\"type\":\"raw\",\"raw\":\"0x01E6F5DC180000AE\"},{\"name\":\"parent\",\"alias\":\"父级节点\",\"type\":\"uint16\",\"raw\":\"0x0000\",\"converted\":\"0\"},{\"name\":\"port\",\"alias\":\"采集通道\",\"type\":\"uint8\",\"raw\":\"0x01\",\"converted\":\"1\"},{\"name\":\"light\",\"alias\":\"太阳光照(lux)\",\"type\":\"uint32\",\"raw\":\"0x00B01C00\",\"converted\":\"" + textBox1.Text + "\"}]}";
             JObject jobj = JObject.Parse(jstr);
-            DataParser.ParseJObj(jobj);  
+            DataParser.ParseJObj(jobj);
             // int add = r.Next(-20, 20);
             //string jstr;
             //if (b)
@@ -87,8 +87,8 @@ namespace DeviceManager
         private void MainForm_Load(object sender, EventArgs e)
         {
             //测试                                
-            button1.Visible = true;
-            textBox1.Visible = true;
+            //button1.Visible = true;
+            //textBox1.Visible = true;
 
             Thread thStatus = new Thread(MonitorStatus);
             thStatus.IsBackground = true;
@@ -146,7 +146,9 @@ namespace DeviceManager
             //实时数据中左侧按钮点击            
             InitialModelClickSensors();
             InitializeUIEnd();
-            this.WindowState = FormWindowState.Maximized;                                             
+            this.WindowState = FormWindowState.Maximized;
+            //不是很好的特别处理  
+            this.Shown += (S, E) => paset.userCalendar1.DateTimePicker1_ValueChanged(null,null);
         }
        
         #region 模型按钮

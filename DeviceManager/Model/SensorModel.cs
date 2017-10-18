@@ -367,6 +367,13 @@ namespace DeviceManager
                         }
                     }                                        
                 }
+                else
+                {
+                    if (State != 0)
+                    {
+                        State = 0;
+                    }
+                }
             }
         }
 
