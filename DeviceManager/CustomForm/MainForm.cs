@@ -25,14 +25,34 @@ namespace DeviceManager
     public partial class MainForm : Form
     {
         
-        //测试
+        //测试  //测试
+        bool b = false;
+        int value1 = 1226;
+        int value2 = 6666;
+        Random r = new Random();
         private void button1_Click(object sender, EventArgs e)
-        {           
-            glassButton1_Click(null, null);
-            Screen screen = Screen.FromControl(this);
-            int sh = screen.Bounds.Height;
-            int sw = screen.Bounds.Width;
+        {
+            string jstr = "{\"state\":\"Stream\",\"parser\":\"MXS1501\",\"raw\":\"7E000B7D1A000001000000330A4081817F01E524226D050100000100B01C00\",\"data\":[{\"name\":\"nodeid\",\"alias\":\"节点编号\",\"type\":\"uint16\",\"raw\":\"0x0100\",\"converted\":\"20\"},{\"name\":\"uid\",\"alias\":\"网关唯一号\",\"type\":\"raw\",\"raw\":\"0x01E6F5DC180000AE\"},{\"name\":\"parent\",\"alias\":\"父级节点\",\"type\":\"uint16\",\"raw\":\"0x0000\",\"converted\":\"0\"},{\"name\":\"port\",\"alias\":\"采集通道\",\"type\":\"uint8\",\"raw\":\"0x01\",\"converted\":\"1\"},{\"name\":\"light\",\"alias\":\"太阳光照(lux)\",\"type\":\"uint32\",\"raw\":\"0x00B01C00\",\"converted\":\"" + textBox1.Text + "\"}]}";
+            JObject jobj = JObject.Parse(jstr);
+            DataParser.ParseJObj(jobj);  
+            // int add = r.Next(-20, 20);
+            //string jstr;
+            //if (b)
+            //{
+            //    jstr = "{\"state\":\"Stream\",\"parser\":\"MXS1501\",\"raw\":\"7E000B7D1A000001000000330A4081817F01E524226D050100000100B01C00\",\"data\":[{\"name\":\"nodeid\",\"alias\":\"节点编号\",\"type\":\"uint16\",\"raw\":\"0x0100\",\"converted\":\"1\"},{\"name\":\"uid\",\"alias\":\"网关唯一号\",\"type\":\"raw\",\"raw\":\"0x81817F01E524226D\"},{\"name\":\"parent\",\"alias\":\"父级节点\",\"type\":\"uint16\",\"raw\":\"0x0000\",\"converted\":\"0\"},{\"name\":\"port\",\"alias\":\"采集通道\",\"type\":\"uint8\",\"raw\":\"0x01\",\"converted\":\"1\"},{\"name\":\"light\",\"alias\":\"太阳光照(lux)\",\"type\":\"uint32\",\"raw\":\"0x00B01C00\",\"converted\":\"" + value1 + "\"}]}";
+            //    b = false;
+            //    value1 += add;
+            //}
+            //else
+            //{
+            //    jstr = "{\"state\":\"Stream\",\"parser\":\"MXN820\",\"raw\":\"7E000B7D1A000001000000330A5E81817F01E524226DFC000000000000E70D\",\"data\":[{\"name\":\"nodeid\",\"alias\":\"节点编号\",\"type\":\"uint16\",\"raw\":\"0x0100\",\"converted\":\"1\"},{\"name\":\"uid\",\"alias\":\"网关唯一号\",\"type\":\"hex\",\"raw\":\"0x81817F01E524226D\",\"converted\":\"81817F01E524226D\"},{\"name\":\"parent\",\"alias\":\"父级节点\",\"type\":\"uint16\",\"raw\":\"0x0000\",\"converted\":\"0\"},{\"name\":\"port\",\"alias\":\"采集通道\",\"type\":\"uint8\",\"raw\":\"0x00\",\"converted\":\"0\"},{\"name\":\"chargeVol\",\"alias\":\"充电电压(mv)\",\"type\":\"uint16\",\"raw\":\"0x0000\",\"converted\":\"0\"},{\"name\":\"battVol\",\"alias\":\"电池电压(mv)\",\"type\":\"uint16\",\"raw\":\"0xE70D\",\"converted\":\"" + value2 + "\"}]}";
+            //    b = true;
+            //    value2 += add;
+            //}
+            //JObject jobj = JObject.Parse(jstr);
+            //DataParser.ParseJObj(jobj);          
         }
+
 
         const int reConnectInterval = 10 * 1000;//10s
         bool success = false;
@@ -67,6 +87,9 @@ namespace DeviceManager
         private void MainForm_Load(object sender, EventArgs e)
         {
             //测试                                
+            button1.Visible = true;
+            textBox1.Visible = true;
+
             Thread thStatus = new Thread(MonitorStatus);
             thStatus.IsBackground = true;
             thStatus.Start();
@@ -80,7 +103,8 @@ namespace DeviceManager
     
         PanelHistory ph = new PanelHistory();
         PanelAlarmRecord par = new PanelAlarmRecord();
-        PanelAlarmSet paset = new PanelAlarmSet();
+        //PanelAlarmSet paset = new PanelAlarmSet();
+        UC paset = new UC();
         PanelGroupSensors pgs = new PanelGroupSensors();
         PanelDrag pdg = new PanelDrag();
         
@@ -432,34 +456,7 @@ namespace DeviceManager
             panelRight.Controls.Add(panelItem);
             panelAllP.Controls.Add(panelAll);
             panelAllP.BringToFront();
-        }           
-     
-        //测试
-        bool b = false;
-        int value1 = 1226;
-        int value2 = 6666;
-        Random r = new Random();
-        private void glassButton1_Click(object sender, EventArgs e)
-        {
-            //panelRuntime.BringToFront();
-            //测试
-            int add = r.Next(-20, 20);
-            string jstr;
-            if (b)
-            {
-                jstr = "{\"state\":\"Stream\",\"parser\":\"MXS1501\",\"raw\":\"7E000B7D1A000001000000330A4081817F01E524226D050100000100B01C00\",\"data\":[{\"name\":\"nodeid\",\"alias\":\"节点编号\",\"type\":\"uint16\",\"raw\":\"0x0100\",\"converted\":\"1\"},{\"name\":\"uid\",\"alias\":\"网关唯一号\",\"type\":\"raw\",\"raw\":\"0x81817F01E524226D\"},{\"name\":\"parent\",\"alias\":\"父级节点\",\"type\":\"uint16\",\"raw\":\"0x0000\",\"converted\":\"0\"},{\"name\":\"port\",\"alias\":\"采集通道\",\"type\":\"uint8\",\"raw\":\"0x01\",\"converted\":\"1\"},{\"name\":\"light\",\"alias\":\"太阳光照(lux)\",\"type\":\"uint32\",\"raw\":\"0x00B01C00\",\"converted\":\"" + value1 + "\"}]}";
-                b = false;
-                value1+=add;
-            }
-            else
-            {
-                jstr = "{\"state\":\"Stream\",\"parser\":\"MXN820\",\"raw\":\"7E000B7D1A000001000000330A5E81817F01E524226DFC000000000000E70D\",\"data\":[{\"name\":\"nodeid\",\"alias\":\"节点编号\",\"type\":\"uint16\",\"raw\":\"0x0100\",\"converted\":\"1\"},{\"name\":\"uid\",\"alias\":\"网关唯一号\",\"type\":\"hex\",\"raw\":\"0x81817F01E524226D\",\"converted\":\"81817F01E524226D\"},{\"name\":\"parent\",\"alias\":\"父级节点\",\"type\":\"uint16\",\"raw\":\"0x0000\",\"converted\":\"0\"},{\"name\":\"port\",\"alias\":\"采集通道\",\"type\":\"uint8\",\"raw\":\"0x00\",\"converted\":\"0\"},{\"name\":\"chargeVol\",\"alias\":\"充电电压(mv)\",\"type\":\"uint16\",\"raw\":\"0x0000\",\"converted\":\"0\"},{\"name\":\"battVol\",\"alias\":\"电池电压(mv)\",\"type\":\"uint16\",\"raw\":\"0xE70D\",\"converted\":\"" + value2 + "\"}]}";
-                b = true;
-                value2+=add;
-            }
-            JObject jobj = JObject.Parse(jstr);
-            DataParser.ParseJObj(jobj);
-        }
+        }                
        
         private void button2_Click(object sender, EventArgs e)
         {

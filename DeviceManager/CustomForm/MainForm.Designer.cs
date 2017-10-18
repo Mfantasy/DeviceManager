@@ -53,6 +53,7 @@
             this.menuButtonPanel3 = new DeviceManager.CustomControl.MenuButtonPanel();
             this.menuButtonPanel2 = new DeviceManager.CustomControl.MenuButtonPanel();
             this.button1 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.panelRuntime.SuspendLayout();
             this.panelLeft.SuspendLayout();
             this.panelBotttom.SuspendLayout();
@@ -186,6 +187,7 @@
             this.panelTop.BackColor = System.Drawing.Color.Transparent;
             this.panelTop.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panelTop.BackgroundImage")));
             this.panelTop.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panelTop.Controls.Add(this.textBox1);
             this.panelTop.Controls.Add(this.menuButtonPanel6);
             this.panelTop.Controls.Add(this.pictureBox2);
             this.panelTop.Controls.Add(this.pictureBox1);
@@ -369,7 +371,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(893, 27);
+            this.button1.Location = new System.Drawing.Point(672, 12);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 0;
@@ -377,6 +379,14 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Visible = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(753, 12);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 23);
+            this.textBox1.TabIndex = 22;
+            this.textBox1.Visible = false;
             // 
             // MainForm
             // 
@@ -436,6 +446,7 @@
         private System.Windows.Forms.ToolStripDropDownButton toolStripSplitButton1;
         private System.Windows.Forms.ToolStripMenuItem 数据报表ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 用户管理ToolStripMenuItem;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
 

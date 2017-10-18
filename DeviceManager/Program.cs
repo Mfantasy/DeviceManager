@@ -29,8 +29,8 @@ namespace DeviceManager
 
             //DataTable dt = SqlLiteHelper.ExecuteReader(db, sql);
             //Console.WriteLine(dt);
-            Application.Run(new TestForm());   
-            return;
+            //Application.Run(new TestForm());   
+            //return;
             Application.EnableVisualStyles();                    
             Application.SetCompatibleTextRenderingDefault(false);
 
