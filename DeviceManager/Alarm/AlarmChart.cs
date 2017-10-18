@@ -310,6 +310,7 @@ namespace DeviceManager.Alarm
                         }                    
                     }                    
                     SqlLiteHelper.ExecuteNonQuery(db, usql);
+                    userCalendar.DateTimePicker1_ValueChanged(null,null);
                 }               
             }
             else //新建保存

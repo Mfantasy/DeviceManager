@@ -60,7 +60,7 @@ namespace DeviceManager.Alarm
         }
 
 
-        private void DateTimePicker1_ValueChanged(object sender, EventArgs e)
+        public void DateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
             int weekNum = Convert.ToInt16(DateTime.Parse(dateTimePicker1.Value.ToString("yyyy年MM月01日")).DayOfWeek);
             dataGridView1.Rows.Clear();
@@ -172,19 +172,23 @@ namespace DeviceManager.Alarm
 
         private void button2_Click(object sender, EventArgs e)
         {
-            //删除Cell
-            if (dataGridView1.CurrentCell.Value is DateCell)
+            if (dataGridView1.CurrentCell != null)
             {
-                DateCell dc = dataGridView1.CurrentCell.Value as DateCell;
-                AlarmStrategy ast = dc.AS;
-                if (ast != null)
+                //删除Cell
+                if (dataGridView1.CurrentCell.Value is DateCell)
                 {
-                    string dsql = string.Format("DELETE FROM T_ALARM_SENSOR_MAP WHERE date='{0}' AND aname ='{1}' AND uid='{2}' AND node='{3}' AND port='{4}'", dc.YYYYMMDD, ast.Name, CurrentSensor.Uid, CurrentSensor.NodeId, CurrentSensor.PortId);
-                    SqlLiteHelper.ExecuteNonQuery(db, dsql);
-                    dataGridView1.Refresh();
-                    if (CurrentSensor.AlarmDic.ContainsKey(dc.YYYYMMDD))
+                    DateCell dc = dataGridView1.CurrentCell.Value as DateCell;
+                    AlarmStrategy ast = dc.AS;
+                    if (ast != null)
                     {
-                        CurrentSensor.AlarmDic.Remove(dc.YYYYMMDD);
+                        string dsql = string.Format("DELETE FROM T_ALARM_SENSOR_MAP WHERE date='{0}' AND aname ='{1}' AND uid='{2}' AND node='{3}' AND port='{4}'", dc.YYYYMMDD, ast.Name, CurrentSensor.Uid, CurrentSensor.NodeId, CurrentSensor.PortId);
+                        SqlLiteHelper.ExecuteNonQuery(db, dsql);
+                        dataGridView1.Refresh();
+                        if (CurrentSensor.AlarmDic.ContainsKey(dc.YYYYMMDD))
+                        {
+                            CurrentSensor.AlarmDic.Remove(dc.YYYYMMDD);
+                            DateTimePicker1_ValueChanged(null, null);
+                        }
                     }
                 }
             }

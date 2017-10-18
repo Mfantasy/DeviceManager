@@ -316,32 +316,56 @@ namespace DeviceManager
                     }                  
                 }
                 ValueUpdated?.Invoke(this, EventArgs.Empty);
-           
-                if (Alarm != null && Alarm.Low <= Alarm.Up)
-                {                  
-                    double db = double.Parse(_value);
-                    //报警
-                    bool mtUp = db > Alarm.Up + Alarm.Around;
-                    bool ltLow = db < Alarm.Low - Alarm.Around;
-                    //警戒
-                    bool aroundUp = db >= Alarm.Up - Alarm.Around && db <= Alarm.Up + Alarm.Around;
-                    bool aroundLow = db <= Alarm.Low + Alarm.Around && db >= Alarm.Low - Alarm.Around;                    
-                    if (mtUp || ltLow)
-                    {
-                        State = 2;
-                    }                    
-                    else if (aroundUp || aroundLow)
-                    {
-                        State = 1;
-                    }
-                    else
-                    {
-                        State = 0;
-                    }
-                }
-                else
+                #region 预警(旧)
+                //if (Alarm != null && Alarm.Low <= Alarm.Up)
+                //{                  
+                //    double db = double.Parse(_value);
+                //    //报警
+                //    bool mtUp = db > Alarm.Up + Alarm.Around;
+                //    bool ltLow = db < Alarm.Low - Alarm.Around;
+                //    //警戒
+                //    bool aroundUp = db >= Alarm.Up - Alarm.Around && db <= Alarm.Up + Alarm.Around;
+                //    bool aroundLow = db <= Alarm.Low + Alarm.Around && db >= Alarm.Low - Alarm.Around;                    
+                //    if (mtUp || ltLow)
+                //    {
+                //        State = 2;
+                //    }                    
+                //    else if (aroundUp || aroundLow)
+                //    {
+                //        State = 1;
+                //    }
+                //    else
+                //    {
+                //        State = 0;
+                //    }
+                //}
+                //else
+                //{
+                //    State = 0;
+                //}
+                #endregion
+                //开始查阅预警信息
+                string key = DateTime.Now.ToString("yyyyMMdd");
+                int h = DateTime.Now.Hour;
+                if (this.CurrentSensor.AlarmDic.ContainsKey(key))
                 {
-                    State = 0;
+                    Alarm24 a24 = CurrentSensor.AlarmDic[key].A24s.Find(a => a.Field == this.Name);
+                    if (a24 != null)
+                    {
+                        double v = double.Parse(_value);
+                        if (v > a24.Warn + a24.Hs[h].Top || v < a24.Hs[h].Low - a24.Warn)
+                        {
+                            State = 2;
+                        }
+                        else if ((v >= a24.Hs[h].Top - a24.Warn && v <= a24.Hs[h].Top + a24.Warn) || (v <= a24.Hs[h].Low + a24.Warn && v > a24.Hs[h].Low - a24.Warn))
+                        {
+                            State = 1;
+                        }
+                        else
+                        {
+                            State = 0;
+                        }
+                    }                                        
                 }
             }
         }
